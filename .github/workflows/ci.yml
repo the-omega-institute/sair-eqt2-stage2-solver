@@ -1,0 +1,18 @@
+name: solver-evidence-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  structural:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate frozen solver and evidence
+        run: python3 scripts/check_freeze.py
+      - name: Run solver helper tests
+        run: python3 -m unittest discover -s tests -v

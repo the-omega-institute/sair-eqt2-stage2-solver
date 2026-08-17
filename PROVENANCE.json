@@ -1,0 +1,87 @@
+{
+  "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
+  "solver_py_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
+  "solver_py_bytes": 82370,
+  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+  "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
+  "archived_full_regression_environment": {
+    "official_repo_sha": "6805e2323018fbd8a85f41ca09fc33d74d5a02a5",
+    "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+    "scope": "The three full archived result ledgers below were produced under this revision. They have not been relabeled as results from a newer upstream revision."
+  },
+  "latest_upstream_validation": {
+    "validated_on": "2026-08-17",
+    "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
+    "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+    "official_harness": {
+      "status": "GREEN",
+      "zero_failures": true,
+      "case": "68/68",
+      "judge_internal": "32/32",
+      "banned_token": "24/24",
+      "pipeline": "55/55",
+      "repeatability": "4/4",
+      "verify_branch": "3/3",
+      "public_challenger": "79/79",
+      "infra_challenger": "4/4",
+      "loader": "7/7",
+      "submit_cli": "11/11",
+      "readme_consistency": "1/1"
+    },
+    "sample_20": {
+      "accepted": 20,
+      "total": 20,
+      "llm_calls": 0,
+      "judge_calls": 20,
+      "ledger": "results/sample_20_official_2848228.json",
+      "ledger_sha256": "33ad4b699eb5297e25132ff9ac2c01c4657ec61bcb62a9a918232e380ffdb177"
+    },
+    "scope": "The full official harness and sample_20 were rerun under this revision. sample_200 and hard2 were not rerun under this revision."
+  },
+  "local_official_harness_scores": {
+    "sample_20": "20/20",
+    "hard2.jsonl": "197/200 in the archived full-set regression; a separate unarchived run recorded 196/200, with the cause not established",
+    "sample_200.json": "196/200",
+    "note": "LOCAL official-runner scores, not leaderboard scores. Every accepted row in the archived regression is a deterministic-stage certificate accepted by the real Lean judge. Preserve exact ledgers and distinguish the archived 197/200 hard2 result from the unarchived 196/200 observation; the available evidence does not establish the cause of the difference."
+  },
+  "solver_artifact_roles": {
+    "current_and_final_regression": {
+      "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
+      "solver_bytes": 82370,
+      "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md and its three linked ledgers"
+    },
+    "general66_targeted_replay": {
+      "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
+      "evidence": "results/general66_provenance_ledger.json",
+      "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
+    }
+  },
+  "archived_deterministic_regression": {
+    "sample_20": {
+      "accepted": 20,
+      "total": 20,
+      "llm_calls": 0,
+      "judge_calls": 20,
+      "ledger": "results/sample_20_deterministic_final.json",
+      "ledger_sha256": "f6c8732807758486be94c0cedadfca317e2221308a355fb8b4c944a3e1fab819"
+    },
+    "sample_200": {
+      "accepted": 196,
+      "total": 200,
+      "llm_calls": 4,
+      "judge_calls": 196,
+      "ledger": "results/sample_200_deterministic_final.json",
+      "ledger_sha256": "46260ef51cf3a600dad091a93c9498a87c71025e6174dde9f80b5c73ae9d3490"
+    },
+    "hard2": {
+      "accepted": 197,
+      "total": 200,
+      "llm_calls": 3,
+      "judge_calls": 197,
+      "ledger": "results/hard2_deterministic_final.json",
+      "ledger_sha256": "448d3ff415e3e23901815b81a3713f0ccea694490986e0d04d18ab7b1eeb568c"
+    }
+  },
+  "live_llm_measurement": "Archived in docs/LIVE_RUN_NOTES.md and results/*_live.json. The pre-optimization gpt-oss-120b runs solved 0/6 sample_20 residuals; generation was nondeterministic despite fixed provider settings.",
+  "note": "These are LOCAL official-runner scores, NOT hosted leaderboard scores."
+}

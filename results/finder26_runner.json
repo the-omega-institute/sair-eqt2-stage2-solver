@@ -1,0 +1,652 @@
+[
+  {
+    "id": "false_1682_411",
+    "eq1_id": 1682,
+    "eq2_id": 411,
+    "elapsed_seconds": 10.75,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[1, 4, 0, 2, 3], [0, 2, 1, 2, 3], [3, 1, 2, 0, 3], [4, 0, 4, 3, 4], [2, 4, 0, 1, 4]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[1, 4, 0, 2, 3], [0, 2, 1, 2, 3], [3, 1, 2, 0, 3], [4, 0, 4, 3, 4], [2, 4, 0, 1, 4]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 9.18
+      }
+    ]
+  },
+  {
+    "id": "false_3145_3481",
+    "eq1_id": 3145,
+    "eq2_id": 3481,
+    "elapsed_seconds": 2.53,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[2, 2, 2, 3], [3, 2, 2, 3], [0, 1, 2, 3], [0, 1, 2, 2]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[2, 2, 2, 3], [3, 2, 2, 3], [0, 1, 2, 3], [0, 1, 2, 2]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.02
+      }
+    ]
+  },
+  {
+    "id": "hard2_0001",
+    "eq1_id": 4538,
+    "eq2_id": 4505,
+    "elapsed_seconds": 5.41,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 0, 2], [0, 0, 0, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 0, 2], [0, 0, 0, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.57
+      }
+    ]
+  },
+  {
+    "id": "hard2_0007",
+    "eq1_id": 4422,
+    "eq2_id": 4296,
+    "elapsed_seconds": 3.24,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 4, 0], [0, 3, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 4, 0], [0, 3, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.54
+      }
+    ]
+  },
+  {
+    "id": "hard2_0009",
+    "eq1_id": 898,
+    "eq2_id": 2673,
+    "elapsed_seconds": 7.21,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[7, 0, 2, 4, 5, 6, 1, 3], [6, 2, 0, 3, 1, 7, 5, 4], [5, 3, 4, 2, 7, 1, 6, 0], [3, 5, 1, 6, 0, 4, 2, 7], [0, 7, 6, 1, 3, 2, 4, 5], [1, 4, 3, 0, 6, 5, 7, 2], [4, 1, 5, 7, 2, 3, 0, 6], [2, 6, 7, 5, 4, 0, 3, 1]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[7, 0, 2, 4, 5, 6, 1, 3], [6, 2, 0, 3, 1, 7, 5, 4], [5, 3, 4, 2, 7, 1, 6, 0], [3, 5, 1, 6, 0, 4, 2, 7], [0, 7, 6, 1, 3, 2, 4, 5], [1, 4, 3, 0, 6, 5, 7, 2], [4, 1, 5, 7, 2, 3, 0, 6], [2, 6, 7, 5, 4, 0, 3, 1]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 6.69
+      }
+    ]
+  },
+  {
+    "id": "hard2_0012",
+    "eq1_id": 1368,
+    "eq2_id": 4612,
+    "elapsed_seconds": 7.82,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[0, 2, 5, 6, 1, 7, 4, 3], [6, 1, 3, 0, 2, 4, 7, 5], [4, 5, 2, 7, 3, 6, 0, 1], [5, 4, 0, 3, 7, 1, 2, 6], [3, 7, 6, 5, 4, 2, 1, 0], [1, 6, 7, 2, 0, 5, 3, 4], [7, 3, 1, 4, 5, 0, 6, 2], [2, 0, 4, 1, 6, 3, 5, 7]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[0, 2, 5, 6, 1, 7, 4, 3], [6, 1, 3, 0, 2, 4, 7, 5], [4, 5, 2, 7, 3, 6, 0, 1], [5, 4, 0, 3, 7, 1, 2, 6], [3, 7, 6, 5, 4, 2, 1, 0], [1, 6, 7, 2, 0, 5, 3, 4], [7, 3, 1, 4, 5, 0, 6, 2], [2, 0, 4, 1, 6, 3, 5, 7]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 6.69
+      }
+    ]
+  },
+  {
+    "id": "hard2_0016",
+    "eq1_id": 646,
+    "eq2_id": 4127,
+    "elapsed_seconds": 3.81,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[2, 0, 3, 0, 0, 3], [4, 0, 1, 1, 1, 0], [2, 3, 1, 2, 2, 1], [5, 3, 1, 3, 3, 3], [3, 0, 0, 4, 4, 0], [4, 4, 1, 5, 5, 1]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[2, 0, 3, 0, 0, 3], [4, 0, 1, 1, 1, 0], [2, 3, 1, 2, 2, 1], [5, 3, 1, 3, 3, 3], [3, 0, 0, 4, 4, 0], [4, 4, 1, 5, 5, 1]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.22
+      }
+    ]
+  },
+  {
+    "id": "hard2_0064",
+    "eq1_id": 1587,
+    "eq2_id": 562,
+    "elapsed_seconds": 10.92,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[5, 4, 0, 2, 6, 1, 3, 7], [1, 2, 3, 4, 7, 5, 0, 6], [4, 5, 7, 1, 3, 2, 6, 0], [6, 3, 2, 0, 5, 7, 4, 1], [3, 6, 1, 7, 4, 0, 5, 2], [7, 0, 4, 3, 1, 6, 2, 5], [0, 7, 5, 6, 2, 3, 1, 4], [2, 1, 6, 5, 0, 4, 7, 3]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[5, 4, 0, 2, 6, 1, 3, 7], [1, 2, 3, 4, 7, 5, 0, 6], [4, 5, 7, 1, 3, 2, 6, 0], [6, 3, 2, 0, 5, 7, 4, 1], [3, 6, 1, 7, 4, 0, 5, 2], [7, 0, 4, 3, 1, 6, 2, 5], [0, 7, 5, 6, 2, 3, 1, 4], [2, 1, 6, 5, 0, 4, 7, 3]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 7.69
+      }
+    ]
+  },
+  {
+    "id": "hard2_0067",
+    "eq1_id": 2116,
+    "eq2_id": 1932,
+    "elapsed_seconds": 7.73,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[3, 0, 2, 4, 6, 7, 5, 1], [7, 2, 0, 6, 4, 3, 1, 5], [5, 4, 6, 0, 2, 1, 3, 7], [2, 7, 3, 1, 5, 0, 6, 4], [4, 5, 1, 3, 7, 6, 0, 2], [1, 6, 4, 2, 0, 5, 7, 3], [0, 3, 7, 5, 1, 2, 4, 6], [6, 1, 5, 7, 3, 4, 2, 0]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[3, 0, 2, 4, 6, 7, 5, 1], [7, 2, 0, 6, 4, 3, 1, 5], [5, 4, 6, 0, 2, 1, 3, 7], [2, 7, 3, 1, 5, 0, 6, 4], [4, 5, 1, 3, 7, 6, 0, 2], [1, 6, 4, 2, 0, 5, 7, 3], [0, 3, 7, 5, 1, 2, 4, 6], [6, 1, 5, 7, 3, 4, 2, 0]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 6.79
+      }
+    ]
+  },
+  {
+    "id": "hard2_0068",
+    "eq1_id": 4431,
+    "eq2_id": 4362,
+    "elapsed_seconds": 5.7,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[2, 2, 3, 3, 2], [3, 3, 4, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[2, 2, 3, 3, 2], [3, 3, 4, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.15
+      }
+    ]
+  },
+  {
+    "id": "hard2_0084",
+    "eq1_id": 4545,
+    "eq2_id": 4534,
+    "elapsed_seconds": 3.57,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[4, 4, 4, 1, 4], [4, 4, 0, 4, 4], [4, 4, 0, 1, 4], [4, 4, 0, 1, 4], [4, 4, 4, 4, 4]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[4, 4, 4, 1, 4], [4, 4, 0, 4, 4], [4, 4, 0, 1, 4], [4, 4, 0, 1, 4], [4, 4, 4, 4, 4]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.48
+      }
+    ]
+  },
+  {
+    "id": "hard2_0087",
+    "eq1_id": 4422,
+    "eq2_id": 4297,
+    "elapsed_seconds": 9.55,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 4, 0], [0, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 4, 0], [0, 0, 3, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 8.85
+      }
+    ]
+  },
+  {
+    "id": "hard2_0092",
+    "eq1_id": 4581,
+    "eq2_id": 4539,
+    "elapsed_seconds": 8.5,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 2, 0], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 0, 0, 0, 0], [0, 0, 0, 2, 0], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.36
+      }
+    ]
+  },
+  {
+    "id": "hard2_0093",
+    "eq1_id": 1518,
+    "eq2_id": 3915,
+    "elapsed_seconds": 8.41,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[2, 1, 4, 5, 0, 3], [0, 3, 4, 5, 2, 1], [2, 3, 4, 1, 0, 5], [2, 3, 0, 5, 4, 1], [2, 5, 4, 3, 0, 1], [4, 3, 2, 5, 0, 1]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[2, 1, 4, 5, 0, 3], [0, 3, 4, 5, 2, 1], [2, 3, 4, 1, 0, 5], [2, 3, 0, 5, 4, 1], [2, 5, 4, 3, 0, 1], [4, 3, 2, 5, 0, 1]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.16
+      }
+    ]
+  },
+  {
+    "id": "hard2_0123",
+    "eq1_id": 1368,
+    "eq2_id": 4358,
+    "elapsed_seconds": 8.58,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[0, 4, 3, 6, 5, 7, 1, 2], [3, 6, 0, 4, 7, 5, 2, 1], [5, 2, 7, 1, 0, 3, 6, 4], [7, 1, 5, 2, 3, 0, 4, 6], [6, 3, 4, 0, 1, 2, 5, 7], [1, 7, 2, 5, 6, 4, 0, 3], [2, 5, 1, 7, 4, 6, 3, 0], [4, 0, 6, 3, 2, 1, 7, 5]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[0, 4, 3, 6, 5, 7, 1, 2], [3, 6, 0, 4, 7, 5, 2, 1], [5, 2, 7, 1, 0, 3, 6, 4], [7, 1, 5, 2, 3, 0, 4, 6], [6, 3, 4, 0, 1, 2, 5, 7], [1, 7, 2, 5, 6, 4, 0, 3], [2, 5, 1, 7, 4, 6, 3, 0], [4, 0, 6, 3, 2, 1, 7, 5]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 7.46
+      }
+    ]
+  },
+  {
+    "id": "hard2_0124",
+    "eq1_id": 2045,
+    "eq2_id": 3257,
+    "elapsed_seconds": 9.81,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[1, 3, 1, 3, 1, 1], [4, 4, 2, 4, 2, 4], [0, 5, 5, 5, 5, 0], [2, 2, 4, 2, 4, 2], [5, 0, 0, 0, 0, 5], [3, 1, 3, 1, 3, 3]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[1, 3, 1, 3, 1, 1], [4, 4, 2, 4, 2, 4], [0, 5, 5, 5, 5, 0], [2, 2, 4, 2, 4, 2], [5, 0, 0, 0, 0, 5], [3, 1, 3, 1, 3, 3]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 8.07
+      }
+    ]
+  },
+  {
+    "id": "hard2_0125",
+    "eq1_id": 2890,
+    "eq2_id": 2652,
+    "elapsed_seconds": 4.34,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 2, 3, 3, 0, 5], [4, 1, 4, 1, 4, 1], [2, 5, 2, 5, 2, 5], [0, 3, 3, 3, 0, 3], [4, 1, 4, 1, 4, 1], [0, 5, 2, 5, 2, 5]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 2, 3, 3, 0, 5], [4, 1, 4, 1, 4, 1], [2, 5, 2, 5, 2, 5], [0, 3, 3, 3, 0, 3], [4, 1, 4, 1, 4, 1], [0, 5, 2, 5, 2, 5]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.64
+      }
+    ]
+  },
+  {
+    "id": "hard2_0133",
+    "eq1_id": 898,
+    "eq2_id": 949,
+    "elapsed_seconds": 8.75,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[3, 2, 4, 1, 6, 0, 5, 7], [1, 6, 0, 3, 2, 4, 7, 5], [0, 5, 1, 4, 7, 3, 2, 6], [7, 4, 2, 5, 0, 6, 1, 3], [5, 0, 6, 7, 4, 2, 3, 1], [6, 1, 5, 2, 3, 7, 4, 0], [2, 3, 7, 6, 1, 5, 0, 4], [4, 7, 3, 0, 5, 1, 6, 2]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[3, 2, 4, 1, 6, 0, 5, 7], [1, 6, 0, 3, 2, 4, 7, 5], [0, 5, 1, 4, 7, 3, 2, 6], [7, 4, 2, 5, 0, 6, 1, 3], [5, 0, 6, 7, 4, 2, 3, 1], [6, 1, 5, 2, 3, 7, 4, 0], [2, 3, 7, 6, 1, 5, 0, 4], [4, 7, 3, 0, 5, 1, 6, 2]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 7.42
+      }
+    ]
+  },
+  {
+    "id": "hard2_0146",
+    "eq1_id": 3304,
+    "eq2_id": 4293,
+    "elapsed_seconds": 7.23,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[0, 2, 3, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[0, 2, 3, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.77
+      }
+    ]
+  },
+  {
+    "id": "hard2_0165",
+    "eq1_id": 2116,
+    "eq2_id": 692,
+    "elapsed_seconds": 10.72,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[2, 0, 3, 5, 6, 4, 1, 7], [6, 7, 5, 3, 2, 1, 4, 0], [7, 6, 1, 4, 0, 5, 3, 2], [3, 4, 2, 6, 5, 0, 7, 1], [1, 5, 7, 0, 4, 6, 2, 3], [0, 2, 4, 1, 7, 3, 5, 6], [5, 1, 6, 2, 3, 7, 0, 4], [4, 3, 0, 7, 1, 2, 6, 5]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[2, 0, 3, 5, 6, 4, 1, 7], [6, 7, 5, 3, 2, 1, 4, 0], [7, 6, 1, 4, 0, 5, 3, 2], [3, 4, 2, 6, 5, 0, 7, 1], [1, 5, 7, 0, 4, 6, 2, 3], [0, 2, 4, 1, 7, 3, 5, 6], [5, 1, 6, 2, 3, 7, 0, 4], [4, 3, 0, 7, 1, 2, 6, 5]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 7.88
+      }
+    ]
+  },
+  {
+    "id": "hard2_0175",
+    "eq1_id": 2805,
+    "eq2_id": 2853,
+    "elapsed_seconds": 8.2,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[2, 0, 7, 3, 5, 1, 4, 6], [6, 3, 1, 0, 4, 7, 5, 2], [3, 6, 4, 2, 1, 5, 7, 0], [1, 4, 6, 5, 3, 2, 0, 7], [0, 2, 5, 6, 7, 4, 1, 3], [4, 1, 3, 7, 6, 0, 2, 5], [5, 7, 0, 1, 2, 3, 6, 4], [7, 5, 2, 4, 0, 6, 3, 1]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 8) := {\n    op := finOpTable \"[[2, 0, 7, 3, 5, 1, 4, 6], [6, 3, 1, 0, 4, 7, 5, 2], [3, 6, 4, 2, 1, 5, 7, 0], [1, 4, 6, 5, 3, 2, 0, 7], [0, 2, 5, 6, 7, 4, 1, 3], [4, 1, 3, 7, 6, 0, 2, 5], [5, 7, 0, 1, 2, 3, 6, 4], [7, 5, 2, 4, 0, 6, 3, 1]]\"\n  }\n  refine ⟨Fin 8, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 7.43
+      }
+    ]
+  },
+  {
+    "id": "hard2_0176",
+    "eq1_id": 2878,
+    "eq2_id": 2894,
+    "elapsed_seconds": 2.77,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[1, 3, 3, 3], [0, 2, 2, 2], [3, 3, 3, 3], [1, 1, 1, 1]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[1, 3, 3, 3], [0, 2, 2, 2], [3, 3, 3, 3], [1, 1, 1, 1]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 1.99
+      }
+    ]
+  },
+  {
+    "id": "hard2_0181",
+    "eq1_id": 646,
+    "eq2_id": 2858,
+    "elapsed_seconds": 4.1,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 0, 1, 5, 2, 0], [1, 1, 3, 0, 0, 3], [2, 2, 3, 1, 2, 2], [3, 3, 3, 4, 0, 0], [4, 4, 0, 4, 2, 0], [5, 5, 1, 1, 1, 2]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 0, 1, 5, 2, 0], [1, 1, 3, 0, 0, 3], [2, 2, 3, 1, 2, 2], [3, 3, 3, 4, 0, 0], [4, 4, 0, 4, 2, 0], [5, 5, 1, 1, 1, 2]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.15
+      }
+    ]
+  },
+  {
+    "id": "hard2_0192",
+    "eq1_id": 646,
+    "eq2_id": 4286,
+    "elapsed_seconds": 4.09,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 0, 1, 5, 2, 0], [1, 1, 3, 0, 0, 3], [2, 2, 3, 1, 2, 2], [3, 3, 3, 4, 0, 0], [4, 4, 0, 4, 2, 0], [5, 5, 1, 1, 1, 2]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 6) := {\n    op := finOpTable \"[[0, 0, 1, 5, 2, 0], [1, 1, 3, 0, 0, 3], [2, 2, 3, 1, 2, 2], [3, 3, 3, 4, 0, 0], [4, 4, 0, 4, 2, 0], [5, 5, 1, 1, 1, 2]]\"\n  }\n  refine ⟨Fin 6, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 3.2
+      }
+    ]
+  },
+  {
+    "id": "hard2_0195",
+    "eq1_id": 4422,
+    "eq2_id": 4460,
+    "elapsed_seconds": 3.2,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[3, 3, 4, 3, 3], [2, 2, 3, 3, 2], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[3, 3, 4, 3, 3], [2, 2, 3, 3, 2], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3], [3, 3, 3, 3, 3]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.51
+      }
+    ]
+  },
+  {
+    "id": "hard2_0197",
+    "eq1_id": 3295,
+    "eq2_id": 3290,
+    "elapsed_seconds": 3.04,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[0, 0, 1, 0], [0, 0, 0, 2], [0, 3, 0, 0], [0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[0, 0, 1, 0], [0, 0, 0, 2], [0, 3, 0, 0], [0, 0, 0, 0]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 2.12
+      }
+    ]
+  }
+]
