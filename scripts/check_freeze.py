@@ -100,17 +100,20 @@ def check_ledgers(provenance: dict) -> None:
     if provenance["solver_py_sha256"] not in report:
         raise FreezeError("final regression report does not bind the current solver")
 
-    latest = provenance["latest_upstream_validation"]["sample_20"]
-    latest_path = ROOT / latest["ledger"]
-    if sha256(latest_path) != latest["ledger_sha256"]:
-        raise FreezeError("latest-upstream sample_20 ledger SHA-256 differs")
-    latest_stats = ledger_stats(latest_path)
-    for field in ("accepted", "total", "llm_calls", "judge_calls"):
-        if latest_stats[field] != latest[field]:
-            raise FreezeError(
-                f"latest-upstream sample_20 {field} differs: "
-                f"{latest_stats[field]} != {latest[field]}"
-            )
+    latest_records = provenance["latest_upstream_validation"][
+        "deterministic_regression"
+    ]
+    for label, record in latest_records.items():
+        path = ROOT / record["ledger"]
+        if sha256(path) != record["ledger_sha256"]:
+            raise FreezeError(f"latest-upstream {label} ledger SHA-256 differs")
+        stats = ledger_stats(path)
+        for field in ("accepted", "total", "llm_calls", "judge_calls"):
+            if stats[field] != record[field]:
+                raise FreezeError(
+                    f"latest-upstream {label} {field} differs: "
+                    f"{stats[field]} != {record[field]}"
+                )
 
 
 def main() -> int:

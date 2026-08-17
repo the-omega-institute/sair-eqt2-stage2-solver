@@ -28,15 +28,33 @@
       "submit_cli": "11/11",
       "readme_consistency": "1/1"
     },
-    "sample_20": {
-      "accepted": 20,
-      "total": 20,
-      "llm_calls": 0,
-      "judge_calls": 20,
-      "ledger": "results/sample_20_official_2848228.json",
-      "ledger_sha256": "33ad4b699eb5297e25132ff9ac2c01c4657ec61bcb62a9a918232e380ffdb177"
+    "deterministic_regression": {
+      "sample_20": {
+        "accepted": 20,
+        "total": 20,
+        "llm_calls": 0,
+        "judge_calls": 20,
+        "ledger": "results/sample_20_official_2848228.json",
+        "ledger_sha256": "33ad4b699eb5297e25132ff9ac2c01c4657ec61bcb62a9a918232e380ffdb177"
+      },
+      "sample_200": {
+        "accepted": 196,
+        "total": 200,
+        "llm_calls": 4,
+        "judge_calls": 196,
+        "ledger": "results/sample_200_official_2848228.json",
+        "ledger_sha256": "b7f47a2d36086f3fd58f792f6bcc5ffbbd57bc0a5e945206a0a881b5bde7c283"
+      },
+      "hard2": {
+        "accepted": 197,
+        "total": 200,
+        "llm_calls": 3,
+        "judge_calls": 197,
+        "ledger": "results/hard2_official_2848228.json",
+        "ledger_sha256": "631f35621b265f2fa58a597b341859a7c31b6f2fa79b752fb039e0c420f39fba"
+      }
     },
-    "scope": "The full official harness and sample_20 were rerun under this revision. sample_200 and hard2 were not rerun under this revision."
+    "scope": "The full official harness and all three archived public regression sets were rerun under this revision."
   },
   "local_official_harness_scores": {
     "sample_20": "20/20",
@@ -83,5 +101,5 @@
     }
   },
   "live_llm_measurement": "Archived in docs/LIVE_RUN_NOTES.md and results/*_live.json. The pre-optimization gpt-oss-120b runs solved 0/6 sample_20 residuals; generation was nondeterministic despite fixed provider settings.",
-  "note": "These are LOCAL official-runner scores, NOT hosted leaderboard scores."
+  "note": "These are LOCAL official-runner scores, NOT hosted leaderboard scores. The matching scores and failed-ID sets across the two upstream revisions are independent replay evidence, not a hosted result."
 }

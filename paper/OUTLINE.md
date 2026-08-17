@@ -29,10 +29,12 @@ not a new completeness theorem.
 
 ## 5. Local official-runner evaluation
 
-Report the archived 20/20, 196/200, and 197/200 ledgers with exact solver,
-judge, config, and ledger hashes. State the wall-clock cutoff and local-runner
-boundaries. Analyze the seven distinct residual IDs across `sample_200` and
-`hard2` without tuning claims from hidden competition data.
+Report the 20/20, 196/200, and 197/200 ledgers with exact solver, judge,
+config, and ledger hashes. Record their independent reproduction under
+official revisions `6805e232` and `2848228`, including the identical failed-ID
+sets. State the wall-clock cutoff and local-runner boundaries. Analyze the
+seven distinct residual IDs across `sample_200` and `hard2` without tuning
+claims from hidden competition data.
 
 ## 6. Organizer-model fallback
 

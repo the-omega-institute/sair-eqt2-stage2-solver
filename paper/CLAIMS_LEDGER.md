@@ -10,6 +10,9 @@ but not stronger, until new durable evidence is added.
 - The archived local official-runner regressions record 20/20 on `sample_20`,
   196/200 on `sample_200`, and 197/200 on `hard2` for solver SHA-256
   `ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a`.
+- The same three scores and the same seven failed IDs were independently
+  reproduced under official revisions `6805e232` and `2848228`; the complete
+  `2848228` official harness also passed with zero failures.
 - Every accepted row in those three ledgers was solved before the LLM fallback.
 - A separate pre-optimization live measurement of organizer-pinned
   `gpt-oss-120b` solved 0/6 original `sample_20` residuals.

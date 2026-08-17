@@ -27,12 +27,12 @@ and [`PROVENANCE.json`](PROVENANCE.json). A separate fixed-configuration live
 measurement of the organizer-pinned `gpt-oss-120b` fallback solved 0/6 original
 `sample_20` residuals; see [`docs/LIVE_RUN_NOTES.md`](docs/LIVE_RUN_NOTES.md).
 
-The three full-set measurements were archived under official revision
-`6805e232`. On 2026-08-17, the complete official harness and `sample_20` were
-rerun against newer official revision `2848228`: the harness was green with
-zero failures and the frozen solver remained 20/20 with zero LLM calls. The
-`sample_200` and `hard2` scores have not been relabeled as results from the
-newer revision.
+The three measurements were first archived under official revision
+`6805e232`. On 2026-08-17, the complete official harness and all three sets
+were independently rerun against newer official revision `2848228`: the
+harness was green with zero failures, the scores remained 20/20, 196/200, and
+197/200, and the failed-ID sets matched exactly. See
+[`results/LATEST_UPSTREAM_REGRESSION.md`](results/LATEST_UPSTREAM_REGRESSION.md).
 
 ## Solver architecture
 
