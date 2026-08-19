@@ -2172,24 +2172,1252 @@ def _g2_emit(goal, joined):
     return "\n".join(lines) + "\n"
 
 
-def general_true_cert(eq1_text, eq2_text, time_budget_s=30.0):
-    """Return a complete Lean certificate for eq1 => eq2, or ``None``."""
+# ---------------------------------------------------------------------------
+# G3: ordered unit-equational superposition prover (unfailing completion with
+# a negated-goal clause), proof-producing.  Terms: ("v", name) variables,
+# ("k", name) goal constants (Skolemised goal variables), ("o", a, b) the
+# magma operation.  Equations are stored with the KBO-larger side on the left
+# when orientable; inferences are restricted by the ordering; new equations
+# and goal clauses are demodulated by the oriented active rules.  Every
+# derived equation keeps its derivation so the search result is replayed as a
+# self-contained Lean certificate (have-lemmas, congrArg/.symm/.trans).
+# ---------------------------------------------------------------------------
+
+
+class _G3ParseError(ValueError):
+    pass
+
+
+class _G3Parser:
+    def __init__(self, source):
+        self.tokens = re.findall(r"[a-z]|[()=]|◇", source)
+        compact = re.sub(r"\s+", "", source)
+        if "".join(self.tokens) != compact:
+            raise _G3ParseError("invalid equation")
+        self.pos = 0
+
+    def peek(self):
+        return self.tokens[self.pos] if self.pos < len(self.tokens) else None
+
+    def take(self, expected=None):
+        token = self.peek()
+        if token is None or (expected is not None and token != expected):
+            raise _G3ParseError("unexpected token")
+        self.pos += 1
+        return token
+
+    def atom(self):
+        if self.peek() == "(":
+            self.take("(")
+            result = self.expr()
+            self.take(")")
+            return result
+        token = self.take()
+        if not (len(token) == 1 and token.islower()):
+            raise _G3ParseError("expected variable")
+        return ("v", token)
+
+    def expr(self):
+        result = self.atom()
+        while self.peek() == "◇":
+            self.take()
+            result = ("o", result, self.atom())
+        return result
+
+    def equation(self):
+        left = self.expr()
+        self.take("=")
+        right = self.expr()
+        if self.peek() is not None:
+            raise _G3ParseError("trailing input")
+        return left, right
+
+
+def _g3_size(term):
+    if term[0] != "o":
+        return 1
+    return 1 + _g3_size(term[1]) + _g3_size(term[2])
+
+
+def _g3_vars(term, out=None):
+    if out is None:
+        out = set()
+    if term[0] == "v":
+        out.add(term[1])
+    elif term[0] == "o":
+        _g3_vars(term[1], out)
+        _g3_vars(term[2], out)
+    return out
+
+
+def _g3_varcount(term, out):
+    if term[0] == "v":
+        out[term[1]] = out.get(term[1], 0) + 1
+    elif term[0] == "o":
+        _g3_varcount(term[1], out)
+        _g3_varcount(term[2], out)
+
+
+def _g3_subst(term, substitution):
+    while term[0] == "v" and term[1] in substitution:
+        replacement = substitution[term[1]]
+        if replacement == term:
+            break
+        term = replacement
+    if term[0] != "o":
+        return term
+    return ("o", _g3_subst(term[1], substitution), _g3_subst(term[2], substitution))
+
+
+def _g3_occurs(variable, term, substitution):
+    stack = [term]
+    while stack:
+        t = stack.pop()
+        while t[0] == "v" and t[1] in substitution:
+            t = substitution[t[1]]
+        if t[0] == "v":
+            if t[1] == variable:
+                return True
+        elif t[0] == "o":
+            stack.append(t[1])
+            stack.append(t[2])
+    return False
+
+
+def _g3_unify(left, right):
+    substitution = {}
+    pending = [(left, right)]
+    while pending:
+        a, b = pending.pop()
+        while a[0] == "v" and a[1] in substitution:
+            a = substitution[a[1]]
+        while b[0] == "v" and b[1] in substitution:
+            b = substitution[b[1]]
+        if a == b:
+            continue
+        if a[0] == "v":
+            if _g3_occurs(a[1], b, substitution):
+                return None
+            substitution[a[1]] = b
+        elif b[0] == "v":
+            if _g3_occurs(b[1], a, substitution):
+                return None
+            substitution[b[1]] = a
+        elif a[0] == "o" and b[0] == "o":
+            pending.append((a[1], b[1]))
+            pending.append((a[2], b[2]))
+        else:
+            return None
+    return {name: _g3_subst(value, substitution)
+            for name, value in substitution.items()}
+
+
+def _g3_match(pattern, target, substitution):
+    if pattern[0] == "v":
+        old = substitution.get(pattern[1])
+        if old is None:
+            substitution[pattern[1]] = target
+            return True
+        return old == target
+    if pattern[0] == "k":
+        return pattern == target
+    return (target[0] == "o"
+            and _g3_match(pattern[1], target[1], substitution)
+            and _g3_match(pattern[2], target[2], substitution))
+
+
+def _g3_positions(term, path=()):
+    """Non-variable, non-constant positions (root first)."""
+    if term[0] != "o":
+        return
+    yield path, term
+    yield from _g3_positions(term[1], path + (1,))
+    yield from _g3_positions(term[2], path + (2,))
+
+
+def _g3_replace(term, path, replacement):
+    if not path:
+        return replacement
+    if path[0] == 1:
+        return ("o", _g3_replace(term[1], path[1:], replacement), term[2])
+    return ("o", term[1], _g3_replace(term[2], path[1:], replacement))
+
+
+def _g3_rename(term, prefix):
+    if term[0] == "v":
+        return ("v", (prefix, term[1]))
+    if term[0] != "o":
+        return term
+    return ("o", _g3_rename(term[1], prefix), _g3_rename(term[2], prefix))
+
+
+def _g3_gt(s, t, ws=None, wt=None):
+    """Knuth-Bendix ordering, unit weights, single binary symbol."""
+    if s == t:
+        return False
+    if ws is None:
+        ws = _g3_size(s)
+    if wt is None:
+        wt = _g3_size(t)
+    if ws < wt:
+        return False
+    ct = {}
+    _g3_varcount(t, ct)
+    if ct:
+        cs = {}
+        _g3_varcount(s, cs)
+        for v, n in ct.items():
+            if cs.get(v, 0) < n:
+                return False
+    if ws > wt:
+        return True
+    return _g3_lex(s, t)
+
+
+def _g3_lex(s, t):
+    if s == t:
+        return False
+    if s[0] == "o" and t[0] == "o":
+        if s[1] == t[1]:
+            return _g3_lex(s[2], t[2])
+        return _g3_gt(s[1], t[1])
+    if s[0] == "k" and t[0] == "k":
+        return s[1] > t[1]
+    return False
+
+
+def _g3_preorder(term):
+    """Preorder symbol list plus subtree-end indices (for skeleton matching)."""
+    syms = []
+    ends = []
+
+    def visit(t):
+        i = len(syms)
+        syms.append(t[0])
+        ends.append(0)
+        if t[0] == "o":
+            visit(t[1])
+            visit(t[2])
+        ends[i] = len(syms)
+
+    visit(term)
+    return syms, ends
+
+
+def _g3_positions_sized(term):
+    """List of (path, subterm, size) for all non-leaf positions, root first."""
+    out = []
+
+    def visit(t, path):
+        if t[0] != "o":
+            return 1
+        index = len(out)
+        out.append(None)
+        size = 1 + visit(t[1], path + (1,)) + visit(t[2], path + (2,))
+        out[index] = (path, t, size)
+        return size
+
+    visit(term, ())
+    return out
+
+
+class _G3Index:
+    """Discrimination tree over linear skeletons of rule sides."""
+
+    def __init__(self):
+        self.root = {}
+
+    def add(self, term, entry):
+        node = self.root
+        syms, _ = _g3_preorder(term)
+        for s in syms:
+            node = node.setdefault("*" if s == "v" else "o", {})
+        node.setdefault(None, []).append(entry)
+
+    def lookup(self, term):
+        syms, ends = _g3_preorder(term)
+        n = len(syms)
+        out = []
+        stack = [(self.root, 0)]
+        while stack:
+            node, i = stack.pop()
+            if i == n:
+                entries = node.get(None)
+                if entries:
+                    out.extend(entries)
+                continue
+            child = node.get("*")
+            if child is not None:
+                stack.append((child, ends[i]))
+            if syms[i] == "o":
+                child = node.get("o")
+                if child is not None:
+                    stack.append((child, i + 1))
+        return out
+
+
+def _g3_lean(term):
+    if term[0] == "v":
+        return "X" + str(term[1]) if isinstance(term[1], int) else str(term[1])
+    if term[0] == "k":
+        return str(term[1])
+    return "(" + _g3_lean(term[1]) + " ◇ " + _g3_lean(term[2]) + ")"
+
+
+def _g3_context_lean(term, path):
+    if not path:
+        return "q"
+    if path[0] == 1:
+        return "(" + _g3_context_lean(term[1], path[1:]) + " ◇ " + _g3_lean(term[2]) + ")"
+    return "(" + _g3_lean(term[1]) + " ◇ " + _g3_context_lean(term[2], path[1:]) + ")"
+
+
+def _g3_application(name, args, reverse=False):
+    body = name
+    if args:
+        body += " " + " ".join(_g3_lean(arg) for arg in args)
+    if reverse:
+        return "(" + body + ").symm"
+    return body
+
+
+class _G3Eq:
+    __slots__ = ("left", "right", "parents", "serial", "weight", "nvars",
+                 "lsize", "rsize", "depth", "_orient", "_sl", "_sr", "_tl",
+                 "_tr", "_args", "recipe", "deleted")
+
+    def __init__(self, left, right, parents, serial, depth, nvars=None, recipe=None):
+        self.left = left
+        self.right = right
+        self.parents = parents
+        self.serial = serial
+        self.depth = depth
+        self.recipe = recipe
+        self.deleted = False
+        self.lsize = _g3_size(left)
+        self.rsize = _g3_size(right)
+        self.weight = self.lsize + self.rsize
+        if nvars is None:
+            nvars = len(_g3_vars(left) | _g3_vars(right))
+        self.nvars = nvars
+        self._orient = None
+        self._sl = None
+        self._sr = None
+        self._tl = None
+        self._tr = None
+        self._args = None
+
+    @property
+    def orient(self):
+        if self._orient is None:
+            self._orient = 1 if _g3_gt(self.left, self.right) else 0
+        return self._orient
+
+    @property
+    def sl(self):
+        if self._sl is None:
+            self._sl = _g3_rename(self.left, "s")
+        return self._sl
+
+    @property
+    def sr(self):
+        if self._sr is None:
+            self._sr = _g3_rename(self.right, "s")
+        return self._sr
+
+    @property
+    def tl(self):
+        if self._tl is None:
+            self._tl = _g3_rename(self.left, "t")
+        return self._tl
+
+    @property
+    def tr(self):
+        if self._tr is None:
+            self._tr = _g3_rename(self.right, "t")
+        return self._tr
+
+    def step_args(self):
+        """(source_args, target_args, before) in this equation's binders."""
+        if self._args is None:
+            (source, target, unifier, names, before_raw, lazy_target,
+             _, _, _, _) = self.parents
+
+            def visit(t):
+                if t[0] == "v":
+                    return ("v", names.get(t[1], 0))
+                if t[0] != "o":
+                    return t
+                return ("o", visit(t[1]), visit(t[2]))
+
+            source_args = [visit(_g3_subst(("v", ("s", i)), unifier))
+                           for i in range(source.nvars)]
+            if lazy_target:
+                target_args = [("v", names.get(i, 0)) for i in range(target.nvars)]
+            else:
+                target_args = [visit(_g3_subst(("v", ("t", i)), unifier))
+                               for i in range(target.nvars)]
+            self._args = (source_args, target_args, visit(before_raw))
+        return self._args
+
+
+class _G3Step:
+    __slots__ = ("before", "after", "equation", "args", "reverse", "path")
+
+    def __init__(self, before, after, equation, args, reverse, path):
+        self.before = before
+        self.after = after
+        self.equation = equation
+        self.args = args
+        self.reverse = reverse
+        self.path = path
+
+
+class _G3Neg:
+    __slots__ = ("left", "right", "parent", "sigma", "lsteps", "rsteps",
+                 "serial", "weight", "depth")
+
+    def __init__(self, left, right, parent, sigma, lsteps, rsteps, serial):
+        self.left = left
+        self.right = right
+        self.parent = parent
+        self.sigma = sigma
+        self.lsteps = lsteps
+        self.rsteps = rsteps
+        self.serial = serial
+        self.weight = _g3_size(left) + _g3_size(right)
+        self.depth = 0 if parent is None else parent.depth + 1
+
+
+def _g3_canonical(left, right):
+    """Rename variables to 0..n-1 by first occurrence; return terms + map."""
+    names = {}
+
+    def visit(term):
+        if term[0] == "v":
+            if term[1] not in names:
+                names[term[1]] = len(names)
+            return ("v", names[term[1]])
+        if term[0] != "o":
+            return term
+        return ("o", visit(term[1]), visit(term[2]))
+
+    a = visit(left)
+    b = visit(right)
+    return a, b, names
+
+
+def _g3_key(left, right):
+    a1, b1, _ = _g3_canonical(left, right)
+    b2, a2, _ = _g3_canonical(right, left)
+    return min((a1, b1), (b2, a2))
+
+
+def _g3_eq_key(eq):
+    """Symmetric alpha-key of a stored (already canonical) equation."""
+    if eq.lsize > eq.rsize:
+        return (eq.left, eq.right)
+    b2, a2, _ = _g3_canonical(eq.right, eq.left)
+    if eq.lsize < eq.rsize:
+        return (b2, a2)
+    return min((eq.left, eq.right), (b2, a2))
+
+
+class _G3Prover:
+    def __init__(self, hypothesis, goal, deadline, size_cap=60, var_cap=10,
+                 neg_size_cap=None, max_known=250000, age_ratio=6, var_penalty=2,
+                 collapse_bonus=0, rhs_factor=1):
+        self.deadline = deadline
+        self.var_penalty = var_penalty
+        self.collapse_bonus = collapse_bonus
+        self.rhs_factor = rhs_factor
+        self.size_cap = size_cap
+        self.var_cap = var_cap
+        self.neg_size_cap = neg_size_cap or size_cap + 10
+        self.max_known = max_known
+        self.age_ratio = age_ratio
+        self.known = set()          # hashes of symmetric alpha-keys
+        self.neg_known = set()
+        self.active = []
+        self.active_neg = []
+        self.index = _G3Index()     # demodulation candidates: (eq, reverse)
+        self.queue = []             # weight-ordered passive (recipes)
+        self.age_queue = []         # age-ordered passive (same recipes)
+        self.age_pos = 0
+        self.picked = set()         # counters already selected
+        self.counter = 0
+        self.serial = 0
+        self.generated = 0
+        self.selected = 0
+        self.result = None
+        self.clock = 0
+        self.nf_set = {}
+        self.rule_log = []
+        self.version = 0
+        hl, hr = hypothesis
+        original = []
+
+        def collect(term):
+            if term[0] == "v":
+                if term[1] not in original:
+                    original.append(term[1])
+            else:
+                collect(term[1])
+                collect(term[2])
+
+        collect(hl)
+        collect(hr)
+        swapped = _g3_gt(hr, hl)
+        if swapped:
+            hl, hr = hr, hl
+        a, b, names = _g3_canonical(hl, hr)
+        h_args = [names[v] for v in original]
+        self.h_eq = _G3Eq(a, b, ("h", swapped, h_args), self.next_serial(), 0,
+                          recipe=("H",))
+        self.known.add(hash(_g3_key(a, b)))
+        self.push(self.h_eq)
+        gl, gr = goal
+        self.goal_vars = []
+
+        def collect_goal(term):
+            if term[0] == "v":
+                if term[1] not in self.goal_vars:
+                    self.goal_vars.append(term[1])
+            else:
+                collect_goal(term[1])
+                collect_goal(term[2])
+
+        collect_goal(gl)
+        collect_goal(gr)
+
+        def skolem(term):
+            if term[0] == "v":
+                return ("k", term[1])
+            return ("o", skolem(term[1]), skolem(term[2]))
+
+        self.goal = (skolem(gl), skolem(gr))
+        neg = _G3Neg(self.goal[0], self.goal[1], None, {}, [], [], self.next_serial())
+        self.neg_known.add(_g3_key(neg.left, neg.right))
+        self.push_neg(neg)
+
+    # -- bookkeeping ------------------------------------------------------
+    def next_serial(self):
+        self.serial += 1
+        return self.serial
+
+    def push(self, eq):
+        priority = eq.lsize + self.rhs_factor * eq.rsize + self.var_penalty * eq.nvars
+        if eq.right[0] == "v":
+            priority -= self.collapse_bonus
+        entry = (priority, 0, self.counter, eq.recipe)
+        heapq.heappush(self.queue, entry)
+        self.age_queue.append(entry)
+        self.counter += 1
+
+    def push_neg(self, neg):
+        priority = neg.weight
+        heapq.heappush(self.queue, (priority, 1, self.counter, neg))
+        self.counter += 1
+
+    def timed_out(self):
+        self.clock += 1
+        if self.clock & 63:
+            return False
+        return time.monotonic() >= self.deadline
+
+    def pop(self):
+        """Given-clause selection: weight-first with periodic oldest pick."""
+        if self.age_ratio and self.selected % self.age_ratio == self.age_ratio - 1:
+            while self.age_pos < len(self.age_queue):
+                entry = self.age_queue[self.age_pos]
+                self.age_pos += 1
+                if entry[2] not in self.picked:
+                    self.picked.add(entry[2])
+                    return 0, entry[3]
+            if self.age_pos > 0:
+                del self.age_queue[:self.age_pos]
+                self.age_pos = 0
+        while self.queue:
+            _, kind, counter, item = heapq.heappop(self.queue)
+            if kind == 1:
+                return 1, item
+            if counter not in self.picked:
+                self.picked.add(counter)
+                return 0, item
+        return None, None
+
+    def replay(self, recipe):
+        """Rebuild the full equation (with proof record) from its recipe."""
+        if recipe[0] == "H":
+            return self.h_eq
+        if recipe[0] == "S":
+            _, source, target, source_reverse, target_reverse, path = recipe
+            return self.make_step(source, target, source_reverse, target_reverse,
+                                  path, True)
+        _, rule, sub, reverse, target_reverse, path = recipe
+        eq = self.replay(sub)
+        if eq is None:
+            return None
+        return self.make_step(rule, eq, reverse, target_reverse, path, False)
+
+    def backward_simplify(self, rule):
+        """Rewrite active equations reducible by the new rule; they are
+        replaced (re-queued in simplified form) and retired from inference."""
+        lhs_size = rule.lsize
+        for eq in self.active:
+            if eq is rule or eq.deleted:
+                continue
+            if eq.lsize < lhs_size and eq.rsize < lhs_size:
+                continue
+            hit = None
+            for target_reverse in (False, True):
+                side = eq.right if target_reverse else eq.left
+                for path, subterm, size in _g3_positions_sized(side):
+                    if size < lhs_size:
+                        continue
+                    sub = {}
+                    if not _g3_match(rule.sl, subterm, sub):
+                        continue
+                    if rule.orient == 0 and not _g3_gt(subterm, _g3_subst(rule.sr, sub)):
+                        continue
+                    hit = (target_reverse, path)
+                    break
+                if hit is not None:
+                    break
+            if hit is None:
+                continue
+            new = self.make_step(rule, eq, False, hit[0], hit[1], False)
+            if new is None:
+                continue
+            eq.deleted = True
+            self.accept(new)
+            if self.timed_out():
+                return
+
+    def add_active(self, eq):
+        self.active.append(eq)
+        self.index.add(eq.left, (eq, False))
+        self.rule_log.append((eq, False))
+        if eq.orient == 0:
+            self.index.add(eq.right, (eq, True))
+            self.rule_log.append((eq, True))
+        self.version = len(self.rule_log)
+        if len(self.nf_set) > 400000:
+            self.nf_set = {}
+
+    # -- inference core ---------------------------------------------------
+    def make_step(self, source, target, source_reverse, target_reverse, path,
+                  unify, subterm=None, size_cap=None):
+        """Rewrite target's selected side at path with source.
+
+        unify=True: ordered superposition (both renamed apart);
+        unify=False: demodulation (source renamed, target kept raw).
+        """
+        sl = source.sr if source_reverse else source.sl
+        sr = source.sl if source_reverse else source.sr
+        if unify:
+            tl = target.tr if target_reverse else target.tl
+            tr = target.tl if target_reverse else target.tr
+            if subterm is None:
+                subterm = tl
+                for step in path:
+                    subterm = subterm[step]
+            unifier = _g3_unify(sl, subterm)
+            if unifier is None:
+                return None
+            srx = _g3_subst(sr, unifier)
+            srx_size = _g3_size(srx)
+            if source.orient == 0:
+                slx = _g3_subst(sl, unifier)
+                if _g3_gt(srx, slx, srx_size):
+                    return None
+            before = _g3_subst(tl, unifier)
+            other = _g3_subst(tr, unifier)
+            before_size = _g3_size(before)
+            other_size = _g3_size(other)
+            if target.orient == 0 and _g3_gt(other, before, other_size, before_size):
+                return None
+            sub_size = _g3_size(_g3_subst(subterm, unifier))
+        else:
+            tl = target.right if target_reverse else target.left
+            tr = target.left if target_reverse else target.right
+            if subterm is None:
+                subterm = tl
+                for step in path:
+                    subterm = subterm[step]
+            unifier = {}
+            if not _g3_match(sl, subterm, unifier):
+                return None
+            srx = _g3_subst(sr, unifier)
+            srx_size = _g3_size(srx)
+            if source.orient == 0 and not _g3_gt(subterm, srx, None, srx_size):
+                return None
+            before = tl
+            other = tr
+            before_size = target.rsize if target_reverse else target.lsize
+            other_size = target.lsize if target_reverse else target.rsize
+            sub_size = _g3_size(subterm)
+        after_size = before_size - sub_size + srx_size
+        if size_cap is not None and after_size + other_size > size_cap:
+            return None
+        after = _g3_replace(before, path, srx)
+        if after == other:
+            return None
+        if _g3_gt(other, after, other_size, after_size):
+            left, right, swapped = other, after, True
+        else:
+            left, right, swapped = after, other, False
+        cl, cr, names = _g3_canonical(left, right)
+        parents = (source, target, unifier, names, before, not unify,
+                   source_reverse, target_reverse, path, swapped)
+        if unify:
+            recipe = ("S", source, target, source_reverse, target_reverse, path)
+        else:
+            recipe = ("D", source, target.recipe, source_reverse, target_reverse, path)
+        return _G3Eq(cl, cr, parents, self.next_serial(),
+                     max(source.depth, target.depth) + 1, len(names), recipe)
+
+    def normalize(self, term, prefix, steps, depth=0):
+        """Innermost normal form of term w.r.t. the active rules.
+
+        Appends (path, rule, reverse, substitution, replacement) records to
+        steps, in application order (inner steps first).  Normal forms are
+        cached with the rule-set version at which they were established; a
+        stale entry is re-validated against only the rules added since.
+        Returns (term, size).
+        """
+        if term[0] != "o":
+            return term, 1
+        cached = self.nf_set.get(term)
+        if cached is not None:
+            size, version = cached
+            if version == self.version:
+                return term, size
+        if depth > 200 or len(steps) > 400:
+            return term, _g3_size(term)
+        a, sa = self.normalize(term[1], prefix + (1,), steps, depth + 1)
+        b, sb = self.normalize(term[2], prefix + (2,), steps, depth + 1)
+        current = term if (a is term[1] and b is term[2]) else ("o", a, b)
+        size = 1 + sa + sb
+        if cached is not None and current is term and self.version - cached[1] <= 48:
+            candidates = self.rule_log[cached[1]:]
+        else:
+            candidates = self.index.lookup(current)
+        for rule, reverse in candidates:
+            if rule.deleted:
+                continue
+            lhs = rule.sr if reverse else rule.sl
+            if (rule.rsize if reverse else rule.lsize) > size:
+                continue
+            rhs = rule.sl if reverse else rule.sr
+            sub = {}
+            if not _g3_match(lhs, current, sub):
+                continue
+            replacement = _g3_subst(rhs, sub)
+            if rule.orient == 0 and not _g3_gt(current, replacement):
+                continue
+            steps.append((prefix, rule, reverse, sub, replacement))
+            return self.normalize(replacement, prefix, steps, depth + 1)
+        self.nf_set[current] = (size, self.version)
+        return current, size
+
+    def demodulate(self, eq):
+        """Normalise both sides of eq with active rules; returns eq or None."""
+        for target_reverse in (False, True):
+            side = eq.right if target_reverse else eq.left
+            steps = []
+            self.normalize(side, (), steps)
+            for path, rule, reverse, _, _ in steps:
+                new = self.make_step(rule, eq, reverse, target_reverse, path, False)
+                if new is None:
+                    break
+                eq = new
+                if eq.left == eq.right:
+                    return None
+                # the rewritten side is stored on the left unless swapped;
+                # if it moved, the remaining recorded paths no longer apply.
+                if eq.parents[9] != target_reverse:
+                    return self.demodulate(eq)
+        return eq
+
+    def neg_demodulate(self, neg):
+        left, right = neg.left, neg.right
+        lsteps, rsteps = list(neg.lsteps), list(neg.rsteps)
+        for which in (0, 1):
+            side = left if which == 0 else right
+            steps = []
+            self.normalize(side, (), steps)
+            current = side
+            for path, rule, reverse, sub, replacement in steps:
+                after = _g3_replace(current, path, replacement)
+                args = [sub.get(("s", i), replacement) for i in range(rule.nvars)]
+                step = _G3Step(current, after, rule, args, reverse, path)
+                (lsteps if which == 0 else rsteps).append(step)
+                current = after
+            if which == 0:
+                left = current
+            else:
+                right = current
+        if left is neg.left and right is neg.right:
+            return neg
+        return _G3Neg(left, right, neg.parent, neg.sigma, lsteps, rsteps, neg.serial)
+
+    def accept(self, eq):
+        """Forward simplify + dedup a freshly generated equation; push it."""
+        if eq.weight > self.size_cap or eq.nvars > self.var_cap:
+            return False
+        eq = self.demodulate(eq)
+        if eq is None or eq.left == eq.right:
+            return False
+        if eq.weight > self.size_cap:
+            return False
+        key = hash(_g3_eq_key(eq))
+        if key in self.known:
+            return False
+        self.known.add(key)
+        self.push(eq)
+        self.generated += 1
+        return True
+
+    def check_neg(self, neg):
+        """Demodulate a goal clause; detect refutation; push."""
+        if neg.weight > self.neg_size_cap:
+            return None
+        neg = self.neg_demodulate(neg)
+        sigma = _g3_unify(neg.left, neg.right)
+        if sigma is not None:
+            self.result = (neg, sigma)
+            return neg
+        key = _g3_key(neg.left, neg.right)
+        if key in self.neg_known:
+            return None
+        self.neg_known.add(key)
+        self.push_neg(neg)
+        return None
+
+    def superpose_into_neg(self, rule, neg):
+        for reverse in ((False,) if rule.orient == 1 else (False, True)):
+            lhs = rule.right if reverse else rule.left
+            rhs = rule.left if reverse else rule.right
+            for which in (0, 1):
+                side = neg.left if which == 0 else neg.right
+                other = neg.right if which == 0 else neg.left
+                for path, subterm, _ in _g3_positions_sized(side):
+                    quick = _g3_unify(lhs, subterm)
+                    if quick is None:
+                        continue
+                    serial = self.next_serial()
+                    sp = (serial, "s")
+                    l2, r2 = _g3_rename(lhs, sp), _g3_rename(rhs, sp)
+                    sigma = _g3_unify(l2, subterm)
+                    if sigma is None:
+                        continue
+                    lx, rx = _g3_subst(l2, sigma), _g3_subst(r2, sigma)
+                    if rule.orient == 0 and _g3_gt(rx, lx):
+                        continue
+                    side_x = _g3_subst(side, sigma)
+                    other_x = _g3_subst(other, sigma)
+                    if _g3_gt(other_x, side_x):
+                        continue
+                    after = _g3_replace(side_x, path, rx)
+                    args = [_g3_subst(("v", (sp, i)), sigma) for i in range(rule.nvars)]
+                    step = _G3Step(side_x, after, rule, args, reverse, path)
+                    if which == 0:
+                        new = _G3Neg(after, other_x, neg, sigma, [step], [], serial)
+                    else:
+                        new = _G3Neg(other_x, after, neg, sigma, [], [step], serial)
+                    if self.check_neg(new) is not None:
+                        return True
+                    if self.timed_out():
+                        return False
+        return False
+
+    def superpose(self, given, other):
+        """All ordered superpositions between given and other (both roles)."""
+        for source, target in ((given, other), (other, given)):
+            for source_reverse in ((False,) if source.orient == 1 else (False, True)):
+                for target_reverse in ((False,) if target.orient == 1 else (False, True)):
+                    target_side = target.tr if target_reverse else target.tl
+                    for path, subterm, _ in _g3_positions_sized(target_side):
+                        result = self.make_step(source, target, source_reverse,
+                                                target_reverse, path, True, subterm,
+                                                self.size_cap)
+                        if result is None:
+                            continue
+                        self.accept(result)
+                    if self.timed_out():
+                        return
+            if given is other:
+                break
+
+    def run(self):
+        while not self.timed_out():
+            if len(self.known) >= self.max_known:
+                return None
+            kind, given = self.pop()
+            if given is None:
+                break
+            self.selected += 1
+            if kind == 0:
+                given = self.replay(given)
+                if given is None:
+                    continue
+            if kind == 1:
+                neg = self.neg_demodulate(given)
+                if neg is not given:
+                    sigma = _g3_unify(neg.left, neg.right)
+                    if sigma is not None:
+                        self.result = (neg, sigma)
+                        return self.result
+                    self.neg_known.add(_g3_key(neg.left, neg.right))
+                self.active_neg.append(neg)
+                for rule in list(self.active):
+                    if self.superpose_into_neg(rule, neg):
+                        return self.result
+                    if self.timed_out():
+                        return None
+                continue
+            eq = self.demodulate(given)
+            if eq is None or eq.left == eq.right:
+                continue
+            if eq is not given:
+                key = hash(_g3_eq_key(eq))
+                if key in self.known:
+                    continue
+                self.known.add(key)
+            self.add_active(eq)
+            if eq.orient == 1:
+                self.backward_simplify(eq)
+                if self.timed_out():
+                    return None
+            for neg in list(self.active_neg):
+                if self.superpose_into_neg(eq, neg):
+                    return self.result
+                if self.timed_out():
+                    return None
+            for other in list(self.active):
+                if other.deleted:
+                    continue
+                self.superpose(eq, other)
+                if self.timed_out():
+                    return None
+            if self.selected % 50 == 0:
+                self.active = [e for e in self.active if not e.deleted]
+        return None
+
+
+def _g3_flatten(neg, sigma, default):
+    chain = []
+    node = neg
+    while node is not None:
+        chain.append(node)
+        node = node.parent
+    chain.reverse()
+    lsteps, rsteps = [], []
+    for node in chain:
+        if node.sigma:
+            for step in lsteps + rsteps:
+                step.before = _g3_subst(step.before, node.sigma)
+                step.after = _g3_subst(step.after, node.sigma)
+                step.args = [_g3_subst(a, node.sigma) for a in step.args]
+        for s in node.lsteps:
+            lsteps.append(_G3Step(s.before, s.after, s.equation, list(s.args), s.reverse, s.path))
+        for s in node.rsteps:
+            rsteps.append(_G3Step(s.before, s.after, s.equation, list(s.args), s.reverse, s.path))
+    # final unifier + default for leftover variables
+    def finish(term):
+        term = _g3_subst(term, sigma)
+
+        def visit(t):
+            if t[0] == "v":
+                return default
+            if t[0] != "o":
+                return t
+            return ("o", visit(t[1]), visit(t[2]))
+
+        return visit(term)
+
+    for step in lsteps + rsteps:
+        step.before = finish(step.before)
+        step.after = finish(step.after)
+        step.args = [finish(a) for a in step.args]
+    return lsteps, rsteps
+
+
+def _g3_dependencies(roots):
+    result = []
+    seen = set()
+
+    def visit(equation):
+        if equation.serial in seen:
+            return
+        seen.add(equation.serial)
+        if equation.parents[0] != "h":
+            visit(equation.parents[0])
+            visit(equation.parents[1])
+        result.append(equation)
+
+    for equation in roots:
+        visit(equation)
+    return result
+
+
+def _g3_emit(goal_vars, lsteps, rsteps, robust=False):
+    roots = [step.equation for step in lsteps + rsteps]
+    dependencies = _g3_dependencies(roots)
+    names = {equation.serial: "e" + str(i) for i, equation in enumerate(dependencies)}
+    lines = ["import JudgeProblem", "", "def submission : Goal := by", "  intro G _ h"]
+
+    def close(term):
+        if robust:
+            return "first | exact " + term + " | grind"
+        return "exact " + term
+
+    for equation in dependencies:
+        name = names[equation.serial]
+        variables = sorted(_g3_vars(equation.left) | _g3_vars(equation.right))
+        binders = " ".join("X" + str(v) for v in variables)
+        lines.append("  have " + name + " (" + binders + " : G) : "
+                     + _g3_lean(equation.left) + " = " + _g3_lean(equation.right) + " := by")
+        if equation.parents[0] == "h":
+            reverse = equation.parents[1]
+            h_args = equation.parents[2]
+            app = "h" + (" " + " ".join("X" + str(v) for v in h_args) if h_args else "")
+            lines.append("    exact " + ("(" + app + ").symm" if reverse else app))
+            continue
+        (source, target, _, _, _, _, source_reverse,
+         target_reverse, path, swapped) = equation.parents
+        source_args, target_args, before = equation.step_args()
+        source_app = _g3_application(names[source.serial], source_args, source_reverse)
+        target_app = _g3_application(names[target.serial], target_args, target_reverse)
+        context = _g3_context_lean(before, path)
+        congr = "congrArg (fun q => " + context + ") (" + source_app + ")"
+        proof = "(" + congr + ").symm.trans (" + target_app + ")"
+        if swapped:
+            proof = "(" + proof + ").symm"
+        lines.append("    " + close(proof))
+
+    if goal_vars:
+        lines.append("  intro " + " ".join(goal_vars))
+    step_names = []
+    for index, step in enumerate(lsteps + rsteps):
+        name = "g" + str(index)
+        step_names.append(name)
+        lines.append("  have " + name + " : " + _g3_lean(step.before) + " = "
+                     + _g3_lean(step.after) + " := by")
+        app = _g3_application(names[step.equation.serial], step.args, step.reverse)
+        if step.path:
+            app = "congrArg (fun q => " + _g3_context_lean(step.before, step.path) + ") (" + app + ")"
+        lines.append("    " + close(app))
+    left_names = step_names[:len(lsteps)]
+    right_names = step_names[len(lsteps):]
+
+    def chain(ns):
+        if not ns:
+            return "rfl"
+        result = ns[0]
+        for n in ns[1:]:
+            result = "(" + result + ").trans " + n
+        return result
+
+    if not lsteps and not rsteps:
+        final = "rfl"
+    elif not rsteps:
+        final = chain(left_names)
+    elif not lsteps:
+        final = "(" + chain(right_names) + ").symm"
+    else:
+        final = "(" + chain(left_names) + ").trans (" + chain(right_names) + ").symm"
+    if robust:
+        lines.append("  first | exact " + final + " | grind")
+    else:
+        lines.append("  exact " + final)
+    return "\n".join(lines) + "\n"
+
+
+_G3_LAST = {"proof": None, "prover": None}
+
+
+def _g3_emit_pool(prover, max_lemmas=40, max_weight=40):
+    """Certificate from the smallest derived lemmas plus a final `grind`."""
+    pool = [eq for eq in prover.active
+            if eq.parents[0] != "h" and eq.weight <= max_weight]
+    pool.sort(key=lambda e: (e.weight, e.nvars, e.serial))
+    pool = pool[:max_lemmas]
+    if not pool:
+        return None
+    dependencies = _g3_dependencies(pool)
+    names = {equation.serial: "e" + str(i) for i, equation in enumerate(dependencies)}
+    lines = ["import JudgeProblem", "", "def submission : Goal := by", "  intro G _ h"]
+    for equation in dependencies:
+        name = names[equation.serial]
+        variables = sorted(_g3_vars(equation.left) | _g3_vars(equation.right))
+        binders = " ".join("X" + str(v) for v in variables)
+        lines.append("  have " + name + " (" + binders + " : G) : "
+                     + _g3_lean(equation.left) + " = " + _g3_lean(equation.right) + " := by")
+        if equation.parents[0] == "h":
+            reverse = equation.parents[1]
+            h_args = equation.parents[2]
+            app = "h" + (" " + " ".join("X" + str(v) for v in h_args) if h_args else "")
+            lines.append("    exact " + ("(" + app + ").symm" if reverse else app))
+            continue
+        (source, target, _, _, _, _, source_reverse,
+         target_reverse, path, swapped) = equation.parents
+        source_args, target_args, before = equation.step_args()
+        source_app = _g3_application(names[source.serial], source_args, source_reverse)
+        target_app = _g3_application(names[target.serial], target_args, target_reverse)
+        context = _g3_context_lean(before, path)
+        congr = "congrArg (fun q => " + context + ") (" + source_app + ")"
+        proof = "(" + congr + ").symm.trans (" + target_app + ")"
+        if swapped:
+            proof = "(" + proof + ").symm"
+        lines.append("    exact " + proof)
+    if prover.goal_vars:
+        lines.append("  intro " + " ".join(prover.goal_vars))
+    lines.append("  grind")
+    return "\n".join(lines) + "\n"
+
+
+def g3_pool_cert(max_lemmas=40, max_weight=40):
+    """Lemma-pool + grind certificate from the last (failed) g3 search."""
+    prover = _G3_LAST.get("prover")
+    if prover is None:
+        return None
+    try:
+        return _g3_emit_pool(prover, max_lemmas, max_weight)
+    except Exception:
+        return None
+
+
+def g3_reemit(robust=True):
+    """Re-emit the last successful g3 proof (robust form: grind fallbacks)."""
+    proof = _G3_LAST.get("proof")
+    if proof is None:
+        return None
+    goal_vars, lsteps, rsteps = proof
+    return _g3_emit(goal_vars, lsteps, rsteps, robust=robust)
+
+
+def g3_prove(eq1_text, eq2_text, time_budget_s=300.0, rounds=None, robust=False,
+             stats=None, max_known=250000, age_ratio=6, var_penalty=2, var_cap=10,
+             collapse_bonus=0, rhs_factor=1):
+    """Proof-producing ordered superposition; returns a Lean certificate or None."""
+    try:
+        hypothesis = _G3Parser(eq1_text).equation()
+        goal = _G3Parser(eq2_text).equation()
+    except (_G3ParseError, TypeError, ValueError):
+        return None
+    budget = max(0.05, float(time_budget_s))
+    start = time.monotonic()
+    end = start + budget
+    if rounds is None:
+        rounds = [(24, 0.08), (32, 0.17), (44, 0.30),
+                  (60, 1.0, {"var_penalty": 0, "age_ratio": 2})]
+    _G3_LAST["proof"] = None
+    best_prover = None
+    for entry in rounds:
+        size_cap, fraction = entry[0], entry[1]
+        overrides = entry[2] if len(entry) > 2 else {}
+        now = time.monotonic()
+        if now >= end:
+            break
+        deadline = min(end, start + fraction * budget) if fraction < 1.0 else end
+        if deadline <= now:
+            continue
+        options = {"max_known": max_known, "age_ratio": age_ratio,
+                   "var_penalty": var_penalty, "var_cap": var_cap,
+                   "collapse_bonus": collapse_bonus, "rhs_factor": rhs_factor}
+        options.update(overrides)
+        prover = _G3Prover(hypothesis, goal, deadline, size_cap=size_cap, **options)
+        try:
+            result = prover.run()
+        except (RecursionError, MemoryError):
+            result = None
+        if stats is not None:
+            stats.append({"size_cap": size_cap, "selected": prover.selected,
+                          "generated": prover.generated, "known": len(prover.known),
+                          "neg": len(prover.neg_known), "found": result is not None,
+                          "secs": round(time.monotonic() - now, 1),
+                          "saturated": not prover.queue})
+        if best_prover is None or len(prover.active) >= len(best_prover.active):
+            best_prover = prover
+        if result is not None:
+            neg, sigma = result
+            default = ("k", prover.goal_vars[0]) if prover.goal_vars else prover.goal[0]
+            lsteps, rsteps = _g3_flatten(neg, sigma, default)
+            _G3_LAST["proof"] = (prover.goal_vars, lsteps, rsteps)
+            _G3_LAST["prover"] = prover
+            return _g3_emit(prover.goal_vars, lsteps, rsteps, robust=robust)
+    _G3_LAST["prover"] = best_prover
+    return None
+
+
+def general_true_cert(eq1_text, eq2_text, time_budget_s=30.0, quick=False):
+    """Return a complete Lean certificate for eq1 => eq2, or ``None``.
+
+    Runs the G3 ordered-superposition prover (anytime: iterative size caps)
+    for most of the budget; the older goal-joining prover (_g2) gets the
+    remaining slice as a diversity fallback.
+    """
+    try:
+        budget = max(0.01, float(time_budget_s))
+    except (TypeError, ValueError):
+        return None
+    start = time.monotonic()
+    g3_budget = budget if quick else budget * 0.85
+    try:
+        cert = g3_prove(eq1_text, eq2_text, time_budget_s=g3_budget)
+    except Exception:
+        cert = None
+    if cert is not None:
+        return cert
+    remaining = budget - (time.monotonic() - start)
+    if quick or remaining < 0.5:
+        return None
     try:
         hypothesis = _G2Parser(eq1_text).equation()
         goal = _G2Parser(eq2_text).equation()
-        budget = max(0.01, float(time_budget_s))
     except (_G2ParseError, TypeError, ValueError):
         return None
-    joined = _g2_search(hypothesis, goal, time.monotonic() + budget)
+    try:
+        joined = _g2_search(hypothesis, goal, time.monotonic() + remaining)
+    except Exception:
+        joined = None
     if joined is None:
         return None
     return _g2_emit(goal, joined)
+
+
+def general_true_cert_robust():
+    """Robust re-emission (per-step `grind` fallbacks) of the last G3 proof."""
+    try:
+        return g3_reemit(robust=True)
+    except Exception:
+        return None
+
+
+def general_true_pool_cert():
+    """Lemma-pool + `grind` certificate from the last failed G3 search."""
+    try:
+        return g3_pool_cert()
+    except Exception:
+        return None
 
 
 def main():
     startup = read_message()
     problem = startup["problem"]
     eq1_text, eq2_text = problem["equation1"], problem["equation2"]
+    try:
+        wall_budget = float((startup.get("budget") or {}).get("timeout_seconds", 3600))
+    except (TypeError, ValueError):
+        wall_budget = 3600.0
+    if not (wall_budget > 0):
+        wall_budget = 3600.0
+    # True-side deterministic budgets scale with the per-problem wall clock
+    # (Solo 3600 s -> 600 s deep search; Marathon-style 300 s -> 60 s).
+    deep_true_budget = min(600.0, max(20.0, wall_budget / 6.0))
+    quick_true_budget = min(6.0, max(1.0, wall_budget / 600.0))
 
     # Stages are ordered cheapest-first so the common cases resolve in
     # milliseconds and only the genuine residuals pay the expensive searches.
@@ -2226,6 +3454,21 @@ def main():
         if result.get("status") == "accepted":
             return
 
+    # Stage 2c: quick pass of the general superposition prover (true). It
+    # settles almost every provable implication in well under a second, so
+    # it runs before the model finder; the deep anytime pass comes later.
+    cert = general_true_cert(eq1_text, eq2_text, time_budget_s=quick_true_budget,
+                             quick=True)
+    if cert is not None:
+        result = call_judge("true", cert)
+        if result.get("status") == "accepted":
+            return
+        cert = general_true_cert_robust()
+        if cert is not None:
+            result = call_judge("true", cert)
+            if result.get("status") == "accepted":
+                return
+
     # Stage 3: systematic SEM finite-model search (false) for irregular carriers
     # 4..8 — the first expensive stage (bounded budget).
     found = search_counterexample(eq1_text, eq2_text, use_linear=False,
@@ -2235,14 +3478,28 @@ def main():
         if result.get("status") == "accepted":
             return
 
-    # Stage 4: general goal-directed superposition prover for non-singleton true
-    # implications (goal proved directly by equational joining). Most expensive
-    # deterministic stage.
-    cert = general_true_cert(eq1_text, eq2_text, time_budget_s=30.0)
+    # Stage 4: deep anytime pass of the general superposition prover (true):
+    # ordered (KBO) unit superposition with demodulation, negated-goal
+    # paramodulation and iterative size-cap deepening, replayed as an exact
+    # have/congrArg certificate. Most expensive deterministic stage.
+    cert = general_true_cert(eq1_text, eq2_text, time_budget_s=deep_true_budget)
     if cert is not None:
         result = call_judge("true", cert)
         if result.get("status") == "accepted":
             return
+        cert = general_true_cert_robust()
+        if cert is not None:
+            result = call_judge("true", cert)
+            if result.get("status") == "accepted":
+                return
+    else:
+        # Stage 4b: lemma pool + `grind` -- the smallest derived consequences
+        # of the failed search as exact lemmas, then grind closes the goal.
+        cert = general_true_pool_cert()
+        if cert is not None:
+            result = call_judge("true", cert)
+            if result.get("status") == "accepted":
+                return
 
     # Pass 3: gpt-oss-120b fallback via the organizer proxy. The solver sends a
     # context dict (the proxy fills the PROMPT template and calls the model);
