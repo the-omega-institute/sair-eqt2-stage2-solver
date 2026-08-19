@@ -23,10 +23,12 @@ The official platform/validator issue remains tracked upstream as issue #3.
 ## Validated evidence
 
 The complete official harness passed with zero failures under `2848228` on
-2026-08-17. The frozen solver then scored 20/20 on `sample_20`, 196/200 on
-`sample_200`, and 197/200 on `hard2`. All 413 accepted rows were produced
-before the LLM fallback and accepted by the Lean judge. The seven failed rows
-entered a no-key fallback and produced no model certificate.
+2026-08-17 and again on the operator host on 2026-08-20. Solver v2
+(`29ba1ec8…`) scored 20/20 `sample_20`, 200/200 `sample_200`, 69/69 `hard1`,
+200/200 `hard2`, 399/400 `hard3`, 1000/1000 `normal` (1888/1889). All accepted
+rows were produced before the LLM fallback and accepted by the Lean judge; the
+single failed row (`hard3_0314`) entered a no-key fallback and produced no
+model certificate. The superseded v1 solver (`ea2946fe…`) scored 1875/1889.
 
 The same scores were first archived under official revision `6805e232`. The
 failed-ID sets match exactly across both revisions. `PROVENANCE.json` binds

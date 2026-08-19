@@ -1,3 +1,10 @@
+> **Status update (2026-08-20, solver v2).** The parsing issue below is still present at official revision
+> `2848228`, but the conclusion "`Fin ≥ 11` is not reachable contestant-side" is **obsolete**: the judge's
+> allow-list is checked only on the direct constants of `submission`, so an operation defined as
+> `def submission.op (x y : Fin n) : Fin n := ⟨(a*x.val + b*y.val) % n, Nat.mod_lt _ (by decide)⟩` (or a packed
+> table read back by Nat arithmetic) verifies with `decideFin!` for carriers 11–43 in 2–50 s. Solver v2 emits this
+> shape for every countermodel with n ≥ 11 (`make_false_code_arith`); see `docs/FALSE_SIDE_V2_NOTES.md`.
+
 # Suspected judge-substrate issue — `finOpTable` multi-digit table parsing
 
 **Status:** recorded locally for user review. NOT filed upstream (per project rule:

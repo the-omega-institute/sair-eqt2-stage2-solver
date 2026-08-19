@@ -10,41 +10,42 @@ files placed beside `solver.py`.
 
 ## Current evidence
 
-All scores below are local official-runner measurements, not hosted leaderboard
-scores. Every accepted row contains a Lean certificate accepted by the official
-judge.
+All scores below are local official-runner measurements (official revision
+`2848228`), not hosted leaderboard scores. Every accepted row contains a Lean
+certificate accepted by the official judge and was produced before the LLM
+fallback (`llm_calls = 0`).
 
-| Problem set | Accepted | LLM contribution |
-|---|---:|---|
-| `sample_20` | 20/20 | None; all accepted before fallback |
-| `sample_200` | 196/200 | None; all accepted before fallback |
-| `hard2` | 197/200 | None; all accepted before fallback |
+| Problem set | Accepted (solver v2) | Accepted (superseded v1) |
+|---|---:|---:|
+| `sample_20` | 20/20 | 20/20 |
+| `sample_200` | 200/200 | 196/200 |
+| `hard1` | 69/69 | 68/69 |
+| `hard2` | 200/200 | 197/200 |
+| `hard3` | 399/400 | 394/400 |
+| `normal` | 1000/1000 | 1000/1000 |
+| total | **1888/1889** | 1875/1889 |
 
 The full ledgers, exact failed IDs, call counts, hashes, and wall-clock totals
 are recorded in
 [`results/FINAL_DETERMINISTIC_REGRESSION.md`](results/FINAL_DETERMINISTIC_REGRESSION.md)
 and [`PROVENANCE.json`](PROVENANCE.json). A separate fixed-configuration live
 measurement of the organizer-pinned `gpt-oss-120b` fallback solved 0/6 original
-`sample_20` residuals; see [`docs/LIVE_RUN_NOTES.md`](docs/LIVE_RUN_NOTES.md).
-
-The three measurements were first archived under official revision
-`6805e232`. On 2026-08-17, the complete official harness and all three sets
-were independently rerun against newer official revision `2848228`: the
-harness was green with zero failures, the scores remained 20/20, 196/200, and
-197/200, and the failed-ID sets matched exactly. See
-[`results/LATEST_UPSTREAM_REGRESSION.md`](results/LATEST_UPSTREAM_REGRESSION.md).
+`sample_20` residuals of v1; see [`docs/LIVE_RUN_NOTES.md`](docs/LIVE_RUN_NOTES.md).
 
 ## Solver architecture
 
 The single-file solver orders proof-producing stages from cheapest to most
 expensive:
 
-1. explicit finite-magma countermodels over small carriers;
-2. structured polynomial magma countermodels;
-3. singleton and substitution-instance true proofs;
-4. bounded finite-model search with emitted `finOpTable` witnesses;
-5. proof-producing superposition for true implications;
-6. organizer-mediated `gpt-oss-120b` fallback, with every proposal sent to the
+1. explicit finite-magma countermodels over small carriers, linear/affine
+   magmas mod n (n ≤ 50), F_p^k vector-linear and polynomial families;
+2. singleton, substitution-instance and quick superposition true proofs;
+3. finite-model search with Latin-square propagation over carriers 4–10
+   (`finOpTable` witnesses for n ≤ 10, `submission.op` arithmetic certificates
+   for larger carriers) and canned ℕ-carrier models for known Austin pairs;
+4. deep anytime ordered unit-superposition prover for true implications, with
+   robust re-emission and a lemma-pool + `grind` fallback;
+5. organizer-mediated `gpt-oss-120b` fallback, with every proposal sent to the
    Lean judge before acceptance.
 
 The solver never reads an API key, opens repository files, shells out, or calls

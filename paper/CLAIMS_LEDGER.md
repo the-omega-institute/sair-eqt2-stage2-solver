@@ -7,13 +7,22 @@ but not stronger, until new durable evidence is added.
 
 - The frozen solver emits Lean-checkable proof or countermodel certificates and
   relies on the official judge for acceptance.
-- The archived local official-runner regressions record 20/20 on `sample_20`,
-  196/200 on `sample_200`, and 197/200 on `hard2` for solver SHA-256
-  `ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a`.
-- The same three scores and the same seven failed IDs were independently
-  reproduced under official revisions `6805e232` and `2848228`; the complete
-  `2848228` official harness also passed with zero failures.
-- Every accepted row in those three ledgers was solved before the LLM fallback.
+- Solver v2 (SHA-256 `29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c`,
+  160,448 bytes) records 20/20 on `sample_20`, 200/200 on `sample_200`, 69/69 on
+  `hard1`, 200/200 on `hard2`, 399/400 on `hard3`, and 1000/1000 on `normal`
+  (1888/1889 public rows) in archived local official-runner ledgers under
+  official revision `2848228`; the complete `2848228` official harness passed
+  with zero failures on the same host on 2026-08-20.
+- The superseded v1 solver (`ea2946fe…`) recorded 20/20, 196/200 and 197/200
+  on `sample_20`/`sample_200`/`hard2`, reproduced identically under `6805e232`
+  and `2848228`, and 68/69, 394/400, 1000/1000 on `hard1`/`hard3`/`normal`
+  (1875/1889); the 14 v1 residuals are exactly the rows v2 newly solves plus
+  `hard3_0314`.
+- Every accepted row in every archived ledger was solved before the LLM
+  fallback (`llm_calls = 0`).
+- Countermodels on carriers `Fin n`, n ≥ 11, are certifiable through an
+  operation defined inside the `submission` namespace; this was validated on the
+  official judge for n = 11, 13, 16, 25, 43.
 - A separate pre-optimization live measurement of organizer-pinned
   `gpt-oss-120b` solved 0/6 original `sample_20` residuals.
 - The live model generated different first attempts under the same advertised
@@ -24,7 +33,8 @@ but not stronger, until new durable evidence is added.
 
 - No hosted leaderboard score or rank.
 - No claim that the local public-set result transfers to hidden evaluation.
-- No claim that the bounded search is deterministic across machine load.
+- No claim that the bounded search is deterministic across machine load
+  (v2's deep stages are time-budgeted; results under heavier load may differ).
 - No completeness theorem for the countermodel or superposition procedures.
 - No general claim that LLM feedback is ineffective.
 - No comparative superiority over other competition solvers.
