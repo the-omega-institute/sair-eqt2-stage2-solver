@@ -4255,7 +4255,19 @@ def main():
         if result.get("status") == "accepted":
             return
 
-    # Stage 4: deep anytime pass of the general superposition prover (true):
+    # Stage 4: deep false search — heavier structured families (quadratic grid
+    # n=7..8, F_5^2, sampled polynomial ops up to n=16) and a long model-finder
+    # run over carriers 4..10. Only problems every cheaper stage missed pay this.
+    found = search_counterexample(eq1_text, eq2_text, use_linear=False,
+                                  use_structured=False, use_austin=False,
+                                  use_deep=True, deep_budget_s=60.0,
+                                  use_model_finder=True, model_finder_budget_s=120.0)
+    if found is not None:
+        result = call_judge("false", make_false_code(problem, found))
+        if result.get("status") == "accepted":
+            return
+
+    # Stage 5: deep anytime pass of the general superposition prover (true):
     # ordered (KBO) unit superposition with demodulation, negated-goal
     # paramodulation and iterative size-cap deepening, replayed as an exact
     # have/congrArg certificate. Most expensive deterministic stage.
@@ -4270,25 +4282,13 @@ def main():
             if result.get("status") == "accepted":
                 return
     else:
-        # Stage 4b: lemma pool + `grind` -- the smallest derived consequences
+        # Stage 5b: lemma pool + `grind` -- the smallest derived consequences
         # of the failed search as exact lemmas, then grind closes the goal.
         cert = general_true_pool_cert()
         if cert is not None:
             result = call_judge("true", cert)
             if result.get("status") == "accepted":
                 return
-
-    # Stage 5: deep false search — heavier structured families (quadratic grid
-    # n=7..8, F_5^2, sampled polynomial ops up to n=16) and a long model-finder
-    # run over carriers 4..10. Only problems every cheaper stage missed pay this.
-    found = search_counterexample(eq1_text, eq2_text, use_linear=False,
-                                  use_structured=False, use_austin=False,
-                                  use_deep=True, deep_budget_s=60.0,
-                                  use_model_finder=True, model_finder_budget_s=120.0)
-    if found is not None:
-        result = call_judge("false", make_false_code(problem, found))
-        if result.get("status") == "accepted":
-            return
 
     # Pass 3: gpt-oss-120b fallback via the organizer proxy. The solver sends a
     # context dict (the proxy fills the PROMPT template and calls the model);
