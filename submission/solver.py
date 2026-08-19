@@ -3082,22 +3082,96 @@ def _g3_unify(left, right):
             pending.append((a[2], b[2]))
         else:
             return None
-    return {name: _g3_subst(value, substitution)
-            for name, value in substitution.items()}
+    return substitution
+
+
+def _g3_inst_size(term, substitution, memo):
+    """Size of term under a (triangular) substitution without building it."""
+    total = 0
+    stack = [term]
+    while stack:
+        t = stack.pop()
+        tag = t[0]
+        if tag == "o":
+            total += 1
+            stack.append(t[1])
+            stack.append(t[2])
+        elif tag == "v":
+            bound = substitution.get(t[1])
+            if bound is None:
+                total += 1
+            else:
+                size = memo.get(t[1])
+                if size is None:
+                    size = _g3_inst_size(bound, substitution, memo)
+                    memo[t[1]] = size
+                total += size
+        else:
+            total += 1
+    return total
+
+
+def _g3_counted_size(static_size, counts, prefix, substitution, memo):
+    """Instantiated size of a term from its static size and variable counts."""
+    total = static_size
+    for variable, n in counts.items():
+        name = (prefix, variable)
+        bound = substitution.get(name)
+        if bound is not None:
+            size = memo.get(name)
+            if size is None:
+                size = _g3_inst_size(bound, substitution, memo)
+                memo[name] = size
+            total += n * (size - 1)
+    return total
+
+
+def _g3_subst_m(term, substitution, memo):
+    """Apply a (triangular) substitution; instantiated bindings are memoised
+    and shared, unchanged subterms are returned as the same object."""
+    tag = term[0]
+    if tag == "v":
+        name = term[1]
+        bound = substitution.get(name)
+        if bound is None:
+            return term
+        result = memo.get(name)
+        if result is None:
+            result = _g3_subst_m(bound, substitution, memo)
+            memo[name] = result
+        return result
+    if tag != "o":
+        return term
+    a = _g3_subst_m(term[1], substitution, memo)
+    b = _g3_subst_m(term[2], substitution, memo)
+    if a is term[1] and b is term[2]:
+        return term
+    return ("o", a, b)
 
 
 def _g3_match(pattern, target, substitution):
-    if pattern[0] == "v":
-        old = substitution.get(pattern[1])
-        if old is None:
-            substitution[pattern[1]] = target
-            return True
-        return old == target
-    if pattern[0] == "k":
-        return pattern == target
-    return (target[0] == "o"
-            and _g3_match(pattern[1], target[1], substitution)
-            and _g3_match(pattern[2], target[2], substitution))
+    """One-way matching (pattern variables bind to target subterms)."""
+    stack = [(pattern, target)]
+    pop = stack.pop
+    push = stack.append
+    get = substitution.get
+    while stack:
+        pattern, target = pop()
+        tag = pattern[0]
+        if tag == "v":
+            old = get(pattern[1])
+            if old is None:
+                substitution[pattern[1]] = target
+            elif old is not target and old != target:
+                return False
+        elif tag == "o":
+            if target[0] != "o":
+                return False
+            push((pattern[2], target[2]))
+            push((pattern[1], target[1]))
+        elif pattern != target:
+            return False
+    return True
 
 
 def _g3_positions(term, path=()):
@@ -3125,21 +3199,51 @@ def _g3_rename(term, prefix):
     return ("o", _g3_rename(term[1], prefix), _g3_rename(term[2], prefix))
 
 
+_G3_SIZE_CACHE = {}
+_G3_VC_CACHE = {}
+
+
+def _g3_sz(term):
+    """Cached term size (keyed by the term value; tuples hash in C)."""
+    size = _G3_SIZE_CACHE.get(term)
+    if size is None:
+        size = _g3_size(term)
+        if len(_G3_SIZE_CACHE) > 150000:
+            _G3_SIZE_CACHE.clear()
+        _G3_SIZE_CACHE[term] = size
+    return size
+
+
+def _g3_vc(term):
+    """Cached variable-count dict of a term (read-only)."""
+    counts = _G3_VC_CACHE.get(term)
+    if counts is None:
+        counts = {}
+        _g3_varcount(term, counts)
+        if len(_G3_VC_CACHE) > 150000:
+            _G3_VC_CACHE.clear()
+        _G3_VC_CACHE[term] = counts
+    return counts
+
+
 def _g3_gt(s, t, ws=None, wt=None):
     """Knuth-Bendix ordering, unit weights, single binary symbol."""
     if s == t:
         return False
     if ws is None:
-        ws = _g3_size(s)
+        ws = _g3_sz(s)
     if wt is None:
-        wt = _g3_size(t)
+        wt = _g3_sz(t)
     if ws < wt:
         return False
-    ct = {}
-    _g3_varcount(t, ct)
+    if t[0] == "v":
+        ct = {t[1]: 1}
+    elif t[0] == "k":
+        ct = None
+    else:
+        ct = _g3_vc(t)
     if ct:
-        cs = {}
-        _g3_varcount(s, cs)
+        cs = _g3_vc(s) if s[0] == "o" else ({s[1]: 1} if s[0] == "v" else {})
         for v, n in ct.items():
             if cs.get(v, 0) < n:
                 return False
@@ -3164,17 +3268,25 @@ def _g3_preorder(term):
     """Preorder symbol list plus subtree-end indices (for skeleton matching)."""
     syms = []
     ends = []
-
-    def visit(t):
+    # iterative preorder: stack of (term, index_to_close) where a closing
+    # marker (None, i) records the end of subtree i
+    stack = [(term, -1)]
+    pop = stack.pop
+    push = stack.append
+    while stack:
+        t, close = pop()
+        if t is None:
+            ends[close] = len(syms)
+            continue
         i = len(syms)
         syms.append(t[0])
         ends.append(0)
         if t[0] == "o":
-            visit(t[1])
-            visit(t[2])
-        ends[i] = len(syms)
-
-    visit(term)
+            push((None, i))
+            push((t[2], -1))
+            push((t[1], -1))
+        else:
+            ends[i] = i + 1
     return syms, ends
 
 
@@ -3258,7 +3370,7 @@ def _g3_application(name, args, reverse=False):
 class _G3Eq:
     __slots__ = ("left", "right", "parents", "serial", "weight", "nvars",
                  "lsize", "rsize", "depth", "_orient", "_sl", "_sr", "_tl",
-                 "_tr", "_args", "recipe", "deleted")
+                 "_tr", "_args", "recipe", "deleted", "_tpos", "_vc")
 
     def __init__(self, left, right, parents, serial, depth, nvars=None, recipe=None):
         self.left = left
@@ -3280,6 +3392,31 @@ class _G3Eq:
         self._tl = None
         self._tr = None
         self._args = None
+        self._tpos = None
+        self._vc = None
+
+    def varcounts(self):
+        """Cached (left counts, right counts) over the canonical variables."""
+        if self._vc is None:
+            lc, rc = {}, {}
+            _g3_varcount(self.left, lc)
+            _g3_varcount(self.right, rc)
+            self._vc = (lc, rc)
+        return self._vc
+
+    def tpos(self, reverse):
+        """Cached (path, subterm, size, varcounts) list of the t-renamed side."""
+        if self._tpos is None:
+            def build(side, raw):
+                out = []
+                for (path, subterm, size), (_, raw_sub, _) in zip(
+                        _g3_positions_sized(side), _g3_positions_sized(raw)):
+                    counts = {}
+                    _g3_varcount(raw_sub, counts)
+                    out.append((path, subterm, size, counts))
+                return out
+            self._tpos = (build(self.tl, self.left), build(self.tr, self.right))
+        return self._tpos[1 if reverse else 0]
 
     @property
     def orient(self):
@@ -3400,8 +3537,12 @@ def _g3_eq_key(eq):
 class _G3Prover:
     def __init__(self, hypothesis, goal, deadline, size_cap=60, var_cap=10,
                  neg_size_cap=None, max_known=250000, age_ratio=6, var_penalty=2,
-                 collapse_bonus=0, rhs_factor=1):
+                 collapse_bonus=0, rhs_factor=1, max_neg=25000):
+        _G3_SIZE_CACHE.clear()
+        _G3_VC_CACHE.clear()
         self.deadline = deadline
+        self.max_neg = max_neg
+        self.nf_limit = 400000 if size_cap <= 60 else int(400000 * 60 / size_cap)
         self.var_penalty = var_penalty
         self.collapse_bonus = collapse_bonus
         self.rhs_factor = rhs_factor
@@ -3426,6 +3567,7 @@ class _G3Prover:
         self.result = None
         self.clock = 0
         self.nf_set = {}
+        self.ucache = {}            # (renamed lhs, renamed subterm) -> unifier
         self.rule_log = []
         self.version = 0
         hl, hr = hypothesis
@@ -3561,9 +3703,9 @@ class _G3Prover:
             if hit is None:
                 continue
             new = self.make_step(rule, eq, False, hit[0], hit[1], False)
+            eq.deleted = True
             if new is None:
                 continue
-            eq.deleted = True
             self.accept(new)
             if self.timed_out():
                 return
@@ -3576,12 +3718,12 @@ class _G3Prover:
             self.index.add(eq.right, (eq, True))
             self.rule_log.append((eq, True))
         self.version = len(self.rule_log)
-        if len(self.nf_set) > 400000:
+        if len(self.nf_set) > self.nf_limit:
             self.nf_set = {}
 
     # -- inference core ---------------------------------------------------
     def make_step(self, source, target, source_reverse, target_reverse, path,
-                  unify, subterm=None, size_cap=None):
+                  unify, subterm=None, size_cap=None, sub_counts=None):
         """Rewrite target's selected side at path with source.
 
         unify=True: ordered superposition (both renamed apart);
@@ -3596,22 +3738,53 @@ class _G3Prover:
                 subterm = tl
                 for step in path:
                     subterm = subterm[step]
-            unifier = _g3_unify(sl, subterm)
+            # unifiers are memoised by value: the renamed sides share their
+            # variable names across equations, so equal (lhs, subterm) pairs
+            # have equal (read-only) unifiers.
+            key = (sl, subterm)
+            cached = self.ucache.get(key)
+            if cached is None:
+                unifier = _g3_unify(sl, subterm)
+                if len(self.ucache) > 100000:
+                    self.ucache = {}
+                # the instantiated-size memo is shared with the unifier
+                cached = (unifier, {})
+                self.ucache[key] = cached
+            unifier, sizes = cached
             if unifier is None:
                 return None
-            srx = _g3_subst(sr, unifier)
-            srx_size = _g3_size(srx)
+            scounts = source.varcounts()
+            tcounts = target.varcounts()
+            srx_size = _g3_counted_size(
+                source.lsize if source_reverse else source.rsize,
+                scounts[0] if source_reverse else scounts[1], "s", unifier, sizes)
+            other_size = _g3_counted_size(
+                target.lsize if target_reverse else target.rsize,
+                tcounts[0] if target_reverse else tcounts[1], "t", unifier, sizes)
+            if size_cap is not None:
+                # cheap size-cap rejection before any term is built
+                before_size = _g3_counted_size(
+                    target.rsize if target_reverse else target.lsize,
+                    tcounts[1] if target_reverse else tcounts[0], "t", unifier, sizes)
+                if sub_counts is None:
+                    sub_size = _g3_inst_size(subterm, unifier, sizes)
+                else:
+                    sub_size = _g3_counted_size(sub_counts[0], sub_counts[1], "t",
+                                                unifier, sizes)
+                if before_size - sub_size + srx_size + other_size > size_cap:
+                    return None
+            memo = {}
+            srx = _g3_subst_m(sr, unifier, memo)
             if source.orient == 0:
-                slx = _g3_subst(sl, unifier)
+                slx = _g3_subst_m(sl, unifier, memo)
                 if _g3_gt(srx, slx, srx_size):
                     return None
-            before = _g3_subst(tl, unifier)
-            other = _g3_subst(tr, unifier)
+            before = _g3_subst_m(tl, unifier, memo)
+            other = _g3_subst_m(tr, unifier, memo)
             before_size = _g3_size(before)
-            other_size = _g3_size(other)
             if target.orient == 0 and _g3_gt(other, before, other_size, before_size):
                 return None
-            sub_size = _g3_size(_g3_subst(subterm, unifier))
+            sub_size = _g3_size(_g3_subst_m(subterm, unifier, memo))
         else:
             tl = target.right if target_reverse else target.left
             tr = target.left if target_reverse else target.right
@@ -3688,7 +3861,7 @@ class _G3Prover:
             if not _g3_match(lhs, current, sub):
                 continue
             replacement = _g3_subst(rhs, sub)
-            if rule.orient == 0 and not _g3_gt(current, replacement):
+            if rule.orient == 0 and not _g3_gt(current, replacement, size):
                 continue
             steps.append((prefix, rule, reverse, sub, replacement))
             return self.normalize(replacement, prefix, steps, depth + 1)
@@ -3704,7 +3877,8 @@ class _G3Prover:
             for path, rule, reverse, _, _ in steps:
                 new = self.make_step(rule, eq, reverse, target_reverse, path, False)
                 if new is None:
-                    break
+                    # the rewrite makes both sides equal: eq is a tautology
+                    return None
                 eq = new
                 if eq.left == eq.right:
                     return None
@@ -3763,7 +3937,7 @@ class _G3Prover:
             self.result = (neg, sigma)
             return neg
         key = _g3_key(neg.left, neg.right)
-        if key in self.neg_known:
+        if key in self.neg_known or len(self.neg_known) >= self.max_neg:
             return None
         self.neg_known.add(key)
         self.push_neg(neg)
@@ -3808,14 +3982,20 @@ class _G3Prover:
 
     def superpose(self, given, other):
         """All ordered superpositions between given and other (both roles)."""
+        cap = self.size_cap
         for source, target in ((given, other), (other, given)):
             for source_reverse in ((False,) if source.orient == 1 else (False, True)):
+                sr_size = source.lsize if source_reverse else source.rsize
                 for target_reverse in ((False,) if target.orient == 1 else (False, True)):
-                    target_side = target.tr if target_reverse else target.tl
-                    for path, subterm, _ in _g3_positions_sized(target_side):
+                    # the conclusion is at least as large as the uninstantiated
+                    # context + replacement + other side: skip hopeless positions
+                    base = sr_size + (target.lsize + target.rsize)
+                    for path, subterm, size, counts in target.tpos(target_reverse):
+                        if base - size > cap:
+                            continue
                         result = self.make_step(source, target, source_reverse,
                                                 target_reverse, path, True, subterm,
-                                                self.size_cap)
+                                                cap, (size, counts))
                         if result is None:
                             continue
                         self.accept(result)
@@ -4085,11 +4265,21 @@ def g3_prove(eq1_text, eq2_text, time_budget_s=300.0, rounds=None, robust=False,
     start = time.monotonic()
     end = start + budget
     if rounds is None:
-        rounds = [(24, 0.08), (32, 0.17), (44, 0.30),
-                  (60, 1.0, {"var_penalty": 0, "age_ratio": 2})]
+        # Iterative size-cap deepening.  A round that saturates (its capped
+        # passive queue runs empty) hands its remaining time to the next one;
+        # the last rounds relax the caps and switch to the Vampire-like
+        # selection (no variable penalty, age ratio 2) for diversity.  If
+        # every listed round saturates with time left, the caps keep growing.
+        rounds = [(24, 0.06), (32, 0.12), (44, 0.25), (60, 0.55),
+                  (80, 0.8, {"var_penalty": 1, "age_ratio": 4}),
+                  (120, 1.0, {"var_penalty": 0, "age_ratio": 2, "var_cap": var_cap + 2})]
     _G3_LAST["proof"] = None
     best_prover = None
-    for entry in rounds:
+    queue = list(rounds)
+    index = 0
+    while index < len(queue):
+        entry = queue[index]
+        index += 1
         size_cap, fraction = entry[0], entry[1]
         overrides = entry[2] if len(entry) > 2 else {}
         now = time.monotonic()
@@ -4102,17 +4292,22 @@ def g3_prove(eq1_text, eq2_text, time_budget_s=300.0, rounds=None, robust=False,
                    "var_penalty": var_penalty, "var_cap": var_cap,
                    "collapse_bonus": collapse_bonus, "rhs_factor": rhs_factor}
         options.update(overrides)
+        if size_cap > 60:
+            # memory scales with clauses x clause size: shrink the clause
+            # budget for the relaxed-cap rounds
+            options["max_known"] = max(20000, int(options["max_known"] * 60 / size_cap))
         prover = _G3Prover(hypothesis, goal, deadline, size_cap=size_cap, **options)
         try:
             result = prover.run()
         except (RecursionError, MemoryError):
             result = None
+        saturated = not prover.queue and result is None
         if stats is not None:
             stats.append({"size_cap": size_cap, "selected": prover.selected,
                           "generated": prover.generated, "known": len(prover.known),
                           "neg": len(prover.neg_known), "found": result is not None,
                           "secs": round(time.monotonic() - now, 1),
-                          "saturated": not prover.queue})
+                          "saturated": saturated})
         if best_prover is None or len(prover.active) >= len(best_prover.active):
             best_prover = prover
         if result is not None:
@@ -4122,6 +4317,10 @@ def g3_prove(eq1_text, eq2_text, time_budget_s=300.0, rounds=None, robust=False,
             _G3_LAST["proof"] = (prover.goal_vars, lsteps, rsteps)
             _G3_LAST["prover"] = prover
             return _g3_emit(prover.goal_vars, lsteps, rsteps, robust=robust)
+        if index == len(queue) and saturated and size_cap < 400:
+            # the capped search space is exhausted: relax the caps and go on
+            queue.append((size_cap + 40, 1.0,
+                          dict(overrides, var_cap=options["var_cap"] + 2)))
     _G3_LAST["prover"] = best_prover
     return None
 

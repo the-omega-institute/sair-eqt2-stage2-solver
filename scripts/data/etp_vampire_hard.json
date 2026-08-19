@@ -1,0 +1,1780 @@
+[
+{
+"id": "etp_947_3897_n154",
+"equation1": "x = y ◇ ((z ◇ x) ◇ (y ◇ x))",
+"equation2": "x ◇ x = (y ◇ (z ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 154
+},
+{
+"id": "etp_3957_3971_n133",
+"equation1": "x ◇ y = (y ◇ (x ◇ z)) ◇ x",
+"equation2": "x ◇ y = (y ◇ (z ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 133
+},
+{
+"id": "etp_3569_3957_n105",
+"equation1": "x ◇ y = y ◇ ((z ◇ y) ◇ x)",
+"equation2": "x ◇ y = (y ◇ (x ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 105
+},
+{
+"id": "etp_650_448_n65",
+"equation1": "x = x ◇ (y ◇ ((z ◇ x) ◇ y))",
+"equation2": "x = x ◇ (y ◇ (z ◇ (x ◇ z)))",
+"answer": true,
+"vampire_steps": 65
+},
+{
+"id": "etp_2923_2628_n62",
+"equation1": "x = ((y ◇ (x ◇ z)) ◇ y) ◇ x",
+"equation2": "x = (y ◇ ((z ◇ w) ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 62
+},
+{
+"id": "etp_723_872_n58",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x = y ◇ ((x ◇ x) ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 58
+},
+{
+"id": "etp_2666_3460_n54",
+"equation1": "x = ((x ◇ y) ◇ (x ◇ z)) ◇ y",
+"equation2": "x ◇ x = x ◇ ((x ◇ y) ◇ z)",
+"answer": true,
+"vampire_steps": 54
+},
+{
+"id": "etp_2860_2660_n45",
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x = ((x ◇ y) ◇ (x ◇ x)) ◇ y",
+"answer": true,
+"vampire_steps": 45
+},
+{
+"id": "etp_3940_4477_n44",
+"equation1": "x ◇ y = (x ◇ (z ◇ y)) ◇ z",
+"equation2": "x ◇ (y ◇ y) = (x ◇ z) ◇ z",
+"answer": true,
+"vampire_steps": 44
+},
+{
+"id": "etp_4141_4153_n38",
+"equation1": "x ◇ y = ((x ◇ z) ◇ y) ◇ x",
+"equation2": "x ◇ y = ((x ◇ z) ◇ w) ◇ u",
+"answer": true,
+"vampire_steps": 38
+},
+{
+"id": "etp_3347_4195_n38",
+"equation1": "x ◇ y = y ◇ (x ◇ (y ◇ z))",
+"equation2": "x ◇ y = ((z ◇ x) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 38
+},
+{
+"id": "etp_2789_898_n38",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = y ◇ ((x ◇ z) ◇ (z ◇ y))",
+"answer": true,
+"vampire_steps": 38
+},
+{
+"id": "etp_3967_3561_n36",
+"equation1": "x ◇ y = (y ◇ (y ◇ z)) ◇ x",
+"equation2": "x ◇ y = y ◇ ((y ◇ z) ◇ x)",
+"answer": true,
+"vampire_steps": 36
+},
+{
+"id": "etp_4195_3348_n34",
+"equation1": "x ◇ y = ((z ◇ x) ◇ y) ◇ x",
+"equation2": "x ◇ y = y ◇ (x ◇ (z ◇ x))",
+"answer": true,
+"vampire_steps": 34
+},
+{
+"id": "etp_3940_3737_n34",
+"equation1": "x ◇ y = (x ◇ (z ◇ y)) ◇ z",
+"equation2": "x ◇ y = (x ◇ z) ◇ (y ◇ z)",
+"answer": true,
+"vampire_steps": 34
+},
+{
+"id": "etp_2042_2893_n31",
+"equation1": "x = ((x ◇ x) ◇ y) ◇ (x ◇ z)",
+"equation2": "x = ((x ◇ (y ◇ z)) ◇ z) ◇ w",
+"answer": true,
+"vampire_steps": 31
+},
+{
+"id": "etp_3551_3975_n30",
+"equation1": "x ◇ y = y ◇ ((x ◇ z) ◇ x)",
+"equation2": "x ◇ y = (y ◇ (z ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 30
+},
+{
+"id": "etp_2656_3460_n30",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ z)) ◇ y",
+"equation2": "x ◇ x = x ◇ ((x ◇ y) ◇ z)",
+"answer": true,
+"vampire_steps": 30
+},
+{
+"id": "etp_961_3026_n30",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ y))",
+"equation2": "x = ((y ◇ (z ◇ w)) ◇ x) ◇ z",
+"answer": true,
+"vampire_steps": 30
+},
+{
+"id": "etp_895_2808_n30",
+"equation1": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"equation2": "x = ((y ◇ z) ◇ (z ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 30
+},
+{
+"id": "etp_3971_3347_n29",
+"equation1": "x ◇ y = (y ◇ (z ◇ x)) ◇ x",
+"equation2": "x ◇ y = y ◇ (x ◇ (y ◇ z))",
+"answer": true,
+"vampire_steps": 29
+},
+{
+"id": "etp_3565_4212_n29",
+"equation1": "x ◇ y = y ◇ ((z ◇ x) ◇ x)",
+"equation2": "x ◇ y = ((z ◇ y) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 29
+},
+{
+"id": "etp_2789_895_n29",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"answer": true,
+"vampire_steps": 29
+},
+{
+"id": "etp_960_3897_n29",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"equation2": "x ◇ x = (y ◇ (z ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 29
+},
+{
+"id": "etp_1706_890_n28",
+"equation1": "x = (y ◇ x) ◇ ((z ◇ y) ◇ y)",
+"equation2": "x = y ◇ ((x ◇ z) ◇ (x ◇ y))",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_895_2402_n28",
+"equation1": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"equation2": "x = (y ◇ (z ◇ (z ◇ y))) ◇ x",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_895_1571_n28",
+"equation1": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"equation2": "x = (y ◇ z) ◇ (y ◇ (x ◇ z))",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_895_861_n28",
+"equation1": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"equation2": "x = x ◇ ((y ◇ z) ◇ (z ◇ y))",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_886_3177_n28",
+"equation1": "x = y ◇ ((x ◇ y) ◇ (z ◇ y))",
+"equation2": "x = (((y ◇ z) ◇ x) ◇ x) ◇ y",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_690_4689_n28",
+"equation1": "x = y ◇ (x ◇ ((z ◇ y) ◇ x))",
+"equation2": "(x ◇ y) ◇ z = (w ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 28
+},
+{
+"id": "etp_2536_2558_n27",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (y ◇ ((y ◇ z) ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 27
+},
+{
+"id": "etp_3349_3451_n26",
+"equation1": "x ◇ y = y ◇ (x ◇ (z ◇ y))",
+"equation2": "x ◇ y = z ◇ (w ◇ (u ◇ y))",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_2860_3458_n26",
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x ◇ x = x ◇ ((x ◇ y) ◇ x)",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_2860_261_n26",
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x = ((x ◇ y) ◇ x) ◇ y",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_2450_2238_n26",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x = (x ◇ (x ◇ (x ◇ x))) ◇ x",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_1942_2914_n26",
+"equation1": "x = (y ◇ (y ◇ z)) ◇ (x ◇ y)",
+"equation2": "x = ((y ◇ (x ◇ y)) ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_723_3877_n26",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x ◇ x = (y ◇ (x ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 26
+},
+{
+"id": "etp_4453_4465_n25",
+"equation1": "x ◇ (y ◇ x) = (z ◇ x) ◇ y",
+"equation2": "x ◇ (y ◇ x) = (z ◇ w) ◇ y",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_3806_4195_n25",
+"equation1": "x ◇ y = (z ◇ y) ◇ (y ◇ x)",
+"equation2": "x ◇ y = ((z ◇ x) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_2450_1832_n25",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x = (x ◇ (x ◇ x)) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_2450_1426_n25",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x = (x ◇ x) ◇ (x ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_2450_307_n25",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x ◇ x = x ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_2450_203_n25",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x = (x ◇ (x ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_691_1976_n25",
+"equation1": "x = y ◇ (x ◇ ((z ◇ y) ◇ y))",
+"equation2": "x = (y ◇ (z ◇ y)) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 25
+},
+{
+"id": "etp_2860_2646_n24",
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x = ((x ◇ x) ◇ (x ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 24
+},
+{
+"id": "etp_1789_1332_n24",
+"equation1": "x = (y ◇ z) ◇ ((z ◇ x) ◇ x)",
+"equation2": "x = y ◇ (((y ◇ z) ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 24
+},
+{
+"id": "etp_723_909_n24",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x = y ◇ ((y ◇ x) ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 24
+},
+{
+"id": "etp_3750_3358_n23",
+"equation1": "x ◇ y = (y ◇ x) ◇ (x ◇ z)",
+"equation2": "x ◇ y = y ◇ (y ◇ (z ◇ x))",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_2860_308_n23",
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x ◇ x = x ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_2713_2788_n23",
+"equation1": "x = ((y ◇ x) ◇ (y ◇ z)) ◇ y",
+"equation2": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ y",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_1702_747_n23",
+"equation1": "x = (y ◇ x) ◇ ((z ◇ x) ◇ y)",
+"equation2": "x = y ◇ (z ◇ ((x ◇ y) ◇ w))",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_895_2282_n23",
+"equation1": "x = y ◇ ((x ◇ z) ◇ (y ◇ z))",
+"equation2": "x = (x ◇ (y ◇ (z ◇ z))) ◇ y",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_727_964_n23",
+"equation1": "x = y ◇ (y ◇ ((z ◇ y) ◇ x))",
+"equation2": "x = y ◇ ((z ◇ y) ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 23
+},
+{
+"id": "etp_3676_3705_n22",
+"equation1": "x ◇ x = (y ◇ x) ◇ (x ◇ z)",
+"equation2": "x ◇ x = (y ◇ z) ◇ (z ◇ w)",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_3358_3561_n22",
+"equation1": "x ◇ y = y ◇ (y ◇ (z ◇ x))",
+"equation2": "x ◇ y = y ◇ ((y ◇ z) ◇ x)",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_2789_2964_n22",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = ((y ◇ (y ◇ z)) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_2789_1267_n22",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = x ◇ (((y ◇ z) ◇ z) ◇ y)",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_2789_647_n22",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = x ◇ (y ◇ ((y ◇ z) ◇ z))",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_2463_1874_n22",
+"equation1": "x = (x ◇ ((y ◇ x) ◇ z)) ◇ y",
+"equation2": "x = (x ◇ (y ◇ z)) ◇ (y ◇ w)",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_1043_1053_n22",
+"equation1": "x = x ◇ ((y ◇ (x ◇ z)) ◇ z)",
+"equation2": "x = x ◇ ((y ◇ (y ◇ z)) ◇ z)",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_723_65_n22",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x = y ◇ (x ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 22
+},
+{
+"id": "etp_2920_2729_n21",
+"equation1": "x = ((y ◇ (x ◇ z)) ◇ x) ◇ y",
+"equation2": "x = ((y ◇ x) ◇ (z ◇ w)) ◇ y",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_2920_2311_n21",
+"equation1": "x = ((y ◇ (x ◇ z)) ◇ x) ◇ y",
+"equation2": "x = (y ◇ (x ◇ (z ◇ x))) ◇ y",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_2883_4357_n21",
+"equation1": "x = ((x ◇ (y ◇ z)) ◇ x) ◇ y",
+"equation2": "x ◇ (y ◇ z) = x ◇ (y ◇ w)",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_2536_3093_n21",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (((x ◇ y) ◇ z) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1976_2983_n21",
+"equation1": "x = (y ◇ (z ◇ y)) ◇ (x ◇ y)",
+"equation2": "x = ((y ◇ (z ◇ x)) ◇ z) ◇ z",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1959_1926_n21",
+"equation1": "x = (y ◇ (z ◇ x)) ◇ (x ◇ y)",
+"equation2": "x = (y ◇ (y ◇ x)) ◇ (y ◇ z)",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1842_1477_n21",
+"equation1": "x = (x ◇ (x ◇ y)) ◇ (y ◇ z)",
+"equation2": "x = (x ◇ y) ◇ (z ◇ (w ◇ u))",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1498_686_n21",
+"equation1": "x = (y ◇ x) ◇ (z ◇ (x ◇ x))",
+"equation2": "x = y ◇ (x ◇ ((z ◇ x) ◇ x))",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1490_874_n21",
+"equation1": "x = (y ◇ x) ◇ (y ◇ (x ◇ z))",
+"equation2": "x = y ◇ ((x ◇ x) ◇ (y ◇ z))",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_1043_442_n21",
+"equation1": "x = x ◇ ((y ◇ (x ◇ z)) ◇ z)",
+"equation2": "x = x ◇ (y ◇ (y ◇ (z ◇ x)))",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_913_3151_n21",
+"equation1": "x = y ◇ ((y ◇ x) ◇ (z ◇ y))",
+"equation2": "x = (((y ◇ y) ◇ y) ◇ x) ◇ z",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_687_1297_n21",
+"equation1": "x = y ◇ (x ◇ ((z ◇ x) ◇ y))",
+"equation2": "x = y ◇ (((x ◇ z) ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 21
+},
+{
+"id": "etp_4419_4411_n20",
+"equation1": "x ◇ (x ◇ y) = (z ◇ y) ◇ x",
+"equation2": "x ◇ (x ◇ y) = (y ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_3492_3504_n20",
+"equation1": "x ◇ x = y ◇ ((z ◇ x) ◇ y)",
+"equation2": "x ◇ x = y ◇ ((z ◇ w) ◇ y)",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_2656_4357_n20",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ z)) ◇ y",
+"equation2": "x ◇ (y ◇ z) = x ◇ (y ◇ w)",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_2536_3180_n20",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (((y ◇ z) ◇ x) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_2065_2676_n20",
+"equation1": "x = ((x ◇ y) ◇ y) ◇ (y ◇ z)",
+"equation2": "x = ((x ◇ y) ◇ (y ◇ z)) ◇ y",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_1494_761_n20",
+"equation1": "x = (y ◇ x) ◇ (y ◇ (z ◇ x))",
+"equation2": "x = y ◇ (z ◇ ((y ◇ y) ◇ x))",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_1334_1368_n20",
+"equation1": "x = y ◇ (((y ◇ z) ◇ x) ◇ z)",
+"equation2": "x = y ◇ (((z ◇ y) ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_1043_433_n20",
+"equation1": "x = x ◇ ((y ◇ (x ◇ z)) ◇ z)",
+"equation2": "x = x ◇ (y ◇ (x ◇ (z ◇ y)))",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_960_4689_n20",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"equation2": "(x ◇ y) ◇ z = (w ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_723_832_n20",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x = x ◇ ((y ◇ x) ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_463_491_n20",
+"equation1": "x = y ◇ (x ◇ (x ◇ (x ◇ x)))",
+"equation2": "x = y ◇ (x ◇ (z ◇ (z ◇ x)))",
+"answer": true,
+"vampire_steps": 20
+},
+{
+"id": "etp_3874_4068_n19",
+"equation1": "x ◇ x = (x ◇ (y ◇ z)) ◇ y",
+"equation2": "x ◇ x = ((x ◇ x) ◇ y) ◇ y",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_3495_3278_n19",
+"equation1": "x ◇ x = y ◇ ((z ◇ y) ◇ x)",
+"equation2": "x ◇ x = y ◇ (y ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_1905_471_n19",
+"equation1": "x = (y ◇ (x ◇ z)) ◇ (x ◇ y)",
+"equation2": "x = y ◇ (x ◇ (x ◇ (z ◇ z)))",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_1849_4128_n19",
+"equation1": "x = (x ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x ◇ y = ((x ◇ y) ◇ x) ◇ y",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_1560_653_n19",
+"equation1": "x = (y ◇ z) ◇ (x ◇ (z ◇ x))",
+"equation2": "x = x ◇ (y ◇ ((z ◇ y) ◇ x))",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_1163_1378_n19",
+"equation1": "x = y ◇ ((z ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = y ◇ (((z ◇ y) ◇ w) ◇ x)",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_1119_1223_n19",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = x ◇ (((x ◇ x) ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_978_4620_n19",
+"equation1": "x = y ◇ ((z ◇ z) ◇ (x ◇ y))",
+"equation2": "(x ◇ x) ◇ y = (z ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_765_731_n19",
+"equation1": "x = y ◇ (z ◇ ((y ◇ z) ◇ x))",
+"equation2": "x = y ◇ (y ◇ ((z ◇ z) ◇ x))",
+"answer": true,
+"vampire_steps": 19
+},
+{
+"id": "etp_3975_3971_n18",
+"equation1": "x ◇ y = (y ◇ (z ◇ y)) ◇ x",
+"equation2": "x ◇ y = (y ◇ (z ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_2957_470_n18",
+"equation1": "x = ((y ◇ (y ◇ z)) ◇ x) ◇ y",
+"equation2": "x = y ◇ (x ◇ (x ◇ (z ◇ y)))",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_2890_2649_n18",
+"equation1": "x = ((x ◇ (y ◇ z)) ◇ z) ◇ x",
+"equation2": "x = ((x ◇ x) ◇ (y ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_2788_538_n18",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ y",
+"equation2": "x = y ◇ (z ◇ (x ◇ (x ◇ y)))",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_2109_2717_n18",
+"equation1": "x = ((y ◇ x) ◇ z) ◇ (x ◇ z)",
+"equation2": "x = ((y ◇ x) ◇ (z ◇ x)) ◇ y",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_2055_2656_n18",
+"equation1": "x = ((x ◇ y) ◇ x) ◇ (y ◇ z)",
+"equation2": "x = ((x ◇ x) ◇ (y ◇ z)) ◇ y",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1923_1369_n18",
+"equation1": "x = (y ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = y ◇ (((z ◇ y) ◇ x) ◇ w)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1849_1635_n18",
+"equation1": "x = (x ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = (x ◇ x) ◇ ((y ◇ x) ◇ y)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1688_2806_n18",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ y)",
+"equation2": "x = ((y ◇ z) ◇ (z ◇ x)) ◇ z",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1560_960_n18",
+"equation1": "x = (y ◇ z) ◇ (x ◇ (z ◇ x))",
+"equation2": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1554_1367_n18",
+"equation1": "x = (y ◇ z) ◇ (x ◇ (x ◇ z))",
+"equation2": "x = y ◇ (((z ◇ y) ◇ x) ◇ y)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1119_2035_n18",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = ((x ◇ x) ◇ x) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1119_1629_n18",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = (x ◇ x) ◇ ((x ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1119_359_n18",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x ◇ x = (x ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_1119_99_n18",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = x ◇ ((x ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_723_4320_n18",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x ◇ (y ◇ x) = y ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_645_822_n18",
+"equation1": "x = x ◇ (y ◇ ((y ◇ z) ◇ x))",
+"equation2": "x = x ◇ ((x ◇ y) ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 18
+},
+{
+"id": "etp_3681_3707_n17",
+"equation1": "x ◇ x = (y ◇ x) ◇ (z ◇ y)",
+"equation2": "x ◇ x = (y ◇ z) ◇ (w ◇ y)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_3089_3071_n17",
+"equation1": "x = (((x ◇ y) ◇ z) ◇ y) ◇ x",
+"equation2": "x = (((x ◇ y) ◇ x) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_2703_187_n17",
+"equation1": "x = ((y ◇ x) ◇ (x ◇ z)) ◇ y",
+"equation2": "x = (y ◇ z) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_2450_151_n17",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ y)) ◇ y",
+"equation2": "x = (x ◇ x) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_2099_673_n17",
+"equation1": "x = ((y ◇ x) ◇ y) ◇ (x ◇ z)",
+"equation2": "x = y ◇ (x ◇ ((x ◇ z) ◇ y))",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1886_2108_n17",
+"equation1": "x = (y ◇ (x ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = ((y ◇ x) ◇ z) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1687_3316_n17",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ x)",
+"equation2": "x ◇ y = x ◇ (y ◇ (x ◇ y))",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1683_755_n17",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ x) ◇ z)",
+"equation2": "x = y ◇ (z ◇ ((x ◇ w) ◇ w))",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1586_4689_n17",
+"equation1": "x = (y ◇ z) ◇ (z ◇ (x ◇ x))",
+"equation2": "(x ◇ y) ◇ z = (w ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1366_2178_n17",
+"equation1": "x = y ◇ (((z ◇ y) ◇ x) ◇ x)",
+"equation2": "x = ((y ◇ z) ◇ y) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_1119_151_n17",
+"equation1": "x = y ◇ ((y ◇ (y ◇ x)) ◇ x)",
+"equation2": "x = (x ◇ x) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_978_2576_n17",
+"equation1": "x = y ◇ ((z ◇ z) ◇ (x ◇ y))",
+"equation2": "x = (y ◇ ((z ◇ x) ◇ z)) ◇ y",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_944_1765_n17",
+"equation1": "x = y ◇ ((z ◇ x) ◇ (x ◇ y))",
+"equation2": "x = (y ◇ z) ◇ ((x ◇ z) ◇ z)",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_506_495_n17",
+"equation1": "x = y ◇ (y ◇ (x ◇ (z ◇ x)))",
+"equation2": "x = y ◇ (x ◇ (z ◇ (w ◇ x)))",
+"answer": true,
+"vampire_steps": 17
+},
+{
+"id": "etp_2656_2055_n16",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ z)) ◇ y",
+"equation2": "x = ((x ◇ y) ◇ x) ◇ (y ◇ z)",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_2453_2287_n16",
+"equation1": "x = (x ◇ ((x ◇ y) ◇ z)) ◇ y",
+"equation2": "x = (x ◇ (y ◇ (z ◇ w))) ◇ z",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_2297_573_n16",
+"equation1": "x = (y ◇ (x ◇ (x ◇ z))) ◇ y",
+"equation2": "x = y ◇ (z ◇ (z ◇ (x ◇ z)))",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_1977_1707_n16",
+"equation1": "x = (y ◇ (z ◇ y)) ◇ (x ◇ z)",
+"equation2": "x = (y ◇ x) ◇ ((z ◇ y) ◇ z)",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_1687_1894_n16",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ x)",
+"equation2": "x = (y ◇ (x ◇ y)) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_1334_2308_n16",
+"equation1": "x = y ◇ (((y ◇ z) ◇ x) ◇ z)",
+"equation2": "x = (y ◇ (x ◇ (y ◇ z))) ◇ z",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_960_1560_n16",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"equation2": "x = (y ◇ z) ◇ (x ◇ (z ◇ x))",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_960_1444_n16",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"equation2": "x = (x ◇ y) ◇ (x ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_470_3177_n16",
+"equation1": "x = y ◇ (x ◇ (x ◇ (z ◇ y)))",
+"equation2": "x = (((y ◇ z) ◇ x) ◇ x) ◇ y",
+"answer": true,
+"vampire_steps": 16
+},
+{
+"id": "etp_4523_4540_n15",
+"equation1": "x ◇ (y ◇ z) = (y ◇ x) ◇ x",
+"equation2": "x ◇ (y ◇ z) = (z ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_4457_4467_n15",
+"equation1": "x ◇ (y ◇ x) = (z ◇ y) ◇ y",
+"equation2": "x ◇ (y ◇ x) = (z ◇ w) ◇ w",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_4457_4440_n15",
+"equation1": "x ◇ (y ◇ x) = (z ◇ y) ◇ y",
+"equation2": "x ◇ (y ◇ x) = (x ◇ z) ◇ z",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_3591_3794_n15",
+"equation1": "x ◇ y = z ◇ ((x ◇ z) ◇ y)",
+"equation2": "x ◇ y = (z ◇ x) ◇ (z ◇ y)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_3561_3577_n15",
+"equation1": "x ◇ y = y ◇ ((y ◇ z) ◇ x)",
+"equation2": "x ◇ y = y ◇ ((z ◇ w) ◇ x)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_2653_3456_n15",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ y)) ◇ y",
+"equation2": "x ◇ x = x ◇ ((x ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_2536_3145_n15",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (((y ◇ y) ◇ x) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_2536_2665_n15",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ x",
+"equation2": "x = ((x ◇ y) ◇ (x ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_2092_3141_n15",
+"equation1": "x = ((y ◇ x) ◇ x) ◇ (y ◇ z)",
+"equation2": "x = (((y ◇ y) ◇ x) ◇ x) ◇ z",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_2061_2644_n15",
+"equation1": "x = ((x ◇ y) ◇ y) ◇ (x ◇ y)",
+"equation2": "x = ((x ◇ x) ◇ (x ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1962_1115_n15",
+"equation1": "x = (y ◇ (z ◇ x)) ◇ (y ◇ x)",
+"equation2": "x = y ◇ ((y ◇ (x ◇ z)) ◇ x)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1849_2443_n15",
+"equation1": "x = (x ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = (x ◇ ((x ◇ x) ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1849_2243_n15",
+"equation1": "x = (x ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = (x ◇ (x ◇ (y ◇ x))) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1687_1228_n15",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ x)",
+"equation2": "x = x ◇ (((x ◇ y) ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1687_1035_n15",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ x)",
+"equation2": "x = x ◇ ((y ◇ (x ◇ x)) ◇ x)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1651_1878_n15",
+"equation1": "x = (x ◇ y) ◇ ((x ◇ z) ◇ y)",
+"equation2": "x = (x ◇ (y ◇ z)) ◇ (z ◇ w)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1636_1633_n15",
+"equation1": "x = (x ◇ x) ◇ ((y ◇ x) ◇ z)",
+"equation2": "x = (x ◇ x) ◇ ((x ◇ y) ◇ z)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1500_498_n15",
+"equation1": "x = (y ◇ x) ◇ (z ◇ (x ◇ z))",
+"equation2": "x = y ◇ (x ◇ (z ◇ (w ◇ w)))",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1491_817_n15",
+"equation1": "x = (y ◇ x) ◇ (y ◇ (y ◇ x))",
+"equation2": "x = x ◇ ((x ◇ x) ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1448_1869_n15",
+"equation1": "x = (x ◇ y) ◇ (x ◇ (z ◇ y))",
+"equation2": "x = (x ◇ (y ◇ z)) ◇ (x ◇ z)",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1043_838_n15",
+"equation1": "x = x ◇ ((y ◇ (x ◇ z)) ◇ z)",
+"equation2": "x = x ◇ ((y ◇ x) ◇ (z ◇ x))",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_1043_434_n15",
+"equation1": "x = x ◇ ((y ◇ (x ◇ z)) ◇ z)",
+"equation2": "x = x ◇ (y ◇ (x ◇ (z ◇ z)))",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_978_2602_n15",
+"equation1": "x = y ◇ ((z ◇ z) ◇ (x ◇ y))",
+"equation2": "x = (y ◇ ((z ◇ z) ◇ x)) ◇ y",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_978_2466_n15",
+"equation1": "x = y ◇ ((z ◇ z) ◇ (x ◇ y))",
+"equation2": "x = (x ◇ ((y ◇ y) ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_960_364_n15",
+"equation1": "x = y ◇ ((z ◇ y) ◇ (x ◇ x))",
+"equation2": "x ◇ x = (y ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_947_723_n15",
+"equation1": "x = y ◇ ((z ◇ x) ◇ (y ◇ x))",
+"equation2": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"answer": true,
+"vampire_steps": 15
+},
+{
+"id": "etp_4417_4429_n14",
+"equation1": "x ◇ (x ◇ y) = (z ◇ x) ◇ z",
+"equation2": "x ◇ (x ◇ y) = (z ◇ w) ◇ z",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_4212_3750_n14",
+"equation1": "x ◇ y = ((z ◇ y) ◇ y) ◇ x",
+"equation2": "x ◇ y = (y ◇ x) ◇ (x ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_3874_3660_n14",
+"equation1": "x ◇ x = (x ◇ (y ◇ z)) ◇ y",
+"equation2": "x ◇ x = (x ◇ x) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_3495_3674_n14",
+"equation1": "x ◇ x = y ◇ ((z ◇ y) ◇ x)",
+"equation2": "x ◇ x = (y ◇ x) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_3348_3565_n14",
+"equation1": "x ◇ y = y ◇ (x ◇ (z ◇ x))",
+"equation2": "x ◇ y = y ◇ ((z ◇ x) ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_3177_1765_n14",
+"equation1": "x = (((y ◇ z) ◇ x) ◇ x) ◇ y",
+"equation2": "x = (y ◇ z) ◇ ((x ◇ z) ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2848_2690_n14",
+"equation1": "x = ((x ◇ (x ◇ x)) ◇ x) ◇ y",
+"equation2": "x = ((x ◇ y) ◇ (z ◇ z)) ◇ w",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2778_211_n14",
+"equation1": "x = ((y ◇ z) ◇ (x ◇ z)) ◇ x",
+"equation2": "x = (x ◇ (y ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2720_2905_n14",
+"equation1": "x = ((y ◇ x) ◇ (z ◇ y)) ◇ x",
+"equation2": "x = ((y ◇ (x ◇ x)) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2537_2092_n14",
+"equation1": "x = (y ◇ ((y ◇ x) ◇ z)) ◇ y",
+"equation2": "x = ((y ◇ x) ◇ x) ◇ (y ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2463_2489_n14",
+"equation1": "x = (x ◇ ((y ◇ x) ◇ z)) ◇ y",
+"equation2": "x = (x ◇ ((y ◇ z) ◇ w)) ◇ y",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2307_705_n14",
+"equation1": "x = (y ◇ (x ◇ (y ◇ z))) ◇ y",
+"equation2": "x = y ◇ (y ◇ ((x ◇ x) ◇ z))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_2045_4357_n14",
+"equation1": "x = ((x ◇ x) ◇ y) ◇ (y ◇ z)",
+"equation2": "x ◇ (y ◇ z) = x ◇ (y ◇ w)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1977_2979_n14",
+"equation1": "x = (y ◇ (z ◇ y)) ◇ (x ◇ z)",
+"equation2": "x = ((y ◇ (z ◇ x)) ◇ y) ◇ z",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1904_1958_n14",
+"equation1": "x = (y ◇ (x ◇ z)) ◇ (x ◇ x)",
+"equation2": "x = (y ◇ (z ◇ x)) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1849_2476_n14",
+"equation1": "x = (x ◇ (y ◇ x)) ◇ (x ◇ z)",
+"equation2": "x = (x ◇ ((y ◇ z) ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1703_2113_n14",
+"equation1": "x = (y ◇ x) ◇ ((z ◇ x) ◇ z)",
+"equation2": "x = ((y ◇ x) ◇ z) ◇ (y ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1698_555_n14",
+"equation1": "x = (y ◇ x) ◇ ((y ◇ z) ◇ y)",
+"equation2": "x = y ◇ (z ◇ (y ◇ (x ◇ y)))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1697_2165_n14",
+"equation1": "x = (y ◇ x) ◇ ((y ◇ z) ◇ x)",
+"equation2": "x = ((y ◇ z) ◇ x) ◇ (y ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1695_1932_n14",
+"equation1": "x = (y ◇ x) ◇ ((y ◇ y) ◇ y)",
+"equation2": "x = (y ◇ (y ◇ y)) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1687_1031_n14",
+"equation1": "x = (y ◇ x) ◇ ((x ◇ z) ◇ x)",
+"equation2": "x = x ◇ ((x ◇ (y ◇ z)) ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1636_4127_n14",
+"equation1": "x = (x ◇ x) ◇ ((y ◇ x) ◇ z)",
+"equation2": "x ◇ y = ((x ◇ y) ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1571_1334_n14",
+"equation1": "x = (y ◇ z) ◇ (y ◇ (x ◇ z))",
+"equation2": "x = y ◇ (((y ◇ z) ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1506_3867_n14",
+"equation1": "x = (y ◇ x) ◇ (z ◇ (z ◇ x))",
+"equation2": "x ◇ x = (x ◇ (y ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1499_3181_n14",
+"equation1": "x = (y ◇ x) ◇ (z ◇ (x ◇ y))",
+"equation2": "x = (((y ◇ z) ◇ x) ◇ y) ◇ y",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1367_678_n14",
+"equation1": "x = y ◇ (((z ◇ y) ◇ x) ◇ y)",
+"equation2": "x = y ◇ (x ◇ ((y ◇ x) ◇ z))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1358_1977_n14",
+"equation1": "x = y ◇ (((z ◇ x) ◇ z) ◇ y)",
+"equation2": "x = (y ◇ (z ◇ y)) ◇ (x ◇ z)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1151_689_n14",
+"equation1": "x = y ◇ ((z ◇ (x ◇ y)) ◇ y)",
+"equation2": "x = y ◇ (x ◇ ((z ◇ x) ◇ w))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_1150_1763_n14",
+"equation1": "x = y ◇ ((z ◇ (x ◇ y)) ◇ x)",
+"equation2": "x = (y ◇ z) ◇ ((x ◇ z) ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_853_456_n14",
+"equation1": "x = x ◇ ((y ◇ z) ◇ (x ◇ y))",
+"equation2": "x = x ◇ (y ◇ (z ◇ (z ◇ z)))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_837_107_n14",
+"equation1": "x = x ◇ ((y ◇ x) ◇ (y ◇ z))",
+"equation2": "x = x ◇ ((y ◇ y) ◇ x)",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_723_364_n14",
+"equation1": "x = y ◇ (y ◇ ((z ◇ x) ◇ x))",
+"equation2": "x ◇ x = (y ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_666_1598_n14",
+"equation1": "x = y ◇ (x ◇ ((x ◇ x) ◇ x))",
+"equation2": "x = (y ◇ z) ◇ (z ◇ (w ◇ x))",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_468_2907_n14",
+"equation1": "x = y ◇ (x ◇ (x ◇ (y ◇ z)))",
+"equation2": "x = ((y ◇ (x ◇ x)) ◇ z) ◇ z",
+"answer": true,
+"vampire_steps": 14
+},
+{
+"id": "etp_4178_4195_n13",
+"equation1": "x ◇ y = ((y ◇ z) ◇ y) ◇ x",
+"equation2": "x ◇ y = ((z ◇ x) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_3344_3806_n13",
+"equation1": "x ◇ y = y ◇ (x ◇ (x ◇ z))",
+"equation2": "x ◇ y = (z ◇ y) ◇ (y ◇ x)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_3073_3084_n13",
+"equation1": "x = (((x ◇ y) ◇ x) ◇ z) ◇ z",
+"equation2": "x = (((x ◇ y) ◇ y) ◇ z) ◇ w",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_3059_3078_n13",
+"equation1": "x = (((x ◇ x) ◇ y) ◇ y) ◇ y",
+"equation2": "x = (((x ◇ y) ◇ y) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_3051_3082_n13",
+"equation1": "x = (((x ◇ x) ◇ x) ◇ x) ◇ y",
+"equation2": "x = (((x ◇ y) ◇ y) ◇ z) ◇ y",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2687_2662_n13",
+"equation1": "x = ((x ◇ y) ◇ (z ◇ z)) ◇ x",
+"equation2": "x = ((x ◇ y) ◇ (x ◇ y)) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2653_2875_n13",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ y)) ◇ y",
+"equation2": "x = ((x ◇ (y ◇ y)) ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2653_307_n13",
+"equation1": "x = ((x ◇ x) ◇ (y ◇ y)) ◇ y",
+"equation2": "x ◇ x = x ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2499_3883_n13",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x ◇ x = (y ◇ (x ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2499_2415_n13",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (y ◇ (z ◇ (w ◇ x))) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2499_1041_n13",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x = x ◇ ((y ◇ (x ◇ z)) ◇ x)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2165_1697_n13",
+"equation1": "x = ((y ◇ z) ◇ x) ◇ (y ◇ x)",
+"equation2": "x = (y ◇ x) ◇ ((y ◇ z) ◇ x)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_2061_2847_n13",
+"equation1": "x = ((x ◇ y) ◇ y) ◇ (x ◇ y)",
+"equation2": "x = ((x ◇ (x ◇ x)) ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1904_3353_n13",
+"equation1": "x = (y ◇ (x ◇ z)) ◇ (x ◇ x)",
+"equation2": "x ◇ y = y ◇ (y ◇ (x ◇ y))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1697_1867_n13",
+"equation1": "x = (y ◇ x) ◇ ((y ◇ z) ◇ x)",
+"equation2": "x = (x ◇ (y ◇ z)) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1491_614_n13",
+"equation1": "x = (y ◇ x) ◇ (y ◇ (y ◇ x))",
+"equation2": "x = x ◇ (x ◇ ((x ◇ x) ◇ x))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1350_3109_n13",
+"equation1": "x = y ◇ (((z ◇ x) ◇ x) ◇ y)",
+"equation2": "x = (((y ◇ x) ◇ x) ◇ z) ◇ y",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1334_2789_n13",
+"equation1": "x = y ◇ (((y ◇ z) ◇ x) ◇ z)",
+"equation2": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1047_650_n13",
+"equation1": "x = x ◇ ((y ◇ (y ◇ x)) ◇ z)",
+"equation2": "x = x ◇ (y ◇ ((z ◇ x) ◇ y))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1037_3463_n13",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x ◇ x = x ◇ ((y ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1037_2462_n13",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x = (x ◇ ((y ◇ x) ◇ z)) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_1037_1237_n13",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x = x ◇ (((x ◇ y) ◇ z) ◇ w)",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_916_642_n13",
+"equation1": "x = y ◇ ((y ◇ y) ◇ (x ◇ x))",
+"equation2": "x = x ◇ (y ◇ ((y ◇ y) ◇ x))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_916_359_n13",
+"equation1": "x = y ◇ ((y ◇ y) ◇ (x ◇ x))",
+"equation2": "x ◇ x = (x ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_521_2918_n13",
+"equation1": "x = y ◇ (y ◇ (z ◇ (x ◇ y)))",
+"equation2": "x = ((y ◇ (x ◇ y)) ◇ z) ◇ w",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_510_439_n13",
+"equation1": "x = y ◇ (y ◇ (y ◇ (x ◇ x)))",
+"equation2": "x = x ◇ (y ◇ (y ◇ (y ◇ x)))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_479_603_n13",
+"equation1": "x = y ◇ (x ◇ (y ◇ (z ◇ x)))",
+"equation2": "x = y ◇ (z ◇ (w ◇ (w ◇ x)))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_450_432_n13",
+"equation1": "x = x ◇ (y ◇ (z ◇ (y ◇ x)))",
+"equation2": "x = x ◇ (y ◇ (x ◇ (z ◇ x)))",
+"answer": true,
+"vampire_steps": 13
+},
+{
+"id": "etp_3973_3414_n12",
+"equation1": "x ◇ y = (y ◇ (z ◇ x)) ◇ z",
+"equation2": "x ◇ y = z ◇ (z ◇ (x ◇ y))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_3740_4146_n12",
+"equation1": "x ◇ y = (x ◇ z) ◇ (z ◇ y)",
+"equation2": "x ◇ y = ((x ◇ z) ◇ z) ◇ y",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_3123_507_n12",
+"equation1": "x = (((y ◇ x) ◇ z) ◇ x) ◇ y",
+"equation2": "x = y ◇ (y ◇ (x ◇ (z ◇ y)))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2920_1151_n12",
+"equation1": "x = ((y ◇ (x ◇ z)) ◇ x) ◇ y",
+"equation2": "x = y ◇ ((z ◇ (x ◇ y)) ◇ y)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2789_1387_n12",
+"equation1": "x = ((y ◇ z) ◇ (y ◇ x)) ◇ z",
+"equation2": "x = y ◇ (((z ◇ z) ◇ y) ◇ x)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2575_2525_n12",
+"equation1": "x = (y ◇ ((z ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (y ◇ ((x ◇ z) ◇ w)) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2499_3803_n12",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x ◇ y = (z ◇ y) ◇ (x ◇ y)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2499_3108_n12",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (((y ◇ x) ◇ x) ◇ z) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2499_1904_n12",
+"equation1": "x = (y ◇ ((x ◇ x) ◇ z)) ◇ x",
+"equation2": "x = (y ◇ (x ◇ z)) ◇ (x ◇ x)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2250_2287_n12",
+"equation1": "x = (x ◇ (x ◇ (y ◇ z))) ◇ y",
+"equation2": "x = (x ◇ (y ◇ (z ◇ w))) ◇ z",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2113_1334_n12",
+"equation1": "x = ((y ◇ x) ◇ z) ◇ (y ◇ z)",
+"equation2": "x = y ◇ (((y ◇ z) ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2072_2067_n12",
+"equation1": "x = ((x ◇ y) ◇ z) ◇ (x ◇ z)",
+"equation2": "x = ((x ◇ y) ◇ y) ◇ (z ◇ y)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2062_4598_n12",
+"equation1": "x = ((x ◇ y) ◇ y) ◇ (x ◇ z)",
+"equation2": "(x ◇ x) ◇ y = (x ◇ y) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2061_255_n12",
+"equation1": "x = ((x ◇ y) ◇ y) ◇ (x ◇ y)",
+"equation2": "x = ((x ◇ x) ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_2058_2695_n12",
+"equation1": "x = ((x ◇ y) ◇ x) ◇ (z ◇ z)",
+"equation2": "x = ((x ◇ y) ◇ (z ◇ w)) ◇ u",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1927_1801_n12",
+"equation1": "x = (y ◇ (y ◇ x)) ◇ (z ◇ x)",
+"equation2": "x = (y ◇ z) ◇ ((z ◇ w) ◇ x)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1904_4642_n12",
+"equation1": "x = (y ◇ (x ◇ z)) ◇ (x ◇ x)",
+"equation2": "(x ◇ y) ◇ x = (z ◇ x) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1896_776_n12",
+"equation1": "x = (y ◇ (x ◇ y)) ◇ (x ◇ z)",
+"equation2": "x = y ◇ (z ◇ ((z ◇ x) ◇ z))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1869_1448_n12",
+"equation1": "x = (x ◇ (y ◇ z)) ◇ (x ◇ z)",
+"equation2": "x = (x ◇ y) ◇ (x ◇ (z ◇ y))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1666_2283_n12",
+"equation1": "x = (x ◇ y) ◇ ((z ◇ x) ◇ z)",
+"equation2": "x = (x ◇ (y ◇ (z ◇ z))) ◇ z",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1636_4286_n12",
+"equation1": "x = (x ◇ x) ◇ ((y ◇ x) ◇ z)",
+"equation2": "x ◇ (x ◇ y) = x ◇ (z ◇ x)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1491_47_n12",
+"equation1": "x = (y ◇ x) ◇ (y ◇ (y ◇ x))",
+"equation2": "x = x ◇ (x ◇ (x ◇ x))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1289_2441_n12",
+"equation1": "x = y ◇ (((x ◇ y) ◇ y) ◇ y)",
+"equation2": "x = (x ◇ ((x ◇ x) ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1289_1020_n12",
+"equation1": "x = y ◇ (((x ◇ y) ◇ y) ◇ y)",
+"equation2": "x = x ◇ ((x ◇ (x ◇ x)) ◇ x)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1289_614_n12",
+"equation1": "x = y ◇ (((x ◇ y) ◇ y) ◇ y)",
+"equation2": "x = x ◇ (x ◇ ((x ◇ x) ◇ x))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1037_3723_n12",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x ◇ y = (x ◇ y) ◇ (x ◇ z)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1037_1636_n12",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x = (x ◇ x) ◇ ((y ◇ x) ◇ z)",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_1037_428_n12",
+"equation1": "x = x ◇ ((y ◇ (x ◇ x)) ◇ z)",
+"equation2": "x = x ◇ (y ◇ (x ◇ (x ◇ z)))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_916_3862_n12",
+"equation1": "x = y ◇ ((y ◇ y) ◇ (x ◇ x))",
+"equation2": "x ◇ x = (x ◇ (x ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_909_3887_n12",
+"equation1": "x = y ◇ ((y ◇ x) ◇ (y ◇ x))",
+"equation2": "x ◇ x = (y ◇ (y ◇ x)) ◇ x",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_848_835_n12",
+"equation1": "x = x ◇ ((y ◇ y) ◇ (z ◇ x))",
+"equation2": "x = x ◇ ((y ◇ x) ◇ (y ◇ x))",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_538_2772_n12",
+"equation1": "x = y ◇ (z ◇ (x ◇ (x ◇ y)))",
+"equation2": "x = ((y ◇ z) ◇ (x ◇ x)) ◇ z",
+"answer": true,
+"vampire_steps": 12
+},
+{
+"id": "etp_484_470_n12",
+"equation1": "x = y ◇ (x ◇ (z ◇ (x ◇ y)))",
+"equation2": "x = y ◇ (x ◇ (x ◇ (z ◇ y)))",
+"answer": true,
+"vampire_steps": 12
+}
+]
