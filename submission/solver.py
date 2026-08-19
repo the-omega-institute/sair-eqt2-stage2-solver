@@ -4,8 +4,11 @@
 Single-file, official stdin/stdout JSON protocol. Three escalating passes:
 
   Pass 1 (deterministic, no LLM): finite-magma counterexample for the false branch
-    (brute Fin 2-3, then F_p linear p<=7, then F_2^2/Fin 4 matrix-linear, all via
-    finOpTable).
+    (brute Fin 2-3, F_p linear p<=7, F_2^2/Fin 4 matrix-linear and Z_n polynomial
+    via finOpTable; then linear/affine mod n <= 50, F_3^2 / F_2^3 matrix-linear and
+    polynomial ops certified through an arithmetic `submission.op` on Fin n; canned
+    ℕ-carrier models for Austin pairs; a SEM-style finite model finder with Latin
+    propagation for carriers 4..10).
   Pass 2 (deterministic, no LLM): singleton true proof, then substitution-instance
     (Birkhoff) true proof.
   Pass 3 (LLM): the organizer proxy calls openai/gpt-oss-120b with the top-level
@@ -595,6 +598,44 @@ def _mf_witness_patterns(arity, n):
     return out
 
 
+def _mf_latin_flags(equation):
+    """Row/column all-different constraints implied by a law `x = T` in which
+    x occurs exactly once in T: for fixed other variables the map x ↦ T is the
+    identity, so every step of the chain from the x-leaf to the root is a
+    bijection of the (finite) carrier; a step `y ◇ u` with y a bare variable
+    makes every row a permutation, a step `u ◇ y` every column. Returns
+    (latin_rows, latin_cols)."""
+    left, right = equation["left"], equation["right"]
+    if left[0] == "var":
+        var, term = left[1], right
+    elif right[0] == "var":
+        var, term = right[1], left
+    else:
+        return False, False
+    if _count_var(term, var) != 1:
+        return False, False
+    rows = cols = False
+    node = term
+    while node[0] == "op":
+        in_left = _count_var(node[1], var) == 1
+        other = node[2] if in_left else node[1]
+        if _count_var(other, var):
+            return False, False
+        if other[0] == "var":
+            if in_left:
+                cols = True
+            else:
+                rows = True
+        node = node[1] if in_left else node[2]
+    return rows, cols
+
+
+def _count_var(term, var):
+    if term[0] == "var":
+        return 1 if term[1] == var else 0
+    return _count_var(term[1], var) + _count_var(term[2], var)
+
+
 class _MFSearch:
     def __init__(self, n, equation, witness_equation, witness, deadline,
                  goal_first=False):
@@ -630,6 +671,12 @@ class _MFSearch:
         self.queue = deque(range(count))
         self.queued = bytearray(b"\x01") * count
         self.named_max = max(witness, default=-1)
+        # Latin-square propagation (rows / columns all-different) when the
+        # hypothesis forces it; bitmask of used values per row / column.
+        self.latin_rows, self.latin_cols = _mf_latin_flags(equation)
+        self.row_mask = [0] * n
+        self.col_mask = [0] * n
+        self.full_mask = (1 << n) - 1
 
     def _eval(self, term, values):
         if isinstance(term, int):
@@ -673,11 +720,38 @@ class _MFSearch:
         old = self.table[cell]
         if old != UNKNOWN:
             return old == value
+        bit = 1 << value
+        n = self.n
+        r, c = divmod(cell, n)
+        if self.latin_rows and self.row_mask[r] & bit:
+            return False
+        if self.latin_cols and self.col_mask[c] & bit:
+            return False
         self.table[cell] = value
         self.assign_trail.append(cell)
+        self.row_mask[r] |= bit
+        self.col_mask[c] |= bit
         if not self._least_number_ok():
             return False
         self._schedule_cell(cell)
+        # naked single: a row/column with one value missing forces its last cell
+        if self.latin_rows:
+            missing = self.full_mask ^ self.row_mask[r]
+            if missing and (missing & (missing - 1)) == 0:
+                base = r * n
+                for j in range(n):
+                    if self.table[base + j] == UNKNOWN:
+                        if not self._assign(base + j, missing.bit_length() - 1):
+                            return False
+                        break
+        if self.latin_cols:
+            missing = self.full_mask ^ self.col_mask[c]
+            if missing and (missing & (missing - 1)) == 0:
+                for i in range(n):
+                    if self.table[i * n + c] == UNKNOWN:
+                        if not self._assign(i * n + c, missing.bit_length() - 1):
+                            return False
+                        break
         return True
 
     def _examine(self, cid):
@@ -739,8 +813,14 @@ class _MFSearch:
             self.dependencies[cid] = old
             for cell in old:
                 self.watchers[cell].add(cid)
+        n = self.n
         while len(self.assign_trail) > assign_mark:
-            self.table[self.assign_trail.pop()] = UNKNOWN
+            cell = self.assign_trail.pop()
+            value = self.table[cell]
+            self.table[cell] = UNKNOWN
+            r, c = divmod(cell, n)
+            self.row_mask[r] &= ~(1 << value)
+            self.col_mask[c] &= ~(1 << value)
 
     def _choose_cell(self):
         if self.goal_first:
@@ -750,11 +830,30 @@ class _MFSearch:
                 return max(goal_cells,
                            key=lambda cell: (len(self.watchers[cell]), -cell))
         best = None
-        best_score = -1
+        best_score = None
+        if self.latin_rows or self.latin_cols:
+            # MRV under the Latin constraints: fewest values still available
+            # in the cell's row/column, then most watchers.
+            n = self.n
+            full = self.full_mask
+            for cell, value in enumerate(self.table):
+                if value == UNKNOWN:
+                    r, c = divmod(cell, n)
+                    used = 0
+                    if self.latin_rows:
+                        used |= self.row_mask[r]
+                    if self.latin_cols:
+                        used |= self.col_mask[c]
+                    avail = bin(full ^ used).count("1")
+                    score = (-avail, len(self.watchers[cell]))
+                    if best_score is None or score > best_score:
+                        best = cell
+                        best_score = score
+            return best
         for cell, value in enumerate(self.table):
             if value == UNKNOWN:
                 score = len(self.watchers[cell])
-                if score > best_score:
+                if best_score is None or score > best_score:
                     best = cell
                     best_score = score
         return best
@@ -838,18 +937,629 @@ def find_countermodel(eq1_text, eq2_text, max_n=10, time_budget_s=8.0):
     return None
 
 
+# ---------------------------------------------------------------------------
+# Extended structured false-side families on Fin n for n up to ~50.
+#
+# The judge's `decideFin!` is plain `decide`, and any arithmetic is allowed
+# inside `submission.*` helpers, so the single-digit finOpTable limit only
+# binds table certificates with n <= 10. Larger carriers are certified with
+#   def submission.op (x y : Fin n) : Fin n := ⟨<expr in x.val y.val> % n, ...⟩
+# (closed-form ops) or a base-n digit string packed into one Nat literal
+# (explicit tables). The kernel cost is dominated by the number of hypothesis
+# instances n^k (k = #variables of eq1): measured ~1 ms per instance, so the
+# carrier is clamped to n^k <= FALSE_CERT_MAX_INSTANCES (~50 s of judge time).
+# ---------------------------------------------------------------------------
+FALSE_CERT_MAX_INSTANCES = 60000
+STRUCT_MAX_N = 50
+
+
+def _cert_feasible(n, eq1):
+    return n ** max(1, len(eq1["variables"])) <= FALSE_CERT_MAX_INSTANCES
+
+
+def _term_index_src(term):
+    if term[0] == "var":
+        return term[1]
+    return "T[%s][%s]" % (_term_index_src(term[1]), _term_index_src(term[2]))
+
+
+class _EqChecker:
+    """Compiled table checks: eq holds on a full table T (list of lists)."""
+
+    def __init__(self, eq):
+        self.variables = list(eq["variables"])
+        left = _term_index_src(eq["left"])
+        right = _term_index_src(eq["right"])
+        args = ", ".join(self.variables) if self.variables else "_unused"
+        self.one = eval("lambda T, %s: %s == %s" % (args, left, right))
+        loops = " ".join("for %s in R" % v for v in self.variables)
+        if self.variables:
+            self.all = eval("lambda T, R: all(%s == %s %s)" % (left, right, loops))
+        else:
+            self.all = eval("lambda T, R: %s == %s" % (left, right))
+
+    def holds(self, table, n, probes=()):
+        for pr in probes:
+            if not self.one(table, *pr):
+                return False
+        return self.all(table, range(n))
+
+
+class _PairChecker:
+    """eq1 holds and eq2 fails on a table; cheap random probes first."""
+
+    def __init__(self, eq1, eq2, seed=12345):
+        self.c1 = _EqChecker(eq1)
+        self.c2 = _EqChecker(eq2)
+        self.k1 = len(self.c1.variables)
+        self._seed = seed
+        self._probe_cache = {}
+
+    def probes(self, n, count=3):
+        key = (n, count)
+        got = self._probe_cache.get(key)
+        if got is None:
+            # deterministic pseudo-random probe assignments (LCG), no `random`
+            s = self._seed + 7919 * n
+            got = []
+            for _ in range(count):
+                vals = []
+                for _j in range(self.k1):
+                    s = (s * 1103515245 + 12345) & 0x7FFFFFFF
+                    vals.append((s >> 8) % n)
+                got.append(tuple(vals))
+            self._probe_cache[key] = got
+        return got
+
+    def test(self, table, n):
+        if not self.c1.holds(table, n, self.probes(n)):
+            return False
+        return not self.c2.all(table, range(n))
+
+
+def _lean_affine_expr(n, a, b, c=0):
+    parts = []
+    if a:
+        parts.append("%d * x.val" % a)
+    if b:
+        parts.append("%d * y.val" % b)
+    if c:
+        parts.append("%d" % c)
+    if not parts:
+        parts.append("0")
+    return "(%s) %% %d" % (" + ".join(parts), n)
+
+
+def _witness(stage, n, table=None, lean_op=None, extra=None):
+    out = {"stage": stage, "n": n}
+    if table is not None:
+        out["table"] = table
+    if lean_op is not None:
+        out["lean_op"] = lean_op
+    if extra:
+        out.update(extra)
+    return out
+
+
+def linear_mod_n_counterexample(eq1, eq2, deadline, n_lo=2, n_hi=STRUCT_MAX_N):
+    # x ◇ y = a x + b y (mod n), all n (composite too); exact symbolic check:
+    # the coefficient vector of each side is a linear form over Z_n and the law
+    # holds iff all coefficient differences vanish mod n.
+    for n in range(n_lo, n_hi + 1):
+        if not _cert_feasible(n, eq1):
+            return None
+        if monotonic() >= deadline:
+            return None
+        for a in range(n):
+            for b in range(n):
+                if linear_equation_holds(eq1, n, a, b) and linear_equation_fails(eq2, n, a, b):
+                    table = linear_table(n, a, b) if n <= 10 else None
+                    return _witness("linear_n", n, table, _lean_affine_expr(n, a, b),
+                                    {"a": a, "b": b})
+    return None
+
+
+def affine_mod_n_counterexample(eq1, eq2, deadline, n_lo=2, n_hi=STRUCT_MAX_N):
+    # x ◇ y = a x + b y + c (mod n). The linear part must already make eq1 hold
+    # coefficient-wise, which prunes (a, b) before the constant loop.
+    for n in range(n_lo, n_hi + 1):
+        if not _cert_feasible(n, eq1):
+            return None
+        if monotonic() >= deadline:
+            return None
+        for a in range(n):
+            for b in range(n):
+                if not linear_equation_holds(eq1, n, a, b):
+                    continue
+                for c in range(1, n):
+                    if affine_equation_holds(eq1, n, a, b, c) and affine_equation_fails(eq2, n, a, b, c):
+                        table = affine_table(n, a, b, c) if n <= 10 else None
+                        return _witness("affine_n", n, table, _lean_affine_expr(n, a, b, c),
+                                        {"a": a, "b": b, "c": c})
+    return None
+
+
+def _vec_space(p, k):
+    # elements of F_p^k encoded as ints 0..p^k-1 (digit i = coordinate i);
+    # returns (n, add_table, matrices) where matrices are the lists Ax for
+    # every k x k matrix A over F_p, as images of all vectors.
+    n = p ** k
+    digits = [[(v // p ** i) % p for i in range(k)] for v in range(n)]
+    add = [[0] * n for _ in range(n)]
+    for u in range(n):
+        du = digits[u]
+        for v in range(n):
+            dv = digits[v]
+            add[u][v] = sum(((du[i] + dv[i]) % p) * p ** i for i in range(k))
+    images = []
+    for enc in range(p ** (k * k)):
+        rows = [[(enc // p ** (k * i + j)) % p for j in range(k)] for i in range(k)]
+        img = []
+        for v in range(n):
+            dv = digits[v]
+            w = 0
+            for i in range(k):
+                s = 0
+                for j in range(k):
+                    s += rows[i][j] * dv[j]
+                w += (s % p) * p ** i
+            img.append(w)
+        images.append(img)
+    return n, add, images
+
+
+_VEC_SPACE_CACHE = {}
+
+
+def vector_linear_counterexample(eq1, eq2, p, k, deadline, checker=None, use_affine=True):
+    # x ◇ y = A x + B y (+ c) over F_p^k (matrix-linear magmas; F_2^2 is the
+    # frozen solver's f2_matrix family, this generalizes to F_2^3, F_3^2, ...).
+    n = p ** k
+    if not _cert_feasible(n, eq1):
+        return None
+    key = (p, k)
+    if key not in _VEC_SPACE_CACHE:
+        _VEC_SPACE_CACHE[key] = _vec_space(p, k)
+    n, add, images = _VEC_SPACE_CACHE[key]
+    if checker is None:
+        checker = _PairChecker(eq1, eq2)
+    rng = range(n)
+    consts = range(n) if use_affine else (0,)
+    for ai, ax in enumerate(images):
+        if monotonic() >= deadline:
+            return None
+        rows_a = [add[ax[i]] for i in rng]
+        for bi, bx in enumerate(images):
+            table = [[rows_a[i][bx[j]] for j in rng] for i in rng]
+            if not checker.c1.holds(table, n, checker.probes(n)):
+                # the linear part fixes eq1's coefficient identities; no
+                # constant can rescue it.
+                continue
+            if not checker.c2.all(table, rng):
+                return _witness("vec_linear_%d_%d" % (p, k), n, table, None,
+                                {"a_idx": ai, "b_idx": bi, "c": 0})
+            if use_affine:
+                for c in range(1, n):
+                    table = [[add[rows_a[i][bx[j]]][c] for j in rng] for i in rng]
+                    if checker.test(table, n):
+                        return _witness("vec_affine_%d_%d" % (p, k), n, table, None,
+                                        {"a_idx": ai, "b_idx": bi, "c": c})
+    return None
+
+
+_POLY_MONOMIALS = (
+    # (deg_x, deg_y)
+    (0, 0), (1, 0), (0, 1), (1, 1), (2, 0), (0, 2), (2, 1), (1, 2), (3, 0), (0, 3),
+)
+
+
+def _poly_table(n, coeffs):
+    # coeffs aligned with _POLY_MONOMIALS
+    table = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            s = 0
+            for (dx, dy), c in zip(_POLY_MONOMIALS, coeffs):
+                if c:
+                    s += c * pow(i, dx, n) * pow(j, dy, n)
+            row.append(s % n)
+        table.append(row)
+    return table
+
+
+def _poly_lean_expr(n, coeffs):
+    parts = []
+    for (dx, dy), c in zip(_POLY_MONOMIALS, coeffs):
+        if not c:
+            continue
+        factors = []
+        if c != 1 or (dx == 0 and dy == 0):
+            factors.append(str(c))
+        factors.extend(["x.val"] * dx)
+        factors.extend(["y.val"] * dy)
+        parts.append(" * ".join(factors))
+    if not parts:
+        parts.append("0")
+    return "(%s) %% %d" % (" + ".join(parts), n)
+
+
+def poly_sample_counterexample(eq1, eq2, deadline, n_lo=2, n_hi=16, checker=None,
+                               per_n_share=None):
+    # FinitePoly-style: x ◇ y = sum c_ij x^i y^j (mod n) with monomials up to
+    # degree 3, sampled deterministically (LCG) per carrier size within the
+    # deadline; the exhaustive degree<=2 grid for n <= 6 already ran earlier.
+    if checker is None:
+        checker = _PairChecker(eq1, eq2)
+    sizes = [n for n in range(n_lo, n_hi + 1) if _cert_feasible(n, eq1)]
+    if not sizes:
+        return None
+    seed = 987654321
+    m = len(_POLY_MONOMIALS)
+    while monotonic() < deadline:
+        for n in sizes:
+            slice_end = min(deadline, monotonic() + (per_n_share or 0.4))
+            while monotonic() < slice_end:
+                coeffs = []
+                for _ in range(m):
+                    seed = (seed * 6364136223846793005 + 1442695040888963407) & 0xFFFFFFFFFFFFFFFF
+                    coeffs.append((seed >> 33) % n)
+                # sparsify: zero out a random subset so low-degree forms dominate
+                seed = (seed * 6364136223846793005 + 1442695040888963407) & 0xFFFFFFFFFFFFFFFF
+                mask = (seed >> 33) % (1 << m)
+                coeffs = [c if (mask >> i) & 1 else 0 for i, c in enumerate(coeffs)]
+                if not any(coeffs[1:]):
+                    continue
+                table = _poly_table(n, coeffs)
+                if checker.test(table, n):
+                    return _witness("poly_sample", n, table if n <= 10 else None,
+                                    _poly_lean_expr(n, coeffs), {"coeffs": coeffs})
+        if monotonic() >= deadline:
+            break
+    return None
+
+
+def poly_quadratic_grid_counterexample(eq1, eq2, deadline, n_lo=7, n_hi=10, checker=None):
+    # exhaustive degree<=2 grid c0 + a x + b y + d xy + e x^2 + f y^2 for the
+    # sizes the frozen quadratic stage does not reach (n_lo..n_hi), deadline-bounded.
+    if checker is None:
+        checker = _PairChecker(eq1, eq2)
+    for n in range(n_lo, n_hi + 1):
+        if not _cert_feasible(n, eq1):
+            return None
+        rng = range(n)
+        for a in rng:
+            for b in rng:
+                for d in rng:
+                    if monotonic() >= deadline:
+                        return None
+                    for e in rng:
+                        for f in rng:
+                            for c0 in rng:
+                                coeffs = (c0, a, b, d, e, f, 0, 0, 0, 0)
+                                table = _poly_table(n, coeffs)
+                                if checker.test(table, n):
+                                    return _witness("poly_quadratic_grid", n, table, None,
+                                                    {"coeffs": coeffs})
+    return None
+
+
+def structured_counterexample(eq1, eq2, deadline, deep=False):
+    """Extended structured families (cheap, exact). deep=True adds the heavier
+    sampled/grid families bounded by the deadline."""
+    found = linear_mod_n_counterexample(eq1, eq2, deadline, 2, STRUCT_MAX_N)
+    if found is not None:
+        return found
+    found = affine_mod_n_counterexample(eq1, eq2, deadline, 2, STRUCT_MAX_N)
+    if found is not None:
+        return found
+    checker = _PairChecker(eq1, eq2)
+    found = vector_linear_counterexample(eq1, eq2, 3, 2, deadline, checker)
+    if found is not None:
+        return found
+    found = vector_linear_counterexample(eq1, eq2, 2, 3, deadline, checker)
+    if found is not None:
+        return found
+    if not deep:
+        return None
+    found = poly_quadratic_grid_counterexample(eq1, eq2, min(deadline, monotonic() + 20.0), 7, 8, checker)
+    if found is not None:
+        return found
+    found = vector_linear_counterexample(eq1, eq2, 5, 2, min(deadline, monotonic() + 20.0), checker,
+                                         use_affine=False)
+    if found is not None:
+        return found
+    found = poly_sample_counterexample(eq1, eq2, min(deadline, monotonic() + 20.0), 2, 16, checker)
+    if found is not None:
+        return found
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Austin pairs (finite-true, general-false) need an infinite countermodel. A
+# canned ℕ-carrier model: the ETP 1659-model f (parity-patched successor op)
+# satisfies laws 1659 and 2473 (the latter via the replayed implication
+# 1659 ⇒ 2473); its opposite magma (x ◇ y := f y x) satisfies their duals
+# (2000 and 1167). If the hypothesis is one of these laws up to variable
+# renaming and the goal fails on the model at small naturals, the certificate
+# proves the hypothesis by the canned lemma and refutes the goal by `decide`
+# on the closed witness instance. Extending the table = adding (op, law,
+# lemma, lemma-args, proof text) rows.
+# ---------------------------------------------------------------------------
+_AUSTIN_F_LEMMAS = """\
+theorem mod_two_succ_0_1_from (n : ℕ) : n % 2 = 0 → (n + 1) % 2 = 1 := by omega
+theorem mod_two_succ_1_0_from (n : ℕ) : n % 2 = 1 → (n + 1) % 2 = 0 := by omega
+theorem mod_two_pred_0_1_to (n : ℕ) : (n + 1) % 2 = 0 → n % 2 = 1 := by omega
+theorem mod_two_pred_1_0_to (n : ℕ) : (n + 1) % 2 = 1 → n % 2 = 0 := by omega
+theorem mod_two_ne_down_to (n m : ℕ) : (n + 1) % 2 = m % 2 → ¬ n % 2 = m % 2 := by omega
+theorem mod_two_eq_down_to (n m : ℕ) : (n + 1) % 2 ≠ m % 2 → n % 2 = m % 2 := by omega
+theorem mod_two_ne_up_from (n m : ℕ) : n % 2 = m % 2 → ¬ (n + 1) % 2 = m % 2 := by omega
+theorem mod_two_eq_up_from (n m : ℕ) : n % 2 ≠ m % 2 → (n + 1) % 2 = m % 2 := by omega
+
+def f (x : ℕ) (y : ℕ) : ℕ :=
+  match x with
+  | 0 =>
+    if y % 2 = 0
+    then 1 else 0
+  | n + 1 =>
+    if x % 2 = y % 2
+    then n + 2 else n
+
+theorem f_1659 :
+  ∀ (x y z : ℕ),
+  x = f (f x y) (f (f y y) z ) := by
+  intro xo yo z
+  by_cases z_cong_0 : z % 2 = 0
+  · match xo, yo with
+    | 0, 0 =>
+      simp [f]
+      split
+      · simp
+      · simp
+    | 0, y+1 =>
+      simp [f]
+      by_cases y1_cong_0 : (y + 1) % 2 = 0
+      · have y_cong_1 : y % 2  = 1 :=
+          mod_two_pred_0_1_to y y1_cong_0
+        simp [y1_cong_0,y_cong_1,z_cong_0]
+      · have y1_cong_1 : (y + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp y1_cong_0
+        have y_cong_0 : y % 2 = 0 :=
+          mod_two_pred_1_0_to y y1_cong_1
+        simp [y1_cong_0,y_cong_0,z_cong_0]
+    | x+1, 0 =>
+      simp [f]
+      by_cases x1_cong_0 : (x + 1) % 2 = 0
+      · have x_cong_1 : x % 2  = 1 :=
+          mod_two_pred_0_1_to x x1_cong_0
+        simp [x1_cong_0,x_cong_1,z_cong_0]
+      · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+        have x_cong_0 : x % 2 = 0 :=
+          mod_two_pred_1_0_to x x1_cong_1
+        simp [x1_cong_0,x_cong_0,z_cong_0]
+        split
+        simp_all only [zero_add, one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
+        simp
+    | x+1, y+1 =>
+      by_cases y1_cong_0 : (y + 1) % 2 = 0
+      · have y_cong_1 : y % 2  = 1 :=
+          mod_two_pred_0_1_to y y1_cong_0
+        by_cases x1_cong_0 : (x + 1) % 2 = 0
+        · have x_cong_1 : x % 2  = 1 :=
+            mod_two_pred_0_1_to x x1_cong_0
+          simp [f,y1_cong_0,y_cong_1,x1_cong_0,x_cong_1,z_cong_0]
+        · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+          have x_cong_0 : x % 2  = 0 :=
+            mod_two_pred_1_0_to x x1_cong_1
+          simp [f,y1_cong_0,y_cong_1,x1_cong_0,x_cong_0,z_cong_0]
+          split
+          simp
+          simp
+      · have y1_cong_1 : (y + 1) % 2 = 1 :=
+          Nat.mod_two_ne_zero.mp y1_cong_0
+        have y_cong_0 : y % 2 = 0 :=
+          mod_two_pred_1_0_to y y1_cong_1
+        by_cases x1_cong_0 : (x + 1) % 2 = 0
+        · have x_cong_1 : x % 2  = 1 :=
+            mod_two_pred_0_1_to x x1_cong_0
+          simp [f,x1_cong_0,y1_cong_1,y_cong_0,z_cong_0,x_cong_1]
+          split
+          simp_all only [one_ne_zero, not_false_eq_true, zero_add, Nat.mod_succ]
+          simp
+        · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+          have x_cong_0 : x % 2  = 0 :=
+            mod_two_pred_1_0_to x x1_cong_1
+          simp [f,y_cong_0,x1_cong_1,y1_cong_1,x_cong_0,z_cong_0]
+  · have z_cong_1 : z % 2 = 1 :=
+      Nat.mod_two_ne_zero.mp z_cong_0
+    match xo, yo with
+    | 0, 0 =>
+      simp [f]
+      split
+      · simp
+      · simp
+    | 0, y+1 =>
+      simp [f]
+      by_cases y1_cong_0 : (y + 1) % 2 = 0
+      · have y_cong_1 : y % 2  = 1 :=
+          mod_two_pred_0_1_to y y1_cong_0
+        simp [y1_cong_0,y_cong_1,z_cong_1]
+      · have y1_cong_1 : (y + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp y1_cong_0
+        have y_cong_0 : y % 2 = 0 :=
+          mod_two_pred_1_0_to y y1_cong_1
+        simp [y1_cong_0,y_cong_0,z_cong_1]
+    | x+1, 0 =>
+      simp [f]
+      by_cases x1_cong_0 : (x + 1) % 2 = 0
+      · have x_cong_1 : x % 2  = 1 :=
+          mod_two_pred_0_1_to x x1_cong_0
+        simp [x1_cong_0,x_cong_1,z_cong_1]
+      · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+        have x_cong_0 : x % 2 = 0 :=
+          mod_two_pred_1_0_to x x1_cong_1
+        simp [x1_cong_0,x_cong_0,z_cong_1]
+        split
+        simp_all only [zero_add, one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
+        simp
+    | x+1, y+1 =>
+      by_cases y1_cong_0 : (y + 1) % 2 = 0
+      · have y_cong_1 : y % 2  = 1 :=
+          mod_two_pred_0_1_to y y1_cong_0
+        by_cases x1_cong_0 : (x + 1) % 2 = 0
+        · have x_cong_1 : x % 2  = 1 :=
+            mod_two_pred_0_1_to x x1_cong_0
+          simp [f,y1_cong_0,y_cong_1,x1_cong_0,x_cong_1,z_cong_1]
+        · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+          have x_cong_0 : x % 2  = 0 :=
+            mod_two_pred_1_0_to x x1_cong_1
+          simp [f,y1_cong_0,y_cong_1,x1_cong_0,x_cong_0,z_cong_1]
+          split
+          simp
+          simp
+      · have y1_cong_1 : (y + 1) % 2 = 1 :=
+          Nat.mod_two_ne_zero.mp y1_cong_0
+        have y_cong_0 : y % 2 = 0 :=
+          mod_two_pred_1_0_to y y1_cong_1
+        by_cases x1_cong_0 : (x + 1) % 2 = 0
+        · have x_cong_1 : x % 2  = 1 :=
+            mod_two_pred_0_1_to x x1_cong_0
+          simp [f,x1_cong_0,y1_cong_1,y_cong_0,z_cong_1,x_cong_1]
+          split
+          simp_all only [one_ne_zero, not_false_eq_true, zero_add, Nat.mod_succ]
+          simp
+        · have x1_cong_1 : (x + 1) % 2 = 1 :=
+            Nat.mod_two_ne_zero.mp x1_cong_0
+          have x_cong_0 : x % 2  = 0 :=
+            mod_two_pred_1_0_to x x1_cong_1
+          simp [f,y_cong_0,x1_cong_1,y1_cong_1,x_cong_0,z_cong_1]
+"""
+
+_AUSTIN_F_IMPL = """\
+theorem impl (G : Type) [Magma G] (h : ∀ x y z : G, x = (x ◇ y) ◇ ((y ◇ y) ◇ z)) :
+    ∀ x y z : G, x = (x ◇ ((y ◇ y) ◇ z)) ◇ y := by
+  by_contra nh
+  simp only [not_forall] at nh
+  obtain ⟨sK0, sK1, sK2, nh⟩ := nh
+  have eq9 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ ((X1 ◇ X1) ◇ X2)) = X0 := by first | exact (h _ _ _).symm | exact h _ _ _ | exact (h _ _).symm | exact h _ _ | exact (h _ _ _ _).symm | exact h _ _ _ _
+  have eq10 : sK0 ≠ ((sK0 ◇ ((sK1 ◇ sK1) ◇ sK2)) ◇ sK1) := by first | exact nh | exact Ne.symm nh
+  have eq13 (X0 X2 : G) : ((X2 ◇ X0) ◇ X0) = X2 := by have hb := eq9 X2 X0 ((X0 ◇ X0) ◇ X2); have ha := eq9 X0 X0 X2; first | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
+  have eq15 (X0 X1 X2 : G) : (X0 ◇ X1) = (X0 ◇ ((X1 ◇ X1) ◇ X2)) := by have hb := eq13 ((X1 ◇ X1) ◇ X2) (X0 ◇ X1); have ha := eq9 X0 X1 X2; first | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
+  have eq19 : sK0 ≠ ((sK0 ◇ sK1) ◇ sK1) := by have hb := eq10; have ha := eq15 sK0 sK1 sK2; first | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
+  first | exact eq19 (eq13 ..) | exact eq19 (eq13 ..).symm | exact eq19 rfl | grind
+
+theorem f_2473 : ∀ x y z : ℕ, x = f (f x (f (f y y) z)) y :=
+  @impl ℕ ⟨f⟩ f_1659
+"""
+
+
+def _austin_f(x, y):
+    if x == 0:
+        return 1 if y % 2 == 0 else 0
+    n = x - 1
+    return n + 2 if x % 2 == y % 2 else n
+
+
+def _austin_f_dual(x, y):
+    return _austin_f(y, x)
+
+
+# (op_key, law text, lemma, lemma argument variables, needs_impl)
+_AUSTIN_LAWS = (
+    ("f", "x = (x ◇ y) ◇ ((y ◇ y) ◇ z)", "f_1659", ("x", "y", "z"), False),
+    ("f", "x = (x ◇ ((y ◇ y) ◇ z)) ◇ y", "f_2473", ("x", "y", "z"), True),
+    ("fdual", "x = (z ◇ (y ◇ y)) ◇ (y ◇ x)", "f_1659", ("x", "y", "z"), False),
+    ("fdual", "x = y ◇ ((z ◇ (y ◇ y)) ◇ x)", "f_2473", ("x", "y", "z"), True),
+)
+_AUSTIN_OPS = {
+    "f": ("fun x y => submission.f x y", _austin_f),
+    "fdual": ("fun x y => submission.f y x", _austin_f_dual),
+}
+
+
+def _match_renaming(pattern, subject, sigma):
+    # structural equality up to an injective variable renaming pattern -> subject
+    if pattern[0] == "var":
+        if subject[0] != "var":
+            return False
+        got = sigma.get(pattern[1])
+        if got is None:
+            if subject[1] in sigma.values():
+                return False
+            sigma[pattern[1]] = subject[1]
+            return True
+        return got == subject[1]
+    if subject[0] != "op":
+        return False
+    return (_match_renaming(pattern[1], subject[1], sigma)
+            and _match_renaming(pattern[2], subject[2], sigma))
+
+
+def austin_counterexample(eq1_text, eq2_text, max_value=6):
+    try:
+        eq1 = parse_equation(eq1_text)
+        eq2 = parse_equation(eq2_text)
+    except ParseError:
+        return None
+    for op_key, law_text, lemma, lemma_args, needs_impl in _AUSTIN_LAWS:
+        law = parse_equation(law_text)
+        sigma = {}
+        if not (_match_renaming(law["left"], eq1["left"], sigma)
+                and _match_renaming(law["right"], eq1["right"], sigma)):
+            continue
+        if set(sigma.values()) != set(eq1["variables"]):
+            continue
+        lean_op, py_op = _AUSTIN_OPS[op_key]
+        witness = None
+        vals = range(max_value)
+        for assignment in product(vals, repeat=len(eq2["variables"])):
+            env = dict(zip(eq2["variables"], assignment))
+            if eval_term(eq2["left"], env, py_op) != eval_term(eq2["right"], env, py_op):
+                witness = assignment
+                break
+        if witness is None:
+            continue
+        args = " ".join(sigma[v] for v in lemma_args)
+        code = (
+            "import JudgeProblem\n"
+            "import Mathlib.Tactic\n\n"
+            "namespace submission\n"
+            + _AUSTIN_F_LEMMAS + "\n"
+            + (_AUSTIN_F_IMPL + "\n" if needs_impl else "")
+            + "end submission\n\n"
+            "def submission : Goal := by\n"
+            "  refine ⟨ℕ, ⟨%s⟩, ?_, ?_⟩\n"
+            "  · intro %s\n"
+            "    exact submission.%s %s\n"
+            "  · intro h\n"
+            "    exact absurd (h %s) (by decide)\n"
+            % (lean_op, " ".join(eq1["variables"]), lemma, args,
+               " ".join(str(v) for v in witness))
+        )
+        return {"stage": "austin_nat", "n": 0, "carrier": "nat", "code": code,
+                "law": law_text, "witness": list(witness)}
+    return None
+
+
 # affine stage disabled by default: empirically +0 on normal+hard1/2/3 samples
 # (with no constants in the input language, nonzero affine offsets are
 # equationally equivalent to linear), and it costs up to AFFINE_CANDIDATE_LIMIT
 # evals/problem. Kept for reference; flip use_affine=True to re-enable.
 def search_counterexample(eq1_text, eq2_text, use_linear=True, use_affine=False,
-                          use_model_finder=True, model_finder_budget_s=8.0):
+                          use_model_finder=True, model_finder_budget_s=8.0,
+                          use_structured=True, structured_budget_s=6.0,
+                          use_deep=False, deep_budget_s=60.0, use_austin=True):
     eq1 = parse_equation(eq1_text)
     eq2 = parse_equation(eq2_text)
-    found = brute_counterexample(eq1, eq2, max_n=3)
-    if found is not None:
-        return found
     if use_linear:
+        found = brute_counterexample(eq1, eq2, max_n=3)
+        if found is not None:
+            return found
         found = linear_counterexample(eq1, eq2)
         if found is not None:
             return found
@@ -865,6 +1575,22 @@ def search_counterexample(eq1_text, eq2_text, use_linear=True, use_affine=False,
             found = affine_counterexample(eq1, eq2)
             if found is not None:
                 return found
+    if use_structured:
+        # Fin-n arithmetic families beyond the finOpTable cap (n <= 50 linear /
+        # affine, F_3^2 and F_2^3 matrix-linear); certified via submission.op.
+        found = structured_counterexample(eq1, eq2, monotonic() + structured_budget_s,
+                                          deep=False)
+        if found is not None:
+            return found
+    if use_austin:
+        found = austin_counterexample(eq1_text, eq2_text)
+        if found is not None:
+            return found
+    if use_deep:
+        found = structured_counterexample(eq1, eq2, monotonic() + deep_budget_s,
+                                          deep=True)
+        if found is not None:
+            return found
     # Last resort: systematic SEM-style finite-model search for the irregular
     # carriers 4..8 that the structured families miss. Most expensive stage, so
     # it runs only after everything cheaper has failed (and is deferred past the
@@ -878,8 +1604,56 @@ def search_counterexample(eq1_text, eq2_text, use_linear=True, use_affine=False,
     return None
 
 
+def _big_table_nat(n, table):
+    # pack the Cayley table as one base-n digit string: digit (i*n + j) = i ◇ j
+    total = 0
+    weight = 1
+    for i in range(n):
+        for j in range(n):
+            total += table[i][j] * weight
+            weight *= n
+    return total
+
+
+def make_false_code_arith(n, lean_op=None, table=None):
+    # Fin-n certificate via an arithmetic `submission.op` (any n; used for
+    # n >= 11 where finOpTable's single-digit parser cannot be used). Either a
+    # closed-form expression in x.val / y.val (already reduced `% n`) or an
+    # explicit table packed into a Nat literal and read back with `/ n^k % n`
+    # (kernel Nat arithmetic is GMP-accelerated, so lookups are O(1)).
+    if lean_op is None:
+        body = (
+            "def tbl : Nat := %d\n"
+            "def op (x y : Fin %d) : Fin %d := ⟨(tbl / %d ^ (x.val * %d + y.val)) %% %d, "
+            "Nat.mod_lt _ (by decide)⟩\n" % (_big_table_nat(n, table), n, n, n, n, n)
+        )
+    else:
+        body = (
+            "def op (x y : Fin %d) : Fin %d := ⟨%s, Nat.mod_lt _ (by decide)⟩\n"
+            % (n, n, lean_op)
+        )
+    return (
+        "import JudgeProblem\n"
+        "import JudgeDecide.DecideBang\n\n"
+        "namespace submission\n"
+        + body +
+        "end submission\n\n"
+        "set_option maxRecDepth 1000000 in\n"
+        "set_option maxHeartbeats 1000000 in\n"
+        "def submission : Goal := by\n"
+        "  let m : Magma (Fin %d) := { op := submission.op }\n"
+        "  refine \u27e8Fin %d, m, ?_\u27e9\n"
+        "  decideFin!\n" % (n, n)
+    )
+
+
 def make_false_code(problem, cex):
     n = cex["n"]
+    if cex.get("carrier") == "nat":
+        return cex["code"]
+    if n > 10:
+        # beyond finOpTable's single-digit parser: arithmetic submission.op
+        return make_false_code_arith(n, cex.get("lean_op"), cex.get("table"))
     if "a" in cex and "b" in cex:
         a, b = cex["a"], cex["b"]
         if "c" in cex:
@@ -2195,7 +2969,9 @@ def main():
     # milliseconds and only the genuine residuals pay the expensive searches.
 
     # Stage 1: cheap finite-magma counterexample (false) — brute Fin 2-3, F_p
-    # linear, F_2^2 matrix, Z_n polynomial. No model finder yet.
+    # linear, F_2^2 matrix, Z_n polynomial, then the Fin-n arithmetic families
+    # (linear/affine mod n <= 50, F_3^2 / F_2^3 matrix-linear) and the canned
+    # Austin-pair ℕ models. No model finder yet.
     found = search_counterexample(eq1_text, eq2_text, use_linear=True,
                                   use_model_finder=False)
     if found is not None:
@@ -2227,8 +3003,9 @@ def main():
             return
 
     # Stage 3: systematic SEM finite-model search (false) for irregular carriers
-    # 4..8 — the first expensive stage (bounded budget).
+    # 4..10 — the first expensive stage (bounded budget).
     found = search_counterexample(eq1_text, eq2_text, use_linear=False,
+                                  use_structured=False, use_austin=False,
                                   use_model_finder=True, model_finder_budget_s=8.0)
     if found is not None:
         result = call_judge("false", make_false_code(problem, found))
@@ -2241,6 +3018,18 @@ def main():
     cert = general_true_cert(eq1_text, eq2_text, time_budget_s=30.0)
     if cert is not None:
         result = call_judge("true", cert)
+        if result.get("status") == "accepted":
+            return
+
+    # Stage 5: deep false search — heavier structured families (quadratic grid
+    # n=7..8, F_5^2, sampled polynomial ops up to n=16) and a long model-finder
+    # run over carriers 4..10. Only problems every cheaper stage missed pay this.
+    found = search_counterexample(eq1_text, eq2_text, use_linear=False,
+                                  use_structured=False, use_austin=False,
+                                  use_deep=True, deep_budget_s=60.0,
+                                  use_model_finder=True, model_finder_budget_s=120.0)
+    if found is not None:
+        result = call_judge("false", make_false_code(problem, found))
         if result.get("status") == "accepted":
             return
 
