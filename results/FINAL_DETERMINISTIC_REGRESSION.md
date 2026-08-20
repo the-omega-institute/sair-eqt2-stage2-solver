@@ -1,11 +1,11 @@
-# Final deterministic regression — solver v2.1
+# Final deterministic regression — solver v2.2
 
-Solver `submission/solver.py` SHA-256 `1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534` (168408 bytes). Official judge revision
+Solver `submission/solver.py` SHA-256 `931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697` (178769 bytes). Official judge revision
 `2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
 v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
 `none`; no API key). Local official-runner measurements, not hosted leaderboard results.
 
-## Results (2026-08-20, all six public sets)
+## Results (2026-08-20, all six public sets; rerun with the v2.2 file)
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
@@ -33,6 +33,13 @@ Changes from v1 (details in `docs/TRUE_SIDE_G3_PROVER.md` and `docs/FALSE_SIDE_V
 - stage order: deep false search precedes the deep true pass.
 
 The v2.1 ledgers are the `results/v2_*_official_2848228.json` files bound in `PROVENANCE.json`.
+
+## Marathon track (v2.2)
+
+Same single file, official Marathon runner (`scripts/run_marathon.py`, revision `2848228`), canonical
+100-problem manifest, full default budgets: **100/100 accepted, 0 tokens**; fixture `normal_5` 5/5 and the
+external-solver Marathon harness 2/2. Evidence: `results/marathon/` (hash-bound in `PROVENANCE.json`).
+Solo definitions are unchanged from v2.1 (additive Marathon entry only; `docs/MARATHON_SUPPORT.md`).
 
 ---
 
