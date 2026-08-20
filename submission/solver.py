@@ -62,7 +62,9 @@ Previous attempts and the judge's errors (read these and fix exactly what was re
 MAX_LLM_ROUNDS = 16
 
 import json
+import os
 import re
+import signal
 import sys
 import heapq
 import itertools
@@ -4519,5 +4521,284 @@ def main():
         # Rejections are surfaced to the next round via {history.attempts}.
 
 
+# ---------------------------------------------------------------------------
+# Marathon batch driver.  This is deliberately separate from main() above:
+# the no-environment-variable path still executes the original Solo function.
+
+class _MarathonDeadline:
+    """Global wall manager with a fair, dynamically recomputed problem cap."""
+
+    def __init__(self, budget_seconds):
+        try:
+            budget = max(0.0, float(budget_seconds))
+        except (TypeError, ValueError):
+            budget = 0.0
+        self.deadline = monotonic() + budget
+        # Leave enough time for a final JSONL flush before the runner's SIGTERM.
+        self.tail = min(5.0, max(0.25, budget * 0.01))
+
+    def remaining(self):
+        return max(0.0, self.deadline - monotonic())
+
+    def can_start(self):
+        return self.remaining() > self.tail
+
+    def problem_cap(self, remaining_problems):
+        # Competition policy: scale by remaining wall / remaining work, with
+        # the requested 30-second floor and 300-second ceiling.  The absolute
+        # work deadline below still prevents a floor-sized slice from crossing
+        # the global deadline when running a deliberately compressed local test.
+        share = max(0.0, self.remaining() - self.tail) / max(1, remaining_problems)
+        return min(300.0, max(30.0, share))
+
+    def work_deadline(self, cap):
+        return min(self.deadline - self.tail, monotonic() + max(0.0, cap))
+
+
+def _marathon_load_manifest(path):
+    problems = []
+    with open(path, encoding="utf-8") as handle:
+        for raw in handle:
+            if not raw.strip():
+                continue
+            try:
+                problem = json.loads(raw)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(problem, dict) and isinstance(problem.get("id"), str):
+                problems.append(problem)
+    return problems
+
+
+def _marathon_append_answer(output_path, problem_id, verdict, code):
+    entry = {"id": problem_id, "verdict": verdict, "code": code}
+    with open(output_path, "a", encoding="utf-8") as handle:
+        handle.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        handle.flush()
+        try:
+            os.fsync(handle.fileno())
+        except OSError:
+            pass
+
+
+def _marathon_cost_key(problem):
+    """Cheap structural triage; lower values usually settle sooner."""
+    eq1 = problem.get("equation1", "")
+    eq2 = problem.get("equation2", "")
+    variables = set(re.findall(r"\b([a-z])\b", eq1 + " " + eq2))
+    operations = eq1.count("\u25c7") + eq2.count("\u25c7")
+    return (operations + 2 * len(variables), len(eq1) + len(eq2))
+
+
+def _marathon_time_left(slice_deadline):
+    return max(0.0, slice_deadline - monotonic())
+
+
+class _MarathonSliceExpired(BaseException):
+    pass
+
+
+def _marathon_run_capped(function, problem, slice_deadline):
+    """Enforce the whole-problem cap, including legacy bounded searches."""
+    seconds = _marathon_time_left(slice_deadline)
+    if seconds <= 0.0:
+        return None
+    if not hasattr(signal, "setitimer"):
+        return function(problem, slice_deadline)
+
+    def expire(_signum, _frame):
+        raise _MarathonSliceExpired()
+
+    previous_handler = signal.getsignal(signal.SIGALRM)
+    signal.signal(signal.SIGALRM, expire)
+    previous_timer = signal.setitimer(signal.ITIMER_REAL, seconds)
+    try:
+        return function(problem, slice_deadline)
+    except _MarathonSliceExpired:
+        return None
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0.0)
+        signal.signal(signal.SIGALRM, previous_handler)
+        if previous_timer[0] > 0.0:
+            signal.setitimer(signal.ITIMER_REAL, *previous_timer)
+
+
+def _marathon_cheap_candidate(problem, slice_deadline):
+    """Run the original stages 1--3 only, returning the first certificate."""
+    eq1_text = problem["equation1"]
+    eq2_text = problem["equation2"]
+
+    # Stage 1: all cheap structured false models, but no SEM model finder.
+    if _marathon_time_left(slice_deadline) > 0.05:
+        try:
+            found = search_counterexample(
+                eq1_text, eq2_text, use_linear=True, use_model_finder=False,
+                structured_budget_s=min(6.0, _marathon_time_left(slice_deadline)),
+            )
+        except Exception:
+            found = None
+        if found is not None:
+            return "false", make_false_code(problem, found)
+
+    # Stage 2: direct true proofs.
+    if _marathon_time_left(slice_deadline) > 0.0:
+        try:
+            proof = singleton_true_proof(eq1_text, eq2_text)
+        except Exception:
+            proof = None
+        if proof is not None:
+            return "true", make_true_code(problem, proof)
+
+    if _marathon_time_left(slice_deadline) > 0.0:
+        try:
+            proof = substitution_instance_true_proof(eq1_text, eq2_text)
+        except Exception:
+            proof = None
+        if proof is not None:
+            return "true", make_true_code(problem, proof)
+
+    # Stage 2b: singleton collapse by the deterministic prover.
+    remaining = _marathon_time_left(slice_deadline)
+    if remaining > 0.05:
+        try:
+            cert = singleton_forced_cert(
+                eq1_text, eq2_text, time_budget_s=min(8.0, remaining)
+            )
+        except Exception:
+            cert = None
+        if cert is not None:
+            return "true", cert
+
+    # Stage 2c: the quick ordered-superposition pass.
+    remaining = _marathon_time_left(slice_deadline)
+    if remaining > 0.05:
+        try:
+            cert = general_true_cert(
+                eq1_text, eq2_text, time_budget_s=min(1.0, remaining), quick=True
+            )
+        except Exception:
+            cert = None
+        if cert is not None:
+            return "true", cert
+
+    # Stage 3: bounded irregular finite-model search.
+    remaining = _marathon_time_left(slice_deadline)
+    if remaining > 0.05:
+        try:
+            found = search_counterexample(
+                eq1_text, eq2_text, use_linear=False, use_structured=False,
+                use_austin=False, use_model_finder=True,
+                model_finder_budget_s=min(8.0, remaining),
+            )
+        except Exception:
+            found = None
+        if found is not None:
+            return "false", make_false_code(problem, found)
+    return None
+
+
+def _marathon_deep_candidate(problem, slice_deadline):
+    """Run stages 4--5 inside one fair per-problem slice."""
+    eq1_text = problem["equation1"]
+    eq2_text = problem["equation2"]
+    remaining = _marathon_time_left(slice_deadline)
+    if remaining <= 0.05:
+        return None
+
+    # Stage 4 gets at most 55% of this problem's current fair share.  Its two
+    # internal searches are themselves deadline-bounded.
+    false_share = remaining * 0.55
+    structured_share = min(60.0, max(0.05, false_share * 0.34))
+    model_share = min(120.0, max(0.05, false_share - structured_share))
+    try:
+        found = search_counterexample(
+            eq1_text, eq2_text, use_linear=False, use_structured=False,
+            use_austin=False, use_deep=True, deep_budget_s=structured_share,
+            use_model_finder=True, model_finder_budget_s=model_share,
+        )
+    except Exception:
+        found = None
+    if found is not None:
+        return "false", make_false_code(problem, found)
+
+    # Stage 5 receives everything left in the fair slice.  As in Solo, only a
+    # proof-producing deterministic result is submitted; a failed search can
+    # still expose its bounded lemma pool as a final deterministic candidate.
+    remaining = _marathon_time_left(slice_deadline)
+    if remaining <= 0.05:
+        return None
+    try:
+        cert = general_true_cert(eq1_text, eq2_text, time_budget_s=remaining)
+    except Exception:
+        cert = None
+    if cert is not None:
+        return "true", cert
+    try:
+        cert = general_true_pool_cert()
+    except Exception:
+        cert = None
+    if cert is not None:
+        return "true", cert
+    return None
+
+
+def run_marathon():
+    """Official env-triggered Marathon entry: manifest in, append-only JSONL out."""
+    manifest_path = os.environ["JUDGE_MARATHON_MANIFEST"]
+    output_path = os.environ["JUDGE_MARATHON_OUTPUT"]
+    budget_seconds = os.environ.get("JUDGE_MARATHON_BUDGET_SECONDS", "0")
+    manager = _MarathonDeadline(budget_seconds)
+
+    # Python's sort is stable, so equal-cost problems retain manifest order.
+    problems = _marathon_load_manifest(manifest_path)
+    problems.sort(key=_marathon_cost_key)
+    solved = set()
+
+    # Pass 1: every problem gets stages 1--3 before any residual gets a deep
+    # attempt.  No marathon_llm import or LLM call is made in this pass.
+    total = len(problems)
+    for index, problem in enumerate(problems):
+        if not manager.can_start():
+            break
+        cap = manager.problem_cap(total - index)
+        slice_deadline = manager.work_deadline(cap)
+        try:
+            candidate = _marathon_run_capped(
+                _marathon_cheap_candidate, problem, slice_deadline
+            )
+        except Exception:
+            candidate = None
+        if candidate is None:
+            continue
+        verdict, code = candidate
+        _marathon_append_answer(output_path, problem["id"], verdict, code)
+        solved.add(problem["id"])
+
+    # Pass 2: recompute a fair share before every residual, so fast failures
+    # donate their unused wall time while no single deep search can starve the
+    # residuals behind it.  The deterministic floor already covers the public
+    # suite, so LLM fallback is intentionally left unused.
+    residuals = [problem for problem in problems if problem["id"] not in solved]
+    for index, problem in enumerate(residuals):
+        if not manager.can_start():
+            break
+        cap = manager.problem_cap(len(residuals) - index)
+        slice_deadline = manager.work_deadline(cap)
+        try:
+            candidate = _marathon_run_capped(
+                _marathon_deep_candidate, problem, slice_deadline
+            )
+        except Exception:
+            candidate = None
+        if candidate is None:
+            continue
+        verdict, code = candidate
+        _marathon_append_answer(output_path, problem["id"], verdict, code)
+        solved.add(problem["id"])
+
+
 if __name__ == "__main__":
-    main()
+    if "JUDGE_MARATHON_MANIFEST" in os.environ:
+        run_marathon()
+    else:
+        main()
