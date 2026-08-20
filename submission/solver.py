@@ -1289,16 +1289,16 @@ def structured_counterexample(eq1, eq2, deadline, deep=False):
 # lemma, lemma-args, proof text) rows.
 # ---------------------------------------------------------------------------
 _AUSTIN_F_LEMMAS = """\
-theorem mod_two_succ_0_1_from (n : ℕ) : n % 2 = 0 → (n + 1) % 2 = 1 := by omega
-theorem mod_two_succ_1_0_from (n : ℕ) : n % 2 = 1 → (n + 1) % 2 = 0 := by omega
-theorem mod_two_pred_0_1_to (n : ℕ) : (n + 1) % 2 = 0 → n % 2 = 1 := by omega
-theorem mod_two_pred_1_0_to (n : ℕ) : (n + 1) % 2 = 1 → n % 2 = 0 := by omega
-theorem mod_two_ne_down_to (n m : ℕ) : (n + 1) % 2 = m % 2 → ¬ n % 2 = m % 2 := by omega
-theorem mod_two_eq_down_to (n m : ℕ) : (n + 1) % 2 ≠ m % 2 → n % 2 = m % 2 := by omega
-theorem mod_two_ne_up_from (n m : ℕ) : n % 2 = m % 2 → ¬ (n + 1) % 2 = m % 2 := by omega
-theorem mod_two_eq_up_from (n m : ℕ) : n % 2 ≠ m % 2 → (n + 1) % 2 = m % 2 := by omega
+theorem mod_two_succ_0_1_from (n : Nat) : n % 2 = 0 → (n + 1) % 2 = 1 := by omega
+theorem mod_two_succ_1_0_from (n : Nat) : n % 2 = 1 → (n + 1) % 2 = 0 := by omega
+theorem mod_two_pred_0_1_to (n : Nat) : (n + 1) % 2 = 0 → n % 2 = 1 := by omega
+theorem mod_two_pred_1_0_to (n : Nat) : (n + 1) % 2 = 1 → n % 2 = 0 := by omega
+theorem mod_two_ne_down_to (n m : Nat) : (n + 1) % 2 = m % 2 → ¬ n % 2 = m % 2 := by omega
+theorem mod_two_eq_down_to (n m : Nat) : (n + 1) % 2 ≠ m % 2 → n % 2 = m % 2 := by omega
+theorem mod_two_ne_up_from (n m : Nat) : n % 2 = m % 2 → ¬ (n + 1) % 2 = m % 2 := by omega
+theorem mod_two_eq_up_from (n m : Nat) : n % 2 ≠ m % 2 → (n + 1) % 2 = m % 2 := by omega
 
-def f (x : ℕ) (y : ℕ) : ℕ :=
+def f (x : Nat) (y : Nat) : Nat :=
   match x with
   | 0 =>
     if y % 2 = 0
@@ -1308,7 +1308,7 @@ def f (x : ℕ) (y : ℕ) : ℕ :=
     then n + 2 else n
 
 theorem f_1659 :
-  ∀ (x y z : ℕ),
+  ∀ (x y z : Nat),
   x = f (f x y) (f (f y y) z ) := by
   intro xo yo z
   by_cases z_cong_0 : z % 2 = 0
@@ -1341,7 +1341,7 @@ theorem f_1659 :
           mod_two_pred_1_0_to x x1_cong_1
         simp [x1_cong_0,x_cong_0,z_cong_0]
         split
-        simp_all only [zero_add, one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
+        simp_all only [Nat.zero_add, Nat.one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
         simp
     | x+1, y+1 =>
       by_cases y1_cong_0 : (y + 1) % 2 = 0
@@ -1368,7 +1368,7 @@ theorem f_1659 :
             mod_two_pred_0_1_to x x1_cong_0
           simp [f,x1_cong_0,y1_cong_1,y_cong_0,z_cong_0,x_cong_1]
           split
-          simp_all only [one_ne_zero, not_false_eq_true, zero_add, Nat.mod_succ]
+          simp_all only [Nat.one_ne_zero, not_false_eq_true, Nat.zero_add, Nat.mod_succ]
           simp
         · have x1_cong_1 : (x + 1) % 2 = 1 :=
             Nat.mod_two_ne_zero.mp x1_cong_0
@@ -1406,7 +1406,7 @@ theorem f_1659 :
           mod_two_pred_1_0_to x x1_cong_1
         simp [x1_cong_0,x_cong_0,z_cong_1]
         split
-        simp_all only [zero_add, one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
+        simp_all only [Nat.zero_add, Nat.one_ne_zero, not_false_eq_true, Nat.mod_succ, Nat.zero_mod]
         simp
     | x+1, y+1 =>
       by_cases y1_cong_0 : (y + 1) % 2 = 0
@@ -1433,7 +1433,7 @@ theorem f_1659 :
             mod_two_pred_0_1_to x x1_cong_0
           simp [f,x1_cong_0,y1_cong_1,y_cong_0,z_cong_1,x_cong_1]
           split
-          simp_all only [one_ne_zero, not_false_eq_true, zero_add, Nat.mod_succ]
+          simp_all only [Nat.one_ne_zero, not_false_eq_true, Nat.zero_add, Nat.mod_succ]
           simp
         · have x1_cong_1 : (x + 1) % 2 = 1 :=
             Nat.mod_two_ne_zero.mp x1_cong_0
@@ -1445,18 +1445,19 @@ theorem f_1659 :
 _AUSTIN_F_IMPL = """\
 theorem impl (G : Type) [Magma G] (h : ∀ x y z : G, x = (x ◇ y) ◇ ((y ◇ y) ◇ z)) :
     ∀ x y z : G, x = (x ◇ ((y ◇ y) ◇ z)) ◇ y := by
-  by_contra nh
-  simp only [not_forall] at nh
-  obtain ⟨sK0, sK1, sK2, nh⟩ := nh
-  have eq9 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ ((X1 ◇ X1) ◇ X2)) = X0 := by first | exact (h _ _ _).symm | exact h _ _ _ | exact (h _ _).symm | exact h _ _ | exact (h _ _ _ _).symm | exact h _ _ _ _
-  have eq10 : sK0 ≠ ((sK0 ◇ ((sK1 ◇ sK1) ◇ sK2)) ◇ sK1) := by first | exact nh | exact Ne.symm nh
-  have eq13 (X0 X2 : G) : ((X2 ◇ X0) ◇ X0) = X2 := by have hb := eq9 X2 X0 ((X0 ◇ X0) ◇ X2); have ha := eq9 X0 X0 X2; first | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
-  have eq15 (X0 X1 X2 : G) : (X0 ◇ X1) = (X0 ◇ ((X1 ◇ X1) ◇ X2)) := by have hb := eq13 ((X1 ◇ X1) ◇ X2) (X0 ◇ X1); have ha := eq9 X0 X1 X2; first | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
-  have eq19 : sK0 ≠ ((sK0 ◇ sK1) ◇ sK1) := by have hb := eq10; have ha := eq15 sK0 sK1 sK2; first | (rw [← ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | (rw [ha] at hb; first | exact hb | exact hb.symm | exact Ne.symm hb) | grind
-  first | exact eq19 (eq13 ..) | exact eq19 (eq13 ..).symm | exact eq19 rfl | grind
+  have e0 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ ((X1 ◇ X1) ◇ X2)) = X0 := by
+    exact (h X0 X1 X2).symm
+  have e1 (X0 X1 : G) : ((X0 ◇ X1) ◇ X1) = X0 := by
+    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X1 X0)).symm.trans
+      (e0 X0 X1 ((X1 ◇ X1) ◇ X0))
+  have e2 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ X1) ◇ X2)) = (X0 ◇ X1) := by
+    exact (congrArg (fun q => (q ◇ ((X1 ◇ X1) ◇ X2))) (e1 X0 X1)).symm.trans
+      (e0 (X0 ◇ X1) X1 X2)
+  intro x y z
+  exact (congrArg (fun q => q ◇ y) (e2 x y z)).trans (e1 x y) |>.symm
 
-theorem f_2473 : ∀ x y z : ℕ, x = f (f x (f (f y y) z)) y :=
-  @impl ℕ ⟨f⟩ f_1659
+theorem f_2473 : ∀ x y z : Nat, x = f (f x (f (f y y) z)) y :=
+  @impl Nat ⟨f⟩ f_1659
 """
 
 
@@ -1529,13 +1530,13 @@ def austin_counterexample(eq1_text, eq2_text, max_value=6):
         args = " ".join(sigma[v] for v in lemma_args)
         code = (
             "import JudgeProblem\n"
-            "import Mathlib.Tactic\n\n"
+            "\n"
             "namespace submission\n"
             + _AUSTIN_F_LEMMAS + "\n"
             + (_AUSTIN_F_IMPL + "\n" if needs_impl else "")
             + "end submission\n\n"
             "def submission : Goal := by\n"
-            "  refine ⟨ℕ, ⟨%s⟩, ?_, ?_⟩\n"
+            "  refine ⟨Nat, ⟨%s⟩, ?_, ?_⟩\n"
             "  · intro %s\n"
             "    exact submission.%s %s\n"
             "  · intro h\n"
