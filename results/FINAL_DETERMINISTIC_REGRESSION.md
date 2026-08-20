@@ -1,11 +1,11 @@
-# Final deterministic regression — solver v2.2
+# Final deterministic regression — solver v2.3
 
-Solver `submission/solver.py` SHA-256 `931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697` (178769 bytes). Official judge revision
+Solver `submission/solver.py` SHA-256 `f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b` (177993 bytes). Official judge revision
 `2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
 v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
 `none`; no API key). Local official-runner measurements, not hosted leaderboard results.
 
-## Results (2026-08-20, all six public sets; rerun with the v2.2 file)
+## Results (2026-08-20, all six public sets; rerun with the v2.3 file, 2026-08-21)
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
@@ -40,6 +40,15 @@ Same single file, official Marathon runner (`scripts/run_marathon.py`, revision 
 100-problem manifest, full default budgets: **100/100 accepted, 0 tokens**; fixture `normal_5` 5/5 and the
 external-solver Marathon harness 2/2. Evidence: `results/marathon/` (hash-bound in `PROVENANCE.json`).
 Solo definitions are unchanged from v2.1 (additive Marathon entry only; `docs/MARATHON_SUPPORT.md`).
+
+## Lean 4.32.0 compatibility (v2.3)
+
+The organizers announced Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment
+(rules commits `119dbfe`/`e00901b`) while the public harness remains v4.30.0-rc2. A 120-certificate
+stratified corpus covering every emission family compiles 120/120 under Lean 4.32.0; v2.3 re-emits
+the austin_nat family core-only (positive-form replay, no Mathlib import), taking its 4.32 compile
+time from over the judge's 300 s phase cap to ≤ 3.1 s. Every certificate family the solver emits is
+now Lean-core-only. The four judge support modules compile unchanged under 4.32.0.
 
 ---
 

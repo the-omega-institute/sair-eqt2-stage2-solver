@@ -7,12 +7,12 @@ but not stronger, until new durable evidence is added.
 
 - The frozen solver emits Lean-checkable proof or countermodel certificates and
   relies on the official judge for acceptance.
-- Solver v2.2 (SHA-256 `931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697`,
-  178,769 bytes) records 20/20 `sample_20`, 200/200 `sample_200`, 69/69 `hard1`,
+- Solver v2.3 (SHA-256 `f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b`,
+  177,993 bytes) records 20/20 `sample_20`, 200/200 `sample_200`, 69/69 `hard1`,
   200/200 `hard2`, 400/400 `hard3`, 1000/1000 `normal` — **1889/1889 public
   rows** — in archived local official-runner ledgers under official revision
   `2848228`; the complete `2848228` official harness passed with zero failures
-  on the same host on 2026-08-20. The same file passes the official Marathon runner on the canonical `normal_100` manifest with 100/100 accepted and 0 tokens (local measurement).
+  on the same host on 2026-08-20. The same file passes the official Marathon runner on the canonical `normal_100` manifest with 100/100 accepted and 0 tokens (local measurement). A 120-certificate stratified corpus covering every emission family compiles 120/120 under Lean 4.32.0, the announced hosted verification environment; every emitted certificate family is Lean-core-only.
 - The superseded v1 solver (`ea2946fe…`) recorded 20/20, 196/200 and 197/200
   on `sample_20`/`sample_200`/`hard2`, reproduced identically under `6805e232`
   and `2848228`, and 68/69, 394/400, 1000/1000 on `hard1`/`hard3`/`normal`
