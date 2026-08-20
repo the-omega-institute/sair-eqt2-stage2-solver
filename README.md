@@ -15,15 +15,15 @@ All scores below are local official-runner measurements (official revision
 certificate accepted by the official judge and was produced before the LLM
 fallback (`llm_calls = 0`).
 
-| Problem set | Accepted (solver v2) | Accepted (superseded v1) |
+| Problem set | Accepted (solver v2.1) | Accepted (superseded v1) |
 |---|---:|---:|
 | `sample_20` | 20/20 | 20/20 |
 | `sample_200` | 200/200 | 196/200 |
 | `hard1` | 69/69 | 68/69 |
 | `hard2` | 200/200 | 197/200 |
-| `hard3` | 399/400 | 394/400 |
+| `hard3` | 400/400 | 394/400 |
 | `normal` | 1000/1000 | 1000/1000 |
-| total | **1888/1889** | 1875/1889 |
+| total | **1889/1889** | 1875/1889 |
 
 The full ledgers, exact failed IDs, call counts, hashes, and wall-clock totals
 are recorded in

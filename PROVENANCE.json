@@ -1,8 +1,8 @@
 {
  "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
- "solver_py_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
- "solver_py_bytes": 160448,
- "solver_version": "v2 (2026-08-20): G3 ordered unit superposition prover + extended countermodel families; see docs/TRUE_SIDE_G3_PROVER.md and docs/FALSE_SIDE_V2_NOTES.md",
+ "solver_py_sha256": "1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534",
+ "solver_py_bytes": 168408,
+ "solver_version": "v2.1 (2026-08-20): G3 prover with tautology deletion fix, 4-5x throughput, extended deepening; extended countermodel families; docs/TRUE_SIDE_G3_PROVER.md + docs/FALSE_SIDE_V2_NOTES.md",
  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
  "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
  "archived_full_regression_environment": {
@@ -18,9 +18,9 @@
    "llm_calls": 0,
    "judge_calls": 20,
    "ledger": "results/v2_sample_20_official_2848228.json",
-   "ledger_sha256": "3ba53957f6e4045e63794262590850a04ef4b8d0e406e8fc158891b05bf8f9e9",
+   "ledger_sha256": "4a93d4d704f3d76b6872f790674fb0f1964b33904667e6b04bc6513132eba491",
    "failed_ids": [],
-   "wall_clock_sum_s": 68.69
+   "wall_clock_sum_s": 68.21
   },
   "sample_200": {
    "accepted": 200,
@@ -28,9 +28,9 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_sample_200_official_2848228.json",
-   "ledger_sha256": "d0bb6816ea04ede127a1e46ee7a1076f8e99fa4afd3c91f9250c4c00f500cc66",
+   "ledger_sha256": "61a72ebd5f9bb0d4b35360721f251d8370092b5caec7b6737e8637c9c316fcfe",
    "failed_ids": [],
-   "wall_clock_sum_s": 893.81
+   "wall_clock_sum_s": 893.37
   },
   "hard1": {
    "accepted": 69,
@@ -38,9 +38,9 @@
    "llm_calls": 0,
    "judge_calls": 69,
    "ledger": "results/v2_hard1_official_2848228.json",
-   "ledger_sha256": "64ae26489fbd2051dd86c02cf8735b4b986a7c12a25b89d4822396f6255c7a59",
+   "ledger_sha256": "c2558135fbda9abeaf27f1a646a798eeaf0225ecf025115f9e6769bea6824f57",
    "failed_ids": [],
-   "wall_clock_sum_s": 512.2
+   "wall_clock_sum_s": 516.61
   },
   "hard2": {
    "accepted": 200,
@@ -48,21 +48,19 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_hard2_official_2848228.json",
-   "ledger_sha256": "a3e5cbc1dc6923513f795ed0d59025a1068b09f65e4149f62b23c2ed22b3db5b",
+   "ledger_sha256": "a2cc9e971c5caeaa20455c0ab5ef370be902f88137108a0edbcde82d3045d0a3",
    "failed_ids": [],
-   "wall_clock_sum_s": 1251.8
+   "wall_clock_sum_s": 1261.27
   },
   "hard3": {
-   "accepted": 399,
+   "accepted": 400,
    "total": 400,
-   "llm_calls": 1,
+   "llm_calls": 0,
    "judge_calls": 400,
    "ledger": "results/v2_hard3_official_2848228.json",
-   "ledger_sha256": "5d46327265fa8a97e7260e6cf3b2f62637dcadc734795efb896bc5cffb451b1d",
-   "failed_ids": [
-    "hard3_0314"
-   ],
-   "wall_clock_sum_s": 2990.83
+   "ledger_sha256": "2e64a5f060a93bdf8dc2cb66033d54fb6b6c926e219b15d107c9f38e5fba600b",
+   "failed_ids": [],
+   "wall_clock_sum_s": 2232.47
   },
   "normal": {
    "accepted": 1000,
@@ -70,22 +68,20 @@
    "llm_calls": 0,
    "judge_calls": 1000,
    "ledger": "results/v2_normal_official_2848228.json",
-   "ledger_sha256": "2b2f8f15f1a6a0cdd42992a63ea99ae8bcb14accd87a94290811d0e1fc617985",
+   "ledger_sha256": "22b8ed420fdf173d2790873a2030dd8016dd981fc055de9b18e3b85199e27454",
    "failed_ids": [],
-   "wall_clock_sum_s": 3567.34
+   "wall_clock_sum_s": 3623.86
   }
  },
  "residual_set_regression": {
-  "accepted": 13,
+  "accepted": 14,
   "total": 14,
-  "llm_calls": 1,
+  "llm_calls": 0,
   "judge_calls": 14,
   "ledger": "results/v2_residuals14_official_2848228.json",
-  "ledger_sha256": "05d953d3c8ba0551134ce4e4de67500596aa8e13f245b0c7edc56b0ec9968128",
-  "failed_ids": [
-   "hard3_0314"
-  ],
-  "wall_clock_sum_s": 929.1
+  "ledger_sha256": "c29e14e8410fa6547f7b27e5020f558e88053296b6a385a42a151f3b03ede0d9",
+  "failed_ids": [],
+  "wall_clock_sum_s": 131.66
  },
  "latest_upstream_validation": {
   "validated_on": "2026-08-20",
@@ -115,9 +111,9 @@
     "llm_calls": 0,
     "judge_calls": 20,
     "ledger": "results/v2_sample_20_official_2848228.json",
-    "ledger_sha256": "3ba53957f6e4045e63794262590850a04ef4b8d0e406e8fc158891b05bf8f9e9",
+    "ledger_sha256": "4a93d4d704f3d76b6872f790674fb0f1964b33904667e6b04bc6513132eba491",
     "failed_ids": [],
-    "wall_clock_sum_s": 68.69
+    "wall_clock_sum_s": 68.21
    },
    "sample_200": {
     "accepted": 200,
@@ -125,9 +121,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_sample_200_official_2848228.json",
-    "ledger_sha256": "d0bb6816ea04ede127a1e46ee7a1076f8e99fa4afd3c91f9250c4c00f500cc66",
+    "ledger_sha256": "61a72ebd5f9bb0d4b35360721f251d8370092b5caec7b6737e8637c9c316fcfe",
     "failed_ids": [],
-    "wall_clock_sum_s": 893.81
+    "wall_clock_sum_s": 893.37
    },
    "hard1": {
     "accepted": 69,
@@ -135,9 +131,9 @@
     "llm_calls": 0,
     "judge_calls": 69,
     "ledger": "results/v2_hard1_official_2848228.json",
-    "ledger_sha256": "64ae26489fbd2051dd86c02cf8735b4b986a7c12a25b89d4822396f6255c7a59",
+    "ledger_sha256": "c2558135fbda9abeaf27f1a646a798eeaf0225ecf025115f9e6769bea6824f57",
     "failed_ids": [],
-    "wall_clock_sum_s": 512.2
+    "wall_clock_sum_s": 516.61
    },
    "hard2": {
     "accepted": 200,
@@ -145,21 +141,19 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_hard2_official_2848228.json",
-    "ledger_sha256": "a3e5cbc1dc6923513f795ed0d59025a1068b09f65e4149f62b23c2ed22b3db5b",
+    "ledger_sha256": "a2cc9e971c5caeaa20455c0ab5ef370be902f88137108a0edbcde82d3045d0a3",
     "failed_ids": [],
-    "wall_clock_sum_s": 1251.8
+    "wall_clock_sum_s": 1261.27
    },
    "hard3": {
-    "accepted": 399,
+    "accepted": 400,
     "total": 400,
-    "llm_calls": 1,
+    "llm_calls": 0,
     "judge_calls": 400,
     "ledger": "results/v2_hard3_official_2848228.json",
-    "ledger_sha256": "5d46327265fa8a97e7260e6cf3b2f62637dcadc734795efb896bc5cffb451b1d",
-    "failed_ids": [
-     "hard3_0314"
-    ],
-    "wall_clock_sum_s": 2990.83
+    "ledger_sha256": "2e64a5f060a93bdf8dc2cb66033d54fb6b6c926e219b15d107c9f38e5fba600b",
+    "failed_ids": [],
+    "wall_clock_sum_s": 2232.47
    },
    "normal": {
     "accepted": 1000,
@@ -167,9 +161,9 @@
     "llm_calls": 0,
     "judge_calls": 1000,
     "ledger": "results/v2_normal_official_2848228.json",
-    "ledger_sha256": "2b2f8f15f1a6a0cdd42992a63ea99ae8bcb14accd87a94290811d0e1fc617985",
+    "ledger_sha256": "22b8ed420fdf173d2790873a2030dd8016dd981fc055de9b18e3b85199e27454",
     "failed_ids": [],
-    "wall_clock_sum_s": 3567.34
+    "wall_clock_sum_s": 3623.86
    }
   },
   "scope": "Same ledgers as archived_deterministic_regression (2848228 is the latest reviewed official revision)."
@@ -179,14 +173,14 @@
   "sample_200": "200/200",
   "hard1": "69/69",
   "hard2": "200/200",
-  "hard3": "399/400",
+  "hard3": "400/400",
   "normal": "1000/1000",
-  "note": "LOCAL official-runner scores, not leaderboard scores. Every accepted row is a deterministic-stage certificate accepted by the real Lean judge (llm_calls = 0 on every accepted row). 1888/1889 public rows; the only failed row is hard3_0314 (2923 => 1623)."
+  "note": "LOCAL official-runner scores, not leaderboard scores. 1889/1889 public rows; every accepted row has llm_calls = 0 and a certificate accepted by the real Lean judge."
  },
  "solver_artifact_roles": {
   "current_and_final_regression": {
-   "solver_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
-   "solver_bytes": 160448,
+   "solver_sha256": "1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534",
+   "solver_bytes": 168408,
    "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md and its seven linked v2 ledgers"
   },
   "superseded_v1_frozen_baseline": {
@@ -199,6 +193,12 @@
    "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
    "evidence": "results/general66_provenance_ledger.json",
    "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
+  },
+  "superseded_v2_0": {
+   "solver_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
+   "solver_bytes": 160448,
+   "public_rows": "1888/1889",
+   "evidence": "branch history wenlin/v2-merge@928078d"
   }
  },
  "superseded_v1": {

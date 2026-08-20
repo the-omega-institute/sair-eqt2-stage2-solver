@@ -1,37 +1,38 @@
-# Final deterministic regression — solver v2
+# Final deterministic regression — solver v2.1
 
-Solver `submission/solver.py` SHA-256 `29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c` (160448 bytes). Official judge revision
+Solver `submission/solver.py` SHA-256 `1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534` (168408 bytes). Official judge revision
 `2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
-v4.30.0-rc2, mathlib `896cc56a`; smoke test passed; sandbox mode `none`; no API key, so any residual enters the
-no-key fallback and fails fast). Local official-runner measurements, not hosted leaderboard results.
+v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
+`none`; no API key). Local official-runner measurements, not hosted leaderboard results.
 
-## Results (2026-08-19/20, all six public sets)
+## Results (2026-08-20, all six public sets)
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
-| `sample_20` | 20/20 | 0 | 20 | 68.69 s | none | `results/v2_sample_20_official_2848228.json` (`3ba53957f6e4045e…`) |
-| `sample_200` | 200/200 | 0 | 200 | 893.81 s | none | `results/v2_sample_200_official_2848228.json` (`d0bb6816ea04ede1…`) |
-| `hard1` | 69/69 | 0 | 69 | 512.2 s | none | `results/v2_hard1_official_2848228.json` (`64ae26489fbd2051…`) |
-| `hard2` | 200/200 | 0 | 200 | 1251.8 s | none | `results/v2_hard2_official_2848228.json` (`a3e5cbc1dc692351…`) |
-| `hard3` | 399/400 | 1 | 400 | 2990.83 s | `hard3_0314` | `results/v2_hard3_official_2848228.json` (`5d46327265fa8a97…`) |
-| `normal` | 1000/1000 | 0 | 1000 | 3567.34 s | none | `results/v2_normal_official_2848228.json` (`2b2f8f15f1a6a0cd…`) |
-| 14 former residuals | 13/14 | 1 | 14 | 929.1 s | `hard3_0314` | `results/v2_residuals14_official_2848228.json` |
+| `sample_20` | 20/20 | 0 | 20 | 68.21 s | none | `results/v2_sample_20_official_2848228.json` (`4a93d4d704f3d76b…`) |
+| `sample_200` | 200/200 | 0 | 200 | 893.37 s | none | `results/v2_sample_200_official_2848228.json` (`61a72ebd5f9bb0d4…`) |
+| `hard1` | 69/69 | 0 | 69 | 516.61 s | none | `results/v2_hard1_official_2848228.json` (`c2558135fbda9abe…`) |
+| `hard2` | 200/200 | 0 | 200 | 1261.27 s | none | `results/v2_hard2_official_2848228.json` (`a2cc9e971c5caeaa…`) |
+| `hard3` | 400/400 | 0 | 400 | 2232.47 s | none | `results/v2_hard3_official_2848228.json` (`2e64a5f060a93bdf…`) |
+| `normal` | 1000/1000 | 0 | 1000 | 3623.86 s | none | `results/v2_normal_official_2848228.json` (`22b8ed420fdf173d…`) |
+| 14 former v1 residuals | 14/14 | 0 | 14 | 131.66 s | none | `results/v2_residuals14_official_2848228.json` |
 
-Totals: **1888/1889 public rows accepted** (v1 frozen baseline: 1875/1889). Every accepted row has `llm_calls = 0`
-and a certificate accepted by the official Lean judge. The single failed row `hard3_0314` (2923 ⇒ 1623) needs a
-long superposition derivation that the in-file prover does not reach within its budget.
+Totals: **1889/1889 public rows accepted** (v1 frozen baseline: 1875/1889; v2.0 candidate: 1888/1889). Every
+accepted row has `llm_calls = 0` and a certificate accepted by the official Lean judge.
 
-What changed from v1 (details in `docs/TRUE_SIDE_G3_PROVER.md` and `docs/FALSE_SIDE_V2_NOTES.md`):
+Changes from v1 (details in `docs/TRUE_SIDE_G3_PROVER.md` and `docs/FALSE_SIDE_V2_NOTES.md`):
 
-- true side: new ordered unit-superposition prover (KBO, demodulation, indexed, proof-producing) with anytime
-  budgets scaled to the Solo allowance and robust certificate emission; 10 of the 11 former true residuals solved;
-- false side: Fin-n arithmetic certificates through `submission.op` (carriers 11–43 validated on the judge),
-  linear/affine mod n ≤ 50, F_3^2 / F_2^3 vector-linear and polynomial families, Latin-square-propagating finite
-  model search over carriers 4–10, and canned ℕ-carrier models for four Austin-pair hypotheses; all 3 former false
-  residuals solved;
-- stage order: deep false search now precedes the deep true pass.
+- true side: ordered unit-superposition prover (KBO, forward/backward demodulation with tautology deletion,
+  discrimination-tree index, memoised substitution, unifier cache; proof-producing) with anytime deepening
+  budgets scaled to the Solo allowance and robust certificate emission; all 11 former true residuals solved,
+  `hard3_0314` in under a second of prover time;
+- false side: `submission.op` arithmetic certificates for carriers ≥ 11 (judge-validated n = 11…43),
+  linear/affine mod n ≤ 50, F_3^2 / F_2^3 vector-linear and polynomial families, Latin-square-propagating
+  finite-model search over carriers 4–10, canned ℕ-carrier models for four Austin-pair hypotheses; all 3 former
+  false residuals solved;
+- stage order: deep false search precedes the deep true pass.
 
-The v2 ledgers are the `results/v2_*_official_2848228.json` files bound in `PROVENANCE.json`.
+The v2.1 ledgers are the `results/v2_*_official_2848228.json` files bound in `PROVENANCE.json`.
 
 ---
 
