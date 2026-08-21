@@ -15,7 +15,7 @@ All scores below are local official-runner measurements (official revision
 certificate accepted by the official judge and was produced before the LLM
 fallback (`llm_calls = 0`).
 
-| Problem set | Accepted (solver v2.3) | Accepted (superseded v1) |
+| Problem set | Accepted (solver v2.4) | Accepted (superseded v1) |
 |---|---:|---:|
 | `sample_20` | 20/20 | 20/20 |
 | `sample_200` | 200/200 | 196/200 |
@@ -25,6 +25,7 @@ fallback (`llm_calls = 0`).
 | `normal` | 1000/1000 | 1000/1000 |
 | total | **1889/1889** | 1875/1889 |
 | Marathon `normal_100` (canonical manifest) | 100/100, 0 tokens | — |
+| Stage 1 evaluation splits (4 × 200, announced Stage 2 categories) | **800/800** | — |
 
 The full ledgers, exact failed IDs, call counts, hashes, and wall-clock totals
 are recorded in

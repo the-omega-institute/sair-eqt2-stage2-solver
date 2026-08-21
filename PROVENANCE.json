@@ -1,8 +1,8 @@
 {
  "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
- "solver_py_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
- "solver_py_bytes": 177993,
- "solver_version": "v2.3 (2026-08-21): v2.2 + core-only austin_nat certificates (no Mathlib import; positive-form replay). Every emitted certificate family is Lean-core-only; validated under Lean 4.32.0 core (announced hosted environment) and the official v4.30.0-rc2 judge.",
+ "solver_py_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
+ "solver_py_bytes": 179888,
+ "solver_version": "v2.4 (2026-08-21): v2.3 + input-encoding normalization ('*' -> '◇' at both track intakes; the HuggingFace-aligned format uses '*' and the runner feeds the solver verbatim) + canned exotic order-9 central groupoid countermodel stage (settles the E168 goal family)",
  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
  "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
  "archived_full_regression_environment": {
@@ -18,9 +18,9 @@
    "llm_calls": 0,
    "judge_calls": 20,
    "ledger": "results/v2_sample_20_official_2848228.json",
-   "ledger_sha256": "dad3b43770e01857daabe5025a54374673ac40f5058ed6393b83a0963dcf0762",
+   "ledger_sha256": "27c3ebb24ab7d91e55f367862bfc44589130b039736434e96c45585741ca905a",
    "failed_ids": [],
-   "wall_clock_sum_s": 72.62
+   "wall_clock_sum_s": 2836.97
   },
   "sample_200": {
    "accepted": 200,
@@ -28,9 +28,9 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_sample_200_official_2848228.json",
-   "ledger_sha256": "b3c07e0ceb133884be804a7bb63c2cfa90dfab90667a13c2d0ae67e54185e063",
+   "ledger_sha256": "2ef168539d7153f82e5832fb7c07758080c0a5a2e654cc0a67b240724ec2b4c8",
    "failed_ids": [],
-   "wall_clock_sum_s": 897.23
+   "wall_clock_sum_s": 1400.65
   },
   "hard1": {
    "accepted": 69,
@@ -38,9 +38,9 @@
    "llm_calls": 0,
    "judge_calls": 69,
    "ledger": "results/v2_hard1_official_2848228.json",
-   "ledger_sha256": "257610ea38a53bb385bf9eb09f350cbb1a8180eee761be792626e8e30df0220d",
+   "ledger_sha256": "5468a0aff7ac1aff3e1c500bfc717e218e40bdf9fa39292e458a462a300361f6",
    "failed_ids": [],
-   "wall_clock_sum_s": 909.53
+   "wall_clock_sum_s": 859.55
   },
   "hard2": {
    "accepted": 200,
@@ -48,9 +48,9 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_hard2_official_2848228.json",
-   "ledger_sha256": "f894bf73d40c6c9a8989440c2bbbe73f0ff357b18ffa2237fd369e3495365623",
+   "ledger_sha256": "a2ac7232d0849efef13482d69a1a864586bd239d64fc842118b29c031fba735d",
    "failed_ids": [],
-   "wall_clock_sum_s": 1316.52
+   "wall_clock_sum_s": 1404.95
   },
   "hard3": {
    "accepted": 400,
@@ -58,9 +58,9 @@
    "llm_calls": 0,
    "judge_calls": 400,
    "ledger": "results/v2_hard3_official_2848228.json",
-   "ledger_sha256": "30329c2fbbbe2f28feb4e0d72f28eeef217675f0b36634b5f3691173a2f13810",
+   "ledger_sha256": "298569e097e541dfee44e8b96802675966d569b5a8035dd237f6f2ecfb81d7ae",
    "failed_ids": [],
-   "wall_clock_sum_s": 2211.97
+   "wall_clock_sum_s": 2537.24
   },
   "normal": {
    "accepted": 1000,
@@ -68,9 +68,9 @@
    "llm_calls": 0,
    "judge_calls": 1000,
    "ledger": "results/v2_normal_official_2848228.json",
-   "ledger_sha256": "2361d90f9d0b02c57f0771ba4f4480a2f65c2314117cb386ae3d9f2df669b34d",
+   "ledger_sha256": "86c29ae1cfda9c31d91043b9954b65a7e8bb51c1f34528dac7adb46b62e04bd3",
    "failed_ids": [],
-   "wall_clock_sum_s": 3671.37
+   "wall_clock_sum_s": 3753.15
   }
  },
  "residual_set_regression": {
@@ -84,7 +84,7 @@
   "wall_clock_sum_s": 131.66
  },
  "latest_upstream_validation": {
-  "validated_on": "2026-08-21",
+  "validated_on": "2026-08-22",
   "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
   "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
   "official_harness": {
@@ -111,9 +111,9 @@
     "llm_calls": 0,
     "judge_calls": 20,
     "ledger": "results/v2_sample_20_official_2848228.json",
-    "ledger_sha256": "dad3b43770e01857daabe5025a54374673ac40f5058ed6393b83a0963dcf0762",
+    "ledger_sha256": "27c3ebb24ab7d91e55f367862bfc44589130b039736434e96c45585741ca905a",
     "failed_ids": [],
-    "wall_clock_sum_s": 72.62
+    "wall_clock_sum_s": 2836.97
    },
    "sample_200": {
     "accepted": 200,
@@ -121,9 +121,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_sample_200_official_2848228.json",
-    "ledger_sha256": "b3c07e0ceb133884be804a7bb63c2cfa90dfab90667a13c2d0ae67e54185e063",
+    "ledger_sha256": "2ef168539d7153f82e5832fb7c07758080c0a5a2e654cc0a67b240724ec2b4c8",
     "failed_ids": [],
-    "wall_clock_sum_s": 897.23
+    "wall_clock_sum_s": 1400.65
    },
    "hard1": {
     "accepted": 69,
@@ -131,9 +131,9 @@
     "llm_calls": 0,
     "judge_calls": 69,
     "ledger": "results/v2_hard1_official_2848228.json",
-    "ledger_sha256": "257610ea38a53bb385bf9eb09f350cbb1a8180eee761be792626e8e30df0220d",
+    "ledger_sha256": "5468a0aff7ac1aff3e1c500bfc717e218e40bdf9fa39292e458a462a300361f6",
     "failed_ids": [],
-    "wall_clock_sum_s": 909.53
+    "wall_clock_sum_s": 859.55
    },
    "hard2": {
     "accepted": 200,
@@ -141,9 +141,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_hard2_official_2848228.json",
-    "ledger_sha256": "f894bf73d40c6c9a8989440c2bbbe73f0ff357b18ffa2237fd369e3495365623",
+    "ledger_sha256": "a2ac7232d0849efef13482d69a1a864586bd239d64fc842118b29c031fba735d",
     "failed_ids": [],
-    "wall_clock_sum_s": 1316.52
+    "wall_clock_sum_s": 1404.95
    },
    "hard3": {
     "accepted": 400,
@@ -151,9 +151,9 @@
     "llm_calls": 0,
     "judge_calls": 400,
     "ledger": "results/v2_hard3_official_2848228.json",
-    "ledger_sha256": "30329c2fbbbe2f28feb4e0d72f28eeef217675f0b36634b5f3691173a2f13810",
+    "ledger_sha256": "298569e097e541dfee44e8b96802675966d569b5a8035dd237f6f2ecfb81d7ae",
     "failed_ids": [],
-    "wall_clock_sum_s": 2211.97
+    "wall_clock_sum_s": 2537.24
    },
    "normal": {
     "accepted": 1000,
@@ -161,9 +161,9 @@
     "llm_calls": 0,
     "judge_calls": 1000,
     "ledger": "results/v2_normal_official_2848228.json",
-    "ledger_sha256": "2361d90f9d0b02c57f0771ba4f4480a2f65c2314117cb386ae3d9f2df669b34d",
+    "ledger_sha256": "86c29ae1cfda9c31d91043b9954b65a7e8bb51c1f34528dac7adb46b62e04bd3",
     "failed_ids": [],
-    "wall_clock_sum_s": 3671.37
+    "wall_clock_sum_s": 3753.15
    }
   },
   "scope": "Same ledgers as archived_deterministic_regression (2848228 is the latest reviewed official revision)."
@@ -176,13 +176,14 @@
   "hard3": "400/400",
   "normal": "1000/1000",
   "marathon_normal_100": "100/100",
-  "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889 (llm_calls=0 everywhere); Marathon canonical normal_100 100/100, 0 tokens."
+  "official_distribution_drill": "800/800",
+  "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889; Marathon normal_100 100/100 (0 tokens); Stage 1 evaluation-distribution drill 800/800 with full ground-truth agreement."
  },
  "solver_artifact_roles": {
   "current_and_final_regression": {
-   "solver_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
-   "solver_bytes": 177993,
-   "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md, the six v2 Solo ledgers, and results/marathon/"
+   "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
+   "solver_bytes": 179888,
+   "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md, six Solo ledgers, results/marathon/, results/official_distribution_drill/"
   },
   "superseded_v1_frozen_baseline": {
    "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
@@ -212,6 +213,12 @@
    "solver_bytes": 178769,
    "public_rows": "1889/1889 Solo + 100/100 Marathon (austin certs still imported Mathlib.Tactic)",
    "evidence": "branch history wenlin/v2-merge@b32306d"
+  },
+  "superseded_v2_3": {
+   "solver_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
+   "solver_bytes": 177993,
+   "public_rows": "1889/1889 Solo + 100/100 Marathon; crashed on '*'-encoded problem input; no E168 family coverage",
+   "evidence": "branch history wenlin/v2-merge@5ecc39a"
   }
  },
  "superseded_v1": {
@@ -324,9 +331,9 @@
   },
   "tokens_used": 0,
   "summary": "results/marathon/normal_100_summary.json",
-  "summary_sha256": "eede7055e5a37db02b1b445710dc14bd07d9d4b5ff8d61d0e053e817949eff07",
+  "summary_sha256": "28fc79269ede41b4b5810ee95f1f2fda3fd358ef74097b9cb751ccb24e1a5602",
   "answers": "results/marathon/normal_100_answers.jsonl",
-  "answers_sha256": "2e4a8e0e5f60e23d15c43305c4ace03c75f5c8f70367153bab60140e66029ccd",
+  "answers_sha256": "dce8fe3ea25ab16239b074bef1f3d7e02b6639a979271f9b7e73df7c2d8c43dc",
   "fixture_checks": "tests/marathon_fixtures normal_5 5/5 accepted; external-solver marathon harness 2/2",
   "note": "LOCAL official-runner Marathon measurement, not a hosted result."
  },
@@ -335,5 +342,59 @@
   "corpus": "120 stratified accepted certificates covering every emission family + all 14 former v1 residuals",
   "result": "120/120 compile under Lean 4.32.0 (119 in the exact Lean 4.32.0 + Mathlib v4.32.0 run; the one prior timeout was the Mathlib-importing austin certificate, re-emitted core-only in v2.3 and compiling in <= 3.1 s under 4.32.0 core); the four judge support modules compile unchanged under 4.32.0",
   "harness": "external directory lean432-cert-check (operator host), not part of this repository"
+ },
+ "official_distribution_drill": {
+  "source": "HuggingFace SAIRfoundation/equational-theories-selected-problems, the four Stage 1 evaluation splits (the announced Stage 2 scoring categories), 200 problems each, '*'-encoded as published",
+  "results": {
+   "evaluation_order5": {
+    "accepted": 200,
+    "total": 200,
+    "llm_calls": 0,
+    "judge_calls": 200,
+    "ledger": "results/official_distribution_drill/evaluation_order5_results.json",
+    "ledger_sha256": "422ecdf5a856939fc4a53e7ad550759811a34f50fec1d8c4302ff39a5f908e6d",
+    "failed_ids": [],
+    "wall_clock_sum_s": 583.29
+   },
+   "evaluation_extra_hard": {
+    "accepted": 200,
+    "total": 200,
+    "llm_calls": 0,
+    "judge_calls": 200,
+    "ledger": "results/official_distribution_drill/evaluation_extra_hard_results.json",
+    "ledger_sha256": "99d16aecd72ff41f19ca8082a02c0271b2e1bc1250944d098157217f621c3cec",
+    "failed_ids": [],
+    "wall_clock_sum_s": 1735.26
+   },
+   "evaluation_hard": {
+    "accepted": 200,
+    "total": 200,
+    "llm_calls": 0,
+    "judge_calls": 200,
+    "ledger": "results/official_distribution_drill/evaluation_hard_results.json",
+    "ledger_sha256": "4505248a3531a8c76cd94fe6ef5b425c426cc26f1e606f4300cbf8d13a36e964",
+    "failed_ids": [],
+    "wall_clock_sum_s": 889.03
+   },
+   "evaluation_normal": {
+    "accepted": 200,
+    "total": 200,
+    "llm_calls": 0,
+    "judge_calls": 200,
+    "ledger": "results/official_distribution_drill/evaluation_normal_results.json",
+    "ledger_sha256": "2377747990d8e5e27e15cf55ec6fba904a2bbb00474960202a0e1fab004ecc1f",
+    "failed_ids": [],
+    "wall_clock_sum_s": 2288.06
+   }
+  },
+  "verdict_agreement": "every accepted verdict matches the published ground-truth answer in all four splits",
+  "note": "LOCAL official-runner measurement on Stage 1 evaluation problems; Stage 2 will not reuse these problems — this measures distribution-level readiness, not a hosted score."
+ },
+ "hosted_playground_measurement": {
+  "date": "2026-08-21",
+  "artifact": "v2.4-candidate file (v2.3 + normalizer), sha256 7916cbc2d03d227ad95f4daf05fef51e8dc8e088b70f9640b9e3c67a71123ffc",
+  "scope": "SAIR Stage 2 playground, first 100 problems (50 true / 50 false)",
+  "result": "100/100 accepted, 0 rejected, 0 errors, 0 LLM calls; mean 5.1 s, max 23.8 s",
+  "note": "Hosted playground run on the official infrastructure (Lean 4.32 toolchain); not an official leaderboard score. Remaining 100 problems pending daily credit reset."
  }
 }

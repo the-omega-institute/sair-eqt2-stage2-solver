@@ -1,11 +1,11 @@
-# Final deterministic regression — solver v2.3
+# Final deterministic regression — solver v2.4
 
-Solver `submission/solver.py` SHA-256 `f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b` (177993 bytes). Official judge revision
+Solver `submission/solver.py` SHA-256 `e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9` (179888 bytes). Official judge revision
 `2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
 v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
 `none`; no API key). Local official-runner measurements, not hosted leaderboard results.
 
-## Results (2026-08-20, all six public sets; rerun with the v2.3 file, 2026-08-21)
+## Results (2026-08-20, all six public sets; rerun with the v2.4 file, 2026-08-21/22)
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
@@ -49,6 +49,32 @@ stratified corpus covering every emission family compiles 120/120 under Lean 4.3
 the austin_nat family core-only (positive-form replay, no Mathlib import), taking its 4.32 compile
 time from over the judge's 300 s phase cap to ≤ 3.1 s. Every certificate family the solver emits is
 now Lean-core-only. The four judge support modules compile unchanged under 4.32.0.
+
+## v2.4: input encoding + the E168 family
+
+- `_normalize_problem_equations` maps `*` to `◇` at both track intakes. The HuggingFace-aligned problem
+  format encodes the operator as `*`; normalization previously existed only inside the judge, and the
+  runner feeds the solver verbatim, so v2.3 crashed on every `*`-form problem (measured 0/800 before the
+  fix on the official Stage 1 evaluation splits).
+- `canned_counterexample`: an exotic (non-natural) order-9 central groupoid — natural central groupoids
+  satisfy the whole E168 goal family and separate nothing, and the bounded model finder recovers only
+  3/12 of the goals even at 15× budget — settles all 12 `evaluation_extra_hard` E168 residuals in one
+  `finOpTable` certificate each (~0.1 ms search cost, official runner 12/12 accepted).
+
+## Official-distribution drill (Stage 1 evaluation splits, the announced Stage 2 scoring categories)
+
+| Split | Accepted | Ground-truth agreement |
+|---|---:|---|
+| `evaluation_normal` | 200/200 | full |
+| `evaluation_hard` | 200/200 | full |
+| `evaluation_extra_hard` | 200/200 | full |
+| `evaluation_order5` | 200/200 | full |
+
+**800/800** with `llm_calls = 0` on every accepted row (`results/official_distribution_drill/`,
+hash-bound in `PROVENANCE.json`). Stage 2 will not reuse these problems; this measures readiness on the
+announced scoring distribution, not a hosted score. Separately, the hosted Stage 2 playground accepted
+100/100 on its first 100 problems (official infrastructure, Lean 4.32 toolchain; recorded in
+`PROVENANCE.json`).
 
 ---
 
