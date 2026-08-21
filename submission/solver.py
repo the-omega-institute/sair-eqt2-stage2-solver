@@ -1553,6 +1553,25 @@ def austin_counterexample(eq1_text, eq2_text, max_value=6):
 # (with no constants in the input language, nonzero affine offsets are
 # equationally equivalent to linear), and it costs up to AFFINE_CANDIDATE_LIMIT
 # evals/problem. Kept for reference; flip use_affine=True to re-enable.
+# Canned finite magmas that defeat whole implication families the parametric
+# searches miss. Each entry is (name, n, table). The exotic (non-natural)
+# central groupoid of order 9 below satisfies Equation168 x = (y*x)*(x*z)
+# while violating the E168 -> E35xx/E4xxx goal family; natural central
+# groupoids (b-projection on pairs) satisfy those goals and separate nothing,
+# and the bounded model finder does not reach this table within its budget.
+_CANNED_MAGMAS = (
+    ("central_groupoid_exotic9", 9, [[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]),
+)
+
+
+def canned_counterexample(eq1, eq2):
+    for _name, n, table in _CANNED_MAGMAS:
+        op = table_to_op(table)
+        if equation_holds(eq1, n, op) and equation_fails(eq2, n, op):
+            return {"stage": "canned:" + _name, "n": n, "table": table}
+    return None
+
+
 def search_counterexample(eq1_text, eq2_text, use_linear=True, use_affine=False,
                           use_model_finder=True, model_finder_budget_s=8.0,
                           use_structured=True, structured_budget_s=6.0,
@@ -1560,6 +1579,9 @@ def search_counterexample(eq1_text, eq2_text, use_linear=True, use_affine=False,
     eq1 = parse_equation(eq1_text)
     eq2 = parse_equation(eq2_text)
     if use_linear:
+        found = canned_counterexample(eq1, eq2)
+        if found is not None:
+            return found
         found = brute_counterexample(eq1, eq2, max_n=3)
         if found is not None:
             return found
@@ -4380,9 +4402,26 @@ def general_true_pool_cert():
         return None
 
 
+def _normalize_problem_equations(problem):
+    """Return a copy with '*' normalized to the magma operator '\u25c7'.
+
+    Upstream problem data uses either '\u25c7' (repo-bundled sets) or '*'
+    (HuggingFace-aligned mirrors). The equation DSL has no arithmetic '*', so
+    every '*' is the magma operator -- the same rule the official judge applies
+    in its own equation normalizer. Normalizing at intake makes the solver
+    accept both encodings.
+    """
+    normalized = dict(problem)
+    for key in ("equation1", "equation2"):
+        value = normalized.get(key)
+        if isinstance(value, str):
+            normalized[key] = value.replace("*", "\u25c7")
+    return normalized
+
+
 def main():
     startup = read_message()
-    problem = startup["problem"]
+    problem = _normalize_problem_equations(startup["problem"])
     eq1_text, eq2_text = problem["equation1"], problem["equation2"]
     try:
         wall_budget = float((startup.get("budget") or {}).get("timeout_seconds", 3600))
@@ -4567,7 +4606,7 @@ def _marathon_load_manifest(path):
             except json.JSONDecodeError:
                 continue
             if isinstance(problem, dict) and isinstance(problem.get("id"), str):
-                problems.append(problem)
+                problems.append(_normalize_problem_equations(problem))
     return problems
 
 
