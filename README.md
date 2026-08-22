@@ -66,6 +66,29 @@ The official judge and runner are external. Their exact revision and config
 hash are recorded in `PROVENANCE.json`; local results must never be relabeled
 as hosted competition results.
 
+## The Omega Institute
+
+This solver is one artifact of the Omega Institute's machine-checked mathematics program. Related
+public repositories:
+
+- [Omega-paper-series](https://github.com/the-omega-institute/Omega-paper-series) — the paper series:
+  Zeckendorf/Fibonacci combinatorics, symbolic dynamics, folded-rotation certificates, and more, each
+  with reproducible scripts and Lean anchors where applicable.
+- [newmath](https://github.com/the-omega-institute/newmath) — BEDC (Binary Emission Discovery
+  Calculus): a mathlib-free Lean 4 development with first-principles proofs and an autonomous
+  paper-deepening pipeline.
+- [automath](https://github.com/the-omega-institute/automath) — a continuously running Lean 4
+  formalization stream (mathlib-based), source of much of the certificate-engineering experience
+  behind this solver.
+- [bedc-jepa-gap-ledger](https://github.com/the-omega-institute/bedc-jepa-gap-ledger) — does a world
+  model know when it is guessing? A machine-checked gap ledger on real LLM traces.
+- [equational_theories](https://github.com/the-omega-institute/equational_theories) — our fork of the
+  Equational Theories Project this competition builds on.
+
+The common discipline across these projects is the one this repository demonstrates: every claim is
+backed by a machine-checked certificate or a hash-bound ledger, and honest boundaries are stated
+explicitly.
+
 ## Publication boundary
 
 This repository supports a separate SAIR competition solver paper. It is not
