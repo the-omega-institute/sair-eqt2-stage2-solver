@@ -391,10 +391,10 @@
   "note": "LOCAL official-runner measurement on Stage 1 evaluation problems; Stage 2 will not reuse these problems — this measures distribution-level readiness, not a hosted score."
  },
  "hosted_playground_measurement": {
-  "date": "2026-08-21",
-  "artifact": "v2.4-candidate file (v2.3 + normalizer), sha256 7916cbc2d03d227ad95f4daf05fef51e8dc8e088b70f9640b9e3c67a71123ffc",
-  "scope": "SAIR Stage 2 playground, first 100 problems (50 true / 50 false)",
-  "result": "100/100 accepted, 0 rejected, 0 errors, 0 LLM calls; mean 5.1 s, max 23.8 s",
-  "note": "Hosted playground run on the official infrastructure (Lean 4.32 toolchain); not an official leaderboard score. Remaining 100 problems pending daily credit reset."
+  "dates": "2026-08-21/22",
+  "artifact": "first 100: v2.4-candidate (7916cbc2…); second 100: same file",
+  "scope": "SAIR Stage 2 playground, all 200 evaluation_normal problems (100 true / 100 false)",
+  "result": "200/200 accepted, 0 rejected, 0 errors, 0 LLM calls; mean 4.89 s/problem; FALSE mean 2.69 s (max 6.5 s), TRUE mean 7.08 s (max 23.8 s)",
+  "note": "Hosted playground on the official infrastructure (Lean 4.32 toolchain); not an official leaderboard score. Driven by the operator via the playground UI (10 problems/run, 10 credits/day)."
  }
 }
