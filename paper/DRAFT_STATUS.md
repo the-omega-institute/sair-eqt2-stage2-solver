@@ -8,11 +8,9 @@ statement. This is a working draft, not a submission claim.
 
 ## Placeholders
 
-- Author order and CRediT wording TBD (team direction 2026-08-24: order reflects
-  contribution rather than the alphabetical convention; Israel contributes
-  review/evidence auditing and prefers that shape stated explicitly).
-- Haobo's surname and affiliation are TBD.
-- Israel Cazares's affiliation is TBD.
+- Author order RESOLVED 2026-08-24: Haobo Ma (ChronoAI Pte. Ltd.), Wenlin Zhang
+  (NUS), Israel Cazares (Bytepro AI, Mexico). CRediT lines for Haobo and Wenlin
+  are in; Israel writes his own lines (TODO marker in main.tex).
 - The exact bibliographic title for arXiv:2604.18897 is TBD; the citation is
   currently keyed by author and arXiv identifier only.
 - The hosted-results material reports only the playground measurement. A
