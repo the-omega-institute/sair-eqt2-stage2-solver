@@ -40,7 +40,11 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{xspace}
-\usepackage{amsmath,amssymb}
+\ifplainarticle
+  \usepackage{amsmath,amssymb}
+\else
+  \usepackage{amsmath}
+\fi
 \ifplainarticle
   \usepackage[hidelinks]{hyperref}
 \fi
@@ -79,8 +83,8 @@ The SAIR EQT2 Stage 2 Solver}
 \fi
 
 \begin{document}
-\maketitle
-
+\ifplainarticle
+  \maketitle
 \begin{abstract}
 The SAIR Mathematics Distillation Challenge on Equational Theories asks a
 solver to classify whether one magma identity implies another and, for either
@@ -105,6 +109,33 @@ measurements, not a leaderboard result and not evidence about a hidden set.
 All quantitative claims are tied to immutable result ledgers; the paper makes
 no completeness or comparative-superiority claim.
 \end{abstract}
+\else
+\begin{abstract}
+The SAIR Mathematics Distillation Challenge on Equational Theories asks a
+solver to classify whether one magma identity implies another and, for either
+verdict, to return a certificate accepted by a deterministic \lean judge.
+We describe a single-file solver organized as a cheapest-first cascade.  Its
+false branch combines coefficient tests over structured algebra families,
+bounded finite-model search, an explicit central-groupoid witness, and several
+infinite-carrier witnesses.  Its true branch is a proof-producing ordered unit
+superposition procedure with Knuth--Bendix ordering, bidirectional
+demodulation, indexing, memoised substitution, and anytime size deepening.
+Search results are not trusted: successful derivations are replayed as small
+\lean terms, and countermodels are rechecked by the competition judge.
+
+The frozen solver is a 179,888-byte Python file with SHA-256
+\texttt{e89cd010b322f77b...}.  In local runs through official judge revision
+\texttt{2848228}, it produced accepted certificates for all 1,889 rows of the
+six public sets with no language-model calls.  Separate measurements recorded
+full agreement on the 800 published Stage 1 evaluation-distribution problems,
+100 accepted rows in the canonical Marathon manifest without tokens, and 200
+accepted rows in the hosted playground.  These are regression and playground
+measurements, not a leaderboard result and not evidence about a hidden set.
+All quantitative claims are tied to immutable result ledgers; the paper makes
+no completeness or comparative-superiority claim.
+\end{abstract}
+  \maketitle
+\fi
 
 \ifplainarticle\else
 \keywords{equational reasoning, superposition, finite model finding, Lean,
