@@ -7,14 +7,29 @@
   \plainarticlefalse
 \fi
 
+% CPP 2027 uses lightweight double-blind review: build the anonymized
+% submission with `make anon` (acmart [anonymous,review]); the arXiv /
+% camera-ready build keeps the author block and the CRediT statement.
+\newif\ifanonsubmission
+\ifdefined\ANONSUBMISSION
+  \anonsubmissiontrue
+\else
+  \anonsubmissionfalse
+\fi
+
 \ifplainarticle
   \documentclass[10pt,twocolumn]{article}
   \usepackage[a4paper,margin=0.72in,columnsep=0.24in]{geometry}
   \usepackage[numbers,sort&compress]{natbib}
 \else
-  \documentclass[sigplan,screen]{acmart}
+  \ifanonsubmission
+    \documentclass[sigplan,10pt,anonymous,review]{acmart}
+    \settopmatter{printfolios=true,printccs=false,printacmref=false}
+  \else
+    \documentclass[sigplan,screen]{acmart}
+    \settopmatter{printacmref=false,printfolios=true}
+  \fi
   \setcopyright{none}
-  \settopmatter{printacmref=false,printfolios=true}
   \renewcommand\footnotetextcopyrightpermission[1]{}
   \citestyle{acmnumeric}
 \fi
@@ -46,9 +61,13 @@ The SAIR EQT2 Stage 2 Solver}
 
 % TODO(author order): author order is TBD.
 \ifplainarticle
-  \author{Wenlin Zhang\\National University of Singapore
-    \and Haobo [surname TBD]\\Affiliation TBD
-    \and Israel Cazares\\Affiliation TBD}
+  \ifanonsubmission
+    \author{Anonymous submission}
+  \else
+    \author{Wenlin Zhang\\National University of Singapore
+      \and Haobo [surname TBD]\\Affiliation TBD
+      \and Israel Cazares\\Affiliation TBD}
+  \fi
   \date{}
 \else
   \author{Wenlin Zhang}
@@ -1150,6 +1169,17 @@ theorem, or comparative claim is available at this draft stage.
 \else
   \bibliographystyle{ACM-Reference-Format}
 \fi
+\ifanonsubmission\else
+\section*{Author contributions (CRediT)}
+% TODO(order+wording): per team agreement 2026-08-24 — the solver architecture and
+% the results are Wenlin Zhang's and Haobo's work; Israel Cazares contributed
+% independent review and evidence auditing. Final wording TBD with all authors.
+Wenlin Zhang: conceptualization, software, investigation, validation, writing.
+Haobo [surname TBD]: software, investigation, validation.
+Israel Cazares: independent solver and contract review, evidence auditing,
+methodology review, writing (review and editing).
+\fi
+
 \bibliography{references}
 
 \end{document}

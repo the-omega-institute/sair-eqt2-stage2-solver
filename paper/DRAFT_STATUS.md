@@ -1,11 +1,16 @@
 # Draft status
 
-Target format: CPP 2027, ACM `acmart` `sigplan`, with a visible and editable
-author block (not anonymous). This is a working draft, not a submission claim.
+Target format: CPP 2027, ACM `acmart` `sigplan`. CPP uses lightweight
+double-blind review, so the paper builds two ways: `\ANONSUBMISSION` gives the
+anonymized HotCRP submission ([anonymous,review], no author block, no CRediT);
+the default build is the arXiv/camera-ready version with authors and the CRediT
+statement. This is a working draft, not a submission claim.
 
 ## Placeholders
 
-- Author order is TBD (also marked by a TODO comment in `main.tex`).
+- Author order and CRediT wording TBD (team direction 2026-08-24: order reflects
+  contribution rather than the alphabetical convention; Israel contributes
+  review/evidence auditing and prefers that shape stated explicitly).
 - Haobo's surname and affiliation are TBD.
 - Israel Cazares's affiliation is TBD.
 - The exact bibliographic title for arXiv:2604.18897 is TBD; the citation is
