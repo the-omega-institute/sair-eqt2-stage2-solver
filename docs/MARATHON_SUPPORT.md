@@ -62,22 +62,22 @@ Validation targets the official checkout at revision
 The exact commands are:
 
 ```bash
-cd /Users/lexa/Desktop/lexa/omega/eqt2-stage2
+cd <judge checkout>
 source .env.judge
 export JUDGE_ARTIFACT_DIR=/tmp/sair-v2-marathon-judge-artifacts
 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python3 scripts/run_marathon.py \
-  --solver /Users/lexa/Desktop/lexa/omega/sair-v2-marathon/submission \
+  --solver <this repo>/submission \
   --manifest tests/marathon_fixtures/manifests/normal_5.jsonl \
   --output-dir /tmp/sair-v2-marathon-normal-5
 
 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python3 scripts/run_marathon.py \
-  --solver /Users/lexa/Desktop/lexa/omega/sair-v2-marathon/submission \
+  --solver <this repo>/submission \
   --manifest examples/problems/marathon/normal_100.jsonl \
   --budget-seconds 600 --budget-tokens 0 \
   --output-dir /tmp/sair-v2-marathon-normal-100
 
 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python3 -m pipeline.runner \
-  --submission /Users/lexa/Desktop/lexa/omega/sair-v2-marathon/submission \
+  --submission <this repo>/submission \
   --problems examples/problems/sample_20.json \
   --output /tmp/sair-v2-marathon-solo-sample-20.json
 ```
