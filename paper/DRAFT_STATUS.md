@@ -10,7 +10,7 @@ statement. This is a working draft, not a submission claim.
 
 - Author order RESOLVED 2026-08-24: Haobo Ma (ChronoAI Pte. Ltd.), Wenlin Zhang
   (NUS), Israel Cazares (Bytepro AI, Mexico). CRediT lines for Haobo and Wenlin
-  are in; Israel writes his own lines (TODO marker in main.tex).
+  are in; all three CRediT lines are in (Israel supplied his by email, 2026-08-25). Name form: Manuel Israel Cázares.
 - The exact bibliographic title for arXiv:2604.18897 is TBD; the citation is
   currently keyed by author and arXiv identifier only.
 - The hosted-results material reports only the playground measurement. A
@@ -42,3 +42,11 @@ statement. This is a working draft, not a submission claim.
 - ACM mode could not be compiled locally because `acmart.cls` is not installed;
   `main.tex` still targets `\documentclass[sigplan,screen]{acmart}` by default.
 - All 12 fallback pages were rendered with Poppler and visually inspected.
+
+## Review status
+
+- Manuel Israel Cázares reviewed the full draft (2026-08-25): every checked
+  number ledger-backed, architecture matches the code, dual-build works; no
+  substantive concerns. His optional note on the FATE-X execution-check cost
+  figure is incorporated (billed-delta figures only; per-call latency is
+  recorded as unavailable in the run notes and stays out).

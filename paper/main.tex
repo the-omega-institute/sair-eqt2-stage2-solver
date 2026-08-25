@@ -71,7 +71,7 @@ The SAIR EQT2 Stage 2 Solver}
   \else
     \author{Haobo Ma\\ChronoAI Pte.\ Ltd., Singapore
       \and Wenlin Zhang\\National University of Singapore
-      \and Israel Cazares\\Bytepro AI, Mazatl\'an, Mexico}
+      \and Manuel Israel C\'azares\\Bytepro AI, Mazatl\'an, Mexico}
   \fi
   \date{}
 \else
@@ -79,7 +79,7 @@ The SAIR EQT2 Stage 2 Solver}
   \affiliation{\institution{ChronoAI Pte.\ Ltd.}\country{Singapore}}
   \author{Wenlin Zhang}
   \affiliation{\institution{National University of Singapore}\country{Singapore}}
-  \author{Israel Cazares}
+  \author{Manuel Israel C\'azares}
   \affiliation{\institution{Bytepro AI}\city{Mazatl\'an}\country{Mexico}}
 \fi
 
@@ -1037,7 +1037,11 @@ Before the v2 deterministic extensions, a fixed-configuration run exercised
 the organizer-pinned \code{gpt-oss-120b} fallback on six unsolved
 \code{sample\_20} residuals.  It solved zero of the six.  Pilot and canonical
 runs also produced different first attempts despite the advertised zero
-temperature and fixed seed.  We record this as a bounded negative measurement
+temperature and fixed seed.  The canonical run billed \$0.1350 in total,
+measured from provider credits-balance deltas rather than runner logs ---
+about \$0.023 per residual item under the sixteen-round cap.  Per-call
+latency and token telemetry are recorded as unavailable in the run notes, so
+no per-call figures are reported here.  We record this as a bounded negative measurement
 of one model, provider route, solver version, prompt, and residual set.  It
 does not support a general statement that language
 models are ineffective for theorem proving or for this competition.
@@ -1207,10 +1211,11 @@ Haobo Ma: conceptualization, methodology, software (solver architecture and the
 systems foundation), investigation, validation.
 Wenlin Zhang: conceptualization, methodology, software, investigation,
 validation, data curation, project administration, writing (original draft).
-Israel Cazares: % TODO(Israel): please write your own contribution lines.
-% Direction agreed by the team: independent solver and contract review,
-% evidence auditing, methodology review, writing (review and editing).
-[to be completed by Israel Cazares].
+Manuel Israel C\'azares: validation (solver freeze verification --- hash, file
+size, and single-file contract compliance; evidence-ledger auditing across the
+reviewed freezes); methodology (review of experimental design and the
+claims--evidence boundary); writing (review and editing --- full manuscript
+review and critical review of the presentation and claims).
 \fi
 
 \bibliography{references}
