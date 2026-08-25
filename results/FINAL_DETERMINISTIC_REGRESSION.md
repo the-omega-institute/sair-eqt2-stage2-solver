@@ -73,8 +73,9 @@ now Lean-core-only. The four judge support modules compile unchanged under 4.32.
 **800/800** with `llm_calls = 0` on every accepted row (`results/official_distribution_drill/`,
 hash-bound in `PROVENANCE.json`). Stage 2 will not reuse these problems; this measures readiness on the
 announced scoring distribution, not a hosted score. Separately, the hosted Stage 2 playground accepted
-100/100 on its first 100 problems (official infrastructure, Lean 4.32 toolchain; recorded in
-`PROVENANCE.json`).
+all 200 `evaluation_normal` problems with the same v2.4-candidate file (0 rejected, 0 errors, 0 LLM
+calls; official infrastructure and Lean 4.32 toolchain; recorded in `PROVENANCE.json`). This is a
+playground measurement, not a leaderboard result.
 
 ---
 
