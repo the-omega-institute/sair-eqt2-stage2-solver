@@ -4,14 +4,14 @@
 Usage: judge_probe.py <problem.json> <verdict> <cert.lean>
 """
 import json, os, subprocess, sys, time, pathlib, tempfile
-JUDGE = "/Users/lexa/Desktop/lexa/omega/eqt2-stage2"
+JUDGE = os.environ.get("EQT2_JUDGE_ROOT", "../equational-theories-lean-stage2")
 prob = json.load(open(sys.argv[1]))
 verdict = sys.argv[2]
 code = open(sys.argv[3]).read()
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="probe_"))
 (tmp/"p.json").write_text(json.dumps(prob))
 (tmp/"a.json").write_text(json.dumps({"verdict": verdict, "code": code}))
-env = dict(os.environ, LEAN_BIN="/Users/lexa/.elan/bin/lean", LAKE_BIN="/Users/lexa/.elan/bin/lake",
+env = dict(os.environ, LEAN_BIN=os.path.expanduser("~/.elan/bin/lean"), LAKE_BIN=os.path.expanduser("~/.elan/bin/lake"),
            PATH=os.path.expanduser("~/.elan/bin") + ":" + os.environ["PATH"], PYTHONDONTWRITEBYTECODE="1")
 t0 = time.time()
 r = subprocess.run([f"{JUDGE}/.venv/bin/python3", "verify_one.py", str(tmp/"p.json"), str(tmp/"a.json")],

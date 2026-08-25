@@ -85,9 +85,33 @@ public repositories:
 - [equational_theories](https://github.com/the-omega-institute/equational_theories) — our fork of the
   Equational Theories Project this competition builds on.
 
-The common discipline across these projects is the one this repository demonstrates: every claim is
-backed by a machine-checked certificate or a hash-bound ledger, and honest boundaries are stated
-explicitly.
+- [trureturing](https://github.com/the-omega-institute/trureturing) — the project this solver's
+  discipline comes home to: a durable mathematical knowledge base in which a statement is admitted
+  only through a kernel-checked Lean proof, recorded in an append-only attestation ledger, and never
+  modified in place. The certificate-first rules this solver applies competitively are the same rules
+  trureturing applies to lasting mathematical truth.
+
+## Why this solver performs the way it does
+
+The solver's results are the compound interest of the projects above.
+
+- **Lean certificate engineering.** Months of continuous Lean 4 formalization work (the `automath`
+  stream and the paper series' Lean anchors) built the working knowledge this solver's certificate
+  emitters are made of: which proof shapes the kernel checks in seconds, how far `decide` scales on
+  finite structures, and how namespaces interact with a judge's declaration policy.
+- **Core-Lean proof discipline.** The BEDC development in `newmath` is deliberately mathlib-free:
+  every proof from first principles in core Lean. When the competition's hosted judge moved to a new
+  Lean version mid-competition, migrating every certificate family to core-only was routine here —
+  version drift in an external library simply has nothing to attach to.
+- **Structured-family search.** The countermodel stages search parameterized algebraic families
+  (linear, affine, vector-linear, polynomial) with closed-form coefficient checks rather than raw
+  enumeration — the same method the paper series applies to combinatorial structures: find the
+  parametric family first, then verify inside it in closed form.
+- **Measurement discipline.** Every claim carries a machine-checked certificate or a hash-bound
+  ledger, and nothing is assumed that has not been measured. That discipline, rather than any single
+  algorithm, is what caught the three faults that would each have been fatal in a one-submission
+  competition: a prover selection-queue defect, a toolchain migration, and an input-encoding hazard —
+  all found by adversarial drills before submission, not after.
 
 ## Publication boundary
 
