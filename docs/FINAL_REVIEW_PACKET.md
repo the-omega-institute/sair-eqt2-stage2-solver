@@ -8,93 +8,54 @@ one review against that exact state.
 
 ## Review baseline and current candidate
 
-Israel approved solver v2.2 at commit `b32306d18ab209b3e3a94f88e32e4438cb394d74`:
+Israel approved solver v2.2 at commit `b32306d18ab209b3e3a94f88e32e4438cb394d74`
+(all four surfaces; eval() ruled acceptable). Final candidate for the single review:
 
-- SHA-256 `931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697`;
-- 178,769 bytes;
-- Solo 1889/1889 and Marathon `normal_100` 100/100;
-- single-file Solo contract and official Marathon I/O contract accepted;
-- evidence/provenance and claims boundary accepted.
+- solver version: **v2.5**; SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4`; 189,504 bytes (limit 500,000).
+- branch: `wenlin/v2-merge` (this commit).
 
-Current prepared candidate:
+## Delta v2.2 -> v2.5 (each step has its own commit trail and regression)
 
-- branch head at packet preparation: `feebfbba024b2b74c87d88a85813cc2f82630c20`;
-- solver version: v2.4;
-- SHA-256 `e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9`;
-- 179,888 bytes, below the 500,000-byte limit.
+1. **v2.3 — core-only certificates.** The austin_nat family re-emitted without `import Mathlib.Tactic`
+   (positive-form replay, `Nat` carrier, core-qualified lemmas). Motivation: the announced hosted judge
+   is Lean 4.32; the old certificate compiled in ~330 s there (over the 300 s judge phase cap) and in
+   <= 3.1 s after the change. A 120-certificate stratified corpus covering every emission family compiles
+   120/120 under Lean 4.32.0; every emitted family is Lean-core-only.
+2. **v2.4 — input encoding + the E168 family.** `_normalize_problem_equations` maps `*` to `◇` at both
+   track intakes (the HuggingFace-aligned format uses `*`; the runner feeds the solver verbatim; the
+   unpatched solver crashed on every `*`-form problem — measured 0/800 before, 800/800 after). A canned
+   exotic order-9 central groupoid settles the E168 goal family (natural central groupoids separate
+   none of those goals; the bounded model finder recovers 3/12 at 15x budget).
+3. **v2.5 — LLM-fallback overhaul (deterministic definitions unchanged).** Measured defects from a
+   hosted run of a stale artifact: returned Lean now normalized `*`->`◇`; prompt states the intro-all-
+   goal-variables protocol with a worked example; the hint describes the cascade truthfully and marks
+   budget-timeouts as inconclusive; requested directions alternate across the 16 rounds; a raw-Lean
+   certificate answer type (infinite carriers allowed) with local size/banned-token validation; and
+   countermodel tables are semantically pre-validated (hypothesis holds, goal fails) before any judge
+   call, with targeted repair feedback. Definition-level diff confined to: PROMPT, deterministic_hint,
+   clean_proof_body, valid_llm_table, main (Pass-3 section), plus new llm_* helpers.
+4. **Paper.** Academic-register polish (token-multiset-verified: every number/hash/provenance row
+   unchanged); bibliography verified against primary sources (two fabricated author given-names
+   corrected, real titles filled, published venues added); Knuth-Bendix / Bachmair-Ganzinger / Austin
+   citations added; dual-build (CPP anonymous / arXiv) machinery.
 
-The head commit is expected to advance for documentation only. The final
-review must bind the then-current commit and independently recheck that the
-solver SHA-256 and byte count remain exactly the values above. Any solver-byte
-change invalidates this packet and requires regenerated evidence.
+## Evidence at this commit (all clean idle-machine ledgers, judge revision 2848228)
 
-## Complete solver delta since approved v2.2
+| Surface | Result |
+|---|---|
+| Solo six public sets | 1889/1889, llm_calls = 0 everywhere |
+| Marathon canonical `normal_100` | 100/100, 0 tokens |
+| Stage 1 evaluation-distribution drill (4 x 200) | 800/800, full ground-truth agreement |
+| Hosted playground (all four categories) | 400/400 accepted (hosted measurement, stale-artifact runs excluded) |
+| Lean 4.32 certificate corpus | 120/120 |
+| `check_freeze.py` | PASS |
 
-The solver diff from `b32306d` to v2.4 is 71 insertions and 31 deletions,
-confined to three bounded changes:
-
-1. **Lean-core-only Austin certificates (v2.3).** The Austin `Nat` emitter no
-   longer imports `Mathlib.Tactic`. It uses positive-form replay, core-qualified
-   names, and `import JudgeProblem` only. This closes the observed Lean 4.32
-   timeout caused by Mathlib elaboration; all four variants compile in at most
-   3.1 seconds under Lean 4.32 core.
-2. **Problem-encoding normalization (v2.4).** Both Solo and Marathon intake map
-   `*` to `◇`, matching the official judge's equation normalization. The
-   published HuggingFace-aligned data uses `*`; v2.3 otherwise failed before
-   parsing every row in the 800-problem distribution drill.
-3. **E168-family countermodel (v2.4).** A fixed exotic order-9 central groupoid
-   is checked by the existing equation evaluator before use and emitted through
-   the existing `finOpTable` certificate path. It settles the 12 E168-family
-   residuals in `evaluation_extra_hard`; the official judge accepted all 12.
-
-No LLM prompt, key handling, Solo protocol, Marathon I/O contract, judge
-protocol, or external dependency was added or relaxed by these changes.
-
-## Evidence bound to the current solver
-
-- Structural freeze check: `python3 scripts/check_freeze.py` passes.
-- Repository unit tests: 8/8 pass.
-- Local official runner at revision `2848228`: 1889/1889 over all six public
-  sets, with `llm_calls = 0` on every accepted row.
-- Local official Marathon runner: canonical `normal_100` is 100/100 with
-  0 tokens.
-- Published Stage 1 evaluation splits: 800/800 with full ground-truth
-  agreement and 0 LLM calls.
-- Lean 4.32 compatibility corpus: 120/120 certificates compile; every emitted
-  certificate family is Lean-core-only.
-- Hosted Stage 2 playground: the same v2.4-candidate file was accepted on all
-  200 `evaluation_normal` problems, with 0 rejected, 0 errors, and 0 LLM calls.
-
-`PROVENANCE.json` binds the solver, official revision/configuration, local
-ledgers, Marathon artifacts, distribution-drill ledgers, Lean 4.32 record, and
-hosted playground measurement. The playground result is not a formal
-submission, leaderboard score, rank, or hidden-set transfer result.
-
-## Four review surfaces
-
-1. **Frozen solver bytes:** independently verify the final commit, SHA-256,
-   byte count, and that `submission/` contains only `solver.py`.
-2. **Rules and harness compliance:** confirm the Solo single-file boundary,
-   official Marathon manifest/output access, no key or repository reads on the
-   Solo path, no shell-out/network client, and judge/LLM calls only through the
-   official protocol.
-3. **Evidence traceability:** run `scripts/check_freeze.py`, inspect
-   `PROVENANCE.json`, and confirm every claimed count is backed by the named
-   hash-bound ledger or hosted measurement record.
-4. **Scientific claim boundary:** confirm `paper/CLAIMS_LEDGER.md` does not
-   infer a leaderboard score, rank, hidden-set transfer, completeness,
-   cross-machine determinism, or comparative superiority.
-
-## Final freeze commands
+## Review commands (rerun from a clean clone)
 
 ```bash
-git diff b32306d18ab209b3e3a94f88e32e4438cb394d74..HEAD -- submission/solver.py
-shasum -a 256 submission/solver.py
-wc -c submission/solver.py
-PYTHONDONTWRITEBYTECODE=1 python3 scripts/check_freeze.py
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+python3 scripts/check_freeze.py
+python3 -m unittest discover -s tests
+shasum -a 256 submission/solver.py   # expect f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4
 ```
 
-After those checks and green CI, request one final review against the exact
-head. Team registration, solver upload, hosted submission, repository
-publication, and paper authorship/order remain separate human decisions.
+Uploading to SAIR, publishing the repository, and the arXiv submission remain separate human steps.
