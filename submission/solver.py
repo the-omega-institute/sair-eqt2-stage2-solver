@@ -22,37 +22,82 @@ The LLM template is the top-level PROMPT constant, extracted by the proxy via AS
 """
 
 # Extracted by the proxy (AST) and filled with {problem.*}/{solver.*}/{history.*}.
-PROMPT = """You are an expert Lean 4 proof engineer solving equational-implication problems over magmas.
+PROMPT = """You are an expert Lean 4 proof engineer solving an equational implication over magmas.
 
 A magma is a type G with one binary operation written ◇ (infix, left-associative). Decide whether
 Hypothesis {problem.equation1_id}:  {problem.equation1}
 implies
 Goal {problem.equation2_id}:  {problem.equation2}
-universally, i.e. for EVERY magma G and all values of the variables.
+for EVERY magma G and every value of every universally quantified variable.
 
-A fast deterministic search already ran on our side (see the solver hint). If it found NO counterexample
-among all magmas of size <= 3, all F_p-linear magmas (p <= 7), and all F_2^2 (Fin 4) matrix-linear magmas,
-the implication is very likely TRUE and you should build a rewriting proof. If a small counterexample is
-plausible, give one instead.
+OPERATOR PROTOCOL: the two displayed equations arrive verbatim from the proxy and may use `*` for the
+magma operation. In every Lean proof or certificate you return, ALWAYS write `◇` for the magma
+operation and NEVER write `*`.
 
+The deterministic cascade already ran. Read its result precisely; a time-budget miss is not evidence
+that the implication is true.
 Solver hint: {solver.hint}
 
-Reply with ONLY ONE JSON object. No markdown fences, no commentary before or after.
+ROUND REQUEST: {solver.round_instruction}
+Local response-validation feedback from the preceding round: {solver.local_feedback}
 
-TRUE case -- give the Lean 4 tactic body that closes the goal. Your body runs immediately after
-`intro G _ h`, so in scope you have:
-  * `h`  : the hypothesis as a universally quantified equation. Apply it to concrete terms, e.g.
-           `h a b c`, to obtain an equation instance; use `.symm` to flip an equality.
-  * the operation is the infix `◇`. Close the goal by rewriting: `rw`, `calc`, `simp only [...]`,
-    `exact`. For a pure equational goal you need only `h` and `◇` -- no external lemmas.
-  Respond exactly: {"verdict":"true","proof":"<tactic lines, separated by \\n>"}
+Reply with ONLY ONE JSON object, with no markdown fence and no commentary. Use exactly one of these
+three response forms.
 
-FALSE case -- give a finite counterexample magma as a Cayley table on Fin N with N <= 10. The table is
-`table[i][j] = i ◇ j`, entries are single digits 0..N-1, the hypothesis must hold on it and the goal
-must fail. Keep N as small as possible.
-  Respond exactly: {"verdict":"false","counterexample_table":[[...],[...]]}
+1. TRUE TACTIC BODY
+Return {"verdict":"true","proof":"<tactic lines separated by \\n>"}.
+The solver places this body immediately after `intro G _ h`. At that point the goal is STILL universally
+quantified. Your FIRST tactic must `intro` every variable quantified by the goal. Then instantiate `h`
+with concrete terms. For example, if
+  h : ∀ a b c : G, (a ◇ b) ◇ c = a ◇ (b ◇ c)
+and the goal is ∀ x y z : G, x ◇ (y ◇ z) = (x ◇ y) ◇ z,
+this complete body has the correct scope and compiles:
+  intro x y z
+  have h1 := h x y z
+  exact h1.symm
+Use positive equational reasoning such as `have`, `rw`, `calc`, `congrArg`, `simp only [...]`, and
+`exact`; use `.symm` to reverse an equality.
 
-Previous attempts and the judge's errors (read these and fix exactly what was rejected):
+2. FINITE TABLE COUNTERMODEL
+Return {"verdict":"false","counterexample_table":[[...],[...]]}.
+Give a square Cayley table on Fin N, 1 <= N <= 10, where table[i][j] is i ◇ j. Every entry must be
+an integer in 0..N-1. The hypothesis must hold for every assignment and the goal must fail for at least
+one assignment.
+
+3. COMPLETE RAW LEAN CERTIFICATE
+Return {"verdict":"true","code":"<complete Submission.lean file>"} or
+       {"verdict":"false","code":"<complete Submission.lean file>"}.
+The file must import `JudgeProblem` and define `def submission : Goal := by` (or theorem submission).
+Helpers inside `namespace submission` are allowed. Prefer core tactics and declarations admitted by the
+default proof policy (trusted axioms are only `propext`, `Quot.sound`, and `Classical.choice`; keep
+helpers under the `submission.` namespace and use the allow-listed `Magma.`, `Nat.`, `Fin.`,
+`JudgeDecide.`, and `JudgeFinOp.` declarations). True certificates may use this positive-form shape:
+  import JudgeProblem
+  def submission : Goal := by
+    intro G _ h
+    intro x y z
+    have h1 := h x y z
+    rw [h1]
+False certificates may use an infinite carrier, including Nat:
+  import JudgeProblem
+  namespace submission
+  def op (x y : Nat) : Nat := <definition with no `*` token>
+  theorem hyp (x y z : Nat) : <hypothesis using ◇> := by <proof>
+  end submission
+  def submission : Goal := by
+    refine ⟨Nat, ⟨submission.op⟩, ?_, ?_⟩
+    · intro x y z
+      exact submission.hyp x y z
+    · intro h
+      exact absurd (h 0 1 2) (by decide)
+For a finite raw certificate, define `submission.op` on Fin N, construct
+`let m : Magma (Fin N) := { op := submission.op }`, and refine `⟨Fin N, m, ?_⟩`.
+Complete Lean is limited to 100000 UTF-8 bytes, and a false certificate to 20000 bytes.
+Never use any banned judge token: sorry, admit, sorryAx, mkSorry, dbg_trace, dbgTrace, run_tac,
+initialize, builtin_initialize, #eval, #exit, #reduce, #synth, #check_eval, elab, elab_rules,
+macro, macro_rules, syntax, unsafe, implemented_by, extern, unsafeCast, unsafeIO, unsafePerformIO.
+
+Previous judge attempts (read the errors and repair exactly what was rejected):
 {history.attempts}
 """
 
@@ -139,6 +184,8 @@ def extract_json(text):
 def clean_proof_body(body):
     # Strip anything the model added around the bare tactic body: a leading
     # `:= by` / `by`, stray `import` lines, and surrounding whitespace.
+    if not isinstance(body, str):
+        return ""
     if ":= by" in body:
         body = re.sub(r"^.*?:=\s*by\s*\n?", "", body, count=1, flags=re.DOTALL)
     body = re.sub(r"^\s*by\s+", "", body)
@@ -148,7 +195,11 @@ def clean_proof_body(body):
     # that exact binder line is redundant and causes introN failures. Strip only
     # a leading `intro G _ h` (whitespace-tolerant); never `intro x` / other intros.
     body = re.sub(r"^intro\s+G\s+_\s+h\s*(?:\n|$)", "", body, count=1)
-    return body.strip()
+    # The LLM certificate grammar has no legitimate multiplication: raw `*`
+    # denotes the magma operator leaked from the proxy's equation spelling.
+    # Consequently a plain replacement is sufficient; no accepted response
+    # needs a Lean string-literal-aware lexer here.
+    return normalize_llm_lean(body.strip())
 
 
 def valid_llm_table(tbl):
@@ -162,24 +213,107 @@ def valid_llm_table(tbl):
         if not isinstance(row, list) or len(row) != n:
             return False
         for v in row:
-            if not isinstance(v, int) or not (0 <= v < n):
+            if isinstance(v, bool) or not isinstance(v, int) or not (0 <= v < n):
                 return False
     return True
 
 
-def deterministic_hint(eq1_text, eq2_text):
-    # Tell the model what our floor already ruled out, so it can lean TRUE when the
-    # small/linear counterexample space is exhausted.
+def normalize_llm_lean(text):
+    """Normalize the proxy's raw magma spelling in model-produced Lean."""
+    if not isinstance(text, str):
+        return ""
+    return text.replace("*", "◇")
+
+
+def llm_banned_token(code):
+    """Mirror judge.verify._find_banned_token without importing judge code."""
+    tokens = (
+        "sorry", "admit", "sorryAx", "mkSorry", "dbg_trace", "dbgTrace",
+        "run_tac", "initialize", "builtin_initialize", "#eval", "#exit",
+        "#reduce", "#synth", "#check_eval", "elab", "elab_rules", "macro",
+        "macro_rules", "syntax", "unsafe", "implemented_by", "extern",
+        "unsafeCast", "unsafeIO", "unsafePerformIO",
+    )
+    for token in tokens:
+        if token.startswith("#") or token.endswith(" "):
+            if re.search(re.escape(token), code):
+                return token
+        elif re.search(r"\b%s\b" % re.escape(token), code):
+            return token
+    return None
+
+
+def validate_llm_code(verdict, code, max_code_bytes=100000,
+                      max_false_cert_bytes=20000):
+    """Return (normalized_code, error) for a raw-certificate response."""
+    if verdict not in ("true", "false"):
+        return None, "raw certificate verdict must be true or false"
+    if not isinstance(code, str) or not code.strip():
+        return None, "raw certificate code must be a non-empty string"
+    normalized = normalize_llm_lean(code)
     try:
-        found = search_counterexample(eq1_text, eq2_text, use_linear=True)
-    except Exception:
-        found = None
-    if found is not None:
-        return ("a deterministic counterexample WAS found by our floor but the judge did not accept it; "
-                "re-examine: the implication is most likely FALSE, refine the finite counterexample")
-    return ("no counterexample exists among all magmas of size <= 3, all F_p-linear magmas (p <= 7), "
-            "or F_2^2 (Fin 4) matrix-linear magmas -> the implication is very likely TRUE; build a "
-            "rewriting proof from h")
+        overall_cap = min(100000, max(0, int(max_code_bytes)))
+        false_cap = min(20000, max(0, int(max_false_cert_bytes)))
+    except (TypeError, ValueError):
+        overall_cap, false_cap = 100000, 20000
+    size = len(normalized.encode("utf-8"))
+    if size > overall_cap:
+        return None, "raw certificate exceeds %d UTF-8 bytes" % overall_cap
+    if verdict == "false" and size > false_cap:
+        return None, "false raw certificate exceeds %d UTF-8 bytes" % false_cap
+    if not re.search(r"\b(?:def|theorem)\s+submission\b", normalized):
+        return None, "raw certificate must define def submission or theorem submission"
+    banned = llm_banned_token(normalized)
+    if banned is not None:
+        return None, "raw certificate contains banned token: %s" % banned
+    return normalized, None
+
+
+def llm_round_direction(round_index, preferred_direction):
+    """Alternate the requested verdict, starting with the preferred one."""
+    preferred = "false" if preferred_direction == "false" else "true"
+    if int(round_index) % 2:
+        return "true" if preferred == "false" else "false"
+    return preferred
+
+
+def llm_round_instruction(round_index, preferred_direction):
+    direction = llm_round_direction(round_index, preferred_direction)
+    other = "false" if direction == "true" else "true"
+    if direction == "true":
+        task = "construct a universal Lean rewriting proof"
+    else:
+        task = "construct a countermodel, preferably a raw exotic or infinite certificate"
+    return ("Round %d of %d: attempt verdict %s now; %s. Do not continue the %s "
+            "direction in this round." %
+            (int(round_index) + 1, MAX_LLM_ROUNDS, direction.upper(), task, other.upper()))
+
+
+def deterministic_hint(eq1_text, eq2_text, search_timed_out=False):
+    # eq1_text/eq2_text remain in the signature for compatibility with the
+    # previous caller; the cascade has already run and must not be repeated.
+    attempted = (
+        "The deterministic cascade tried all magmas of size <= 3; linear and affine "
+        "operations modulo n <= 50; F_p^k vector-linear families (including F_2^2, "
+        "F_2^3, F_3^2, and F_5^2); exhaustive and sampled polynomial operations; "
+        "Latin-propagating finite-model search on carriers 4 through 10; canned exotic "
+        "finite models; and canned Austin-pair infinite Nat models. Its singleton, "
+        "substitution, and ordered-superposition true provers also found no accepted proof. "
+    )
+    if search_timed_out:
+        return (
+            attempted
+            + "Search hit its time budget, so the deterministic result is inconclusive, not "
+              "evidence that the implication is true. A countermodel, if one exists, is likely "
+              "exotic (a structured model of order >= 9 or an infinite model), while a longer "
+              "positive equational derivation may also exist. Weigh both directions."
+        )
+    return (
+        attempted
+        + "Search completed without a countermodel in those families or carrier ranges. This is "
+          "strong evidence that the implication is true, though it is not a proof; prefer a "
+          "positive rewriting derivation while still checking for exotic countermodels."
+    )
 
 
 def tokenize(source):
@@ -4535,29 +4669,65 @@ def main():
     # context dict (the proxy fills the PROMPT template and calls the model);
     # we parse the JSON verdict, build the Lean cert with the floor's helpers,
     # and iterate on judge feedback until the budget is spent.
-    hint = deterministic_hint(eq1_text, eq2_text)
+    # Reaching this point means the deadline-bounded deep polynomial/model
+    # search returned no witness after consuming its search allocation. That
+    # is an inconclusive timeout, distinct from exhaustive completion.
+    search_timed_out = True
+    hint = deterministic_hint(eq1_text, eq2_text, search_timed_out=search_timed_out)
+    preferred_direction = "false" if search_timed_out else "true"
+    local_feedback = "(none)"
+    budget_caps = startup.get("budget") or {}
+    max_code_bytes = budget_caps.get("max_code_length", 100000)
+    max_false_bytes = budget_caps.get("max_false_cert_bytes", 20000)
     for rnd in range(MAX_LLM_ROUNDS):
-        llm_result = call_llm({"hint": hint, "round": str(rnd)})
+        direction = llm_round_direction(rnd, preferred_direction)
+        instruction = llm_round_instruction(rnd, preferred_direction)
+        llm_result = call_llm({
+            "hint": hint,
+            "round": str(rnd),
+            "direction": direction,
+            "round_instruction": instruction,
+            "local_feedback": local_feedback,
+        })
         if "error" in llm_result:
             break
         answer = extract_json(llm_result.get("response", ""))
         if not isinstance(answer, dict):
+            local_feedback = "The preceding response was not one parseable JSON object."
             continue
         verdict = answer.get("verdict")
+        if "code" in answer:
+            code, error = validate_llm_code(
+                verdict, answer.get("code"), max_code_bytes, max_false_bytes,
+            )
+            if error is not None:
+                local_feedback = error
+                continue
+            result = call_judge(verdict, code)
+            local_feedback = "(none; the judge feedback below controls the next repair)"
+            if result.get("status") == "accepted":
+                return
+            continue
         if verdict == "true":
             body = clean_proof_body(answer.get("proof", "") or "")
             if not body:
+                local_feedback = "The true response had an empty tactic body."
                 continue
             result = call_judge("true", make_true_code(problem, body))
+            local_feedback = "(none; the judge feedback below controls the next repair)"
             if result.get("status") == "accepted":
                 return
         elif verdict == "false":
             tbl = answer.get("counterexample_table")
             if not valid_llm_table(tbl):
+                local_feedback = "The false table was not a square Fin N table with 1 <= N <= 10."
                 continue
             result = call_judge("false", make_false_code(problem, {"n": len(tbl), "table": tbl}))
+            local_feedback = "(none; the judge feedback below controls the next repair)"
             if result.get("status") == "accepted":
                 return
+        else:
+            local_feedback = "The verdict must be exactly true or false."
         # Rejections are surfaced to the next round via {history.attempts}.
 
 
