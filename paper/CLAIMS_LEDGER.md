@@ -7,8 +7,8 @@ but not stronger, until new durable evidence is added.
 
 - The frozen solver emits Lean-checkable proof or countermodel certificates and
   relies on the official judge for acceptance.
-- Solver v2.4 (SHA-256 `e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9`,
-  179,888 bytes) records 20/20 `sample_20`, 200/200 `sample_200`, 69/69 `hard1`,
+- Solver v2.5 (SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4`,
+  189,504 bytes) records 20/20 `sample_20`, 200/200 `sample_200`, 69/69 `hard1`,
   200/200 `hard2`, 400/400 `hard3`, 1000/1000 `normal` — **1889/1889 public
   rows** — in archived local official-runner ledgers under official revision
   `2848228`; the complete `2848228` official harness passed with zero failures

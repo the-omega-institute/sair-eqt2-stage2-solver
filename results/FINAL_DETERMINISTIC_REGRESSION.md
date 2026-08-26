@@ -1,11 +1,11 @@
-# Final deterministic regression — solver v2.4
+# Final deterministic regression — solver v2.5
 
-Solver `submission/solver.py` SHA-256 `e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9` (179888 bytes). Official judge revision
+Solver `submission/solver.py` SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4` (189504 bytes). Official judge revision
 `2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
 v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
 `none`; no API key). Local official-runner measurements, not hosted leaderboard results.
 
-## Results (2026-08-20, all six public sets; rerun with the v2.4 file, 2026-08-21/22)
+## Results (2026-08-20, all six public sets; rerun with the v2.5 file, 2026-08-26/27)
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
@@ -60,6 +60,16 @@ now Lean-core-only. The four judge support modules compile unchanged under 4.32.
   satisfy the whole E168 goal family and separate nothing, and the bounded model finder recovers only
   3/12 of the goals even at 15× budget — settles all 12 `evaluation_extra_hard` E168 residuals in one
   `finOpTable` certificate each (~0.1 ms search cost, official runner 12/12 accepted).
+
+## v2.5: the language-model fallback overhaul
+
+The deterministic definitions are unchanged from v2.4. The last-resort language-model path was rebuilt
+against measured defects from a hosted run of a stale artifact: returned Lean is normalized to the magma
+operator; the prompt states the scope protocol precisely and describes the cascade truthfully with an
+explicit inconclusive-timeout branch; requested directions alternate across the sixteen rounds; the model
+may answer with a complete Lean certificate (including infinite carriers); and countermodel tables are
+validated semantically before any judge call, with targeted repair feedback on rejection. On every measured
+set the deterministic stages still accept every row, so this path exists purely as hidden-set insurance.
 
 ## Official-distribution drill (Stage 1 evaluation splits, the announced Stage 2 scoring categories)
 

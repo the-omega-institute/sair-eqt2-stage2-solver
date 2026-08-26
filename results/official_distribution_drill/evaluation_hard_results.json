@@ -3,7 +3,7 @@
     "id": "evaluation_hard_0001",
     "eq1_id": 3,
     "eq2_id": 3306,
-    "elapsed_seconds": 3.29,
+    "elapsed_seconds": 4.64,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [0, 1, 0], [0, 0, 2]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -20,7 +20,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 3.2
+        "elapsed": 4.52
       }
     ]
   },
@@ -28,7 +28,7 @@
     "id": "evaluation_hard_0002",
     "eq1_id": 21,
     "eq2_id": 36,
-    "elapsed_seconds": 3.02,
+    "elapsed_seconds": 26.6,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) ((y ◇ z) ◇ z)\n",
@@ -45,7 +45,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.03
+        "elapsed": 24.09
       }
     ]
   },
@@ -53,7 +53,7 @@
     "id": "evaluation_hard_0003",
     "eq1_id": 8,
     "eq2_id": 3306,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 3.33,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [1, 0, 0], [2, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -70,7 +70,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.65
+        "elapsed": 3.14
       }
     ]
   },
@@ -78,7 +78,7 @@
     "id": "evaluation_hard_0004",
     "eq1_id": 30,
     "eq2_id": 27,
-    "elapsed_seconds": 3.04,
+    "elapsed_seconds": 3.85,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X2) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (q ◇ X1)) (e0 X0 X0 X2)).symm.trans (e0 (X0 ◇ X0) X2 X1)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -95,7 +95,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 1.34
       }
     ]
   },
@@ -103,7 +103,7 @@
     "id": "evaluation_hard_0005",
     "eq1_id": 38,
     "eq2_id": 4075,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 2.22,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -120,7 +120,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.13
       }
     ]
   },
@@ -128,7 +128,7 @@
     "id": "evaluation_hard_0006",
     "eq1_id": 35,
     "eq2_id": 18,
-    "elapsed_seconds": 3.04,
+    "elapsed_seconds": 3.99,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) (y ◇ (y ◇ z))\n",
@@ -145,7 +145,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.48
       }
     ]
   },
@@ -153,7 +153,7 @@
     "id": "evaluation_hard_0007",
     "eq1_id": 38,
     "eq2_id": 4076,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 2.47,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -170,7 +170,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.64
+        "elapsed": 2.34
       }
     ]
   },
@@ -178,7 +178,7 @@
     "id": "evaluation_hard_0008",
     "eq1_id": 37,
     "eq2_id": 22,
-    "elapsed_seconds": 2.99,
+    "elapsed_seconds": 13.51,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z w\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a a).trans (h b a a a).symm\n  exact singleton (x) (y ◇ (z ◇ w))\n",
@@ -195,7 +195,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 10.7
       }
     ]
   },
@@ -203,7 +203,7 @@
     "id": "evaluation_hard_0009",
     "eq1_id": 38,
     "eq2_id": 4077,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.25,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -220,7 +220,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.68
+        "elapsed": 2.14
       }
     ]
   },
@@ -228,7 +228,7 @@
     "id": "evaluation_hard_0010",
     "eq1_id": 64,
     "eq2_id": 51,
-    "elapsed_seconds": 3.07,
+    "elapsed_seconds": 3.91,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -245,7 +245,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.37
       }
     ]
   },
@@ -253,7 +253,7 @@
     "id": "evaluation_hard_0011",
     "eq1_id": 38,
     "eq2_id": 4119,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.3,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -270,7 +270,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.68
+        "elapsed": 2.21
       }
     ]
   },
@@ -278,7 +278,7 @@
     "id": "evaluation_hard_0012",
     "eq1_id": 64,
     "eq2_id": 54,
-    "elapsed_seconds": 3.07,
+    "elapsed_seconds": 40.71,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -295,7 +295,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 38.1
       }
     ]
   },
@@ -303,7 +303,7 @@
     "id": "evaluation_hard_0013",
     "eq1_id": 38,
     "eq2_id": 4122,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 2.75,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -320,7 +320,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.65
+        "elapsed": 2.58
       }
     ]
   },
@@ -328,7 +328,7 @@
     "id": "evaluation_hard_0014",
     "eq1_id": 64,
     "eq2_id": 58,
-    "elapsed_seconds": 3.05,
+    "elapsed_seconds": 3.95,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -345,7 +345,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.41
       }
     ]
   },
@@ -353,7 +353,7 @@
     "id": "evaluation_hard_0015",
     "eq1_id": 38,
     "eq2_id": 4123,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.85,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -370,7 +370,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.68
+        "elapsed": 2.75
       }
     ]
   },
@@ -378,7 +378,7 @@
     "id": "evaluation_hard_0016",
     "eq1_id": 64,
     "eq2_id": 82,
-    "elapsed_seconds": 3.07,
+    "elapsed_seconds": 3.99,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -395,7 +395,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 1.45
       }
     ]
   },
@@ -403,7 +403,7 @@
     "id": "evaluation_hard_0017",
     "eq1_id": 38,
     "eq2_id": 4124,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.4,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 1], [1, 1, 1], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -420,7 +420,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.68
+        "elapsed": 2.3
       }
     ]
   },
@@ -428,7 +428,7 @@
     "id": "evaluation_hard_0018",
     "eq1_id": 64,
     "eq2_id": 120,
-    "elapsed_seconds": 3.07,
+    "elapsed_seconds": 13.87,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -445,7 +445,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 11.24
       }
     ]
   },
@@ -453,7 +453,7 @@
     "id": "evaluation_hard_0019",
     "eq1_id": 359,
     "eq2_id": 3915,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.49,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 0, 0], [1, 0, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -470,7 +470,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.33
       }
     ]
   },
@@ -478,7 +478,7 @@
     "id": "evaluation_hard_0020",
     "eq1_id": 64,
     "eq2_id": 158,
-    "elapsed_seconds": 3.08,
+    "elapsed_seconds": 10.63,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -495,7 +495,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 7.89
       }
     ]
   },
@@ -503,7 +503,7 @@
     "id": "evaluation_hard_0021",
     "eq1_id": 388,
     "eq2_id": 3288,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 25.02,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -520,7 +520,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 24.88
       }
     ]
   },
@@ -528,7 +528,7 @@
     "id": "evaluation_hard_0022",
     "eq1_id": 64,
     "eq2_id": 272,
-    "elapsed_seconds": 3.08,
+    "elapsed_seconds": 4.19,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -545,7 +545,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.45
       }
     ]
   },
@@ -553,7 +553,7 @@
     "id": "evaluation_hard_0023",
     "eq1_id": 388,
     "eq2_id": 3300,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 2.38,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -570,7 +570,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.66
+        "elapsed": 2.28
       }
     ]
   },
@@ -578,7 +578,7 @@
     "id": "evaluation_hard_0024",
     "eq1_id": 64,
     "eq2_id": 290,
-    "elapsed_seconds": 3.06,
+    "elapsed_seconds": 3.98,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -595,7 +595,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.45
       }
     ]
   },
@@ -603,7 +603,7 @@
     "id": "evaluation_hard_0025",
     "eq1_id": 388,
     "eq2_id": 3349,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.33,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -620,7 +620,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.23
       }
     ]
   },
@@ -628,7 +628,7 @@
     "id": "evaluation_hard_0026",
     "eq1_id": 67,
     "eq2_id": 119,
-    "elapsed_seconds": 3.06,
+    "elapsed_seconds": 4.01,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a).symm.trans (e1 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -645,7 +645,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.47
       }
     ]
   },
@@ -653,7 +653,7 @@
     "id": "evaluation_hard_0027",
     "eq1_id": 388,
     "eq2_id": 3367,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 2.7,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -670,7 +670,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.65
+        "elapsed": 2.59
       }
     ]
   },
@@ -678,7 +678,7 @@
     "id": "evaluation_hard_0028",
     "eq1_id": 67,
     "eq2_id": 275,
-    "elapsed_seconds": 3.07,
+    "elapsed_seconds": 10.66,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a).symm.trans (e1 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -695,7 +695,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 7.97
       }
     ]
   },
@@ -703,7 +703,7 @@
     "id": "evaluation_hard_0029",
     "eq1_id": 388,
     "eq2_id": 3397,
-    "elapsed_seconds": 1.79,
+    "elapsed_seconds": 2.31,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -720,7 +720,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.71
+        "elapsed": 2.2
       }
     ]
   },
@@ -728,7 +728,7 @@
     "id": "evaluation_hard_0030",
     "eq1_id": 2,
     "eq2_id": 4525,
-    "elapsed_seconds": 2.95,
+    "elapsed_seconds": 3.8,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a).trans (h b a).symm\n  exact singleton (x ◇ (y ◇ z)) ((y ◇ x) ◇ z)\n",
@@ -745,7 +745,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.4
       }
     ]
   },
@@ -753,7 +753,7 @@
     "id": "evaluation_hard_0031",
     "eq1_id": 388,
     "eq2_id": 3401,
-    "elapsed_seconds": 1.73,
+    "elapsed_seconds": 2.25,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -770,7 +770,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.66
+        "elapsed": 2.15
       }
     ]
   },
@@ -778,7 +778,7 @@
     "id": "evaluation_hard_0032",
     "eq1_id": 2,
     "eq2_id": 4673,
-    "elapsed_seconds": 2.95,
+    "elapsed_seconds": 10.02,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a).trans (h b a).symm\n  exact singleton ((x ◇ y) ◇ z) ((x ◇ z) ◇ y)\n",
@@ -795,7 +795,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 7.57
       }
     ]
   },
@@ -803,7 +803,7 @@
     "id": "evaluation_hard_0033",
     "eq1_id": 388,
     "eq2_id": 3426,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 2.36,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -820,7 +820,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.66
+        "elapsed": 2.24
       }
     ]
   },
@@ -828,7 +828,7 @@
     "id": "evaluation_hard_0034",
     "eq1_id": 2,
     "eq2_id": 4684,
-    "elapsed_seconds": 2.96,
+    "elapsed_seconds": 3.73,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a).trans (h b a).symm\n  exact singleton ((x ◇ y) ◇ z) ((z ◇ y) ◇ x)\n",
@@ -845,7 +845,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.3
       }
     ]
   },
@@ -853,7 +853,7 @@
     "id": "evaluation_hard_0035",
     "eq1_id": 1487,
     "eq2_id": 2415,
-    "elapsed_seconds": 11.02,
+    "elapsed_seconds": 14.36,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -870,7 +870,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 10.95
+        "elapsed": 14.23
       }
     ]
   },
@@ -878,7 +878,7 @@
     "id": "evaluation_hard_0036",
     "eq1_id": 15,
     "eq2_id": 4442,
-    "elapsed_seconds": 3.02,
+    "elapsed_seconds": 3.9,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X2 X1 X0)).symm.trans (e0 X0 X2 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y\n  exact singleton _ _\n",
@@ -895,7 +895,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.03
+        "elapsed": 1.39
       }
     ]
   },
@@ -903,7 +903,7 @@
     "id": "evaluation_hard_0037",
     "eq1_id": 1487,
     "eq2_id": 2728,
-    "elapsed_seconds": 10.87,
+    "elapsed_seconds": 13.9,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -920,7 +920,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 10.79
+        "elapsed": 13.77
       }
     ]
   },
@@ -928,7 +928,7 @@
     "id": "evaluation_hard_0038",
     "eq1_id": 33,
     "eq2_id": 18,
-    "elapsed_seconds": 3.04,
+    "elapsed_seconds": 3.9,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) (y ◇ (y ◇ z))\n",
@@ -945,7 +945,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 1.42
       }
     ]
   },
@@ -953,7 +953,7 @@
     "id": "evaluation_hard_0039",
     "eq1_id": 2126,
     "eq2_id": 1030,
-    "elapsed_seconds": 8.05,
+    "elapsed_seconds": 14.34,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -970,7 +970,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 7.98
+        "elapsed": 14.25
       }
     ]
   },
@@ -978,7 +978,7 @@
     "id": "evaluation_hard_0040",
     "eq1_id": 39,
     "eq2_id": 3989,
-    "elapsed_seconds": 3.78,
+    "elapsed_seconds": 7.23,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X0) := by\n    exact h X0 X1\n  intro x y z\n  have g0 : ((z ◇ (x ◇ x)) ◇ y) = (y ◇ y) := by\n    exact (e0 y (z ◇ (x ◇ x))).symm\n  have g1 : (y ◇ y) = (x ◇ y) := by\n    exact e0 y x\n  exact ((g0).trans g1).symm\n",
@@ -995,7 +995,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.86
       }
     ]
   },
@@ -1003,7 +1003,7 @@
     "id": "evaluation_hard_0041",
     "eq1_id": 2126,
     "eq2_id": 1042,
-    "elapsed_seconds": 8.15,
+    "elapsed_seconds": 30.91,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1020,7 +1020,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.08
+        "elapsed": 30.81
       }
     ]
   },
@@ -1028,7 +1028,7 @@
     "id": "evaluation_hard_0042",
     "eq1_id": 39,
     "eq2_id": 4360,
-    "elapsed_seconds": 6.51,
+    "elapsed_seconds": 27.11,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X0) := by\n    exact h X0 X1\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X2 ◇ X1) := by\n    exact (congrArg (fun q => q) (e0 X1 X0)).symm.trans (e0 X1 X2)\n  intro x y z w\n  have g0 : (x ◇ (y ◇ z)) = (x ◇ (w ◇ z)) := by\n    exact congrArg (fun q => (x ◇ q)) (e1 y z w)\n  exact g0\n",
@@ -1045,7 +1045,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 8.12
       }
     ]
   },
@@ -1053,7 +1053,7 @@
     "id": "evaluation_hard_0043",
     "eq1_id": 3965,
     "eq2_id": 3375,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.93,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1070,7 +1070,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.77
       }
     ]
   },
@@ -1078,7 +1078,7 @@
     "id": "evaluation_hard_0044",
     "eq1_id": 64,
     "eq2_id": 224,
-    "elapsed_seconds": 3.06,
+    "elapsed_seconds": 4.32,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X1 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X0 ◇ X1)))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X1 X0)).symm.trans (e2 X0 (X1 ◇ (X1 ◇ X0)))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -1095,7 +1095,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.5
       }
     ]
   },
@@ -1103,7 +1103,7 @@
     "id": "evaluation_hard_0045",
     "eq1_id": 4168,
     "eq2_id": 3367,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 2.31,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1120,7 +1120,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.2
       }
     ]
   },
@@ -1128,7 +1128,7 @@
     "id": "evaluation_hard_0046",
     "eq1_id": 67,
     "eq2_id": 83,
-    "elapsed_seconds": 3.1,
+    "elapsed_seconds": 3.91,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a).symm.trans (e1 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -1145,7 +1145,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.38
       }
     ]
   },
@@ -1153,7 +1153,7 @@
     "id": "evaluation_hard_0047",
     "eq1_id": 4168,
     "eq2_id": 3397,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.26,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1170,7 +1170,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.16
       }
     ]
   },
@@ -1178,7 +1178,7 @@
     "id": "evaluation_hard_0048",
     "eq1_id": 67,
     "eq2_id": 135,
-    "elapsed_seconds": 3.05,
+    "elapsed_seconds": 4.03,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a).symm.trans (e1 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -1195,7 +1195,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.47
       }
     ]
   },
@@ -1203,7 +1203,7 @@
     "id": "evaluation_hard_0049",
     "eq1_id": 4168,
     "eq2_id": 3405,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 2.35,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1220,7 +1220,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.65
+        "elapsed": 2.24
       }
     ]
   },
@@ -1228,7 +1228,7 @@
     "id": "evaluation_hard_0050",
     "eq1_id": 67,
     "eq2_id": 161,
-    "elapsed_seconds": 3.04,
+    "elapsed_seconds": 4.07,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a).symm.trans (e1 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -1245,7 +1245,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.49
       }
     ]
   },
@@ -1253,7 +1253,7 @@
     "id": "evaluation_hard_0051",
     "eq1_id": 4168,
     "eq2_id": 3422,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 2.34,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1270,7 +1270,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.64
+        "elapsed": 2.23
       }
     ]
   },
@@ -1278,7 +1278,7 @@
     "id": "evaluation_hard_0052",
     "eq1_id": 69,
     "eq2_id": 83,
-    "elapsed_seconds": 3.06,
+    "elapsed_seconds": 7.76,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X0))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X2) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X2)\n  have e2 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0))))).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a).trans (e2 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -1295,7 +1295,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 5.16
       }
     ]
   },
@@ -1303,7 +1303,7 @@
     "id": "evaluation_hard_0053",
     "eq1_id": 4168,
     "eq2_id": 3451,
-    "elapsed_seconds": 1.86,
+    "elapsed_seconds": 2.39,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 1, 0], [1, 1, 0], [1, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1320,7 +1320,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.78
+        "elapsed": 2.27
       }
     ]
   },
@@ -1328,7 +1328,7 @@
     "id": "evaluation_hard_0054",
     "eq1_id": 69,
     "eq2_id": 130,
-    "elapsed_seconds": 3.13,
+    "elapsed_seconds": 3.92,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X0))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X2) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X2)\n  have e2 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0))))).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a).trans (e2 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -1345,7 +1345,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.39
       }
     ]
   },
@@ -1353,7 +1353,7 @@
     "id": "evaluation_hard_0055",
     "eq1_id": 4409,
     "eq2_id": 4622,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 2.23,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1370,7 +1370,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.15
       }
     ]
   },
@@ -1378,7 +1378,7 @@
     "id": "evaluation_hard_0056",
     "eq1_id": 69,
     "eq2_id": 135,
-    "elapsed_seconds": 3.1,
+    "elapsed_seconds": 4.75,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X0))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X2) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X2)\n  have e2 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0))))).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a).trans (e2 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -1395,7 +1395,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.92
       }
     ]
   },
@@ -1403,7 +1403,7 @@
     "id": "evaluation_hard_0057",
     "eq1_id": 4446,
     "eq2_id": 3692,
-    "elapsed_seconds": 1.74,
+    "elapsed_seconds": 3.22,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 0, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1420,7 +1420,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 3.12
       }
     ]
   },
@@ -1428,7 +1428,7 @@
     "id": "evaluation_hard_0058",
     "eq1_id": 69,
     "eq2_id": 138,
-    "elapsed_seconds": 3.19,
+    "elapsed_seconds": 13.39,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X0))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X2) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X2)\n  have e2 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0))))).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a).trans (e2 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -1445,7 +1445,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.14
+        "elapsed": 7.25
       }
     ]
   },
@@ -1453,7 +1453,7 @@
     "id": "evaluation_hard_0059",
     "eq1_id": 4446,
     "eq2_id": 3700,
-    "elapsed_seconds": 1.8,
+    "elapsed_seconds": 6.67,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 0, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1470,7 +1470,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.7
+        "elapsed": 6.46
       }
     ]
   },
@@ -1478,7 +1478,7 @@
     "id": "evaluation_hard_0060",
     "eq1_id": 316,
     "eq2_id": 4351,
-    "elapsed_seconds": 7.87,
+    "elapsed_seconds": 25.87,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ (X1 ◇ X1)) := by\n    exact h X0 X1\n  have e1 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X1) := by\n    exact (congrArg (fun q => q) ((e0 X0 X0).symm)).symm.trans ((e0 X1 X0).symm)\n  intro x y z\n  have g0 : (x ◇ (y ◇ y)) = (x ◇ (x ◇ x)) := by\n    exact congrArg (fun q => (x ◇ q)) (e1 y x)\n  have g1 : (z ◇ (y ◇ y)) = (z ◇ (z ◇ z)) := by\n    exact congrArg (fun q => (z ◇ q)) (e1 y z)\n  have g2 : (z ◇ (z ◇ z)) = (x ◇ x) := by\n    exact (e0 x z).symm\n  have g3 : (x ◇ x) = (x ◇ (x ◇ x)) := by\n    exact e0 x x\n  exact (g0).trans (((g1).trans g2).trans g3).symm\n",
@@ -1495,7 +1495,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 9.64
       }
     ]
   },
@@ -1503,7 +1503,7 @@
     "id": "evaluation_hard_0061",
     "eq1_id": 4446,
     "eq2_id": 4497,
-    "elapsed_seconds": 1.72,
+    "elapsed_seconds": 6.51,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1520,7 +1520,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.65
+        "elapsed": 6.29
       }
     ]
   },
@@ -1528,7 +1528,7 @@
     "id": "evaluation_hard_0062",
     "eq1_id": 318,
     "eq2_id": 4374,
-    "elapsed_seconds": 5.67,
+    "elapsed_seconds": 19.21,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ X0) = (X1 ◇ (X2 ◇ X0)) := by\n    exact h X0 X1 X2\n  intro x y z w\n  have g0 : (x ◇ (y ◇ z)) = (z ◇ z) := by\n    exact (e0 z x y).symm\n  have g1 : (w ◇ (y ◇ z)) = (z ◇ z) := by\n    exact (e0 z w y).symm\n  exact (g0).trans (g1).symm\n",
@@ -1545,7 +1545,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 6.81
       }
     ]
   },
@@ -1553,7 +1553,7 @@
     "id": "evaluation_hard_0063",
     "eq1_id": 4446,
     "eq2_id": 4622,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.41,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1570,7 +1570,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.68
+        "elapsed": 2.3
       }
     ]
   },
@@ -1578,7 +1578,7 @@
     "id": "evaluation_hard_0064",
     "eq1_id": 328,
     "eq2_id": 4604,
-    "elapsed_seconds": 11.95,
+    "elapsed_seconds": 17.29,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ X1) = (X0 ◇ (X2 ◇ X0)) := by\n    exact h X0 X1 X2\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X0 ◇ X2) := by\n    exact (congrArg (fun q => q) ((e0 X0 X1 X0).symm)).symm.trans ((e0 X0 X2 X0).symm)\n  intro x y z w\n  have g0 : ((x ◇ z) ◇ w) = ((x ◇ z) ◇ y) := by\n    exact e1 (x ◇ z) w y\n  have g1 : ((x ◇ z) ◇ y) = ((x ◇ x) ◇ y) := by\n    exact congrArg (fun q => (q ◇ y)) (e1 x z x)\n  exact ((g0).trans g1).symm\n",
@@ -1595,7 +1595,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 3.31
       }
     ]
   },
@@ -1603,7 +1603,7 @@
     "id": "evaluation_hard_0065",
     "eq1_id": 4446,
     "eq2_id": 4656,
-    "elapsed_seconds": 1.77,
+    "elapsed_seconds": 2.21,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 0], [0, 2, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1620,7 +1620,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.69
+        "elapsed": 2.12
       }
     ]
   },
@@ -1628,7 +1628,7 @@
     "id": "evaluation_hard_0066",
     "eq1_id": 329,
     "eq2_id": 3338,
-    "elapsed_seconds": 9.26,
+    "elapsed_seconds": 11.67,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = (X0 ◇ X2) := by\n    exact (h X0 X2 X1).symm\n  intro x y z w\n  have g0 : (x ◇ (z ◇ (w ◇ y))) = (x ◇ (w ◇ y)) := by\n    exact e0 x z (w ◇ y)\n  have g1 : (x ◇ (w ◇ y)) = (x ◇ y) := by\n    exact e0 x w y\n  exact ((g0).trans g1).symm\n",
@@ -1645,7 +1645,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.35
       }
     ]
   },
@@ -1653,7 +1653,7 @@
     "id": "evaluation_hard_0067",
     "eq1_id": 4506,
     "eq2_id": 3314,
-    "elapsed_seconds": 1.75,
+    "elapsed_seconds": 2.27,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 0, 0], [1, 1, 0], [0, 0, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -1670,7 +1670,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.67
+        "elapsed": 2.16
       }
     ]
   },
@@ -1678,7 +1678,7 @@
     "id": "evaluation_hard_0068",
     "eq1_id": 336,
     "eq2_id": 347,
-    "elapsed_seconds": 5.22,
+    "elapsed_seconds": 6.85,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 : G) : (X0 ◇ X1) = (X1 ◇ (X1 ◇ X1)) := by\n    exact h X0 X1\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X2 ◇ X1) := by\n    exact (congrArg (fun q => q) ((e0 X0 X1).symm)).symm.trans ((e0 X2 X1).symm)\n  intro x y z\n  have g0 : (z ◇ (y ◇ y)) = (y ◇ (y ◇ y)) := by\n    exact e1 z (y ◇ y) y\n  have g1 : (y ◇ (y ◇ y)) = (x ◇ y) := by\n    exact (e0 x y).symm\n  exact ((g0).trans g1).symm\n",
@@ -1695,7 +1695,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.56
       }
     ]
   },
@@ -1703,7 +1703,7 @@
     "id": "evaluation_hard_0069",
     "eq1_id": 168,
     "eq2_id": 284,
-    "elapsed_seconds": 8.3,
+    "elapsed_seconds": 20.35,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1720,7 +1720,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.22
+        "elapsed": 20.23
       }
     ]
   },
@@ -1728,7 +1728,7 @@
     "id": "evaluation_hard_0070",
     "eq1_id": 59,
     "eq2_id": 830,
-    "elapsed_seconds": 3.17,
+    "elapsed_seconds": 3.94,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X1))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X2) X2 X1)).symm.trans (e0 X0 (X1 ◇ X2) X2)\n  intro x y z\n  have g0 : (x ◇ ((x ◇ y) ◇ (z ◇ z))) = x := by\n    exact e1 x (x ◇ y) (z ◇ z)\n  exact (g0).symm\n",
@@ -1745,7 +1745,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 1.31
       }
     ]
   },
@@ -1753,7 +1753,7 @@
     "id": "evaluation_hard_0071",
     "eq1_id": 168,
     "eq2_id": 341,
-    "elapsed_seconds": 8.15,
+    "elapsed_seconds": 10.2,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1770,7 +1770,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.08
+        "elapsed": 10.11
       }
     ]
   },
@@ -1778,7 +1778,7 @@
     "id": "evaluation_hard_0072",
     "eq1_id": 86,
     "eq2_id": 1009,
-    "elapsed_seconds": 11.32,
+    "elapsed_seconds": 12.2,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ X2))) = X2 := by\n    exact (h X2 X0 X1).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X2 ◇ X1) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X2 X0 X1)).symm.trans (e0 X0 X2 (X2 ◇ X1))\n  intro x y z w\n  have g0 : (y ◇ ((z ◇ w) ◇ (w ◇ x))) = (y ◇ (x ◇ (w ◇ x))) := by\n    exact congrArg (fun q => (y ◇ q)) (e1 (z ◇ w) (w ◇ x) x)\n  have g1 : (y ◇ (x ◇ (w ◇ x))) = (w ◇ (x ◇ (w ◇ x))) := by\n    exact e1 y (x ◇ (w ◇ x)) w\n  have g2 : (w ◇ (x ◇ (w ◇ x))) = x := by\n    exact e0 w x x\n  exact (((g0).trans g1).trans g2).symm\n",
@@ -1795,7 +1795,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.36
       }
     ]
   },
@@ -1803,7 +1803,7 @@
     "id": "evaluation_hard_0073",
     "eq1_id": 168,
     "eq2_id": 469,
-    "elapsed_seconds": 8.12,
+    "elapsed_seconds": 13.09,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1820,7 +1820,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.05
+        "elapsed": 12.99
       }
     ]
   },
@@ -1828,7 +1828,7 @@
     "id": "evaluation_hard_0074",
     "eq1_id": 112,
     "eq2_id": 421,
-    "elapsed_seconds": 3.14,
+    "elapsed_seconds": 5.8,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ X2) ◇ X2)) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X2 ◇ X3) ◇ X3))) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ ((X2 ◇ X3) ◇ X3)) X2 X3)).symm.trans (e0 X0 X1 ((X2 ◇ X3) ◇ X3))\n  have e2 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e1 X0 X1 X0 X0)\n  intro x y z\n  have g0 : (x ◇ (x ◇ (y ◇ (y ◇ z)))) = x := by\n    exact e2 x (x ◇ (y ◇ (y ◇ z)))\n  exact (g0).symm\n",
@@ -1845,7 +1845,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.6
       }
     ]
   },
@@ -1853,7 +1853,7 @@
     "id": "evaluation_hard_0075",
     "eq1_id": 168,
     "eq2_id": 483,
-    "elapsed_seconds": 8.13,
+    "elapsed_seconds": 10.18,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1870,7 +1870,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.06
+        "elapsed": 10.08
       }
     ]
   },
@@ -1878,7 +1878,7 @@
     "id": "evaluation_hard_0076",
     "eq1_id": 134,
     "eq2_id": 1275,
-    "elapsed_seconds": 3.16,
+    "elapsed_seconds": 4.02,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y\n  exact h x y (x ◇ x)\n",
@@ -1895,7 +1895,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.36
       }
     ]
   },
@@ -1903,7 +1903,7 @@
     "id": "evaluation_hard_0077",
     "eq1_id": 168,
     "eq2_id": 537,
-    "elapsed_seconds": 8.2,
+    "elapsed_seconds": 10.29,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1920,7 +1920,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.13
+        "elapsed": 10.19
       }
     ]
   },
@@ -1928,7 +1928,7 @@
     "id": "evaluation_hard_0078",
     "eq1_id": 134,
     "eq2_id": 3968,
-    "elapsed_seconds": 5.38,
+    "elapsed_seconds": 6.73,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ X2) ◇ X2)) = X2 := by\n    exact (h X2 X0 X1).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = ((X2 ◇ X1) ◇ X1) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X0 ◇ ((X2 ◇ X1) ◇ X1)) X2 X1)).symm.trans (e0 X0 X0 ((X2 ◇ X1) ◇ X1))\n  intro x y z\n  have g0 : ((y ◇ (y ◇ z)) ◇ y) = ((x ◇ y) ◇ y) := by\n    exact e1 (y ◇ (y ◇ z)) y x\n  have g1 : ((x ◇ y) ◇ y) = (x ◇ y) := by\n    exact (e1 x y x).symm\n  exact ((g0).trans g1).symm\n",
@@ -1945,7 +1945,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 1.38
       }
     ]
   },
@@ -1953,7 +1953,7 @@
     "id": "evaluation_hard_0079",
     "eq1_id": 168,
     "eq2_id": 577,
-    "elapsed_seconds": 8.26,
+    "elapsed_seconds": 10.29,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -1970,7 +1970,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.19
+        "elapsed": 10.19
       }
     ]
   },
@@ -1978,7 +1978,7 @@
     "id": "evaluation_hard_0080",
     "eq1_id": 154,
     "eq2_id": 2264,
-    "elapsed_seconds": 5.65,
+    "elapsed_seconds": 7.25,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 : G) : ((X0 ◇ X0) ◇ (X1 ◇ X1)) = X0 := by\n    exact (h X0 X1).symm\n  have e1 (X0 X1 : G) : ((X0 ◇ X0) ◇ X1) = X0 := by\n    exact (congrArg (fun q => ((X0 ◇ X0) ◇ q)) (e0 X1 X1)).symm.trans (e0 X0 (X1 ◇ X1))\n  have e2 (X0 X1 : G) : (X0 ◇ X1) = (X0 ◇ X0) := by\n    exact (congrArg (fun q => (q ◇ X1)) (e1 X0 (X0 ◇ X0))).symm.trans (e1 (X0 ◇ X0) X1)\n  intro x y\n  have g0 : ((x ◇ (y ◇ (y ◇ x))) ◇ y) = ((x ◇ x) ◇ y) := by\n    exact congrArg (fun q => (q ◇ y)) (e2 x (y ◇ (y ◇ x)))\n  have g1 : ((x ◇ x) ◇ y) = x := by\n    exact e1 x y\n  exact ((g0).trans g1).symm\n",
@@ -1995,7 +1995,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.03
+        "elapsed": 1.39
       }
     ]
   },
@@ -2003,7 +2003,7 @@
     "id": "evaluation_hard_0081",
     "eq1_id": 168,
     "eq2_id": 629,
-    "elapsed_seconds": 8.23,
+    "elapsed_seconds": 11.4,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2020,7 +2020,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.15
+        "elapsed": 11.3
       }
     ]
   },
@@ -2028,7 +2028,7 @@
     "id": "evaluation_hard_0082",
     "eq1_id": 172,
     "eq2_id": 1931,
-    "elapsed_seconds": 5.81,
+    "elapsed_seconds": 14.76,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ (X2 ◇ X1)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ X0))) = (X2 ◇ X0) := by\n    exact (congrArg (fun q => (q ◇ (X1 ◇ (X2 ◇ X0)))) (e0 X0 X0 X2)).symm.trans (e0 (X0 ◇ X0) (X2 ◇ X0) X1)\n  have e2 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X0) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X0 X1)).symm.trans (e1 X0 (X0 ◇ X0) X1)\n  intro x y\n  have g0 : ((y ◇ (y ◇ y)) ◇ (x ◇ x)) = ((y ◇ (x ◇ y)) ◇ (x ◇ x)) := by\n    exact congrArg (fun q => ((y ◇ q) ◇ (x ◇ x))) (e2 y x)\n  have g1 : ((y ◇ (x ◇ y)) ◇ (x ◇ x)) = ((x ◇ x) ◇ (x ◇ x)) := by\n    exact (e2 (x ◇ x) (y ◇ (x ◇ y))).symm\n  have g2 : ((x ◇ x) ◇ (x ◇ x)) = x := by\n    exact e0 x x x\n  exact (((g0).trans g1).trans g2).symm\n",
@@ -2045,7 +2045,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.74
       }
     ]
   },
@@ -2053,7 +2053,7 @@
     "id": "evaluation_hard_0083",
     "eq1_id": 168,
     "eq2_id": 644,
-    "elapsed_seconds": 8.27,
+    "elapsed_seconds": 15.18,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2070,7 +2070,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.19
+        "elapsed": 15.06
       }
     ]
   },
@@ -2078,7 +2078,7 @@
     "id": "evaluation_hard_0084",
     "eq1_id": 276,
     "eq2_id": 4542,
-    "elapsed_seconds": 5.0,
+    "elapsed_seconds": 7.36,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (((X0 ◇ X1) ◇ X2) ◇ X1) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (q ◇ X1)) (e0 X0 X0 X1)).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  intro x y z\n  have g0 : (x ◇ (y ◇ z)) = (x ◇ z) := by\n    exact congrArg (fun q => (x ◇ q)) (e1 y z)\n  have g1 : (x ◇ z) = z := by\n    exact e1 x z\n  have g2 : ((z ◇ x) ◇ z) = z := by\n    exact e1 (z ◇ x) z\n  exact ((g0).trans g1).trans (g2).symm\n",
@@ -2095,7 +2095,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.04
+        "elapsed": 1.38
       }
     ]
   },
@@ -2103,7 +2103,7 @@
     "id": "evaluation_hard_0085",
     "eq1_id": 168,
     "eq2_id": 646,
-    "elapsed_seconds": 8.29,
+    "elapsed_seconds": 11.33,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2120,7 +2120,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.22
+        "elapsed": 11.23
       }
     ]
   },
@@ -2128,7 +2128,7 @@
     "id": "evaluation_hard_0086",
     "eq1_id": 286,
     "eq2_id": 4452,
-    "elapsed_seconds": 3.13,
+    "elapsed_seconds": 6.98,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (((X0 ◇ X0) ◇ X1) ◇ X2) = X2 := by\n    exact (h X2 X0 X1).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (q ◇ X1)) (e0 X0 (X0 ◇ X0) X0)).symm.trans (e0 (X0 ◇ X0) X0 X1)\n  intro x y z\n  have g0 : (x ◇ (y ◇ x)) = (x ◇ x) := by\n    exact congrArg (fun q => (x ◇ q)) (e1 y x)\n  have g1 : (x ◇ x) = x := by\n    exact e1 x x\n  have g2 : ((z ◇ x) ◇ x) = x := by\n    exact e1 (z ◇ x) x\n  exact ((g0).trans g1).trans (g2).symm\n",
@@ -2145,7 +2145,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 2.72
       }
     ]
   },
@@ -2153,7 +2153,7 @@
     "id": "evaluation_hard_0087",
     "eq1_id": 168,
     "eq2_id": 649,
-    "elapsed_seconds": 8.15,
+    "elapsed_seconds": 41.89,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2170,7 +2170,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.08
+        "elapsed": 41.77
       }
     ]
   },
@@ -2178,7 +2178,7 @@
     "id": "evaluation_hard_0088",
     "eq1_id": 380,
     "eq2_id": 3718,
-    "elapsed_seconds": 5.09,
+    "elapsed_seconds": 28.34,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ X1) = ((X0 ◇ X2) ◇ X0) := by\n    exact h X0 X1 X2\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X0 ◇ X2) := by\n    exact (congrArg (fun q => q) ((e0 X0 X1 X0).symm)).symm.trans ((e0 X0 X2 X0).symm)\n  intro x y z\n  have g0 : ((x ◇ x) ◇ (z ◇ y)) = ((x ◇ x) ◇ x) := by\n    exact e1 (x ◇ x) (z ◇ y) x\n  have g1 : ((x ◇ x) ◇ x) = (x ◇ y) := by\n    exact (e0 x y x).symm\n  exact ((g0).trans g1).symm\n",
@@ -2195,32 +2195,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
-      }
-    ]
-  },
-  {
-    "id": "evaluation_hard_0089",
-    "eq1_id": 168,
-    "eq2_id": 650,
-    "elapsed_seconds": 8.03,
-    "solved": true,
-    "verdict": "false",
-    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
-    "llm_calls": 0,
-    "judge_calls": 1,
-    "log": [
-      {
-        "type": "judge",
-        "request": {
-          "verdict": "false",
-          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n"
-        },
-        "response": {
-          "status": "accepted",
-          "message": "certificate accepted"
-        },
-        "elapsed": 7.96
+        "elapsed": 9.13
       }
     ]
   },
@@ -2228,12 +2203,12 @@
     "id": "evaluation_hard_0090",
     "eq1_id": 431,
     "eq2_id": 1069,
-    "elapsed_seconds": 5.15,
+    "elapsed_seconds": 507.38,
     "solved": true,
     "verdict": "true",
-    "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X1 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0))\n  intro x y z w\n  have g0 : (x ◇ ((y ◇ (z ◇ w)) ◇ z)) = x := by\n    exact e1 x ((y ◇ (z ◇ w)) ◇ z)\n  exact (g0).symm\n",
+    "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X1 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    first | exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0)) | grind\n  intro x y z w\n  have g0 : (x ◇ ((y ◇ (z ◇ w)) ◇ z)) = x := by\n    first | exact e1 x ((y ◇ (z ◇ w)) ◇ z) | grind\n  first | exact (g0).symm | grind\n",
     "llm_calls": 0,
-    "judge_calls": 1,
+    "judge_calls": 2,
     "log": [
       {
         "type": "judge",
@@ -2242,10 +2217,22 @@
           "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X1 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0))\n  intro x y z w\n  have g0 : (x ◇ ((y ◇ (z ◇ w)) ◇ z)) = x := by\n    exact e1 x ((y ◇ (z ◇ w)) ◇ z)\n  exact (g0).symm\n"
         },
         "response": {
+          "status": "incorrect",
+          "message": "Lean verification timed out"
+        },
+        "elapsed": 377.29
+      },
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "true",
+          "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X1 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    first | exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0)) | grind\n  intro x y z w\n  have g0 : (x ◇ ((y ◇ (z ◇ w)) ◇ z)) = x := by\n    first | exact e1 x ((y ◇ (z ◇ w)) ◇ z) | grind\n  first | exact (g0).symm | grind\n"
+        },
+        "response": {
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 109.59
       }
     ]
   },
@@ -2253,7 +2240,7 @@
     "id": "evaluation_hard_0091",
     "eq1_id": 168,
     "eq2_id": 775,
-    "elapsed_seconds": 8.13,
+    "elapsed_seconds": 16.4,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2270,7 +2257,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.05
+        "elapsed": 15.99
       }
     ]
   },
@@ -2278,7 +2265,7 @@
     "id": "evaluation_hard_0092",
     "eq1_id": 431,
     "eq2_id": 2894,
-    "elapsed_seconds": 5.14,
+    "elapsed_seconds": 13.76,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X1 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0))\n  intro x y z w\n  have g0 : (((x ◇ (y ◇ z)) ◇ w) ◇ x) = ((x ◇ (y ◇ z)) ◇ w) := by\n    exact e1 ((x ◇ (y ◇ z)) ◇ w) x\n  have g1 : ((x ◇ (y ◇ z)) ◇ w) = ((x ◇ y) ◇ w) := by\n    exact congrArg (fun q => ((x ◇ q) ◇ w)) (e1 y z)\n  have g2 : ((x ◇ y) ◇ w) = (x ◇ w) := by\n    exact congrArg (fun q => (q ◇ w)) (e1 x y)\n  have g3 : (x ◇ w) = x := by\n    exact e1 x w\n  exact ((((g0).trans g1).trans g2).trans g3).symm\n",
@@ -2295,7 +2282,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 8.42
       }
     ]
   },
@@ -2303,7 +2290,7 @@
     "id": "evaluation_hard_0093",
     "eq1_id": 168,
     "eq2_id": 1203,
-    "elapsed_seconds": 8.36,
+    "elapsed_seconds": 11.64,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2320,7 +2307,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.28
+        "elapsed": 11.53
       }
     ]
   },
@@ -2328,7 +2315,7 @@
     "id": "evaluation_hard_0094",
     "eq1_id": 438,
     "eq2_id": 60,
-    "elapsed_seconds": 5.99,
+    "elapsed_seconds": 12.71,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ (X0 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 : G) : (X0 ◇ X0) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X0 X0)).symm.trans (e0 X0 X0 (X0 ◇ X0))\n  have e2 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e0 X1 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ (X1 ◇ X0)))\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 X1)).symm.trans (e2 X0 X1)\n  intro x y z\n  have g0 : (x ◇ (y ◇ (z ◇ z))) = x := by\n    exact e3 x (y ◇ (z ◇ z))\n  exact (g0).symm\n",
@@ -2345,7 +2332,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 6.3
       }
     ]
   },
@@ -2353,7 +2340,7 @@
     "id": "evaluation_hard_0095",
     "eq1_id": 168,
     "eq2_id": 1297,
-    "elapsed_seconds": 8.2,
+    "elapsed_seconds": 11.21,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2370,7 +2357,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.13
+        "elapsed": 11.09
       }
     ]
   },
@@ -2378,7 +2365,7 @@
     "id": "evaluation_hard_0096",
     "eq1_id": 447,
     "eq2_id": 4077,
-    "elapsed_seconds": 6.22,
+    "elapsed_seconds": 8.27,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X0 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X0)) ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ ((X1 ◇ (X2 ◇ X0)) ◇ q))) (e0 X2 X0 X1)).symm.trans (e0 X0 (X1 ◇ (X2 ◇ X0)) X2)\n  have e2 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 X1 X0 (X0 ◇ X1))).symm.trans (e0 X0 X1 (X0 ◇ ((X0 ◇ X1) ◇ X1)))\n  intro x y z\n  have g0 : (x ◇ x) = x := by\n    exact e2 x x\n  have g1 : (((x ◇ y) ◇ z) ◇ y) = ((x ◇ y) ◇ z) := by\n    exact e2 ((x ◇ y) ◇ z) y\n  have g2 : ((x ◇ y) ◇ z) = (x ◇ z) := by\n    exact congrArg (fun q => (q ◇ z)) (e2 x y)\n  have g3 : (x ◇ z) = x := by\n    exact e2 x z\n  exact (g0).trans (((g1).trans g2).trans g3).symm\n",
@@ -2395,7 +2382,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 1.47
       }
     ]
   },
@@ -2403,7 +2390,7 @@
     "id": "evaluation_hard_0097",
     "eq1_id": 168,
     "eq2_id": 1310,
-    "elapsed_seconds": 8.17,
+    "elapsed_seconds": 11.46,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2420,7 +2407,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.1
+        "elapsed": 11.28
       }
     ]
   },
@@ -2428,7 +2415,7 @@
     "id": "evaluation_hard_0098",
     "eq1_id": 448,
     "eq2_id": 3519,
-    "elapsed_seconds": 5.82,
+    "elapsed_seconds": 17.29,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X0 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X1 ◇ X0) X0)).symm.trans (e0 X0 X1 (X1 ◇ X0))\n  intro x y\n  have g0 : (x ◇ y) = x := by\n    exact e1 x y\n  have g1 : (x ◇ ((y ◇ x) ◇ y)) = x := by\n    exact e1 x ((y ◇ x) ◇ y)\n  exact (g0).trans (g1).symm\n",
@@ -2445,7 +2432,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.12
+        "elapsed": 10.53
       }
     ]
   },
@@ -2453,7 +2440,7 @@
     "id": "evaluation_hard_0099",
     "eq1_id": 168,
     "eq2_id": 1313,
-    "elapsed_seconds": 8.28,
+    "elapsed_seconds": 11.87,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2470,7 +2457,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.21
+        "elapsed": 11.75
       }
     ]
   },
@@ -2478,7 +2465,7 @@
     "id": "evaluation_hard_0100",
     "eq1_id": 451,
     "eq2_id": 642,
-    "elapsed_seconds": 7.01,
+    "elapsed_seconds": 11.61,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 (X1 ◇ X1))).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e1 X2 X1)).symm.trans (e0 X0 X1 X2)\n  intro x y\n  have g0 : (x ◇ (y ◇ ((y ◇ y) ◇ x))) = x := by\n    exact e2 x y ((y ◇ y) ◇ x)\n  exact (g0).symm\n",
@@ -2495,7 +2482,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.11
+        "elapsed": 4.01
       }
     ]
   },
@@ -2503,7 +2490,7 @@
     "id": "evaluation_hard_0101",
     "eq1_id": 168,
     "eq2_id": 1370,
-    "elapsed_seconds": 8.64,
+    "elapsed_seconds": 12.47,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2520,7 +2507,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.57
+        "elapsed": 12.37
       }
     ]
   },
@@ -2528,7 +2515,7 @@
     "id": "evaluation_hard_0102",
     "eq1_id": 451,
     "eq2_id": 660,
-    "elapsed_seconds": 7.04,
+    "elapsed_seconds": 9.14,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 (X1 ◇ X1))).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e1 X2 X1)).symm.trans (e0 X0 X1 X2)\n  intro x y z w\n  have g0 : (x ◇ (y ◇ ((z ◇ z) ◇ w))) = x := by\n    exact e2 x y ((z ◇ z) ◇ w)\n  exact (g0).symm\n",
@@ -2545,7 +2532,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.47
       }
     ]
   },
@@ -2553,7 +2540,7 @@
     "id": "evaluation_hard_0103",
     "eq1_id": 168,
     "eq2_id": 1376,
-    "elapsed_seconds": 8.54,
+    "elapsed_seconds": 11.08,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2570,7 +2557,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.46
+        "elapsed": 10.97
       }
     ]
   },
@@ -2578,7 +2565,7 @@
     "id": "evaluation_hard_0104",
     "eq1_id": 451,
     "eq2_id": 1433,
-    "elapsed_seconds": 7.03,
+    "elapsed_seconds": 12.18,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 (X1 ◇ X1))).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e1 X2 X1)).symm.trans (e0 X0 X1 X2)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e2 X1 X0 X0)).symm.trans (e2 X0 X1 (X0 ◇ X0))\n  intro x y z\n  have g0 : ((x ◇ x) ◇ (y ◇ (x ◇ z))) = (x ◇ x) := by\n    exact e3 (x ◇ x) (y ◇ (x ◇ z))\n  have g1 : (x ◇ x) = x := by\n    exact e3 x x\n  exact ((g0).trans g1).symm\n",
@@ -2595,7 +2582,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 4.59
       }
     ]
   },
@@ -2603,7 +2590,7 @@
     "id": "evaluation_hard_0105",
     "eq1_id": 168,
     "eq2_id": 1462,
-    "elapsed_seconds": 8.37,
+    "elapsed_seconds": 11.13,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2620,7 +2607,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.3
+        "elapsed": 11.02
       }
     ]
   },
@@ -2628,7 +2615,7 @@
     "id": "evaluation_hard_0106",
     "eq1_id": 451,
     "eq2_id": 2471,
-    "elapsed_seconds": 6.99,
+    "elapsed_seconds": 27.83,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 (X1 ◇ X1))).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e1 X2 X1)).symm.trans (e0 X0 X1 X2)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e2 X1 X0 X0)).symm.trans (e2 X0 X1 (X0 ◇ X0))\n  intro x y z\n  have g0 : ((x ◇ ((y ◇ y) ◇ y)) ◇ z) = (x ◇ ((y ◇ y) ◇ y)) := by\n    exact e3 (x ◇ ((y ◇ y) ◇ y)) z\n  have g1 : (x ◇ ((y ◇ y) ◇ y)) = (x ◇ (y ◇ y)) := by\n    exact congrArg (fun q => (x ◇ (q ◇ y))) (e3 y y)\n  have g2 : (x ◇ (y ◇ y)) = (x ◇ y) := by\n    exact congrArg (fun q => (x ◇ q)) (e3 y y)\n  have g3 : (x ◇ y) = x := by\n    exact e3 x y\n  exact ((((g0).trans g1).trans g2).trans g3).symm\n",
@@ -2645,7 +2632,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 15.11
       }
     ]
   },
@@ -2653,7 +2640,7 @@
     "id": "evaluation_hard_0107",
     "eq1_id": 168,
     "eq2_id": 1512,
-    "elapsed_seconds": 8.32,
+    "elapsed_seconds": 12.56,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2670,7 +2657,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.25
+        "elapsed": 12.45
       }
     ]
   },
@@ -2678,7 +2665,7 @@
     "id": "evaluation_hard_0108",
     "eq1_id": 451,
     "eq2_id": 4472,
-    "elapsed_seconds": 6.98,
+    "elapsed_seconds": 11.9,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X1)))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X1)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 (X1 ◇ X1))).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e1 X2 X1)).symm.trans (e0 X0 X1 X2)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e2 X1 X0 X0)).symm.trans (e2 X0 X1 (X0 ◇ X0))\n  intro x y\n  have g0 : (x ◇ (y ◇ y)) = (x ◇ y) := by\n    exact congrArg (fun q => (x ◇ q)) (e3 y y)\n  have g1 : (x ◇ y) = x := by\n    exact e3 x y\n  have g2 : ((x ◇ y) ◇ x) = (x ◇ y) := by\n    exact e3 (x ◇ y) x\n  have g3 : (x ◇ y) = x := by\n    exact e3 x y\n  exact ((g0).trans g1).trans ((g2).trans g3).symm\n",
@@ -2695,7 +2682,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 4.23
       }
     ]
   },
@@ -2703,7 +2690,7 @@
     "id": "evaluation_hard_0109",
     "eq1_id": 168,
     "eq2_id": 1618,
-    "elapsed_seconds": 8.51,
+    "elapsed_seconds": 11.36,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2720,7 +2707,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.44
+        "elapsed": 11.23
       }
     ]
   },
@@ -2728,7 +2715,7 @@
     "id": "evaluation_hard_0110",
     "eq1_id": 453,
     "eq2_id": 3731,
-    "elapsed_seconds": 3.37,
+    "elapsed_seconds": 4.47,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X1 ◇ X3)))) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 X1 X0)).symm.trans (e0 X0 X1 X0 (X0 ◇ X0))\n  intro x y z\n  have g0 : (x ◇ y) = x := by\n    exact e1 x y\n  have g1 : ((x ◇ z) ◇ (x ◇ x)) = (x ◇ z) := by\n    exact e1 (x ◇ z) (x ◇ x)\n  have g2 : (x ◇ z) = x := by\n    exact e1 x z\n  exact (g0).trans ((g1).trans g2).symm\n",
@@ -2745,7 +2732,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.52
       }
     ]
   },
@@ -2753,7 +2740,7 @@
     "id": "evaluation_hard_0111",
     "eq1_id": 168,
     "eq2_id": 1674,
-    "elapsed_seconds": 8.57,
+    "elapsed_seconds": 12.62,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2770,7 +2757,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.5
+        "elapsed": 12.11
       }
     ]
   },
@@ -2778,7 +2765,7 @@
     "id": "evaluation_hard_0112",
     "eq1_id": 460,
     "eq2_id": 2065,
-    "elapsed_seconds": 3.58,
+    "elapsed_seconds": 4.89,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X2)))) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X0) X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ X0) X0)\n  intro x y z\n  have g0 : (((x ◇ y) ◇ y) ◇ (y ◇ z)) = ((x ◇ y) ◇ y) := by\n    exact e1 ((x ◇ y) ◇ y) (y ◇ z)\n  have g1 : ((x ◇ y) ◇ y) = (x ◇ y) := by\n    exact congrArg (fun q => (q ◇ y)) (e1 x y)\n  have g2 : (x ◇ y) = x := by\n    exact e1 x y\n  exact (((g0).trans g1).trans g2).symm\n",
@@ -2795,7 +2782,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.51
       }
     ]
   },
@@ -2803,7 +2790,7 @@
     "id": "evaluation_hard_0113",
     "eq1_id": 168,
     "eq2_id": 1704,
-    "elapsed_seconds": 8.72,
+    "elapsed_seconds": 15.15,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2820,7 +2807,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.65
+        "elapsed": 15.04
       }
     ]
   },
@@ -2828,7 +2815,7 @@
     "id": "evaluation_hard_0114",
     "eq1_id": 461,
     "eq2_id": 847,
-    "elapsed_seconds": 3.38,
+    "elapsed_seconds": 11.86,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X3)))) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 (X0 ◇ X0) X0)).symm.trans (e0 X0 X1 X0 (X0 ◇ X0))\n  intro x y z\n  have g0 : (x ◇ ((y ◇ y) ◇ (y ◇ z))) = x := by\n    exact e1 x ((y ◇ y) ◇ (y ◇ z))\n  exact (g0).symm\n",
@@ -2845,7 +2832,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 8.89
       }
     ]
   },
@@ -2853,7 +2840,7 @@
     "id": "evaluation_hard_0115",
     "eq1_id": 168,
     "eq2_id": 1816,
-    "elapsed_seconds": 8.36,
+    "elapsed_seconds": 12.07,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2870,7 +2857,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.29
+        "elapsed": 11.95
       }
     ]
   },
@@ -2878,7 +2865,7 @@
     "id": "evaluation_hard_0116",
     "eq1_id": 469,
     "eq2_id": 4090,
-    "elapsed_seconds": 5.43,
+    "elapsed_seconds": 18.44,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ (X2 ◇ X1)))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X1)) ◇ X1)) = (X1 ◇ (X2 ◇ X1)) := by\n    exact (congrArg (fun q => (X0 ◇ ((X1 ◇ (X2 ◇ X1)) ◇ q))) (e0 (X1 ◇ (X2 ◇ X1)) X1 X2)).symm.trans (e0 X0 (X1 ◇ (X2 ◇ X1)) X1)\n  have e2 (X0 X1 X2 X3 : G) : (X0 ◇ X1) = ((X1 ◇ (X1 ◇ (X2 ◇ X1))) ◇ (X3 ◇ (X1 ◇ (X1 ◇ (X2 ◇ X1))))) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 ((X1 ◇ (X1 ◇ (X2 ◇ X1))) ◇ (X3 ◇ (X1 ◇ (X1 ◇ (X2 ◇ X1))))) X1 X2)).symm.trans (e1 X0 (X1 ◇ (X1 ◇ (X2 ◇ X1))) X3)\n  have e3 (X0 X1 X2 : G) : ((X0 ◇ (X0 ◇ (X1 ◇ X0))) ◇ X0) = (X2 ◇ X0) := by\n    exact (congrArg (fun q => ((X0 ◇ (X0 ◇ (X1 ◇ X0))) ◇ q)) (e0 X0 X0 X1)).symm.trans ((e2 X2 X0 X1 X0).symm)\n  have e4 (X0 X1 X2 : G) : (X0 ◇ X1) = (X2 ◇ X1) := by\n    exact (congrArg (fun q => q) (e3 X1 X0 X0)).symm.trans (e3 X1 X0 X2)\n  intro x y\n  have g0 : (((y ◇ y) ◇ x) ◇ x) = (x ◇ x) := by\n    exact e4 ((y ◇ y) ◇ x) x x\n  exact (g0).symm\n",
@@ -2895,7 +2882,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 12.81
       }
     ]
   },
@@ -2903,7 +2890,7 @@
     "id": "evaluation_hard_0117",
     "eq1_id": 168,
     "eq2_id": 2100,
-    "elapsed_seconds": 8.55,
+    "elapsed_seconds": 12.23,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2920,7 +2907,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.48
+        "elapsed": 12.11
       }
     ]
   },
@@ -2928,7 +2915,7 @@
     "id": "evaluation_hard_0118",
     "eq1_id": 492,
     "eq2_id": 4200,
-    "elapsed_seconds": 6.25,
+    "elapsed_seconds": 9.77,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X2 ◇ X0)))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : ((X0 ◇ X1) ◇ X0) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X0 X0)).symm.trans (e0 (X0 ◇ X1) X1 X0)\n  intro x y z\n  have g0 : (((z ◇ x) ◇ z) ◇ y) = (x ◇ y) := by\n    exact congrArg (fun q => (q ◇ y)) (e1 z x)\n  exact (g0).symm\n",
@@ -2945,7 +2932,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.11
+        "elapsed": 3.0
       }
     ]
   },
@@ -2953,7 +2940,7 @@
     "id": "evaluation_hard_0119",
     "eq1_id": 168,
     "eq2_id": 2253,
-    "elapsed_seconds": 8.45,
+    "elapsed_seconds": 16.19,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -2970,7 +2957,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.38
+        "elapsed": 16.02
       }
     ]
   },
@@ -2978,7 +2965,7 @@
     "id": "evaluation_hard_0120",
     "eq1_id": 579,
     "eq2_id": 3952,
-    "elapsed_seconds": 6.17,
+    "elapsed_seconds": 11.65,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X1 ◇ (X1 ◇ X2)))) = X2 := by\n    exact (h X2 X0 X1).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = (X2 ◇ X1) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X2 X2 X1)).symm.trans (e0 X0 X2 (X2 ◇ X1))\n  intro x y\n  have g0 : ((y ◇ (x ◇ x)) ◇ y) = (x ◇ y) := by\n    exact e1 (y ◇ (x ◇ x)) y x\n  exact (g0).symm\n",
@@ -2995,7 +2982,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.05
+        "elapsed": 4.93
       }
     ]
   },
@@ -3003,7 +2990,7 @@
     "id": "evaluation_hard_0121",
     "eq1_id": 168,
     "eq2_id": 2296,
-    "elapsed_seconds": 8.63,
+    "elapsed_seconds": 16.27,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3020,7 +3007,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.56
+        "elapsed": 16.15
       }
     ]
   },
@@ -3028,7 +3015,7 @@
     "id": "evaluation_hard_0122",
     "eq1_id": 631,
     "eq2_id": 3321,
-    "elapsed_seconds": 5.54,
+    "elapsed_seconds": 7.03,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ ((X0 ◇ X0) ◇ X2))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X0) X0)).symm.trans (e0 X0 X1 ((X1 ◇ X1) ◇ X0))\n  intro x y z\n  have g0 : (x ◇ y) = x := by\n    exact e1 x y\n  have g1 : (x ◇ (y ◇ (z ◇ x))) = x := by\n    exact e1 x (y ◇ (z ◇ x))\n  exact (g0).trans (g1).symm\n",
@@ -3045,7 +3032,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 1.36
       }
     ]
   },
@@ -3053,7 +3040,7 @@
     "id": "evaluation_hard_0123",
     "eq1_id": 168,
     "eq2_id": 2428,
-    "elapsed_seconds": 8.42,
+    "elapsed_seconds": 10.7,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3070,7 +3057,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.35
+        "elapsed": 10.61
       }
     ]
   },
@@ -3078,7 +3065,7 @@
     "id": "evaluation_hard_0124",
     "eq1_id": 634,
     "eq2_id": 624,
-    "elapsed_seconds": 5.09,
+    "elapsed_seconds": 6.32,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ ((X0 ◇ X1) ◇ X2))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X1) X0)).symm.trans (e0 X0 X1 ((X1 ◇ (X0 ◇ X1)) ◇ X0))\n  intro x y z\n  have g0 : (x ◇ (x ◇ ((y ◇ y) ◇ z))) = x := by\n    exact e1 x (x ◇ ((y ◇ y) ◇ z))\n  exact (g0).symm\n",
@@ -3095,7 +3082,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 1.32
       }
     ]
   },
@@ -3103,7 +3090,7 @@
     "id": "evaluation_hard_0125",
     "eq1_id": 168,
     "eq2_id": 2589,
-    "elapsed_seconds": 8.81,
+    "elapsed_seconds": 10.79,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3120,7 +3107,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.74
+        "elapsed": 10.69
       }
     ]
   },
@@ -3128,7 +3115,7 @@
     "id": "evaluation_hard_0126",
     "eq1_id": 634,
     "eq2_id": 651,
-    "elapsed_seconds": 5.32,
+    "elapsed_seconds": 6.52,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ ((X0 ◇ X1) ◇ X2))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X1) X0)).symm.trans (e0 X0 X1 ((X1 ◇ (X0 ◇ X1)) ◇ X0))\n  intro x y z\n  have g0 : (x ◇ (y ◇ ((z ◇ x) ◇ z))) = x := by\n    exact e1 x (y ◇ ((z ◇ x) ◇ z))\n  exact (g0).symm\n",
@@ -3145,7 +3132,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.14
+        "elapsed": 1.45
       }
     ]
   },
@@ -3153,7 +3140,7 @@
     "id": "evaluation_hard_0127",
     "eq1_id": 168,
     "eq2_id": 2598,
-    "elapsed_seconds": 8.65,
+    "elapsed_seconds": 12.13,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3170,7 +3157,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.57
+        "elapsed": 12.0
       }
     ]
   },
@@ -3178,7 +3165,7 @@
     "id": "evaluation_hard_0128",
     "eq1_id": 634,
     "eq2_id": 3872,
-    "elapsed_seconds": 5.13,
+    "elapsed_seconds": 7.38,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ ((X0 ◇ X1) ◇ X2))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X1) X0)).symm.trans (e0 X0 X1 ((X1 ◇ (X0 ◇ X1)) ◇ X0))\n  intro x y z\n  have g0 : (x ◇ x) = x := by\n    exact e1 x x\n  have g1 : ((x ◇ (y ◇ y)) ◇ z) = (x ◇ (y ◇ y)) := by\n    exact e1 (x ◇ (y ◇ y)) z\n  have g2 : (x ◇ (y ◇ y)) = (x ◇ y) := by\n    exact congrArg (fun q => (x ◇ q)) (e1 y y)\n  have g3 : (x ◇ y) = x := by\n    exact e1 x y\n  exact (g0).trans (((g1).trans g2).trans g3).symm\n",
@@ -3195,7 +3182,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.4
       }
     ]
   },
@@ -3203,7 +3190,7 @@
     "id": "evaluation_hard_0129",
     "eq1_id": 168,
     "eq2_id": 2726,
-    "elapsed_seconds": 8.46,
+    "elapsed_seconds": 15.08,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3220,7 +3207,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.39
+        "elapsed": 14.98
       }
     ]
   },
@@ -3228,7 +3215,7 @@
     "id": "evaluation_hard_0130",
     "eq1_id": 638,
     "eq2_id": 376,
-    "elapsed_seconds": 5.18,
+    "elapsed_seconds": 12.21,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X0 ◇ X2) ◇ X3))) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X0 ◇ X0) X0 X0)).symm.trans (e0 X0 X1 X0 ((X1 ◇ X0) ◇ X0))\n  intro x y z\n  have g0 : (x ◇ y) = x := by\n    exact e1 x y\n  have g1 : ((x ◇ x) ◇ z) = (x ◇ x) := by\n    exact e1 (x ◇ x) z\n  have g2 : (x ◇ x) = x := by\n    exact e1 x x\n  exact (g0).trans ((g1).trans g2).symm\n",
@@ -3245,7 +3232,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.74
       }
     ]
   },
@@ -3253,7 +3240,7 @@
     "id": "evaluation_hard_0131",
     "eq1_id": 168,
     "eq2_id": 2740,
-    "elapsed_seconds": 8.31,
+    "elapsed_seconds": 15.11,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3270,7 +3257,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.24
+        "elapsed": 15.0
       }
     ]
   },
@@ -3278,7 +3265,7 @@
     "id": "evaluation_hard_0132",
     "eq1_id": 644,
     "eq2_id": 1045,
-    "elapsed_seconds": 11.25,
+    "elapsed_seconds": 15.48,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ ((X1 ◇ X1) ◇ X2))) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X1 ◇ X1) X0)).symm.trans (e0 X0 X1 (((X1 ◇ X1) ◇ (X1 ◇ X1)) ◇ X0))\n  intro x y\n  have g0 : (x ◇ ((y ◇ (y ◇ x)) ◇ x)) = x := by\n    exact e1 x ((y ◇ (y ◇ x)) ◇ x)\n  exact (g0).symm\n",
@@ -3295,7 +3282,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.1
+        "elapsed": 1.75
       }
     ]
   },
@@ -3303,7 +3290,7 @@
     "id": "evaluation_hard_0133",
     "eq1_id": 168,
     "eq2_id": 2765,
-    "elapsed_seconds": 8.42,
+    "elapsed_seconds": 13.91,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -3320,7 +3307,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 8.34
+        "elapsed": 13.79
       }
     ]
   },
@@ -3328,7 +3315,7 @@
     "id": "evaluation_hard_0134",
     "eq1_id": 648,
     "eq2_id": 1669,
-    "elapsed_seconds": 3.27,
+    "elapsed_seconds": 5.99,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X1 ◇ X2) ◇ X3))) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X1 ◇ X0) X0 X0)).symm.trans (e0 X0 X1 X0 (((X1 ◇ X0) ◇ X0) ◇ X0))\n  intro x y z\n  have g0 : ((x ◇ y) ◇ ((z ◇ y) ◇ y)) = (x ◇ y) := by\n    exact e1 (x ◇ y) ((z ◇ y) ◇ y)\n  have g1 : (x ◇ y) = x := by\n    exact e1 x y\n  exact ((g0).trans g1).symm\n",
@@ -3345,7 +3332,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 1.79
       }
     ]
   },
@@ -3353,7 +3340,7 @@
     "id": "evaluation_hard_0135",
     "eq1_id": 106,
     "eq2_id": 2480,
-    "elapsed_seconds": 1.71,
+    "elapsed_seconds": 2.77,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3370,7 +3357,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.64
+        "elapsed": 2.64
       }
     ]
   },
@@ -3378,7 +3365,7 @@
     "id": "evaluation_hard_0136",
     "eq1_id": 91,
     "eq2_id": 2119,
-    "elapsed_seconds": 3.12,
+    "elapsed_seconds": 6.29,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z w\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) (((y ◇ x) ◇ z) ◇ (w ◇ x))\n",
@@ -3395,7 +3382,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 2.39
       }
     ]
   },
@@ -3403,7 +3390,7 @@
     "id": "evaluation_hard_0137",
     "eq1_id": 125,
     "eq2_id": 1571,
-    "elapsed_seconds": 1.8,
+    "elapsed_seconds": 4.18,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[2, 0, 1], [0, 1, 2], [1, 2, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -3420,7 +3407,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.72
+        "elapsed": 4.01
       }
     ]
   },
@@ -3428,7 +3415,7 @@
     "id": "evaluation_hard_0138",
     "eq1_id": 478,
     "eq2_id": 456,
-    "elapsed_seconds": 3.15,
+    "elapsed_seconds": 8.54,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X0 ◇ X2)))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : (X0 ◇ (X1 ◇ X0)) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ (X1 ◇ q))) (e0 X0 X0 X0)).symm.trans (e0 X0 X1 (X0 ◇ (X0 ◇ X0)))\n  have e2 (X0 X1 : G) : (X0 ◇ X0) = (X0 ◇ X1) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 (X0 ◇ X1) X0)).symm.trans (e0 X0 (X0 ◇ X1) X1)\n  have e3 (X0 X1 : G) : (X0 ◇ X0) = X1 := by\n    exact (congrArg (fun q => q) ((e2 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0)))).symm)).symm.trans (e0 X0 X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e3 a a).symm.trans (e3 a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3445,7 +3432,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 3.39
       }
     ]
   },
@@ -3453,7 +3440,7 @@
     "id": "evaluation_hard_0139",
     "eq1_id": 130,
     "eq2_id": 4120,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 4.95,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3470,7 +3457,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.62
+        "elapsed": 4.8
       }
     ]
   },
@@ -3478,7 +3465,7 @@
     "id": "evaluation_hard_0140",
     "eq1_id": 480,
     "eq2_id": 2478,
-    "elapsed_seconds": 3.17,
+    "elapsed_seconds": 14.47,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X0 ◇ (X2 ◇ X0)))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : ((X0 ◇ X1) ◇ (X0 ◇ X1)) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 (X0 ◇ X1) X0)).symm.trans (e0 (X0 ◇ X1) X1 X1)\n  have e2 (X0 X1 : G) : (X0 ◇ ((X1 ◇ X0) ◇ (X1 ◇ X0))) = (X1 ◇ X0) := by\n    exact (congrArg (fun q => (q ◇ ((X1 ◇ X0) ◇ (X1 ◇ X0)))) (e1 X1 X0)).symm.trans (e1 (X1 ◇ X0) (X1 ◇ X0))\n  have e3 (X0 X1 : G) : (X0 ◇ X0) = (X1 ◇ X0) := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 X1 X0)).symm.trans (e2 X0 X1)\n  have e4 (X0 X1 X2 : G) : (X0 ◇ ((X0 ◇ (X1 ◇ X0)) ◇ (X0 ◇ (X1 ◇ X0)))) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) ((e3 (X0 ◇ (X1 ◇ X0)) X2).symm)).symm.trans (e0 X0 X2 X1)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a a).symm.trans (e4 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3495,7 +3482,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 6.51
       }
     ]
   },
@@ -3503,7 +3490,7 @@
     "id": "evaluation_hard_0141",
     "eq1_id": 655,
     "eq2_id": 4522,
-    "elapsed_seconds": 1.68,
+    "elapsed_seconds": 9.79,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3520,7 +3507,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.61
+        "elapsed": 9.6
       }
     ]
   },
@@ -3528,7 +3515,7 @@
     "id": "evaluation_hard_0142",
     "eq1_id": 488,
     "eq2_id": 2848,
-    "elapsed_seconds": 3.18,
+    "elapsed_seconds": 32.31,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X0 ◇ X0)))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 : G) : ((X0 ◇ X0) ◇ X1) = X0 := by\n    exact (congrArg (fun q => ((X0 ◇ X0) ◇ q)) (e0 X0 X1 (X0 ◇ X0))).symm.trans (e0 (X0 ◇ X0) X0 X1)\n  have e2 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 (X1 ◇ (X0 ◇ ((X0 ◇ X0) ◇ (X0 ◇ X0)))))).symm.trans (e0 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a).trans (e2 b a).symm\n  intro x y\n  exact singleton _ _\n",
@@ -3545,7 +3532,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 25.5
       }
     ]
   },
@@ -3553,7 +3540,7 @@
     "id": "evaluation_hard_0143",
     "eq1_id": 676,
     "eq2_id": 3449,
-    "elapsed_seconds": 1.7,
+    "elapsed_seconds": 12.14,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3570,7 +3557,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.63
+        "elapsed": 11.97
       }
     ]
   },
@@ -3578,7 +3565,7 @@
     "id": "evaluation_hard_0144",
     "eq1_id": 539,
     "eq2_id": 2463,
-    "elapsed_seconds": 3.17,
+    "elapsed_seconds": 14.63,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X2 ◇ X1)))) = X2 := by\n    exact (h X2 X0 X1).symm\n  have e1 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X1) X1 X1)).symm.trans (e0 X0 (X1 ◇ X1) X1)\n  have e2 (X0 X1 : G) : (X0 ◇ (X1 ◇ (X1 ◇ X0))) = X1 := by\n    exact (congrArg (fun q => q) (e1 X0 (X0 ◇ (X1 ◇ (X1 ◇ X0))))).symm.trans (e0 X0 X0 X1)\n  have e3 (X0 X1 : G) : (X0 ◇ (X0 ◇ X1)) = X0 := by\n    exact ((congrArg (fun q => q) (e2 X1 X0)).symm.trans (e1 X1 (X0 ◇ (X0 ◇ X1)))).symm\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 (X1 ◇ (X1 ◇ X0)))).symm.trans (e0 X0 X0 X1)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -3595,7 +3582,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 10.71
       }
     ]
   },
@@ -3603,7 +3590,7 @@
     "id": "evaluation_hard_0145",
     "eq1_id": 695,
     "eq2_id": 3342,
-    "elapsed_seconds": 2.07,
+    "elapsed_seconds": 12.67,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 4) := {\n    op := finOpTable \"[[0, 2, 1, 3], [2, 0, 3, 1], [1, 3, 0, 2], [3, 1, 2, 0]]\"\n  }\n  refine ⟨Fin 4, m, ?_⟩\n  decideFin!\n",
@@ -3620,7 +3607,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.94
+        "elapsed": 12.44
       }
     ]
   },
@@ -3628,7 +3615,7 @@
     "id": "evaluation_hard_0146",
     "eq1_id": 550,
     "eq2_id": 2385,
-    "elapsed_seconds": 3.24,
+    "elapsed_seconds": 14.41,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X0)))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 X3 : G) : ((X0 ◇ X1) ◇ X2) = X3 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X3 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X3 X2)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a a).symm.trans (e1 a a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3645,7 +3632,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 10.43
       }
     ]
   },
@@ -3653,7 +3640,7 @@
     "id": "evaluation_hard_0147",
     "eq1_id": 746,
     "eq2_id": 1224,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 2.52,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3670,7 +3657,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.62
+        "elapsed": 2.4
       }
     ]
   },
@@ -3678,7 +3665,7 @@
     "id": "evaluation_hard_0148",
     "eq1_id": 552,
     "eq2_id": 1563,
-    "elapsed_seconds": 3.13,
+    "elapsed_seconds": 9.67,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X3)))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X1)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X2 (X1 ◇ X1) X1)).symm.trans (e0 X0 X0 X2 (X1 ◇ X1))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -3695,7 +3682,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 7.02
       }
     ]
   },
@@ -3703,7 +3690,7 @@
     "id": "evaluation_hard_0149",
     "eq1_id": 759,
     "eq2_id": 633,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 2.6,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3720,7 +3707,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.62
+        "elapsed": 2.48
       }
     ]
   },
@@ -3728,7 +3715,7 @@
     "id": "evaluation_hard_0150",
     "eq1_id": 552,
     "eq2_id": 1600,
-    "elapsed_seconds": 3.14,
+    "elapsed_seconds": 9.13,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X3)))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X1)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X2 (X1 ◇ X1) X1)).symm.trans (e0 X0 X0 X2 (X1 ◇ X1))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -3745,7 +3732,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 6.45
       }
     ]
   },
@@ -3753,7 +3740,7 @@
     "id": "evaluation_hard_0151",
     "eq1_id": 962,
     "eq2_id": 3423,
-    "elapsed_seconds": 1.7,
+    "elapsed_seconds": 2.66,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3770,7 +3757,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.63
+        "elapsed": 2.55
       }
     ]
   },
@@ -3778,7 +3765,7 @@
     "id": "evaluation_hard_0152",
     "eq1_id": 553,
     "eq2_id": 2292,
-    "elapsed_seconds": 3.34,
+    "elapsed_seconds": 12.02,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 X4 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X4)))) = X2 := by\n    exact (h X2 X0 X1 X3 X4).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 X2 X1 X0 X0)).symm.trans (e0 X0 X0 X2 X1 (X0 ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3795,7 +3782,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.06
+        "elapsed": 9.1
       }
     ]
   },
@@ -3803,7 +3790,7 @@
     "id": "evaluation_hard_0153",
     "eq1_id": 1101,
     "eq2_id": 4389,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 3.93,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3820,7 +3807,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.62
+        "elapsed": 3.77
       }
     ]
   },
@@ -3828,7 +3815,7 @@
     "id": "evaluation_hard_0154",
     "eq1_id": 580,
     "eq2_id": 2850,
-    "elapsed_seconds": 3.19,
+    "elapsed_seconds": 4.11,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) (((x ◇ (x ◇ x)) ◇ y) ◇ y)\n",
@@ -3845,7 +3832,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.1
+        "elapsed": 1.41
       }
     ]
   },
@@ -3853,7 +3840,7 @@
     "id": "evaluation_hard_0155",
     "eq1_id": 1133,
     "eq2_id": 3335,
-    "elapsed_seconds": 1.68,
+    "elapsed_seconds": 2.22,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3870,7 +3857,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.61
+        "elapsed": 2.07
       }
     ]
   },
@@ -3878,7 +3865,7 @@
     "id": "evaluation_hard_0156",
     "eq1_id": 589,
     "eq2_id": 2191,
-    "elapsed_seconds": 3.18,
+    "elapsed_seconds": 4.1,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X3 ◇ X0)))) = X3 := by\n    exact (h X3 X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X0) = X2 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X1 X0 X2 X0)).symm.trans (e0 (X0 ◇ X1) X1 X0 X2)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -3895,7 +3882,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.4
       }
     ]
   },
@@ -3903,7 +3890,7 @@
     "id": "evaluation_hard_0157",
     "eq1_id": 1276,
     "eq2_id": 4431,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 2.14,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3920,7 +3907,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.62
+        "elapsed": 2.02
       }
     ]
   },
@@ -3928,7 +3915,7 @@
     "id": "evaluation_hard_0158",
     "eq1_id": 675,
     "eq2_id": 3717,
-    "elapsed_seconds": 3.12,
+    "elapsed_seconds": 4.05,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X1 ◇ X2) ◇ X3))) = X1 := by\n    exact (h X1 X0 X2 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 (X1 ◇ X2) X0 X0)).symm.trans (e0 X0 X1 X2 (((X1 ◇ X2) ◇ X0) ◇ X0))\n  have e2 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X2 X1 X0 X0)).symm.trans (e1 X0 X2 (X1 ◇ ((X1 ◇ X0) ◇ X0)))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a a).symm.trans (e2 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3945,7 +3932,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.49
       }
     ]
   },
@@ -3953,7 +3940,7 @@
     "id": "evaluation_hard_0159",
     "eq1_id": 1307,
     "eq2_id": 3625,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 2.31,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -3970,7 +3957,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.6
+        "elapsed": 2.21
       }
     ]
   },
@@ -3978,7 +3965,7 @@
     "id": "evaluation_hard_0160",
     "eq1_id": 700,
     "eq2_id": 911,
-    "elapsed_seconds": 3.14,
+    "elapsed_seconds": 4.21,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X2 ◇ X3) ◇ X2))) = X1 := by\n    exact (h X1 X0 X2 X3).symm\n  have e1 (X0 X1 X2 X3 X4 : G) : (X0 ◇ (((X1 ◇ X2) ◇ X1) ◇ X3)) = X4 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X4 (((X1 ◇ X2) ◇ X1) ◇ X3) X1 X2)).symm.trans (e0 X0 X4 ((X1 ◇ X2) ◇ X1) X3)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a a a).symm.trans (e1 a a a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -3995,7 +3982,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.09
+        "elapsed": 1.6
       }
     ]
   },
@@ -4003,7 +3990,7 @@
     "id": "evaluation_hard_0161",
     "eq1_id": 1323,
     "eq2_id": 2469,
-    "elapsed_seconds": 1.69,
+    "elapsed_seconds": 2.31,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4020,7 +4007,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.61
+        "elapsed": 2.21
       }
     ]
   },
@@ -4028,7 +4015,7 @@
     "id": "evaluation_hard_0162",
     "eq1_id": 743,
     "eq2_id": 2903,
-    "elapsed_seconds": 3.2,
+    "elapsed_seconds": 3.84,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X2 ◇ X2) ◇ X3))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 (X2 ◇ X2) X1 X0)).symm.trans (e0 X0 X0 X2 ((X1 ◇ X1) ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y\n  exact singleton _ _\n",
@@ -4045,7 +4032,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.12
+        "elapsed": 1.33
       }
     ]
   },
@@ -4053,7 +4040,7 @@
     "id": "evaluation_hard_0163",
     "eq1_id": 1435,
     "eq2_id": 1181,
-    "elapsed_seconds": 2.07,
+    "elapsed_seconds": 2.09,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [0, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4070,7 +4057,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.99
+        "elapsed": 2.0
       }
     ]
   },
@@ -4078,7 +4065,7 @@
     "id": "evaluation_hard_0164",
     "eq1_id": 777,
     "eq2_id": 500,
-    "elapsed_seconds": 3.3,
+    "elapsed_seconds": 4.39,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (X1 ◇ ((X1 ◇ X2) ◇ X3))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X0 (X0 ◇ X2) X1 X0)).symm.trans (e0 X0 X0 X2 (((X0 ◇ X2) ◇ X1) ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y\n  exact singleton _ _\n",
@@ -4095,7 +4082,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.2
+        "elapsed": 1.49
       }
     ]
   },
@@ -4103,7 +4090,7 @@
     "id": "evaluation_hard_0165",
     "eq1_id": 1453,
     "eq2_id": 1434,
-    "elapsed_seconds": 1.96,
+    "elapsed_seconds": 2.47,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[2, 0, 2], [1, 1, 1], [0, 2, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -4120,7 +4107,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.87
+        "elapsed": 2.35
       }
     ]
   },
@@ -4128,7 +4115,7 @@
     "id": "evaluation_hard_0166",
     "eq1_id": 781,
     "eq2_id": 120,
-    "elapsed_seconds": 3.34,
+    "elapsed_seconds": 4.82,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a a).trans (h b a a a).symm\n  exact singleton (x) (y ◇ ((x ◇ z) ◇ x))\n",
@@ -4145,7 +4132,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.27
+        "elapsed": 1.64
       }
     ]
   },
@@ -4153,7 +4140,7 @@
     "id": "evaluation_hard_0167",
     "eq1_id": 1460,
     "eq2_id": 3542,
-    "elapsed_seconds": 2.0,
+    "elapsed_seconds": 2.85,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[2, 0, 2], [1, 1, 1], [0, 2, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -4170,7 +4157,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.89
+        "elapsed": 2.72
       }
     ]
   },
@@ -4178,7 +4165,7 @@
     "id": "evaluation_hard_0168",
     "eq1_id": 781,
     "eq2_id": 130,
-    "elapsed_seconds": 5.22,
+    "elapsed_seconds": 4.62,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a a).trans (h b a a a).symm\n  exact singleton (x) (y ◇ ((y ◇ z) ◇ x))\n",
@@ -4195,7 +4182,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 3.14
+        "elapsed": 1.77
       }
     ]
   },
@@ -4203,7 +4190,7 @@
     "id": "evaluation_hard_0169",
     "eq1_id": 1519,
     "eq2_id": 4478,
-    "elapsed_seconds": 1.88,
+    "elapsed_seconds": 2.76,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4220,7 +4207,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.79
+        "elapsed": 2.66
       }
     ]
   },
@@ -4228,7 +4215,7 @@
     "id": "evaluation_hard_0170",
     "eq1_id": 798,
     "eq2_id": 1598,
-    "elapsed_seconds": 5.27,
+    "elapsed_seconds": 4.86,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z w\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a a).trans (h b a a a).symm\n  exact singleton (x) ((y ◇ z) ◇ (z ◇ (w ◇ x)))\n",
@@ -4245,7 +4232,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 3.14
+        "elapsed": 1.86
       }
     ]
   },
@@ -4253,7 +4240,7 @@
     "id": "evaluation_hard_0171",
     "eq1_id": 1521,
     "eq2_id": 3278,
-    "elapsed_seconds": 2.0,
+    "elapsed_seconds": 2.58,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 2, 0], [1, 2, 0], [1, 2, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -4270,7 +4257,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.9
+        "elapsed": 2.45
       }
     ]
   },
@@ -4278,7 +4265,7 @@
     "id": "evaluation_hard_0172",
     "eq1_id": 913,
     "eq2_id": 134,
-    "elapsed_seconds": 3.42,
+    "elapsed_seconds": 5.29,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X0 ◇ X1) ◇ (X2 ◇ X0))) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 X3 : G) : ((X0 ◇ X1) ◇ (X2 ◇ X0)) = (X0 ◇ (X1 ◇ (X3 ◇ X0))) := by\n    exact ((congrArg (fun q => (X0 ◇ (q ◇ (X3 ◇ X0)))) (e0 X0 X1 X2)).symm.trans (e0 X0 ((X0 ◇ X1) ◇ (X2 ◇ X0)) X3)).symm\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X0 ◇ (X1 ◇ (X2 ◇ X0)))) = X1 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 X0 X1 X0 X2)).symm.trans (e0 X0 X1 X0)\n  have e3 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ ((X0 ◇ X1) ◇ X2)) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ ((X0 ◇ X1) ◇ q))) (e0 X1 X2 X0)).symm.trans (e2 (X0 ◇ X1) X1 (X1 ◇ X2))\n  have e4 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e3 X0 X0 (X1 ◇ (X0 ◇ (X0 ◇ X0))))).symm.trans (e2 (X0 ◇ X0) X1 X0)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e4 a a).trans (e4 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -4295,7 +4282,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.23
+        "elapsed": 1.84
       }
     ]
   },
@@ -4303,7 +4290,7 @@
     "id": "evaluation_hard_0173",
     "eq1_id": 1561,
     "eq2_id": 1238,
-    "elapsed_seconds": 1.89,
+    "elapsed_seconds": 2.47,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4320,7 +4307,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.81
+        "elapsed": 2.37
       }
     ]
   },
@@ -4328,7 +4315,7 @@
     "id": "evaluation_hard_0174",
     "eq1_id": 946,
     "eq2_id": 4521,
-    "elapsed_seconds": 3.36,
+    "elapsed_seconds": 4.56,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ X2) ◇ (X2 ◇ X3))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ X2) ◇ X3)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ ((X1 ◇ X2) ◇ q))) (e0 X2 X0 X3 X0)).symm.trans (e0 X0 X1 X2 ((X0 ◇ X3) ◇ (X3 ◇ X0)))\n  have e2 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X0 ◇ X2) X0 X1 X0)).symm.trans (e1 X0 X0 X2 ((X0 ◇ X1) ◇ (X1 ◇ X0)))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e2 a a a).symm.trans (e2 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -4345,7 +4332,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.23
+        "elapsed": 1.48
       }
     ]
   },
@@ -4353,7 +4340,7 @@
     "id": "evaluation_hard_0175",
     "eq1_id": 1587,
     "eq2_id": 1033,
-    "elapsed_seconds": 2.73,
+    "elapsed_seconds": 2.34,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4370,7 +4357,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 2.65
+        "elapsed": 2.25
       }
     ]
   },
@@ -4378,7 +4365,7 @@
     "id": "evaluation_hard_0176",
     "eq1_id": 980,
     "eq2_id": 172,
-    "elapsed_seconds": 3.37,
+    "elapsed_seconds": 5.87,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ X1) ◇ (X2 ◇ X3))) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ X1) ◇ X2)) = X3 := by\n    exact (congrArg (fun q => (X0 ◇ ((X1 ◇ X1) ◇ q))) (e0 X3 X0 X2 X0)).symm.trans (e0 X0 X1 X3 ((X0 ◇ X0) ◇ (X2 ◇ X0)))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a a).symm.trans (e1 a a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -4395,7 +4382,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.25
+        "elapsed": 1.9
       }
     ]
   },
@@ -4403,7 +4390,7 @@
     "id": "evaluation_hard_0177",
     "eq1_id": 1590,
     "eq2_id": 1117,
-    "elapsed_seconds": 1.87,
+    "elapsed_seconds": 2.37,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [0, 1]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4420,7 +4407,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.79
+        "elapsed": 2.28
       }
     ]
   },
@@ -4428,7 +4415,7 @@
     "id": "evaluation_hard_0178",
     "eq1_id": 1057,
     "eq2_id": 3100,
-    "elapsed_seconds": 8.92,
+    "elapsed_seconds": 15.51,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X0)) ◇ X2)) = X0 := by\n    exact (h X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ (X2 ◇ (X0 ◇ X1)))) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (q ◇ (X2 ◇ (X0 ◇ X1))))) (e0 X1 X2 X0)).symm.trans (e0 X0 X1 (X2 ◇ (X0 ◇ X1)))\n  have e2 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 X1 X0 (X0 ◇ X1))).symm.trans (e1 X0 X1 (X0 ◇ ((X0 ◇ X1) ◇ X1)))\n  intro x y z w\n  have g0 : ((((x ◇ y) ◇ z) ◇ w) ◇ w) = (((x ◇ y) ◇ z) ◇ w) := by\n    exact e2 (((x ◇ y) ◇ z) ◇ w) w\n  have g1 : (((x ◇ y) ◇ z) ◇ w) = ((x ◇ z) ◇ w) := by\n    exact congrArg (fun q => ((q ◇ z) ◇ w)) (e2 x y)\n  have g2 : ((x ◇ z) ◇ w) = (x ◇ w) := by\n    exact congrArg (fun q => (q ◇ w)) (e2 x z)\n  have g3 : (x ◇ w) = x := by\n    exact e2 x w\n  exact ((((g0).trans g1).trans g2).trans g3).symm\n",
@@ -4445,7 +4432,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 3.46
+        "elapsed": 4.18
       }
     ]
   },
@@ -4453,7 +4440,7 @@
     "id": "evaluation_hard_0179",
     "eq1_id": 1632,
     "eq2_id": 4361,
-    "elapsed_seconds": 1.97,
+    "elapsed_seconds": 3.59,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4470,7 +4457,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.88
+        "elapsed": 3.46
       }
     ]
   },
@@ -4478,7 +4465,7 @@
     "id": "evaluation_hard_0180",
     "eq1_id": 1062,
     "eq2_id": 3084,
-    "elapsed_seconds": 6.28,
+    "elapsed_seconds": 5.12,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X1)) ◇ X3)) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ (q ◇ X2))) (e0 X1 X0 X0 X1)).symm.trans (e0 X0 X1 (X0 ◇ (X0 ◇ X0)) X2)\n  have e2 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e1 X1 X0 X0)).symm.trans (e1 X0 X1 (X0 ◇ X0))\n  intro x y z w\n  have g0 : ((((x ◇ y) ◇ y) ◇ z) ◇ w) = (((x ◇ y) ◇ y) ◇ z) := by\n    exact e2 (((x ◇ y) ◇ y) ◇ z) w\n  have g1 : (((x ◇ y) ◇ y) ◇ z) = ((x ◇ y) ◇ z) := by\n    exact congrArg (fun q => ((q ◇ y) ◇ z)) (e2 x y)\n  have g2 : ((x ◇ y) ◇ z) = (x ◇ z) := by\n    exact congrArg (fun q => (q ◇ z)) (e2 x y)\n  have g3 : (x ◇ z) = x := by\n    exact e2 x z\n  exact ((((g0).trans g1).trans g2).trans g3).symm\n",
@@ -4495,7 +4482,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 3.95
+        "elapsed": 1.62
       }
     ]
   },
@@ -4503,7 +4490,7 @@
     "id": "evaluation_hard_0181",
     "eq1_id": 1670,
     "eq2_id": 4358,
-    "elapsed_seconds": 2.03,
+    "elapsed_seconds": 2.5,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[0, 2, 1], [1, 0, 2], [2, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -4520,7 +4507,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.93
+        "elapsed": 2.38
       }
     ]
   },
@@ -4528,7 +4515,7 @@
     "id": "evaluation_hard_0182",
     "eq1_id": 1087,
     "eq2_id": 4354,
-    "elapsed_seconds": 4.59,
+    "elapsed_seconds": 4.6,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X1 ◇ (X0 ◇ X0)) ◇ X2)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X2 ◇ (X0 ◇ X0)) X1 X0)).symm.trans (e0 X0 X2 ((X1 ◇ ((X2 ◇ (X0 ◇ X0)) ◇ (X2 ◇ (X0 ◇ X0)))) ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -4545,7 +4532,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 2.41
+        "elapsed": 1.63
       }
     ]
   },
@@ -4553,7 +4540,7 @@
     "id": "evaluation_hard_0183",
     "eq1_id": 1701,
     "eq2_id": 4464,
-    "elapsed_seconds": 1.89,
+    "elapsed_seconds": 2.83,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4570,7 +4557,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.81
+        "elapsed": 2.73
       }
     ]
   },
@@ -4578,7 +4565,7 @@
     "id": "evaluation_hard_0184",
     "eq1_id": 1116,
     "eq2_id": 1134,
-    "elapsed_seconds": 4.12,
+    "elapsed_seconds": 4.59,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ ((X0 ◇ (X1 ◇ X2)) ◇ X0)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ ((X0 ◇ X1) ◇ X0)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ ((X0 ◇ q) ◇ X0))) (e0 X2 X1 X0)).symm.trans (e0 X0 X2 ((X2 ◇ (X1 ◇ X0)) ◇ X2))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -4595,7 +4582,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.91
+        "elapsed": 1.59
       }
     ]
   },
@@ -4603,7 +4590,7 @@
     "id": "evaluation_hard_0185",
     "eq1_id": 1763,
     "eq2_id": 4288,
-    "elapsed_seconds": 1.68,
+    "elapsed_seconds": 2.38,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4620,7 +4607,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.61
+        "elapsed": 2.28
       }
     ]
   },
@@ -4628,7 +4615,7 @@
     "id": "evaluation_hard_0186",
     "eq1_id": 1198,
     "eq2_id": 252,
-    "elapsed_seconds": 3.28,
+    "elapsed_seconds": 4.67,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X3)) ◇ X0)) = X3 := by\n    exact (h X3 X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X0)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ (q ◇ X0))) (e0 X2 X0 X0 X1)).symm.trans (e0 X0 X2 (X0 ◇ (X0 ◇ X1)) X2)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -4645,7 +4632,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.08
+        "elapsed": 1.59
       }
     ]
   },
@@ -4653,7 +4640,7 @@
     "id": "evaluation_hard_0187",
     "eq1_id": 1816,
     "eq2_id": 4472,
-    "elapsed_seconds": 1.71,
+    "elapsed_seconds": 2.65,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4670,7 +4657,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.64
+        "elapsed": 2.55
       }
     ]
   },
@@ -4678,7 +4665,7 @@
     "id": "evaluation_hard_0188",
     "eq1_id": 1198,
     "eq2_id": 3251,
-    "elapsed_seconds": 3.27,
+    "elapsed_seconds": 5.13,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ ((X1 ◇ (X2 ◇ X3)) ◇ X0)) = X3 := by\n    exact (h X3 X0 X1 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X0)) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ (q ◇ X0))) (e0 X2 X0 X0 X1)).symm.trans (e0 X0 X2 (X0 ◇ (X0 ◇ X1)) X2)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z w u\n  exact singleton _ _\n",
@@ -4695,7 +4682,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.07
+        "elapsed": 1.68
       }
     ]
   },
@@ -4703,7 +4690,7 @@
     "id": "evaluation_hard_0189",
     "eq1_id": 1821,
     "eq2_id": 635,
-    "elapsed_seconds": 1.7,
+    "elapsed_seconds": 2.39,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[1, 0], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4720,7 +4707,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.63
+        "elapsed": 2.29
       }
     ]
   },
@@ -4728,7 +4715,7 @@
     "id": "evaluation_hard_0190",
     "eq1_id": 1273,
     "eq2_id": 2043,
-    "elapsed_seconds": 4.26,
+    "elapsed_seconds": 7.18,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : (X0 ◇ (((X1 ◇ X2) ◇ X3) ◇ X3)) = X0 := by\n    exact (h X0 X1 X2 X3).symm\n  have e1 (X0 X1 X2 X3 X4 X5 : G) : (X0 ◇ ((X1 ◇ X2) ◇ (((X3 ◇ X4) ◇ X5) ◇ X5))) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 ((X1 ◇ X2) ◇ (((X3 ◇ X4) ◇ X5) ◇ X5)) X3 X4 X5)).symm.trans (e0 X0 X1 X2 (((X3 ◇ X4) ◇ X5) ◇ X5))\n  have e2 (X0 X1 X2 : G) : (X0 ◇ (X1 ◇ X2)) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 (X1 ◇ X2) X0 X0 X0)).symm.trans (e1 X0 X1 X2 X0 X0 X0)\n  have e3 (X0 X1 : G) : (X0 ◇ X1) = X0 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e2 X1 X0 X0)).symm.trans (e2 X0 X1 (X0 ◇ X0))\n  intro x y\n  have g0 : (((x ◇ x) ◇ y) ◇ (y ◇ x)) = ((x ◇ x) ◇ y) := by\n    exact e3 ((x ◇ x) ◇ y) (y ◇ x)\n  have g1 : ((x ◇ x) ◇ y) = (x ◇ y) := by\n    exact congrArg (fun q => (q ◇ y)) (e3 x x)\n  have g2 : (x ◇ y) = x := by\n    exact e3 x y\n  exact (((g0).trans g1).trans g2).symm\n",
@@ -4745,7 +4732,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.17
+        "elapsed": 2.25
       }
     ]
   },
@@ -4753,7 +4740,7 @@
     "id": "evaluation_hard_0191",
     "eq1_id": 2135,
     "eq2_id": 775,
-    "elapsed_seconds": 2.05,
+    "elapsed_seconds": 5.36,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 3) := {\n    op := finOpTable \"[[1, 0, 2], [0, 2, 1], [2, 1, 0]]\"\n  }\n  refine ⟨Fin 3, m, ?_⟩\n  decideFin!\n",
@@ -4770,7 +4757,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.96
+        "elapsed": 5.23
       }
     ]
   },
@@ -4778,7 +4765,7 @@
     "id": "evaluation_hard_0192",
     "eq1_id": 1283,
     "eq2_id": 2278,
-    "elapsed_seconds": 3.42,
+    "elapsed_seconds": 22.04,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : (X0 ◇ (((X1 ◇ X1) ◇ X2) ◇ X2)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 : G) : (X0 ◇ X1) = X2 := by\n    exact (congrArg (fun q => (X0 ◇ q)) (e0 ((X2 ◇ X2) ◇ (((X1 ◇ X1) ◇ X0) ◇ X0)) X1 X0)).symm.trans (e0 X0 X2 (((X1 ◇ X1) ◇ X0) ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a).symm.trans (e1 a a b)\n  intro x y z\n  exact singleton _ _\n",
@@ -4795,7 +4782,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.21
+        "elapsed": 11.41
       }
     ]
   },
@@ -4803,7 +4790,7 @@
     "id": "evaluation_hard_0193",
     "eq1_id": 2161,
     "eq2_id": 4302,
-    "elapsed_seconds": 13.13,
+    "elapsed_seconds": 27.45,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
@@ -4820,7 +4807,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 13.04
+        "elapsed": 27.24
       }
     ]
   },
@@ -4828,7 +4815,7 @@
     "id": "evaluation_hard_0194",
     "eq1_id": 1376,
     "eq2_id": 235,
-    "elapsed_seconds": 4.89,
+    "elapsed_seconds": 8.18,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a).trans (h b a a).symm\n  exact singleton (x) ((y ◇ (y ◇ z)) ◇ y)\n",
@@ -4845,7 +4832,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 2.71
+        "elapsed": 5.5
       }
     ]
   },
@@ -4853,7 +4840,7 @@
     "id": "evaluation_hard_0195",
     "eq1_id": 2167,
     "eq2_id": 261,
-    "elapsed_seconds": 1.88,
+    "elapsed_seconds": 2.25,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4870,7 +4857,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.79
+        "elapsed": 2.13
       }
     ]
   },
@@ -4878,7 +4865,7 @@
     "id": "evaluation_hard_0196",
     "eq1_id": 1689,
     "eq2_id": 2391,
-    "elapsed_seconds": 5.16,
+    "elapsed_seconds": 4.3,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ ((X1 ◇ X2) ◇ X2)) = X1 := by\n    exact (h X1 X0 X2).symm\n  have e1 (X0 X1 X2 X3 : G) : ((X0 ◇ (X1 ◇ X2)) ◇ (X2 ◇ ((X2 ◇ X3) ◇ X3))) = (X1 ◇ X2) := by\n    exact (congrArg (fun q => ((X0 ◇ (X1 ◇ X2)) ◇ (q ◇ ((X2 ◇ X3) ◇ X3)))) (e0 X1 X2 X3)).symm.trans (e0 X0 (X1 ◇ X2) ((X2 ◇ X3) ◇ X3))\n  have e2 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X1) = (X0 ◇ ((((X0 ◇ X1) ◇ X1) ◇ X2) ◇ X2)) := by\n    exact ((congrArg (fun q => (q ◇ ((((X0 ◇ X1) ◇ X1) ◇ X2) ◇ X2))) (e0 X0 X0 X1)).symm.trans (e0 (X0 ◇ X0) ((X0 ◇ X1) ◇ X1) X2)).symm\n  have e3 (X0 X1 X2 : G) : ((X0 ◇ X1) ◇ X1) = (X0 ◇ (X1 ◇ ((X1 ◇ X2) ◇ X2))) := by\n    exact ((congrArg (fun q => (X0 ◇ (q ◇ ((X1 ◇ X2) ◇ X2)))) (e0 (X0 ◇ X1) X1 X2)).symm.trans ((e2 X0 X1 ((X1 ◇ X2) ◇ X2)).symm)).symm\n  have e4 (X0 X1 X2 : G) : (((X0 ◇ (X1 ◇ X2)) ◇ X2) ◇ X2) = (X1 ◇ X2) := by\n    exact ((congrArg (fun q => q) (e1 X0 X1 X2 X0)).symm.trans ((e3 (X0 ◇ (X1 ◇ X2)) X2 X0).symm)).symm\n  have e5 (X0 X1 X2 : G) : ((X0 ◇ (X1 ◇ X2)) ◇ (X1 ◇ X2)) = (X0 ◇ (X1 ◇ X2)) := by\n    exact ((congrArg (fun q => (X0 ◇ q)) (e4 (X0 ◇ (X1 ◇ X2)) X1 X2)).symm.trans ((e2 X0 (X1 ◇ X2) X2).symm)).symm\n  have e6 (X0 X1 X2 X3 : G) : ((X0 ◇ X1) ◇ (X1 ◇ (X2 ◇ X3))) = X1 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e5 X1 X2 X3)).symm.trans (e0 X0 X1 (X2 ◇ X3))\n  have e7 (X0 X1 : G) : (((X0 ◇ X1) ◇ X1) ◇ X1) = X1 := by\n    exact ((congrArg (fun q => q) (e6 X0 X1 (X1 ◇ X0) X0)).symm.trans ((e3 (X0 ◇ X1) X1 X0).symm)).symm\n  have e8 (X0 X1 : G) : ((X0 ◇ X1) ◇ X1) = X1 := by\n    exact (congrArg (fun q => (q ◇ X1)) (e4 X0 X0 X1)).symm.trans (e7 (X0 ◇ (X0 ◇ X1)) X1)\n  have e9 (X0 X1 : G) : (X0 ◇ X1) = X1 := by\n    exact ((congrArg (fun q => q) (e8 (X0 ◇ (X0 ◇ X1)) X1)).symm.trans (e4 X0 X0 X1)).symm\n  have e10 (X0 X1 : G) : ((X0 ◇ X1) ◇ X1) = X0 := by\n    exact (congrArg (fun q => q) (e9 (X0 ◇ X0) ((X0 ◇ X1) ◇ X1))).symm.trans (e0 X0 X0 X1)\n  have e11 (X0 X1 : G) : X0 = X1 := by\n    exact (congrArg (fun q => q) (e10 X0 X1)).symm.trans (e8 X0 X1)\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e11 a a).trans (e11 b a).symm\n  intro x y z\n  exact singleton _ _\n",
@@ -4895,7 +4882,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 2.9
+        "elapsed": 1.57
       }
     ]
   },
@@ -4903,7 +4890,7 @@
     "id": "evaluation_hard_0197",
     "eq1_id": 2383,
     "eq2_id": 4332,
-    "elapsed_seconds": 2.79,
+    "elapsed_seconds": 3.43,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 5) := {\n    op := finOpTable \"[[0, 2, 4, 1, 3], [2, 4, 1, 3, 0], [4, 1, 3, 0, 2], [1, 3, 0, 2, 4], [3, 0, 2, 4, 1]]\"\n  }\n  refine ⟨Fin 5, m, ?_⟩\n  decideFin!\n",
@@ -4920,7 +4907,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 2.65
+        "elapsed": 3.27
       }
     ]
   },
@@ -4928,7 +4915,7 @@
     "id": "evaluation_hard_0198",
     "eq1_id": 1766,
     "eq2_id": 1609,
-    "elapsed_seconds": 8.21,
+    "elapsed_seconds": 4.7,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  have e0 (X0 X1 X2 X3 : G) : ((X0 ◇ X1) ◇ ((X2 ◇ X1) ◇ X3)) = X2 := by\n    exact (h X2 X0 X1 X3).symm\n  have e1 (X0 X1 X2 X3 : G) : ((X0 ◇ X1) ◇ X2) = X3 := by\n    exact (congrArg (fun q => ((X0 ◇ X1) ◇ q)) (e0 X3 X1 X2 X0)).symm.trans (e0 X0 X1 X3 ((X2 ◇ X1) ◇ X0))\n  have singleton : ∀ a b : G, a = b := by\n    intro a b\n    exact (e1 a a a a).symm.trans (e1 a a a b)\n  intro x y z w\n  exact singleton _ _\n",
@@ -4945,7 +4932,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 6.08
+        "elapsed": 2.09
       }
     ]
   },
@@ -4953,7 +4940,7 @@
     "id": "evaluation_hard_0199",
     "eq1_id": 2714,
     "eq2_id": 433,
-    "elapsed_seconds": 1.99,
+    "elapsed_seconds": 2.33,
     "solved": true,
     "verdict": "false",
     "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 2) := {\n    op := finOpTable \"[[0, 1], [1, 0]]\"\n  }\n  refine ⟨Fin 2, m, ?_⟩\n  decideFin!\n",
@@ -4970,7 +4957,7 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.89
+        "elapsed": 2.23
       }
     ]
   },
@@ -4978,7 +4965,7 @@
     "id": "evaluation_hard_0200",
     "eq1_id": 1786,
     "eq2_id": 2115,
-    "elapsed_seconds": 3.57,
+    "elapsed_seconds": 5.05,
     "solved": true,
     "verdict": "true",
     "code": "import JudgeProblem\n\ndef submission : Goal := by\n  intro G _ h\n  intro x y z\n  have singleton : ∀ (a b : G), a = b := fun a b => (h a a a a).trans (h b a a a).symm\n  exact singleton (x) (((y ◇ x) ◇ z) ◇ (z ◇ x))\n",
@@ -4995,7 +4982,32 @@
           "status": "accepted",
           "message": "certificate accepted"
         },
-        "elapsed": 1.3
+        "elapsed": 2.37
+      }
+    ]
+  },
+  {
+    "id": "evaluation_hard_0089",
+    "eq1_id": 168,
+    "eq2_id": 650,
+    "elapsed_seconds": 12.7,
+    "solved": true,
+    "verdict": "false",
+    "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n",
+    "llm_calls": 0,
+    "judge_calls": 1,
+    "log": [
+      {
+        "type": "judge",
+        "request": {
+          "verdict": "false",
+          "code": "import JudgeProblem\nimport JudgeDecide.DecideBang\nimport JudgeFinOp.MemoFinOp\nopen MemoFinOp\n\nset_option maxRecDepth 1000000 in\nset_option maxHeartbeats 1000000 in\ndef submission : Goal := by\n  let m : Magma (Fin 9) := {\n    op := finOpTable \"[[0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 4, 4, 4, 5, 5, 5], [6, 6, 6, 7, 8, 8, 8, 7, 7], [0, 0, 0, 1, 1, 1, 2, 2, 2], [3, 3, 3, 7, 8, 8, 8, 7, 7], [6, 6, 6, 4, 4, 4, 5, 5, 5]]\"\n  }\n  refine ⟨Fin 9, m, ?_⟩\n  decideFin!\n"
+        },
+        "response": {
+          "status": "accepted",
+          "message": "certificate accepted"
+        },
+        "elapsed": 12.61
       }
     ]
   }

@@ -15,7 +15,7 @@ All scores below are local official-runner measurements (official revision
 certificate accepted by the official judge and was produced before the LLM
 fallback (`llm_calls = 0`).
 
-| Problem set | Accepted (solver v2.4) | Accepted (superseded v1) |
+| Problem set | Accepted (solver v2.5) | Accepted (superseded v1) |
 |---|---:|---:|
 | `sample_20` | 20/20 | 20/20 |
 | `sample_200` | 200/200 | 196/200 |

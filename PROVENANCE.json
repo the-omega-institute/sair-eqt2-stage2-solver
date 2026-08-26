@@ -1,8 +1,8 @@
 {
  "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
- "solver_py_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
- "solver_py_bytes": 179888,
- "solver_version": "v2.4 (2026-08-21): v2.3 + input-encoding normalization ('*' -> '◇' at both track intakes; the HuggingFace-aligned format uses '*' and the runner feeds the solver verbatim) + canned exotic order-9 central groupoid countermodel stage (settles the E168 goal family)",
+ "solver_py_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
+ "solver_py_bytes": 189504,
+ "solver_version": "v2.5 (2026-08-27): v2.4 + LLM-fallback overhaul (operator normalization of returned Lean, corrected scope protocol, truthful timeout-aware hint, round-direction alternation, raw-certificate answers incl. infinite carriers, semantic pre-validation of countermodel tables with repair feedback). Deterministic definitions unchanged from v2.4.",
  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
  "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
  "archived_full_regression_environment": {
@@ -18,9 +18,9 @@
    "llm_calls": 0,
    "judge_calls": 20,
    "ledger": "results/v2_sample_20_official_2848228.json",
-   "ledger_sha256": "27c3ebb24ab7d91e55f367862bfc44589130b039736434e96c45585741ca905a",
+   "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
    "failed_ids": [],
-   "wall_clock_sum_s": 2836.97
+   "wall_clock_sum_s": 67.53
   },
   "sample_200": {
    "accepted": 200,
@@ -28,9 +28,9 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_sample_200_official_2848228.json",
-   "ledger_sha256": "2ef168539d7153f82e5832fb7c07758080c0a5a2e654cc0a67b240724ec2b4c8",
+   "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
    "failed_ids": [],
-   "wall_clock_sum_s": 1400.65
+   "wall_clock_sum_s": 964.12
   },
   "hard1": {
    "accepted": 69,
@@ -38,9 +38,9 @@
    "llm_calls": 0,
    "judge_calls": 69,
    "ledger": "results/v2_hard1_official_2848228.json",
-   "ledger_sha256": "5468a0aff7ac1aff3e1c500bfc717e218e40bdf9fa39292e458a462a300361f6",
+   "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
    "failed_ids": [],
-   "wall_clock_sum_s": 859.55
+   "wall_clock_sum_s": 559.81
   },
   "hard2": {
    "accepted": 200,
@@ -48,9 +48,9 @@
    "llm_calls": 0,
    "judge_calls": 200,
    "ledger": "results/v2_hard2_official_2848228.json",
-   "ledger_sha256": "a2ac7232d0849efef13482d69a1a864586bd239d64fc842118b29c031fba735d",
+   "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
    "failed_ids": [],
-   "wall_clock_sum_s": 1404.95
+   "wall_clock_sum_s": 1250.67
   },
   "hard3": {
    "accepted": 400,
@@ -58,9 +58,9 @@
    "llm_calls": 0,
    "judge_calls": 400,
    "ledger": "results/v2_hard3_official_2848228.json",
-   "ledger_sha256": "298569e097e541dfee44e8b96802675966d569b5a8035dd237f6f2ecfb81d7ae",
+   "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
    "failed_ids": [],
-   "wall_clock_sum_s": 2537.24
+   "wall_clock_sum_s": 2857.38
   },
   "normal": {
    "accepted": 1000,
@@ -68,9 +68,9 @@
    "llm_calls": 0,
    "judge_calls": 1000,
    "ledger": "results/v2_normal_official_2848228.json",
-   "ledger_sha256": "86c29ae1cfda9c31d91043b9954b65a7e8bb51c1f34528dac7adb46b62e04bd3",
+   "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
    "failed_ids": [],
-   "wall_clock_sum_s": 3753.15
+   "wall_clock_sum_s": 4128.3
   }
  },
  "residual_set_regression": {
@@ -84,7 +84,7 @@
   "wall_clock_sum_s": 131.66
  },
  "latest_upstream_validation": {
-  "validated_on": "2026-08-22",
+  "validated_on": "2026-08-27",
   "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
   "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
   "official_harness": {
@@ -111,9 +111,9 @@
     "llm_calls": 0,
     "judge_calls": 20,
     "ledger": "results/v2_sample_20_official_2848228.json",
-    "ledger_sha256": "27c3ebb24ab7d91e55f367862bfc44589130b039736434e96c45585741ca905a",
+    "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
     "failed_ids": [],
-    "wall_clock_sum_s": 2836.97
+    "wall_clock_sum_s": 67.53
    },
    "sample_200": {
     "accepted": 200,
@@ -121,9 +121,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_sample_200_official_2848228.json",
-    "ledger_sha256": "2ef168539d7153f82e5832fb7c07758080c0a5a2e654cc0a67b240724ec2b4c8",
+    "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
     "failed_ids": [],
-    "wall_clock_sum_s": 1400.65
+    "wall_clock_sum_s": 964.12
    },
    "hard1": {
     "accepted": 69,
@@ -131,9 +131,9 @@
     "llm_calls": 0,
     "judge_calls": 69,
     "ledger": "results/v2_hard1_official_2848228.json",
-    "ledger_sha256": "5468a0aff7ac1aff3e1c500bfc717e218e40bdf9fa39292e458a462a300361f6",
+    "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
     "failed_ids": [],
-    "wall_clock_sum_s": 859.55
+    "wall_clock_sum_s": 559.81
    },
    "hard2": {
     "accepted": 200,
@@ -141,9 +141,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/v2_hard2_official_2848228.json",
-    "ledger_sha256": "a2ac7232d0849efef13482d69a1a864586bd239d64fc842118b29c031fba735d",
+    "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
     "failed_ids": [],
-    "wall_clock_sum_s": 1404.95
+    "wall_clock_sum_s": 1250.67
    },
    "hard3": {
     "accepted": 400,
@@ -151,9 +151,9 @@
     "llm_calls": 0,
     "judge_calls": 400,
     "ledger": "results/v2_hard3_official_2848228.json",
-    "ledger_sha256": "298569e097e541dfee44e8b96802675966d569b5a8035dd237f6f2ecfb81d7ae",
+    "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
     "failed_ids": [],
-    "wall_clock_sum_s": 2537.24
+    "wall_clock_sum_s": 2857.38
    },
    "normal": {
     "accepted": 1000,
@@ -161,9 +161,9 @@
     "llm_calls": 0,
     "judge_calls": 1000,
     "ledger": "results/v2_normal_official_2848228.json",
-    "ledger_sha256": "86c29ae1cfda9c31d91043b9954b65a7e8bb51c1f34528dac7adb46b62e04bd3",
+    "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
     "failed_ids": [],
-    "wall_clock_sum_s": 3753.15
+    "wall_clock_sum_s": 4128.3
    }
   },
   "scope": "Same ledgers as archived_deterministic_regression (2848228 is the latest reviewed official revision)."
@@ -177,12 +177,12 @@
   "normal": "1000/1000",
   "marathon_normal_100": "100/100",
   "official_distribution_drill": "800/800",
-  "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889; Marathon normal_100 100/100 (0 tokens); Stage 1 evaluation-distribution drill 800/800 with full ground-truth agreement."
+  "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889; Marathon normal_100 100/100 (0 tokens); Stage 1 evaluation-distribution drill 800/800 with full ground-truth agreement. All accepted rows have llm_calls = 0."
  },
  "solver_artifact_roles": {
   "current_and_final_regression": {
-   "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
-   "solver_bytes": 179888,
+   "solver_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
+   "solver_bytes": 189504,
    "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md, six Solo ledgers, results/marathon/, results/official_distribution_drill/"
   },
   "superseded_v1_frozen_baseline": {
@@ -219,6 +219,12 @@
    "solver_bytes": 177993,
    "public_rows": "1889/1889 Solo + 100/100 Marathon; crashed on '*'-encoded problem input; no E168 family coverage",
    "evidence": "branch history wenlin/v2-merge@5ecc39a"
+  },
+  "superseded_v2_4": {
+   "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
+   "solver_bytes": 179888,
+   "public_rows": "1889/1889 Solo + 100/100 Marathon + 800/800 drill; LLM fallback carried the v1-era prompt defects",
+   "evidence": "branch history wenlin/v2-merge"
   }
  },
  "superseded_v1": {
@@ -331,7 +337,7 @@
   },
   "tokens_used": 0,
   "summary": "results/marathon/normal_100_summary.json",
-  "summary_sha256": "28fc79269ede41b4b5810ee95f1f2fda3fd358ef74097b9cb751ccb24e1a5602",
+  "summary_sha256": "d422d4ad6703c2670f56daa9878ec3b74627c26385b832b811c414145b77bac9",
   "answers": "results/marathon/normal_100_answers.jsonl",
   "answers_sha256": "dce8fe3ea25ab16239b074bef1f3d7e02b6639a979271f9b7e73df7c2d8c43dc",
   "fixture_checks": "tests/marathon_fixtures normal_5 5/5 accepted; external-solver marathon harness 2/2",
@@ -352,29 +358,29 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/official_distribution_drill/evaluation_order5_results.json",
-    "ledger_sha256": "422ecdf5a856939fc4a53e7ad550759811a34f50fec1d8c4302ff39a5f908e6d",
+    "ledger_sha256": "6647e3a13fc04a1117222e1990852509de8a52153c3c3b9e3c99c47865467690",
     "failed_ids": [],
-    "wall_clock_sum_s": 583.29
+    "wall_clock_sum_s": 2047.27
    },
    "evaluation_extra_hard": {
     "accepted": 200,
     "total": 200,
     "llm_calls": 0,
-    "judge_calls": 200,
+    "judge_calls": 210,
     "ledger": "results/official_distribution_drill/evaluation_extra_hard_results.json",
-    "ledger_sha256": "99d16aecd72ff41f19ca8082a02c0271b2e1bc1250944d098157217f621c3cec",
+    "ledger_sha256": "2025ca90a8921c0ebea1dc0c7c88b1f1842144e0f429d7c66c0959479f47f084",
     "failed_ids": [],
-    "wall_clock_sum_s": 1735.26
+    "wall_clock_sum_s": 17307.45
    },
    "evaluation_hard": {
     "accepted": 200,
     "total": 200,
     "llm_calls": 0,
-    "judge_calls": 200,
+    "judge_calls": 201,
     "ledger": "results/official_distribution_drill/evaluation_hard_results.json",
-    "ledger_sha256": "4505248a3531a8c76cd94fe6ef5b425c426cc26f1e606f4300cbf8d13a36e964",
+    "ledger_sha256": "b931bbf33007148e946c8bd535c5e156a04039abb3f419c68bcc020ff1d6f60c",
     "failed_ids": [],
-    "wall_clock_sum_s": 889.03
+    "wall_clock_sum_s": 2228.57
    },
    "evaluation_normal": {
     "accepted": 200,
@@ -382,9 +388,9 @@
     "llm_calls": 0,
     "judge_calls": 200,
     "ledger": "results/official_distribution_drill/evaluation_normal_results.json",
-    "ledger_sha256": "2377747990d8e5e27e15cf55ec6fba904a2bbb00474960202a0e1fab004ecc1f",
+    "ledger_sha256": "d7ef36ee24f77bf5f586660cef6840688bd92174027d1431f841a1a1de69cc65",
     "failed_ids": [],
-    "wall_clock_sum_s": 2288.06
+    "wall_clock_sum_s": 1019.91
    }
   },
   "verdict_agreement": "every accepted verdict matches the published ground-truth answer in all four splits",
