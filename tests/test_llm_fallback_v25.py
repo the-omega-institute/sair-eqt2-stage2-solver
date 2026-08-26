@@ -110,4 +110,9 @@ class SemanticTablePrevalidation(unittest.TestCase):
         src = open(SOLVER, encoding="utf-8").read()
         self.assertIn("VIOLATES the hypothesis", src)
         self.assertIn("separates nothing", src)
-        self.assertLess(src.index("separates nothing"), src.index('call_judge("false", make_false_code'))
+        # Within the LLM loop, the guarded judge call must come AFTER both
+        # pre-validation branches (the deterministic stages contain earlier,
+        # unrelated call_judge("false", ...) sites).
+        prevalidation_end = src.index("separates nothing")
+        self.assertGreater(src.index('call_judge("false", make_false_code', prevalidation_end), prevalidation_end)
+        self.assertLess(src.index("VIOLATES the hypothesis"), prevalidation_end)
