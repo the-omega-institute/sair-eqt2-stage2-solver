@@ -90,14 +90,15 @@ The SAIR EQT2 Stage 2 Solver}
 The SAIR Mathematics Distillation Challenge on Equational Theories asks a
 solver to classify whether one magma identity implies another and, for either
 verdict, to return a certificate accepted by a deterministic \lean judge.
-We describe a single-file solver organized as a cheapest-first cascade.  Its
+We present a single-file solver organized as a cheapest-first cascade.  Its
 false branch combines coefficient tests over structured algebra families,
 bounded finite-model search, an explicit central-groupoid witness, and several
 infinite-carrier witnesses.  Its true branch is a proof-producing ordered unit
 superposition procedure with Knuth--Bendix ordering, bidirectional
 demodulation, indexing, memoised substitution, and anytime size deepening.
-Search results are not trusted: successful derivations are replayed as small
-\lean terms, and countermodels are rechecked by the competition judge.
+Search results remain outside the trusted base: successful derivations are
+replayed as small \lean terms, and countermodels are rechecked by the
+competition judge.
 
 The frozen solver is a 179,888-byte Python file with SHA-256
 \texttt{e89cd010b322f77b...}.  In local runs through official judge revision
@@ -115,14 +116,15 @@ no completeness or comparative-superiority claim.
 The SAIR Mathematics Distillation Challenge on Equational Theories asks a
 solver to classify whether one magma identity implies another and, for either
 verdict, to return a certificate accepted by a deterministic \lean judge.
-We describe a single-file solver organized as a cheapest-first cascade.  Its
+We present a single-file solver organized as a cheapest-first cascade.  Its
 false branch combines coefficient tests over structured algebra families,
 bounded finite-model search, an explicit central-groupoid witness, and several
 infinite-carrier witnesses.  Its true branch is a proof-producing ordered unit
 superposition procedure with Knuth--Bendix ordering, bidirectional
 demodulation, indexing, memoised substitution, and anytime size deepening.
-Search results are not trusted: successful derivations are replayed as small
-\lean terms, and countermodels are rechecked by the competition judge.
+Search results remain outside the trusted base: successful derivations are
+replayed as small \lean terms, and countermodels are rechecked by the
+competition judge.
 
 The frozen solver is a 179,888-byte Python file with SHA-256
 \texttt{e89cd010b322f77b...}.  In local runs through official judge revision
@@ -158,17 +160,18 @@ judge checks both forms.  An accepted certificate solves the row; a plausible
 label, proof sketch, or partly checked derivation receives no credit
 \cite{competitionRules}.
 
-This contract changes the engineering objective.  A classifier can be useful
-while remaining difficult to audit; a certificate producer has to preserve
-enough structure to reconstruct a kernel-checkable witness.  Conversely, the
-kernel boundary allows aggressive untrusted search.  A bug in our term
-ordering, unifier, model finder, or certificate printer can waste time or miss
-a solution, but it cannot turn an invalid certificate into an accepted one.
+This contract changes the design objective.  A classifier may be useful while
+remaining difficult to audit, whereas a certificate producer must preserve
+enough structure to reconstruct a kernel-checkable witness.  At the same time,
+the kernel boundary permits aggressive untrusted search.  A defect in our term
+ordering, unifier, model finder, or certificate printer may increase resource
+use or prevent a solution from being found, but it cannot cause an invalid
+certificate to be accepted.
 The competition proxy records success only after the official judge has
 compiled the submitted term and checked its dependency policy.
 
-Our system is a deterministic-first cascade in one Python file.  The early
-stages recognize direct implications and search inexpensive countermodel
+Our system implements a deterministic-first cascade in one Python file.  The
+early stages recognize direct implications and search inexpensive countermodel
 families.  A bounded irregular model finder and deeper structured families
 handle false residuals.  An ordered unit-superposition engine handles true
 residuals and records a replayable derivation rather than only a refutation
@@ -177,8 +180,8 @@ handles one problem, or the Marathon protocol, in which one process shares a
 global budget among a manifest of problems.  Every successful path ends in a
 \lean certificate.
 
-The central empirical observation is deliberately narrower than a
-completeness claim.  This combination covers every row in the measured public,
+The central empirical result is deliberately narrower than a completeness
+claim.  The cascade covers every row in the measured public,
 distribution-drill, and hosted-playground corpora within the recorded budgets.
 Neither the countermodel families nor the superposition implementation is
 proved complete, and the deeper stages stop at wall-clock limits.  We therefore
@@ -188,18 +191,19 @@ single-identity implications.
 
 This paper makes four contributions.
 \begin{itemize}
-  \item It presents a certificate-producing cascade that puts complementary
-  algebraic model families and proof-producing superposition behind one
-  competition interface.
-  \item It describes certificate encodings that remain within the judge's
-  dependency policy, including finite carriers beyond the direct table
-  helper's single-digit range and core-only infinite-carrier proofs.
-  \item It reports two consequential engineering failures: tautologies left in
-  the active superposition set, and a mismatch between the two accepted input
-  spellings for the magma operation.  Both failures were exposed by end-to-end
-  certificate runs rather than label accuracy alone.
-  \item It uses a hash-bound claim ledger: solver bytes, judge revision, result
-  files, and every evaluation-table row are connected by SHA-256 identifiers.
+  \item We present a certificate-producing cascade that integrates
+  complementary algebraic model families and proof-producing superposition
+  behind one competition interface.
+  \item We describe certificate encodings that satisfy the judge's dependency
+  policy, including encodings for finite carriers beyond the direct table
+  helper's single-digit range and core-only proofs over infinite carriers.
+  \item We analyze two consequential implementation failures: retention of
+  tautologies in the active superposition set and inconsistent handling of the
+  two accepted spellings of the magma operation.  End-to-end certificate runs,
+  rather than label accuracy alone, exposed both failures.
+  \item We provide a hash-bound claim ledger that connects the solver bytes,
+  judge revision, result files, and every evaluation-table row to SHA-256
+  identifiers.
 \end{itemize}
 
 The rest of the paper follows the execution path.  Section~\ref{sec:arch}
@@ -215,14 +219,14 @@ superposition, and proof-assistant work.
 
 \subsection{Contract and trusted boundary}
 
-The submission contract is one \code{solver.py} file no larger than the
-competition limit.  Solver v2.4 is 179,888 bytes, leaving room below that
-limit while embedding all search code and canned data.  In Solo mode the proxy
-sends one JSON problem and its budget to a fresh process; the solver sends
+The submission contract requires one \code{solver.py} file no larger than the
+competition limit.  Solver v2.4 is 179,888 bytes, and therefore remains below
+that limit while containing all search code and fixed data.  In Solo mode the
+proxy sends one JSON problem and its budget to a fresh process; the solver sends
 judge or language-model requests back over line-delimited JSON.  In Marathon
-mode the runner supplies a JSONL manifest and an append-only output path.  One
-source supports both modes, selected by the runner-owned Marathon environment
-variable~\cite{competitionRules}.
+mode the runner supplies a JSONL manifest and an append-only output path.  The
+same source supports both modes, selected by the runner-owned Marathon
+environment variable~\cite{competitionRules}.
 
 The trusted computing base for a verdict is not the Python implementation.
 The judge generates the problem statement and the verdict-specific \code{Goal}
@@ -247,8 +251,8 @@ The emitted source never uses admitted terms.  This separation is why a
 successful Python-side check is called a candidate throughout the
 implementation, while ``accepted'' is reserved for the judge status.
 
-The polarity boundary also shapes recovery.  The solver does not cache an
-unverified Boolean verdict and ask later stages merely to justify it.  Each
+The polarity boundary also determines failure recovery.  The solver does not
+cache an unverified Boolean verdict and ask later stages merely to justify it.  Each
 stage returns a self-contained candidate of one polarity, submits that
 candidate, and continues if checking fails.  For example, an arithmetic
 countermodel whose certificate exceeds an instance budget does not bias the
@@ -260,7 +264,7 @@ the externally visible result.
 At both protocol entry points we normalize the input operation symbol.  The
 official problem format permits either an asterisk or a diamond, but the
 solver's term parser has one internal token.  Mapping the asterisk to
-$\op$ before parsing is semantically trivial and operationally essential;
+$\op$ before parsing preserves the semantics and is operationally necessary;
 Section~\ref{sec:encoding} records the failure that revealed it.
 
 \subsection{Cheapest-first cascade}
@@ -284,7 +288,7 @@ general superposition engine follows with a quick budget
 \min(6,\max(1,T/600))
 \)
 seconds for a process allowance $T$; this is six seconds under the recorded
-Solo allowance.  Most provable public instances terminate before this cap.
+Solo allowance.  Most provable public instances terminate within this cap.
 
 \paragraph{Stage C: bounded irregular models.}
 A finite-model search over carriers four through ten receives eight seconds.
@@ -294,26 +298,25 @@ constraints rather than enumerating complete tables.
 \paragraph{Stage D: deep false search.}
 Only residuals reach heavier polynomial and vector families, capped at sixty
 seconds, followed by another finite-model pass capped at one hundred twenty
-seconds.  Deep false search precedes the deepest proof pass so a difficult
-false row does not spend the bulk of its allowance saturating a true prover.
+seconds.  Deep false search precedes the deepest proof pass so that a difficult
+false row does not consume most of its allowance in proof saturation.
 
 \paragraph{Stage E: anytime proof search.}
 The ordered-superposition engine receives
 \(
 \min(600,\max(20,T/6))
 \)
-seconds, which is six hundred seconds under the Solo allowance.  It repeatedly
-raises term-size and variable caps.  If no direct refutation is returned, a
+seconds, which is six hundred seconds under the Solo allowance.  The engine
+repeatedly raises term-size and variable caps.  If no direct refutation is returned, a
 small pool of derived equalities can be emitted as exact lemmas followed by a
-kernel-checked closing tactic.  A language-model feedback loop exists after
+kernel-checked closing tactic.  A language-model feedback loop follows
 the deterministic cascade, but none of the accepted rows in the archived
-regression reached it.
+regression invoked it.
 
 Every stage independently verifies its candidate before the solver stops.  A
-rejected certificate can fall through to the next strategy; a successful
-search without a valid emitted term is not counted as a solution.  This
-control flow was useful during development because it distinguished search
-coverage from certificate robustness.
+rejected certificate proceeds to the next strategy; a successful search
+without a valid emitted term is not counted as a solution.  This control flow
+distinguishes search coverage from certificate robustness.
 
 \subsection{Representation and dispatch}
 
@@ -325,21 +328,21 @@ retain a map back to the judge's binder order.  Operation count, variable
 support, depth, and tree size are computed once and reused by scheduling,
 countermodel probes, and proof search.
 
-Dispatch intentionally relies on positive recognizers.  A direct proof stage
+Dispatch relies on positive recognizers.  A direct proof stage
 returns only after constructing a substitution or equality chain.  An Austin
 or central-groupoid stage returns only when the hypothesis matches its stored
 schema and a concrete evaluation separates the goal.  A family that is merely
 likely from equation identifiers is not selected: identifiers are useful for
-diagnostics, but the solver matches parsed laws.  This matters for independent
-replay and for inputs whose labels or variable names differ from the public
-files.
+diagnostics, but the solver matches parsed laws.  This property supports
+independent replay and handles inputs whose labels or variable names differ
+from those in the public files.
 
-Candidate validation is stratified.  Cheap Python evaluation removes malformed
-tables, wrong witnesses, and printer bugs before a judge call.  Judge feedback
+Candidate validation is stratified.  Low-cost Python evaluation removes
+malformed tables, wrong witnesses, and printer bugs before a judge call.  Judge feedback
 then closes the semantic and dependency obligations.  The development harness
-keeps both outcomes: a ``found'' countermodel rejected by \lean is an emitter
-bug or an encoding mismatch, whereas no Python witness within a deadline is a
-coverage miss.  The distinction guided the large-carrier encoding fix in
+records both outcomes: a ``found'' countermodel rejected by \lean indicates an
+emitter defect or an encoding mismatch, whereas the absence of a Python
+witness within a deadline indicates a coverage limitation.  This distinction informed the large-carrier encoding correction in
 Section~\ref{sec:allowlist}.
 
 \subsection{Solo and Marathon}
@@ -349,28 +352,29 @@ requires triage across a whole manifest.  The batch path stably sorts problems
 by a structural cost derived from operation occurrences, variable count, and
 equation length.  It then runs two passes.  The first gives every row the
 shallow stages before any residual receives deep work.  The second revisits
-only residuals.  A fair cap is recomputed from remaining wall time divided by
-remaining rows and clamped to the documented per-row interval.  At most fifty-five
+only residuals.  A fair cap is recomputed from remaining wall-clock time
+divided by remaining rows and clamped to the documented per-row interval.  At most fifty-five
 percent of a residual's current slice goes to the false branch; the proof
 branch receives the rest.
 
-Marathon outputs are durable state.  Each answer is one JSON line, flushed and
+Marathon outputs constitute durable state.  Each answer is one JSON line, flushed and
 synchronized before the next row.  If the runner terminates the process, all
 complete earlier lines remain scoreable.  A process-level timer bounds legacy
-search loops that predate the batch driver.  The batch path makes no speculative
-language-model calls: an unanswered residual is preferable to spending tokens
-without a certificate.
+search loops that predate the batch driver.  The batch path issues no speculative
+language-model calls and leaves a residual unanswered rather than consuming
+tokens without producing a certificate.
 
 \subsection{Cascade invariants and failure isolation}
 
-Stage ordering is not an assertion that one polarity is more likely.  It is a
-policy for minimizing expected certificate cost while reserving time for both
+Stage ordering does not assert that either polarity is more likely.  Instead,
+it minimizes expected certificate cost while reserving time for both
 branches.  A structured false witness is attractive early because checking a
 closed operation is usually cheaper than saturation.  Direct true patterns are
 equally attractive because they avoid both table construction and general proof
-search.  The quick G3 pass precedes irregular model search after measurements
-showed that most provable rows close near the start of saturation.  Deep false
-search moves ahead of deep G3 only after every cheap recognizer has failed.
+search.  Measurements showed that most provable rows close near the start of
+saturation, which motivates placing the quick G3 pass before irregular model
+search.  Deep false search precedes deep G3 only after every low-cost recognizer
+has failed.
 
 The implementation maintains a cascade invariant: before entering a stage,
 the solver has no accepted certificate, and every earlier candidate has either
@@ -378,7 +382,7 @@ been absent, failed local construction, or been rejected by the judge.  It does
 not maintain the stronger and generally invalid invariant that earlier stages
 have ruled out their polarity.  Failure to find a finite model does not support
 truth; failure to derive the goal does not support falsity.  Each stage can
-therefore be understood and tested as a partial certificate producer, and the
+therefore be analyzed and tested as a partial certificate producer, and the
 composition is sound whenever the judge is sound, regardless of the producers'
 coverage.
 
@@ -397,11 +401,11 @@ in principle share more proof state across rows, but the current implementation
 does not rely on cross-problem lemmas.  This keeps Solo and Marathon certificate
 semantics aligned and limits memory growth under a long manifest.
 
-The fallback model is behind the complete deterministic cascade in Solo and is
+The fallback model follows the complete deterministic cascade in Solo and is
 not invoked in the archived accepted rows.  Its proposals still pass through
 the same printer and judge, so adding the fallback does not enlarge the trusted
-base.  In Marathon it is disabled to preserve the global token budget and
-because a partial manifest of verified deterministic answers remains useful.
+base.  In Marathon it is disabled to preserve the global token budget; the
+result is a partial manifest containing only verified deterministic answers.
 These are scheduling choices, not claims about the intrinsic capabilities of
 the configured model.
 
@@ -439,12 +443,13 @@ An instance-count guard prevents a mathematically compact operation from
 producing a certificate whose exhaustive hypothesis check exceeds the judge
 budget.
 
-These families serve two purposes.  They find many witnesses faster than a
-generic table search, and they preserve semantic structure in the emitted
-certificate.  A linear countermodel can be represented by its arithmetic
-operation rather than a large opaque table.  The judge still evaluates the
-hypothesis and the failing goal instance, so coefficient matching is an
-untrusted search optimization rather than a proof rule.
+These families provide both search efficiency and structured certificates.
+They find many witnesses faster than a generic table search while preserving
+semantic structure in the emitted certificate.  For example, a linear
+countermodel can be represented by its arithmetic operation rather than by a
+large opaque table.  The judge still evaluates the hypothesis and the failing
+goal instance, so coefficient matching remains an untrusted search
+optimization rather than a proof rule.
 
 Coefficient evaluation is implemented recursively.  A variable leaf maps to
 its basis vector.  At an internal node, the coefficient vector is
@@ -476,14 +481,14 @@ term, force another cell, or violate an instance.  The search uses a
 minimum-remaining-values choice among table positions and abandons partial
 tables as soon as a hypothesis instance becomes unequal.
 
-Many identities imply that rows, columns, or both are permutations.  A law in
+Many identities imply that rows, columns, or both must be permutations.  A law in
 which a variable occurs once on one side and appears under the operation in a
 particular argument position can expose such a constraint.  The solver infers
 the applicable Latin flags, rejects duplicate row or column values, and forces
-naked singletons.  This changed one residual requiring an eight-element
-quasigroup from no witness within a one-hundred-twenty-second attempt to a
-witness in 0.3 seconds.  The production shallow search remains restricted to
-carriers four through ten and an eight-second cap; the deep pass revisits the
+naked singletons.  For one residual requiring an eight-element quasigroup,
+this propagation changed the outcome from no witness within a
+one-hundred-twenty-second attempt to a witness in 0.3 seconds.  The production
+shallow search remains restricted to carriers four through ten and an eight-second cap; the deep pass revisits the
 same carrier interval with a longer cap.
 
 Before emission, the completed table is checked by a separate evaluator over
@@ -496,44 +501,43 @@ The partial-table solver maintains two invariants.  Every assigned cell agrees
 with all hypothesis instances that have become ground, and every inferred
 Latin constraint agrees with the assigned portion of its row or column.  A
 watch list connects a cell to the term instances whose evaluation may advance
-when that cell is filled.  Propagation reaches a fixed point before another
+when that cell is filled.  Propagation reaches a fixed point before the next
 decision.  At a complete table, the first invariant implies that exhaustive
 reevaluation of the hypothesis should succeed; the separate final evaluator
-checks this assumption and also searches the goal assignments.  Search
+checks this implication and also searches the goal assignments.  Search
 backtracking may be unsound or incomplete as an algorithm without threatening
 an accepted answer, because the table is subsequently evaluated from scratch
 and then checked once more in \lean.
 
 Carrier growth is likewise heuristic.  The shallow and deep passes enumerate
 the documented carrier interval, but the solver does not infer that absence of
-a model there implies truth.  It simply hands the row to the next proof or
-model family.  This is the operational form of the paper's no-completeness
-boundary.
+a model there implies truth.  It passes the row to the next proof or
+model family.  This behavior implements the paper's no-completeness boundary.
 
 \subsection{Central groupoids and the E168 residual family}
 
-The evaluation-distribution drill exposed a family of twelve residuals whose
+The evaluation-distribution drill identified a family of twelve residuals whose
 hypothesis is the central-groupoid law.  Central groupoids have a well-known
 combinatorial structure studied by Knuth~\cite{knuthCentral}.  The natural
-constructions tried by the structured stages satisfy not just the hypothesis
-but the relevant E168 conclusions, so they separate nothing.  Increasing the
-generic finder budget did not reliably recover the missing witnesses.
+constructions tried by the structured stages satisfy both the hypothesis and
+the relevant E168 conclusions, so they do not separate these equations.
+Increasing the generic finder budget did not reliably recover the missing witnesses.
 
-The solver therefore contains one explicit non-natural central groupoid of
+The solver therefore includes one explicit non-natural central groupoid of
 order nine.  The table was checked against each relevant hypothesis and goal,
-then stored once as a canned witness family.  When the hypothesis matches up
+then stored once as a fixed witness family.  When the hypothesis matches up
 to variable renaming and a goal is separated by the table, the solver emits
 the ordinary finite-table certificate.  This stage is not a classification of
-central groupoids and makes no claim about minimal order.  It is a specific,
-auditable response to a recurring algebraic family: the twelve drill residuals
-were accepted by the official runner after emission.
+central groupoids and makes no claim about minimal order.  It provides a
+specific, auditable witness for a recurring algebraic family: the official
+runner accepted the emitted certificates for the twelve drill residuals.
 
 \subsection{Infinite carriers for Austin pairs}
 
 Finite satisfiability can conceal false general implications.  Several pairs
 catalogued in the Equational Theories Project are true over the finite magmas
 searched by standard methods but false in general.  For recognized Austin-pair
-hypotheses, the solver selects a canned operation on $\Nat$, or its opposite,
+hypotheses, the solver selects a fixed operation on $\Nat$, or its opposite,
 and a small tuple falsifying the goal.  The certificate proves the hypothesis
 through a fixed sequence of elementary lemmas and closes the negated goal with
 the concrete tuple.
@@ -562,18 +566,17 @@ refers directly to the namespaced operation and core arithmetic.  This route
 was accepted by the official judge for the recorded larger carrier sizes and
 avoids relying on the table parser.
 
-The distinction is security-relevant but not a bypass.  The helper definition
-is part of the submitted source, is compiled by \lean, and is traversed by the
+This distinction affects dependency enforcement but does not circumvent it.
+The helper definition is part of the submitted source, is compiled by \lean, and is traversed by the
 kernel when its theorem is checked.  The allow-list controls dependencies, not
-the truth of definitions.  We state the behavior neutrally because it is part
-of the documented proof interface: submission-local auxiliary definitions are
-the intended way to package operations and lemmas that are not global library
-dependencies.
+the truth of definitions.  As specified by the documented proof interface,
+submission-local auxiliary definitions provide the intended mechanism for
+packaging operations and lemmas that are not global library dependencies.
 
 \section{Proof-Producing Ordered Superposition}
 \label{sec:true}
 
-The true side works in unit equational logic.  It assumes one universally
+The true branch operates in unit equational logic.  It assumes one universally
 quantified identity and attempts to derive the goal identity.  The engine is
 inspired by ordered superposition and unfailing completion as implemented in
 first-order provers, but is specialized to one binary symbol, unit clauses,
@@ -606,11 +609,11 @@ is not permanently starved.
 
 \subsection{The tautology-deletion failure}
 
-One public residual, \code{hard3\_0314}, survived an early version of the
-prover.  The official-runner attempt failed after 810 seconds even though an
-external derivation suggested that the necessary clauses were within the
-configured size bound.  Instrumentation showed that throughput was not the
-primary problem.  When demodulation transformed an equation into $s=s$, the
+An early version of the prover did not resolve one public residual,
+\code{hard3\_0314}.  The official-runner attempt found no proof after 810 seconds
+even though an external derivation suggested that the necessary clauses were within the
+configured size bound.  Instrumentation indicated that throughput was not the
+primary cause.  When demodulation transformed an equation into $s=s$, the
 step constructor returned no proof node, and the caller retained the partially
 rewritten input equation.  Backward simplification had the same behavior.
 
@@ -623,10 +626,11 @@ new clause whose sides become equal.
 
 With that change, the prover found the residual proof in 0.6 seconds in its
 direct measurement, and the official-runner path produced an accepted
-certificate in 14.6 seconds wall clock.  The important lesson is not the speed
-ratio but the coupling between simplification and selection.  Treating a
-tautology as a harmless live clause changed the effective search strategy
-enough to hide the final public proof.
+certificate in 14.6 seconds of wall-clock time.  These measurements illustrate
+the coupling between simplification and selection rather than establishing a
+general speed ratio.  Retaining a tautology as a live clause changed the
+effective search strategy enough to prevent the final public proof from being
+found within the earlier attempt.
 
 \subsection{Indexing and allocation control}
 
@@ -648,15 +652,15 @@ reducing the work per surviving clause.
 
 The passive set stores recipes---source equation, target equation, direction,
 and overlap position---rather than full instantiated proof objects.  The
-selected recipe is materialized when it becomes given.  This design mattered
-under the hosted memory limit: a large passive frontier can be retained without
+selected recipe is materialized when it becomes given.  Under the hosted
+memory limit, this representation permits a large passive frontier without
 duplicating every term and ancestry chain.  Caches and negative-goal storage
 are bounded and cleared between prover invocations.
 
 \subsection{Anytime deepening}
 
-A fixed size cap is brittle: saturation at a small cap can terminate with time
-remaining even when one slightly larger intermediate would finish the proof.
+A fixed size cap is sensitive to the selected bound: saturation at a small cap
+can terminate with time remaining even when one slightly larger intermediate would finish the proof.
 The deep pass therefore runs a schedule of increasing term-size and variable
 caps.  If a round saturates, its unused time moves forward.  If the final
 configured round saturates, caps continue to grow within the overall deadline.
@@ -687,7 +691,7 @@ another stage.  A prover defect can therefore cause a missed proof or a slower
 run, but cannot cause a wrong acceptance unless there is also a defect below
 the \lean kernel boundary.
 
-There is a practical tension between replay granularity and certificate size.
+Replay granularity and certificate size impose competing requirements.
 Emitting every normalization micro-step is easy to audit but repeats contexts
 and substitutions.  Compressing an entire derivation into a large tactic call
 reduces source size but reintroduces a dependency on tactic behavior and
@@ -697,8 +701,8 @@ ancestors are emitted once in topological order.  This keeps proof text close
 to the saturation trace while allowing \lean to elaborate each local equality
 without reconstructing the global search.
 
-Robust re-emission addresses elaboration rather than logic.  The first printer
-uses direct exact terms.  If the judge rejects that source, the solver can wrap
+Robust re-emission addresses elaboration rather than logical inference.  The
+first printer uses direct exact terms.  If the judge rejects that source, the solver can wrap
 individual equality steps in a small sequence of core closing alternatives and
 resubmit the same derivation; it does not rerun superposition or change the
 claimed theorem.  If search exhausts its deadline without a refutation, the
@@ -719,14 +723,14 @@ exception was the infinite-carrier Austin family, whose tactic import made
 compilation sensitive to the larger library environment.  In a compatibility
 run, one such certificate exceeded 330 seconds.
 
-The remedy was not a solver-side timeout increase.  We rewrote the Austin
+Rather than increasing the solver-side timeout, we rewrote the Austin
 certificate in positive form, replaced the broad tactic dependency with
 explicit core lemmas, and re-emitted the witness.  Its \lean 4.32 compilation
 then completed within 3.1 seconds.  A stratified corpus of 120 accepted
 certificates, covering every emission family and all fourteen former v1
 residuals, compiled in full under the announced toolchain; the judge support
-modules compiled unchanged.  This compatibility corpus is an external local
-measurement, not a substitute for hosted scoring.
+modules compiled unchanged.  This compatibility corpus constitutes an external
+local measurement and does not substitute for hosted scoring.
 
 \subsection{Input encoding}
 \label{sec:encoding}
@@ -740,9 +744,9 @@ zero accepted rows out of 800.
 
 Version v2.4 normalizes both equations at both the Solo and Marathon intakes.
 The same drill then recorded 800 accepted certificates with full agreement
-against the published answers.  This failure is a reminder that a verified
-output does not protect an unverified parser: normalization belongs at the
-protocol boundary, before any dispatch or caching.
+against the published answers.  Thus, verified output does not address failures
+in an unverified parser; normalization must occur at the protocol boundary,
+before any dispatch or caching.
 
 \subsection{Resource and filesystem constraints}
 
@@ -756,8 +760,8 @@ saturations.  The process-level timer also prevents a deeply nested legacy
 loop from overrunning its Marathon slice.
 
 Marathon's output file is the only durable mutable state supplied by the
-runner.  Per-row flush and synchronization are therefore part of correctness,
-not merely logging.  A first local fixture run also showed that the official
+runner.  Per-row flush and synchronization are therefore required for
+correctness.  An initial local fixture run also showed that the official
 checkout's default artifact directory could be unwritable in a managed
 workspace; redirecting judge artifacts to temporary storage resolved the
 environmental failure without changing judge sources.
@@ -765,8 +769,8 @@ environmental failure without changing judge sources.
 \section{End-to-End Certificate Production}
 \label{sec:certificates}
 
-The cascade is easier to assess when search and replay are viewed as one
-transaction.  This section follows representative false and true candidates
+Search and replay together form a single transaction.  This section follows
+representative false and true candidates
 from a parsed equation pair to the theorem checked by the judge.  The examples
 show certificate shape rather than a particular benchmark row; the concrete
 generated sources remain in the archived result ledgers.
@@ -879,7 +883,7 @@ proxy writes the judge-controlled problem module, compiles the candidate, runs
 dependency inspection, and returns one of the documented statuses.  Only the
 accepted status commits a solution row.  All other statuses preserve enough
 error text for robust re-emission or later fallback, subject to the remaining
-wall budget.
+wall-clock budget.
 
 Marathon cannot make interactive judge calls.  Its commit point is therefore
 split: the solver durably appends a complete candidate row, and the runner
@@ -895,14 +899,14 @@ but not trust: the same verifier and proof policy decide both tracks.
 
 Unless marked hosted, measurements in this section are local runs of the
 official runner and deterministic \lean judge.  The main regression used
-official repository revision \texttt{2848228ff490...}; the harness was green
-on the operator host.  The tested solver is v2.4, SHA-256
+official repository revision \texttt{2848228ff490...}; the harness completed
+without errors on the operator host.  The tested solver is v2.4, SHA-256
 \texttt{e89cd010b322...}, with byte count given in the abstract.  Each result
 file is bound by the repository's \code{PROVENANCE.json}.  The short hashes in
 the tables are prefixes of the full SHA-256 values in that file.
 
-The reported wall time is the sum of per-row runner measurements, not elapsed
-parallel makespan and not a hardware-independent cost model.  Solver stages
+The reported wall-clock time is the sum of per-row runner measurements, not
+elapsed parallel makespan and not a hardware-independent cost model.  Solver stages
 with deadlines may take different paths under heavier load.  ``LLM'' counts
 language-model calls attributed by the runner; a zero means the deterministic
 cascade produced the accepted certificate.
@@ -950,24 +954,24 @@ development was organized around those failure classes.  G3 plus the
 tautology-deletion correction supplies certificates for the true residuals;
 the large-carrier, Latin-propagating, structured, and infinite-carrier paths
 supply witnesses for the false residuals.  Replaying the residual set alone
-records fourteen accepted certificates, but the six complete sets are the
-important regression because they check that stage ordering and printers did
-not lose the earlier floor.
+records fourteen accepted certificates, whereas the six complete sets provide
+a regression check that stage ordering and printers preserve the previously
+accepted cases.
 
 This history is diagnostic, not a controlled ablation study.  Several changes
-landed together, and a row may now be solvable by more than one stage.  The
-paper therefore attributes mechanisms only where the engineering notes contain
+were introduced together, and a row may now be solvable by more than one stage.
+The paper therefore attributes mechanisms only where the engineering notes contain
 a direct replay, such as \code{hard3\_0314} for tautology deletion and
 \code{hard1\_0062} for Latin propagation.  It does not assign an aggregate
 percentage gain to individual components.
 
 The order of the cascade also affects the observed wall totals.  A true row
-may pay the shallow false-family cost before receiving a quick proof; a false
-row may pay direct proof checks before finite-model search.  These costs are
-intentional because the early stages are shared risk reducers: fast structured
-countermodels avoid proof saturation, while direct proof patterns avoid table
-search.  The six-set totals measure the integrated policy, not isolated engine
-speed.
+may incur the shallow false-family cost before receiving a quick proof; a false
+row may incur direct proof checks before finite-model search.  These costs are
+intentional because the early stages reduce resource use across both branches:
+inexpensive structured countermodels avoid proof saturation, while direct proof
+patterns avoid table search.  The six-set totals measure the integrated policy,
+not isolated engine speed.
 
 \subsection{Distribution drill, Marathon, and hosted playground}
 
@@ -1008,7 +1012,7 @@ Hosted playground & 200/200 & 0 calls & mean 4.89 s/problem & \prov{PROVENANCE.j
 \end{tabularx}
 \end{table*}
 
-The hosted record further separates false and true means: 2.69 seconds for
+The hosted record further reports means by verdict: 2.69 seconds for
 false rows and 7.08 seconds for true rows, with maxima 6.5 and 23.8 seconds,
 respectively.  Those values include hosted orchestration and certificate
 checking as exposed by the playground, and should not be compared directly to
@@ -1023,13 +1027,13 @@ per-pair prover cap, the optimized engine found all 254 derivations; maximum
 prover time was 2.7 seconds and the sum was sixteen seconds.  On all 819 public
 true problems under the quick cap, the prover found all proofs with median one
 millisecond and maximum 1.2 seconds.  These are prover-only measurements on the
-development machine, not judge wall time and not a comparison claiming
+development machine, not judge wall-clock time and not a comparison claiming
 superiority over Vampire.  Vampire served as a source of hard instances and
 derivation guidance.
 
 These focused results are recorded in
 \code{docs/TRUE\_SIDE\_G3\_PROVER.md}; they have no standalone hash-bound
-runner ledger and are therefore kept out of the ledger tables.
+runner ledger and are therefore not included in the ledger tables.
 
 \subsection{Bounded language-model measurement}
 
@@ -1037,11 +1041,11 @@ Before the v2 deterministic extensions, a fixed-configuration run exercised
 the organizer-pinned \code{gpt-oss-120b} fallback on six unsolved
 \code{sample\_20} residuals.  It solved zero of the six.  Pilot and canonical
 runs also produced different first attempts despite the advertised zero
-temperature and fixed seed.  The canonical run billed \$0.1350 in total,
+temperature and fixed seed.  The canonical run cost \$0.1350 in total,
 measured from provider credits-balance deltas rather than runner logs ---
 about \$0.023 per residual item under the sixteen-round cap.  Per-call
 latency and token telemetry are recorded as unavailable in the run notes, so
-no per-call figures are reported here.  We record this as a bounded negative measurement
+no per-call figures are reported here.  We report this bounded negative measurement
 of one model, provider route, solver version, prompt, and residual set.  It
 does not support a general statement that language
 models are ineffective for theorem proving or for this competition.
@@ -1075,7 +1079,7 @@ recorded runs.
 
 The public suites influenced solver development.  The fourteen v1 residuals
 motivated particular prover and countermodel changes, and the E168 drill
-motivated the canned central groupoid.  Full regression shows that those
+motivated the fixed central groupoid.  Full regression shows that those
 changes integrate without losing earlier rows; it does not measure performance
 on an independently sampled corpus.  The distribution drill is broader but is
 still published Stage 1 data, and its ground truth may share construction
@@ -1085,7 +1089,7 @@ Wall-clock totals combine Python search, process overhead, and \lean checking
 under one operator-host environment.  They are appropriate for detecting large
 regressions within that setup but should not be read as portable runtimes.
 Parallel worker load affects time-budgeted deepening, and filesystem caching
-affects \lean startup.  The hosted playground means partially address this
+affects \lean startup.  The hosted-playground mean times partially address this
 environment gap, but playground selection and daily interaction are not the
 same protocol as final evaluation.
 
@@ -1100,15 +1104,14 @@ benchmark construction and judge implementation remain external assumptions.
 \code{PROVENANCE.json} binds the frozen solver's SHA-256 and byte count, the
 official repository and configuration revisions, each result-ledger hash, the
 Marathon outputs, the compatibility corpus, and the hosted-playground record.
-The human-readable claims ledger states the maximum supported claim surface
+The human-readable claims ledger states the maximum set of supported claims
 and separately lists prohibited inferences.  The repository script
 \code{scripts/check\_freeze.py} recomputes the solver and ledger hashes, checks
 accepted-row metadata, verifies the one-file submission layout, and fails
 closed on drift.
 
-This structure is meant to prevent a common artifact failure: updating a
-solver while leaving old scores nearby, then accidentally reporting the scores
-as though they belonged to the new bytes.  Historical v1 and intermediate v2
+This structure is intended to prevent stale measurements from being attributed
+to a revised solver.  Historical v1 and intermediate v2
 artifacts remain named as superseded.  The tables in this paper use the current
 v2.4 bindings from \code{PROVENANCE.json}, even where an older narrative report
 contains timings from a previous rerun.
