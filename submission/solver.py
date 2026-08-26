@@ -4722,6 +4722,29 @@ def main():
             if not valid_llm_table(tbl):
                 local_feedback = "The false table was not a square Fin N table with 1 <= N <= 10."
                 continue
+            # Semantic pre-validation: a table that does not actually witness the
+            # non-implication would burn a judge call for a guaranteed rejection.
+            # Check it locally and hand back a precise repair instruction instead.
+            n = len(tbl)
+            op = table_to_op(tbl)
+            if not equation_holds(eq1, n, op):
+                local_feedback = (
+                    "Your table VIOLATES the hypothesis: there is an assignment of the "
+                    "hypothesis variables on which the two sides differ. Repair the table "
+                    "so the hypothesis holds for every assignment, then re-check the goal."
+                )
+                continue
+            if not equation_fails(eq2, n, op):
+                local_feedback = (
+                    "Your table satisfies the hypothesis, but the GOAL also holds on it, "
+                    "so it separates nothing. Symmetric or product-like patterns (for "
+                    "example the natural block/projection structure) typically satisfy "
+                    "both sides; an EXOTIC instance is required. Keep the hypothesis "
+                    "true while perturbing a few entries to break the goal, or try a "
+                    "different order, or answer with a raw Lean certificate using an "
+                    "infinite carrier if no small finite table works."
+                )
+                continue
             result = call_judge("false", make_false_code(problem, {"n": len(tbl), "table": tbl}))
             local_feedback = "(none; the judge feedback below controls the next repair)"
             if result.get("status") == "accepted":

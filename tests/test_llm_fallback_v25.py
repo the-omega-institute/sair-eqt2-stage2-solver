@@ -75,3 +75,39 @@ class TestLlmFallbackV25(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SemanticTablePrevalidation(unittest.TestCase):
+    def _mk(self):
+        import importlib.util, io, sys
+        sys.stdin = io.StringIO("")
+        spec = importlib.util.spec_from_file_location("sv_sem", SOLVER)
+        sv = importlib.util.module_from_spec(spec)
+        try:
+            spec.loader.exec_module(sv)
+        except SystemExit:
+            pass
+        return sv
+
+    def test_natural_pattern_fails_goal_side(self):
+        sv = self._mk()
+        e1 = sv.parse_equation("x = (y \u25c7 x) \u25c7 (x \u25c7 z)")
+        e2 = sv.parse_equation("x \u25c7 (x \u25c7 y) = x \u25c7 (x \u25c7 z)")
+        nat9 = [[0,0,0,1,1,1,2,2,2],[3,3,3,4,4,4,5,5,5],[6,6,6,7,7,7,8,8,8]] * 3
+        op = sv.table_to_op(nat9)
+        self.assertTrue(sv.equation_holds(e1, 9, op))
+        self.assertFalse(sv.equation_fails(e2, 9, op))
+
+    def test_singleton_never_separates(self):
+        sv = self._mk()
+        e1 = sv.parse_equation("x = (y \u25c7 y) \u25c7 (x \u25c7 (z \u25c7 y))")
+        e2 = sv.parse_equation("x \u25c7 y = (y \u25c7 (x \u25c7 y)) \u25c7 y")
+        op = sv.table_to_op([[0]])
+        self.assertTrue(sv.equation_holds(e1, 1, op))
+        self.assertFalse(sv.equation_fails(e2, 1, op))
+
+    def test_main_source_has_prevalidation_branches(self):
+        src = open(SOLVER, encoding="utf-8").read()
+        self.assertIn("VIOLATES the hypothesis", src)
+        self.assertIn("separates nothing", src)
+        self.assertLess(src.index("separates nothing"), src.index('call_judge("false", make_false_code'))
