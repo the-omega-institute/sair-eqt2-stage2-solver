@@ -275,7 +275,7 @@ remaining time.
 \paragraph{Stage A: shallow countermodels.}
 The solver first tries tiny brute-force tables, scalar linear and affine
 operations, vector-linear families, low-degree polynomial operations, and
-recognized infinite-carrier Austin models.  The expanded structured families
+recognized infinite-carrier Austin models~\cite{austin}.  The expanded structured families
 add about 0.8 seconds on a true input in the recorded development measurement.
 No irregular finite-model search is performed yet.
 
@@ -302,7 +302,8 @@ seconds.  Deep false search precedes the deepest proof pass so that a difficult
 false row does not consume most of its allowance in proof saturation.
 
 \paragraph{Stage E: anytime proof search.}
-The ordered-superposition engine receives
+The ordered-superposition engine, in the tradition of completion-based
+equational provers~\cite{knuthBendix,bachmairGanzinger}, receives
 \(
 \min(600,\max(20,T/6))
 \)
