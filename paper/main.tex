@@ -158,7 +158,7 @@ proof of the universal implication.  A false answer must exhibit a magma in
 which the hypothesis holds and the conclusion fails.  The same deterministic
 judge checks both forms.  An accepted certificate solves the row; a plausible
 label, proof sketch, or partly checked derivation receives no credit
-\cite{competitionRules}.
+\cite{competition,competitionRules}.
 
 This contract changes the design objective.  A classifier may be useful while
 remaining difficult to audit, whereas a certificate producer must preserve
@@ -1164,7 +1164,8 @@ models similarly draw on constructions represented in the Equational Theories
 Project rather than proposing a general finite-model theorem.
 
 \paragraph{Superposition provers.}
-Vampire, E, and Prover9 are mature first-order theorem provers implementing
+Vampire~\cite{vampire}, E~\cite{eprover}, and Prover9~\cite{prover9} are
+mature first-order theorem provers implementing
 variants of resolution, superposition, completion, simplification, and
 given-clause saturation~\cite{vampire,eprover,prover9}.  Our engine borrows
 standard ideas---ordered inference, KBO, demodulation, discrimination-tree
