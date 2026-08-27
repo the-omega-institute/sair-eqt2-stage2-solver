@@ -407,5 +407,30 @@
   },
   "totals": "400/400 hosted problems accepted, 0 rejected, 0 errors, 0 LLM calls",
   "note": "Hosted playground measurements, not leaderboard scores. Driven by the operator via the playground UI (10 problems/run, daily credits)."
+ },
+ "lean_4331_revalidation": {
+  "date": "2026-08-27",
+  "context": "Following the Lean kernel soundness bug hunt, the organizers upgraded the judge (harness, playground, official evaluation) from Lean/Mathlib 4.32.2 to 4.33.1. The frozen v2.5 solver file is byte-unchanged.",
+  "judge_revision": "1364868 (official main, lean-toolchain leanprover/lean4:v4.33.1, mathlib 0df444a3)",
+  "official_harness": "GREEN, zero case failures (results captured in the run log)",
+  "results": {
+   "solo_six_sets": "1889/1889 (llm_calls=0 everywhere)",
+   "official_distribution_drill": "800/800, full ground-truth agreement",
+   "marathon_normal_100": "100/100, 0 tokens"
+  },
+  "ledgers": {
+   "evaluation_extra_hard.json": "61f86f7b9a11437f97fae7e49c01a7ee59bb0daa7201801ba6476f4f158a90a0",
+   "evaluation_hard.json": "975f8f8c9b6b5ae48eb4ce2a3e72eb4554597e1e69cd84b73272bc13997d4b54",
+   "evaluation_normal.json": "549c21c42e79c3fed745c3ab18c7514bfa67bbcf416a41bf4b56af25acea0243",
+   "evaluation_order5.json": "d88eab184e30f55f1e8060c05d18d53b8713fe351f9acb0352d71c2543a3983a",
+   "hard1.json": "45ddd904ce61b0136dccfdc09291b59a01155b2453f703f97ca97a0c3e2fd5a0",
+   "hard2.json": "14da2eb283d5f24966fe0beafd2a382eadfe31325f639a05ac8de416586fa874",
+   "hard3.json": "f48d8cfb9863903490e891cb43683aaaa312268ed0bbc1332bec35c63893aaa8",
+   "marathon_summary.json": "6d7f51f6d518c38320fde311279acf5e388314fb968f3eabe5e72c2e97f46146",
+   "normal.json": "16b726b8a3c9f579fd4330adf50dec69b1c35de60a6735057a9a8cceb615bf51",
+   "sample_20.json": "cdf2ca58103aee9f56c7af3c2c2641e619aa32c08fc90cd17a99fa1670529cf6",
+   "sample_200.json": "01c1f1dd9a4cf2a1d9772c671136c18350ae6bf8a8dfd8531de5be9d2ed63925"
+  },
+  "note": "Every certificate family is Lean-core-only and relies on no unsound kernel behavior; the organizers state existing valid certificates remain valid. This section is measured confirmation, not inference."
  }
 }
