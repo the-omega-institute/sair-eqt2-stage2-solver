@@ -347,7 +347,18 @@
   "context": "rules commits 119dbfe/e00901b (2026-08-20) announce Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment while the public harness remains v4.30.0-rc2",
   "corpus": "120 stratified accepted certificates covering every emission family + all 14 former v1 residuals",
   "result": "120/120 compile under Lean 4.32.0 (119 in the exact Lean 4.32.0 + Mathlib v4.32.0 run; the one prior timeout was the Mathlib-importing austin certificate, re-emitted core-only in v2.3 and compiling in <= 3.1 s under 4.32.0 core); the four judge support modules compile unchanged under 4.32.0",
-  "harness": "external directory lean432-cert-check (operator host), not part of this repository"
+  "harness": "external directory lean432-cert-check (operator host), not part of this repository",
+  "evidence_status": "External-operator measurement, now archived in results/lean432_corpus/ (harness scripts, 120-certificate corpus, and result JSONs; hashes below). The certificates in the corpus were drawn from committed v2.x ledgers, but the run itself executed outside this repository and predates the v2.5 file, so it is recorded as an operator attestation. The repository-verifiable toolchain evidence for the exact v2.5 artifact is lean_4331_revalidation.",
+  "archived_artifacts": {
+   "results/lean432_corpus/results-proxy-4.33-merged.json": "cff308dbbb95d88e3d785a1122bd6e28acb0ccb693ef9bad3c7e2683c88610f8",
+   "results/lean432_corpus/REPORT.md": "ac7489516750c2f48f04e62a02e36ba200d4c26ff718e06afa18534ce4fd34f6",
+   "results/lean432_corpus/results.json": "f33ed0f886e0edd57f8e20fe89edc00995d4b76cbbc72dab235c7fa11466f340",
+   "results/lean432_corpus/corpus/retry_cn.json": "a26ae19e785ca04ae594f34490dbabb312648b6b9a911abf64ce13e1357a10bb",
+   "results/lean432_corpus/corpus/retry_nm.json": "5e16025759fae916a8927e880d5e1655f23362082bc9d1843809fe08064daf6f",
+   "results/lean432_corpus/corpus/retry_1.json": "9363a13c1c444fe008e453b1d4188a062593493ac3a5bf4d6e3db1374052e853",
+   "results/lean432_corpus/corpus/retry_cn2.json": "d98e93c8295702a790bea3be16c7b6dd2d70312a747d65b2fc17176a7cf628a9",
+   "results/lean432_corpus/corpus/sample_120.json": "ed7eb39fa7eda8b6739d056dbb669be21c79ef1f1f3027e12bbe8d3309168b2c"
+  }
  },
  "official_distribution_drill": {
   "source": "HuggingFace SAIRfoundation/equational-theories-selected-problems, the four Stage 1 evaluation splits (the announced Stage 2 scoring categories), 200 problems each, '*'-encoded as published",
@@ -406,7 +417,8 @@
    "evaluation_order5": "100/100 accepted, 0 errors"
   },
   "totals": "all four categories accepted at 100% on the hosted judge (Lean 4.33.1) with the frozen file; 0 LLM calls throughout",
-  "note": "Hosted playground measurements, not leaderboard scores. Driven by the operator via the playground UI (10 problems/run, daily credits)."
+  "note": "Hosted playground measurements, not leaderboard scores. Driven by the operator via the playground UI (10 problems/run, daily credits).",
+  "evidence_status": "External operator attestation: playground runs execute on SAIR's hosted infrastructure through the operator's browser session and produce no repository-committable ledger. Recorded here as attested observations; the repository-verifiable evidence for the same categories is the committed drill and Solo/Marathon ledgers."
  },
  "lean_4331_revalidation": {
   "date": "2026-08-27",

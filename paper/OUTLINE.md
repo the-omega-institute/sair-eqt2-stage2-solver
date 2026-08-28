@@ -29,7 +29,7 @@ not a new completeness theorem.
 
 ## 5. Local official-runner evaluation
 
-Report solver v2.4's 1889/1889 aggregate over all six public sets, the local
+Report solver v2.5's 1889/1889 aggregate over all six public sets, the local
 Marathon `normal_100` result (100/100, 0 tokens), and the published
 evaluation-distribution drill (800/800), each with the exact solver, judge,
 configuration, and ledger hashes. Keep the superseded v1 results

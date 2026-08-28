@@ -13,9 +13,6 @@ statement. This is a working draft, not a submission claim.
   are in; all three CRediT lines are in (Israel supplied his by email, 2026-08-25). Name form: Manuel Israel Cázares.
 - The exact bibliographic title for arXiv:2604.18897 is TBD; the citation is
   currently keyed by author and arXiv identifier only.
-- The hosted-results material reports only the playground measurement. A
-  post-leaderboard v2 must add the submission timestamp, uploaded solver hash,
-  official score/rank, and public result URL, then remove the `PENDING` status.
 - Conference date/location and ACM rights metadata are intentionally unset.
 
 ## Evidence boundary
@@ -50,3 +47,12 @@ statement. This is a working draft, not a submission claim.
   substantive concerns. His optional note on the FATE-X execution-check cost
   figure is incorporated (billed-delta figures only; per-call latency is
   recorded as unavailable in the run notes and stays out).
+
+## Freeze binding (v2.5)
+
+The paper's solver identity, tables, and provenance rows are bound to the frozen v2.5 artifact
+(SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4`, 189,504 bytes). Hosted-playground results (all four
+categories at 100%) and the pre-upgrade Lean 4.32 corpus check are reported as external operator
+attestations; the repository-verifiable toolchain evidence for the exact v2.5 artifact is the
+committed Lean 4.33.1 revalidation (`results/lean4331_revalidation/`, hash-bound in PROVENANCE).
+A post-leaderboard v2 must still add the hosted submission timestamp, official score, and result URL.

@@ -100,8 +100,8 @@ Search results remain outside the trusted base: successful derivations are
 replayed as small \lean terms, and countermodels are rechecked by the
 competition judge.
 
-The frozen solver is a 179,888-byte Python file with SHA-256
-\texttt{e89cd010b322f77b...}.  In local runs through official judge revision
+The frozen solver is a 189,504-byte Python file with SHA-256
+\texttt{f2392533c9f4c03b...}.  In local runs through official judge revision
 \texttt{2848228}, it produced accepted certificates for all 1,889 rows of the
 six public sets with no language-model calls.  Separate measurements recorded
 full agreement on the 800 published Stage 1 evaluation-distribution problems,
@@ -126,8 +126,8 @@ Search results remain outside the trusted base: successful derivations are
 replayed as small \lean terms, and countermodels are rechecked by the
 competition judge.
 
-The frozen solver is a 179,888-byte Python file with SHA-256
-\texttt{e89cd010b322f77b...}.  In local runs through official judge revision
+The frozen solver is a 189,504-byte Python file with SHA-256
+\texttt{f2392533c9f4c03b...}.  In local runs through official judge revision
 \texttt{2848228}, it produced accepted certificates for all 1,889 rows of the
 six public sets with no language-model calls.  Separate measurements recorded
 full agreement on the 800 published Stage 1 evaluation-distribution problems,
@@ -220,7 +220,7 @@ superposition, and proof-assistant work.
 \subsection{Contract and trusted boundary}
 
 The submission contract requires one \code{solver.py} file no larger than the
-competition limit.  Solver v2.4 is 179,888 bytes, and therefore remains below
+competition limit.  Solver v2.5 is 189,504 bytes, and therefore remains below
 that limit while containing all search code and fixed data.  In Solo mode the
 proxy sends one JSON problem and its budget to a fresh process; the solver sends
 judge or language-model requests back over line-delimited JSON.  In Marathon
@@ -730,8 +730,15 @@ explicit core lemmas, and re-emitted the witness.  Its \lean 4.32 compilation
 then completed within 3.1 seconds.  A stratified corpus of 120 accepted
 certificates, covering every emission family and all fourteen former v1
 residuals, compiled in full under the announced toolchain; the judge support
-modules compiled unchanged.  This compatibility corpus constitutes an external
-local measurement and does not substitute for hosted scoring.
+modules compiled unchanged.  That corpus run executed outside the repository
+and is archived as an operator attestation
+(\code{results/lean432\_corpus/}).  When the organizers subsequently upgraded
+the judge to \lean 4.33.1 after the kernel-soundness review, the frozen
+artifact was revalidated in full under the upgraded judge --- official harness,
+all six public sets, the distribution drill, and the Marathon manifest --- with
+the resulting ledgers committed and hash-bound
+(\code{results/lean4331\_revalidation/}).  Neither measurement substitutes for
+hosted scoring.
 
 \subsection{Input encoding}
 \label{sec:encoding}
@@ -902,7 +909,7 @@ Unless marked hosted, measurements in this section are local runs of the
 official runner and deterministic \lean judge.  The main regression used
 official repository revision \texttt{2848228ff490...}; the harness completed
 without errors on the operator host.  The tested solver is v2.4, SHA-256
-\texttt{e89cd010b322...}, with byte count given in the abstract.  Each result
+\texttt{f2392533c9f4...}, with byte count given in the abstract.  Each result
 file is bound by the repository's \code{PROVENANCE.json}.  The short hashes in
 the tables are prefixes of the full SHA-256 values in that file.
 
@@ -986,16 +993,18 @@ format and distribution readiness rather than evaluation transfer.
 The canonical Marathon measurement used the official batch runner and its
 \code{normal\_100} manifest.  All rows were accepted without tokens.  The
 hosted-playground row is different in kind: it was run through the official
-playground interface under the \lean 4.32 toolchain.  It covers all 200
-\code{evaluation\_normal} playground problems and records 200 accepted
-certificates, no rejected or errored rows, and no language-model calls.  It is
-explicitly not an official leaderboard score.
+playground interface on the hosted judge and is recorded as an external
+operator attestation, because the playground emits no repository-committable
+ledger.  Across the four evaluation categories the attested runs record
+acceptance of every attempted problem with no rejected or errored rows and no
+language-model calls.  It is explicitly not an official leaderboard score.
 
 \begin{table*}[t]
 \caption{Additional measurements.  Local drill and Marathon rows name their
-ledger files and SHA-256 prefixes.  The hosted row is bound by the
-\code{hosted\_playground\_measurement} record in \code{PROVENANCE.json}; the
-playground interface did not emit a repository ledger file.}
+ledger files and SHA-256 prefixes.  The hosted row is an operator
+attestation recorded in the \code{hosted\_playground\_measurement} entry of
+\code{PROVENANCE.json}; the playground interface did not emit a repository
+ledger file.}
 \label{tab:drill}
 \small
 \setlength{\tabcolsep}{4pt}

@@ -23,8 +23,8 @@ The official platform/validator issue remains tracked upstream as issue #3.
 ## Validated evidence
 
 The complete official harness passed with zero failures under `2848228` on
-2026-08-17 and again on the operator host on 2026-08-20. Solver v2.4
-(`e89cd010…`, 179,888 bytes) scored 20/20 `sample_20`, 200/200 `sample_200`,
+2026-08-17 and again on the operator host on 2026-08-20. Solver v2.5
+(`f2392533…`, 189,504 bytes) scored 20/20 `sample_20`, 200/200 `sample_200`,
 69/69 `hard1`, 200/200 `hard2`, 400/400 `hard3`, and 1000/1000 `normal` —
 **1889/1889**. Every accepted row was produced before the LLM fallback and
 accepted by the Lean judge. The same file scored 100/100 with 0 tokens on the
