@@ -9,12 +9,12 @@ v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures
 
 | Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
 |---|---:|---:|---:|---:|---|---|
-| `sample_20` | 20/20 | 0 | 20 | 68.21 s | none | `results/v2_sample_20_official_2848228.json` (`4a93d4d704f3d76b…`) |
-| `sample_200` | 200/200 | 0 | 200 | 893.37 s | none | `results/v2_sample_200_official_2848228.json` (`61a72ebd5f9bb0d4…`) |
-| `hard1` | 69/69 | 0 | 69 | 516.61 s | none | `results/v2_hard1_official_2848228.json` (`c2558135fbda9abe…`) |
-| `hard2` | 200/200 | 0 | 200 | 1261.27 s | none | `results/v2_hard2_official_2848228.json` (`a2cc9e971c5caeaa…`) |
-| `hard3` | 400/400 | 0 | 400 | 2232.47 s | none | `results/v2_hard3_official_2848228.json` (`2e64a5f060a93bdf…`) |
-| `normal` | 1000/1000 | 0 | 1000 | 3623.86 s | none | `results/v2_normal_official_2848228.json` (`22b8ed420fdf173d…`) |
+| `sample_20` | 20/20 | 0 | 20 | 67.53 s | none | `results/v2_sample_20_official_2848228.json` (`b17eaff452d24a51…`) |
+| `sample_200` | 200/200 | 0 | 200 | 964.12 s | none | `results/v2_sample_200_official_2848228.json` (`dcf830de61995eb9…`) |
+| `hard1` | 69/69 | 0 | 69 | 559.81 s | none | `results/v2_hard1_official_2848228.json` (`7724566d1ceba3b5…`) |
+| `hard2` | 200/200 | 0 | 200 | 1250.67 s | none | `results/v2_hard2_official_2848228.json` (`3e68548945d489f0…`) |
+| `hard3` | 400/400 | 0 | 400 | 2857.38 s | none | `results/v2_hard3_official_2848228.json` (`c9f98750e018973c…`) |
+| `normal` | 1000/1000 | 0 | 1000 | 4128.3 s | none | `results/v2_normal_official_2848228.json` (`27c756482d157d92…`) |
 | 14 former v1 residuals | 14/14 | 0 | 14 | 131.66 s | none | `results/v2_residuals14_official_2848228.json` |
 
 Totals: **1889/1889 public rows accepted** (v1 frozen baseline: 1875/1889; v2.0 candidate: 1888/1889). Every
