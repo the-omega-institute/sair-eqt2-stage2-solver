@@ -1,0 +1,1002 @@
+[
+{
+"id": "research_order5_hard_0001",
+"eq1_id": 24200,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 797.56,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0002",
+"eq1_id": 39163,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 259.99,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0003",
+"eq1_id": 11081,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.17,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0004",
+"eq1_id": 41253,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 74.5,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0005",
+"eq1_id": 10222,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 714.58,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0006",
+"eq1_id": 32281,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 656.93,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0007",
+"eq1_id": 12073,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 767.29,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0008",
+"eq1_id": 13764,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 68.8,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0009",
+"eq1_id": 11116,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 778.68,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0010",
+"eq1_id": 34889,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 725.4,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0011",
+"eq1_id": 40057,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 837.54,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0012",
+"eq1_id": 33020,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 798.83,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0013",
+"eq1_id": 5066,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 54.59,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0014",
+"eq1_id": 40909,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 49.61,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0015",
+"eq1_id": 5012,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 65.04,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0016",
+"eq1_id": 40914,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 181.36,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0017",
+"eq1_id": 22591,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 791.06,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0018",
+"eq1_id": 9663,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 798.07,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0019",
+"eq1_id": 5012,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 61.95,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0020",
+"eq1_id": 21866,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 783.9,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0021",
+"eq1_id": 5837,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 183.39,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0022",
+"eq1_id": 12073,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 790.55,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0023",
+"eq1_id": 40914,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 197.67,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0024",
+"eq1_id": 12087,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 804.12,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0025",
+"eq1_id": 17286,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 794.61,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0026",
+"eq1_id": 39214,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.44,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0027",
+"eq1_id": 23354,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 790.15,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0028",
+"eq1_id": 21866,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 788.17,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0029",
+"eq1_id": 32280,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 56.63,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0030",
+"eq1_id": 11081,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.77,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0031",
+"eq1_id": 12883,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 826.68,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0032",
+"eq1_id": 32281,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 670.56,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0033",
+"eq1_id": 21864,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 805.09,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0034",
+"eq1_id": 6878,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.45,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0035",
+"eq1_id": 36713,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 179.56,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0036",
+"eq1_id": 34889,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.42,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0037",
+"eq1_id": 28626,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 798.4,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0038",
+"eq1_id": 28626,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.87,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0039",
+"eq1_id": 21865,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 799.92,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0040",
+"eq1_id": 17286,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 838.69,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0041",
+"eq1_id": 9345,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 179.11,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0042",
+"eq1_id": 18137,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.25,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0043",
+"eq1_id": 20911,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 783.55,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0044",
+"eq1_id": 39126,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 791.34,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0045",
+"eq1_id": 5837,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 181.68,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0046",
+"eq1_id": 34888,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 785.12,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0047",
+"eq1_id": 11116,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 786.78,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0048",
+"eq1_id": 23357,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 802.35,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0049",
+"eq1_id": 6912,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 797.02,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0050",
+"eq1_id": 27859,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 790.82,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0051",
+"eq1_id": 36487,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 802.82,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0052",
+"eq1_id": 22591,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 800.47,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0053",
+"eq1_id": 27863,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.25,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0054",
+"eq1_id": 33020,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 807.45,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0055",
+"eq1_id": 38316,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 796.15,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0056",
+"eq1_id": 11116,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 781.23,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0057",
+"eq1_id": 21865,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.51,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0058",
+"eq1_id": 5833,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 795.34,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0059",
+"eq1_id": 5295,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 52.87,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0060",
+"eq1_id": 36638,
+"eq2_id": 28770,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 173.6,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0061",
+"eq1_id": 12234,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 806.03,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0062",
+"eq1_id": 4952,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 56.03,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0063",
+"eq1_id": 36524,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 208.37,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0064",
+"eq1_id": 32294,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 58.98,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0065",
+"eq1_id": 38316,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 796.4,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0066",
+"eq1_id": 5141,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 51.65,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0067",
+"eq1_id": 40951,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 222.76,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0068",
+"eq1_id": 32281,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 663.75,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0069",
+"eq1_id": 22591,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 804.43,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0070",
+"eq1_id": 34889,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 790.29,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0071",
+"eq1_id": 9667,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 177.45,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0072",
+"eq1_id": 38249,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 182.5,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0073",
+"eq1_id": 35036,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.0,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0074",
+"eq1_id": 35036,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 792.87,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0075",
+"eq1_id": 39126,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 794.0,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0076",
+"eq1_id": 13992,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 58.74,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0077",
+"eq1_id": 38565,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 784.53,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0078",
+"eq1_id": 40037,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 871.49,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0079",
+"eq1_id": 10218,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 814.23,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0080",
+"eq1_id": 23653,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 803.07,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0081",
+"eq1_id": 13764,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 81.57,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0082",
+"eq1_id": 5107,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 254.73,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0083",
+"eq1_id": 36713,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 178.69,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0084",
+"eq1_id": 40070,
+"eq2_id": 17522,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 807.9,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0085",
+"eq1_id": 13992,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 63.38,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0086",
+"eq1_id": 24199,
+"eq2_id": 22455,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 802.6,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0087",
+"eq1_id": 24200,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 794.04,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0088",
+"eq1_id": 41252,
+"eq2_id": 20034,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 60.38,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0089",
+"eq1_id": 36713,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 179.59,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0090",
+"eq1_id": 5066,
+"eq2_id": 30591,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 59.11,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0091",
+"eq1_id": 6912,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 793.21,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0092",
+"eq1_id": 11280,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 212.72,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0093",
+"eq1_id": 12294,
+"eq2_id": 41082,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 800.6,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0094",
+"eq1_id": 7701,
+"eq2_id": 15535,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 740.36,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0095",
+"eq1_id": 35836,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 679.13,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0096",
+"eq1_id": 8485,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 809.84,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0097",
+"eq1_id": 12087,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 819.14,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0098",
+"eq1_id": 36487,
+"eq2_id": 22818,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 804.63,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0099",
+"eq1_id": 27859,
+"eq2_id": 25964,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 788.06,
+"judge_calls": 1,
+"llm_calls": 1
+},
+{
+"id": "research_order5_hard_0100",
+"eq1_id": 25087,
+"eq2_id": 4916,
+"solved": false,
+"verdict": null,
+"elapsed_seconds": 788.31,
+"judge_calls": 1,
+"llm_calls": 1
+}
+]

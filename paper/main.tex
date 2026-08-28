@@ -1155,6 +1155,20 @@ official harness, freeze checker, ledger files, and public-runner commands are
 available locally; hosted playground interaction and any future leaderboard
 submission require organizer infrastructure.
 
+\paragraph{A measured outer boundary.}
+Shortly before submission the organizers released two additional official sets.
+On \code{stage2\_stress\_test}, announced as mirroring the final leaderboard
+configuration, the frozen solver accepts 200 of 200 problems with full
+ground-truth agreement and no language-model calls.  On
+\code{research\_order5\_hard} --- one hundred research-tier problems in which
+at least one side is an order-five Austin law, whose false direction provably
+admits no finite countermodel, and whose ground truth is in part unknown even
+to the organizers --- the frozen solver certifies none within its budgets.
+Both ledgers are committed and hash-bound.  The pair delimits the system
+precisely: complete coverage of the announced evaluation distribution, and a
+research frontier, coinciding with open territory in the Equational Theories
+Project, that finite methods do not reach.
+
 \section{Related Work}
 
 \paragraph{Equational theories.}

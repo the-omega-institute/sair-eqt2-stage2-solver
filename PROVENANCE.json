@@ -444,5 +444,20 @@
    "sample_200.json": "01c1f1dd9a4cf2a1d9772c671136c18350ae6bf8a8dfd8531de5be9d2ed63925"
   },
   "note": "Every certificate family is Lean-core-only and relies on no unsound kernel behavior; the organizers state existing valid certificates remain valid. This section is measured confirmation, not inference."
+ },
+ "stage2_stress_test": {
+  "date": "2026-08-28",
+  "source": "official stage2_stress_test dataset (announced as mirroring the final main-leaderboard configuration: 4 categories x 50, 25 true / 25 false each)",
+  "result": "200/200 accepted, 0 LLM calls, full ground-truth agreement; wall 22m25s including per-item judge compilation",
+  "ledger": "results/stage2_stress_test_results.json",
+  "ledger_sha256": "c741609293d136c6b2c38fda796242bb035347eec940bb0cc97e18d903bc0234"
+ },
+ "research_order5_hard_attempt": {
+  "date": "2026-08-28/29",
+  "source": "official research_order5_hard dataset (100 order-5 problems where at least one side is an Austin law; ground truth partly unknown; explicitly not part of the leaderboard evaluation)",
+  "result": "0/100 within the frozen budgets (73 full deep-budget exhaustions, 27 candidate certificates rejected by the kernel); recorded as an honest negative measurement delimiting the cascade's coverage",
+  "ledger": "results/research_order5_hard_attempt.json",
+  "ledger_sha256": "86fc2764fdb9b1086184eb69c91ddcc26211ad5cd58b6fc8199edb0128a31c96",
+  "ledger_note": "slimmed per-row summary (id/verdict/timing/call counts); full event logs retained off-repository by the operator"
  }
 }
