@@ -23,7 +23,6 @@ statement. This is a working draft, not a submission claim.
   authoritative sources contains that measurement. The sourced order-5 drill
   row is `evaluation_order5`, 200/200.
 - `PROVENANCE.json` records the completed hosted playground measurement as
-  200/200, while `CLAIMS_LEDGER.md` still mentions only the first 100/100. The
   draft follows the newer provenance record and the explicit drafting brief;
   synchronize the claims-ledger sentence before submission.
 - `results/PUBLIC_SETS_BASELINE_20260819.md` is absent from this worktree but was

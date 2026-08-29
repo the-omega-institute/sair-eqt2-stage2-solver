@@ -346,19 +346,21 @@
  "lean_432_compatibility": {
   "context": "rules commits 119dbfe/e00901b (2026-08-20) announce Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment while the public harness remains v4.30.0-rc2",
   "corpus": "120 stratified accepted certificates covering every emission family + all 14 former v1 residuals",
-  "result": "120/120 compile under Lean 4.32.0 (119 in the exact Lean 4.32.0 + Mathlib v4.32.0 run; the one prior timeout was the Mathlib-importing austin certificate, re-emitted core-only in v2.3 and compiling in <= 3.1 s under 4.32.0 core); the four judge support modules compile unchanged under 4.32.0",
+  "result": "EXACT Lean 4.32.0 + Mathlib v4.32.0 run (results-exact-4.32.json): 119/120 certificates pass; the single non-pass was the pre-v2.3 Mathlib-importing Austin certificate exceeding the judge's 300 s phase limit (it passes at 330 s with an extended limit — results-retry-hard2_0027.json). That family was re-emitted core-only in v2.3. results.json in the same directory records an earlier BLOCKED preflight from before the toolchain was installed and is retained for completeness only.",
   "harness": "external directory lean432-cert-check (operator host), not part of this repository",
-  "evidence_status": "External-operator measurement, now archived in results/lean432_corpus/ (harness scripts, 120-certificate corpus, and result JSONs; hashes below). The certificates in the corpus were drawn from committed v2.x ledgers, but the run itself executed outside this repository and predates the v2.5 file, so it is recorded as an operator attestation. The repository-verifiable toolchain evidence for the exact v2.5 artifact is lean_4331_revalidation.",
   "archived_artifacts": {
    "results/lean432_corpus/results-proxy-4.33-merged.json": "cff308dbbb95d88e3d785a1122bd6e28acb0ccb693ef9bad3c7e2683c88610f8",
    "results/lean432_corpus/REPORT.md": "ac7489516750c2f48f04e62a02e36ba200d4c26ff718e06afa18534ce4fd34f6",
    "results/lean432_corpus/results.json": "f33ed0f886e0edd57f8e20fe89edc00995d4b76cbbc72dab235c7fa11466f340",
+   "results/lean432_corpus/results-exact-4.32.json": "a68f3740ae93cb8caa2f07b2b5c83ec290a5b402508753188919c091d43add09",
+   "results/lean432_corpus/results-retry-hard2_0027.json": "33c23bb877db38749a8a6dd3f7f255a36fed54a8e9c81df1f4fade6ab60a0feb",
    "results/lean432_corpus/corpus/retry_cn.json": "a26ae19e785ca04ae594f34490dbabb312648b6b9a911abf64ce13e1357a10bb",
    "results/lean432_corpus/corpus/retry_nm.json": "5e16025759fae916a8927e880d5e1655f23362082bc9d1843809fe08064daf6f",
    "results/lean432_corpus/corpus/retry_1.json": "9363a13c1c444fe008e453b1d4188a062593493ac3a5bf4d6e3db1374052e853",
    "results/lean432_corpus/corpus/retry_cn2.json": "d98e93c8295702a790bea3be16c7b6dd2d70312a747d65b2fc17176a7cf628a9",
    "results/lean432_corpus/corpus/sample_120.json": "ed7eb39fa7eda8b6739d056dbb669be21c79ef1f1f3027e12bbe8d3309168b2c"
-  }
+  },
+  "evidence_status": "External-operator run, archived with hash-bound ledgers in results/lean432_corpus/. It predates the v2.5 file; the repository-verifiable toolchain evidence for the exact v2.5 artifact is lean_4331_revalidation."
  },
  "official_distribution_drill": {
   "source": "HuggingFace SAIRfoundation/equational-theories-selected-problems, the four Stage 1 evaluation splits (the announced Stage 2 scoring categories), 200 problems each, '*'-encoded as published",

@@ -727,10 +727,12 @@ run, one such certificate exceeded 330 seconds.
 Rather than increasing the solver-side timeout, we rewrote the Austin
 certificate in positive form, replaced the broad tactic dependency with
 explicit core lemmas, and re-emitted the witness.  Its \lean 4.32 compilation
-then completed within 3.1 seconds.  A stratified corpus of 120 accepted
-certificates, covering every emission family and all fourteen former v1
-residuals, compiled in full under the announced toolchain; the judge support
-modules compiled unchanged.  That corpus run executed outside the repository
+then completed within 3.1 seconds.  A stratified corpus of 120 accepted certificates, covering every emission family and all fourteen former v1
+residuals, compiled 119 of 120 under the exact announced toolchain; the one
+non-passing certificate was the pre-rewrite Austin witness itself, which
+exceeded the judge's 300-second phase limit and passed once that limit was
+extended, motivating the rewrite; the judge support modules compiled
+unchanged.  That corpus run executed outside the repository
 and is archived as an operator attestation
 (\code{results/lean432\_corpus/}).  When the organizers subsequently upgraded
 the judge to \lean 4.33.1 after the kernel-soundness review, the frozen
@@ -750,7 +752,7 @@ path.  When the Stage 1 evaluation splits were supplied in their published
 asterisk encoding, the solver crashed before certificate search and recorded
 zero accepted rows out of 800.
 
-Version v2.4 normalizes both equations at both the Solo and Marathon intakes.
+Version v2.4 introduced, and v2.5 retains, normalization of both equations at both the Solo and Marathon intakes.
 The same drill then recorded 800 accepted certificates with full agreement
 against the published answers.  Thus, verified output does not address failures
 in an unverified parser; normalization must occur at the protocol boundary,
@@ -908,7 +910,7 @@ but not trust: the same verifier and proof policy decide both tracks.
 Unless marked hosted, measurements in this section are local runs of the
 official runner and deterministic \lean judge.  The main regression used
 official repository revision \texttt{2848228ff490...}; the harness completed
-without errors on the operator host.  The tested solver is v2.4, SHA-256
+without errors on the operator host.  The tested solver is v2.5, SHA-256
 \texttt{f2392533c9f4...}, with byte count given in the abstract.  Each result
 file is bound by the repository's \code{PROVENANCE.json}.  The short hashes in
 the tables are prefixes of the full SHA-256 values in that file.
@@ -929,7 +931,7 @@ engine described above.  We report v1 only as development context, not as a
 comparison against another entrant.
 
 \begin{table*}[t]
-\caption{Local official-runner regression for solver v2.4.  ``Wall'' is the
+\caption{Local official-runner regression for solver v2.5.  ``Wall'' is the
 sum of per-row wall-clock seconds.  Each row names its immutable ledger and
 SHA-256 prefix.}
 \label{tab:public}
@@ -939,12 +941,12 @@ SHA-256 prefix.}
 \toprule
 Set & Accepted & LLM & Judge & Wall (s) & Ledger provenance \\
 \midrule
-\code{sample\_20}  & 20/20     & 0 & 20   & 2836.97 & \prov{results/v2\_sample\_20\_official\_2848228.json}{27c3ebb24ab7...} \\
-\code{sample\_200} & 200/200   & 0 & 200  & 1400.65 & \prov{results/v2\_sample\_200\_official\_2848228.json}{2ef168539d71...} \\
-\code{hard1}       & 69/69     & 0 & 69   & 859.55  & \prov{results/v2\_hard1\_official\_2848228.json}{5468a0aff7ac...} \\
-\code{hard2}       & 200/200   & 0 & 200  & 1404.95 & \prov{results/v2\_hard2\_official\_2848228.json}{a2ac7232d084...} \\
-\code{hard3}       & 400/400   & 0 & 400  & 2537.24 & \prov{results/v2\_hard3\_official\_2848228.json}{298569e097e5...} \\
-\code{normal}      & 1000/1000 & 0 & 1000 & 3753.15 & \prov{results/v2\_normal\_official\_2848228.json}{86c29ae1cfda...} \\
+\code{sample\_20}  & 20/20 & 0 & 20 & 67.53 & \prov{results/v2\_sample\_20\_official\_2848228.json}{b17eaff452d2...} \\
+\code{sample\_200}  & 200/200 & 0 & 200 & 964.12 & \prov{results/v2\_sample\_200\_official\_2848228.json}{dcf830de6199...} \\
+\code{hard1}  & 69/69 & 0 & 69 & 559.81 & \prov{results/v2\_hard1\_official\_2848228.json}{7724566d1ceb...} \\
+\code{hard2}  & 200/200 & 0 & 200 & 1250.67 & \prov{results/v2\_hard2\_official\_2848228.json}{3e68548945d4...} \\
+\code{hard3}  & 400/400 & 0 & 400 & 2857.38 & \prov{results/v2\_hard3\_official\_2848228.json}{c9f98750e018...} \\
+\code{normal}  & 1000/1000 & 0 & 1000 & 4128.3 & \prov{results/v2\_normal\_official\_2848228.json}{27c756482d15...} \\
 \bottomrule
 \end{tabularx}
 \end{table*}

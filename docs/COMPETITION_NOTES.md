@@ -36,7 +36,7 @@ The v1 scores were first archived under official revision `6805e232`; their
 failed-ID sets match exactly across both reviewed revisions. `PROVENANCE.json`
 binds every current and superseded measurement to its exact solver, runner
 configuration, and ledger hashes. The hosted Stage 2 playground separately
-accepted the same v2.4-candidate file on all 200 `evaluation_normal` problems
+accepted the same frozen v2.5 file on all 200 `evaluation_normal` problems
 under the official Lean 4.32 infrastructure, with 0 rejected, 0 errors, and
 0 LLM calls. This is a hosted playground measurement, not a formal submission,
 leaderboard score, or rank.
