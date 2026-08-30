@@ -461,5 +461,38 @@
     "ledger": "results/research_order5_hard_attempt.json",
     "ledger_sha256": "86fc2764fdb9b1086184eb69c91ddcc26211ad5cd58b6fc8199edb0128a31c96",
     "ledger_note": "slimmed per-row summary (id/verdict/timing/call counts); full event logs retained off-repository by the operator"
+  },
+  "platform_submission": {
+    "date": "2026-08-30",
+    "team": "EQT02-T00249 (owner Wenlin Zhang; members Israel Cazares, auric/Haobo Ma)",
+    "participations": [
+      {
+        "track": "Solo",
+        "model": "Google: Gemma 4 31B",
+        "bytes": 189504,
+        "submitted_at": "2026-08-30T20:14 platform-local"
+      },
+      {
+        "track": "Marathon",
+        "model": "OpenAI: gpt-oss-120b",
+        "bytes": 189504,
+        "submitted_at": "2026-08-30T20:15 platform-local"
+      },
+      {
+        "track": "Marathon",
+        "model": "Google: Gemma 4 31B",
+        "bytes": 189504,
+        "submitted_at": "2026-08-30T20:15 platform-local"
+      },
+      {
+        "track": "Solo",
+        "model": "OpenAI: gpt-oss-120b",
+        "bytes": 189504,
+        "submitted_at": "2026-08-30T20:16 platform-local"
+      }
+    ],
+    "artifact_verification": "the platform's own re-download of the Marathon/gpt-oss-120b participation was compared locally against submission/solver.py: byte-identical, SHA-256 f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
+    "submission_note": "disclosed the order-9 central-groupoid table (own A^2=J backtracking search) and the N-carrier Austin countermodels adapted from the Equational Theories Project; no compressed data or binary blobs; no Contributor Network solver code; repository public after the deadline",
+    "evidence_status": "external operator attestation (platform account state; no repository-committable ledger)"
   }
 }
