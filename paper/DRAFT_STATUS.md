@@ -22,22 +22,18 @@ statement. This is a working draft, not a submission claim.
 - The requested random 150-pair order-5 row was omitted because none of the
   authoritative sources contains that measurement. The sourced order-5 drill
   row is `evaluation_order5`, 200/200.
-- `PROVENANCE.json` records the completed hosted playground measurement as
-  draft follows the newer provenance record and the explicit drafting brief;
-  synchronize the claims-ledger sentence before submission.
-- `results/PUBLIC_SETS_BASELINE_20260819.md` is absent from this worktree but was
-  read from repository commit `e00a349`; the current-paper tables use the v2.4
-  bindings in `PROVENANCE.json`, not that superseded v1 report.
+- Hosted-playground and pre-upgrade Lean 4.32 results are reported as external
+  operator attestations, matching `PROVENANCE.json`; the paper tables are
+  regenerated programmatically from the v2.5 bindings in `PROVENANCE.json`.
 
 ## Build status
 
-- Portable fallback: `make plain` passes with `pdflatex` and BibTeX.
-- Output: 12 pages total in fallback mode. The manuscript fills 10 pages and
-  continues onto page 11; references occupy the rest of page 11 and page 12.
-  There are no overfull boxes, undefined citations, or undefined references.
-- ACM mode could not be compiled locally because `acmart.cls` is not installed;
-  `main.tex` still targets `\documentclass[sigplan,screen]{acmart}` by default.
-- All 12 fallback pages were rendered with Poppler and visually inspected.
+- All three build modes compile with zero errors; per-mode pdflatex/bibtex logs
+  are committed under `paper/build_logs/` as the verification artifact:
+  plain-article fallback (`make plain`, pdflatex + BibTeX, 13 pages), ACM
+  `sigplan,screen` default (12 pages; `acmart.cls` is installed in the local
+  texmf tree), and the anonymized `\ANONSUBMISSION` CPP submission mode.
+- There are no undefined citations or undefined references in any mode.
 
 ## Review status
 

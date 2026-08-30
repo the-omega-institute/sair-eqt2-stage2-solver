@@ -1,0 +1,248 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-03-20>
+(./main.tex (/Users/lexa/Library/texmf/tex/latex/acmart/acmart.cls
+Document Class: acmart 2026/08/16 v2.20 Typesetting articles for the Associatio
+n for Computing Machinery
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/keyval.tex))))
+(/Users/lexa/Library/texmf/tex/generic/xstring/xstring.sty
+(/Users/lexa/Library/texmf/tex/generic/xstring/xstring.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(/Users/lexa/Library/texmf/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/Users/lexa/Library/texmf/tex/latex/amsmath/amstext.sty
+(/Users/lexa/Library/texmf/tex/latex/amsmath/amsgen.sty))
+(/Users/lexa/Library/texmf/tex/latex/amsmath/amsbsy.sty)
+(/Users/lexa/Library/texmf/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/Users/lexa/Library/texmf/tex/latex/microtype/microtype.sty
+(/Users/lexa/Library/texmf/tex/latex/etoolbox/etoolbox.sty)
+(/Users/lexa/Library/texmf/tex/latex/microtype/microtype-pdftex.def)
+(/Users/lexa/Library/texmf/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/Users/lexa/Library/texmf/tex/latex/totpages/totpages.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/everyshi/everyshi.sty))
+(/Users/lexa/Library/texmf/tex/latex/environ/environ.sty
+(/Users/lexa/Library/texmf/tex/latex/trimspaces/trimspaces.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty)
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty))) (/Users/lexa/Library/texmf/tex/latex/hyperxmp/hyperxmp.sty
+(/Users/lexa/Library/texmf/tex/latex/ifmtarg/ifmtarg.sty)
+(/Users/lexa/Library/texmf/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/oberdiek/ifdraft.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifluatex.sty))
+(/Users/lexa/Library/texmf/tex/latex/graphics/graphicx.sty
+(/Users/lexa/Library/texmf/tex/latex/graphics/graphics.sty
+(/Users/lexa/Library/texmf/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/Users/lexa/Library/texmf/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/Users/lexa/Library/texmf/tex/latex/ncctools/manyfoot.sty
+(/Users/lexa/Library/texmf/tex/latex/ncctools/nccfoots.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/cmap/cmap.sty)
+(/Users/lexa/Library/texmf/tex/latex/base/fontenc.sty<<t1.cmap>>)
+(/Users/lexa/Library/texmf/tex/latex/libertine/libertine.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifxetex.sty)
+(/Users/lexa/Library/texmf/tex/latex/base/textcomp.sty)
+(/Users/lexa/Library/texmf/tex/latex/base/fontenc.sty)
+(/Users/lexa/Library/texmf/tex/latex/fontaxes/fontaxes.sty
+(/Users/lexa/Library/texmf/tex/latex/fontaxes/fontaxes-v1.sty))
+(/Users/lexa/Library/texmf/tex/latex/libertine/LinLibertine_I.tex))
+(/Users/lexa/Library/texmf/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe))
+(/Users/lexa/Library/texmf/tex/latex/newtx/newtxmath.sty
+`newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/oberdiek/centernot.sty)
+(/Users/lexa/Library/texmf/tex/generic/misc/binhex.tex)
+amsthm NOT loaded
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/pifont.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/upzd.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/upsy.fd))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/caption/caption3.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/caption/caption-ams-smf.sto)
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/float/float.sty)
+(/Users/lexa/Library/texmf/tex/latex/comment/comment.sty
+Excluding comment 'comment') Excluding comment 'CCSXML'
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+Special comment 'acks'
+(/Users/lexa/Library/texmf/tex/latex/libertine/t1linuxlibertinet-tlf.fd))
+(/Users/lexa/Library/texmf/tex/latex/base/fontenc.sty)
+(/Users/lexa/Library/texmf/tex/latex/base/inputenc.sty)
+(/Users/lexa/Library/texmf/tex/latex/tools/tabularx.sty
+(/Users/lexa/Library/texmf/tex/latex/tools/array.sty))
+(/Users/lexa/Library/texmf/tex/latex/tools/xspace.sty)
+(/Users/lexa/Library/texmf/tex/latex/preprint/balance.sty)
+Excluding comment 'screenonly' Include comment 'printonly'
+Excluding comment 'anonsuppress' Excluding comment 'acks'
+(/Users/lexa/Library/texmf/tex/latex/l3backend/l3backend-pdftex.def)
+(./main.aux) (/Users/lexa/Library/texmf/tex/latex/newtx/omlnxlmi.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/untxexa.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/lmsntxsy.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/lmxntxexx.fd)
+(/Users/lexa/Library/texmf/tex/latex/libertine/ot1linuxlibertinet-tlf.fd)<<ot1.
+cmap>> (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/untxmia.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/untxsym.fd)
+(/Users/lexa/Library/texmf/tex/latex/newtx/untxsyc.fd) (./main.out) (./main.out
+) (/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.s
+ty (/Users/lexa/Library/texmf/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/Users/lexa/Library/texmf/tex/latex/upquote/upquote.sty)
+(/Users/lexa/Library/texmf/tex/latex/inconsolata/t1zi4.fd)
+(/Users/lexa/Library/texmf/tex/latex/microtype/mt-msa.cfg)
+(/Users/lexa/Library/texmf/tex/latex/microtype/mt-msb.cfg)
+Overfull \hbox (5.85587pt too wide) in paragraph at lines 183--191
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) model fam-i-lies nor the su-per-po-si-tion
+ im-ple-men-ta-tion is proved
+
+Overfull \hbox (5.74054pt too wide) in paragraph at lines 197--200
+[]\T1/LinuxLibertineT-TLF/m/n/10 (-20) We de-scribe cer-tifi-cate en-cod-ings t
+hat sat-isfy the judge's
+
+Underfull \vbox (badness 10000) has occurred while \output is active [1.1{/User
+s/lexa/Library/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{
+/Users/lexa/Library/texmf/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/Users/lex
+a/Library/texmf/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/Users/lexa/Library/
+texmf/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{/Users/lexa/Library/texmf/fonts/
+enc/dvips/libertine/lbtn_oexx6f.enc}]
+(/Users/lexa/Library/texmf/tex/latex/libertine/ot1linuxbiolinumt-tlf.fd)
+Overfull \hbox (5.17555pt too wide) in paragraph at lines 294--297
+ []\T1/LinuxLibertineT-TLF/b/it/10 (-20) Stage C: bounded ir-reg-u-lar mod-els.
+[] \T1/LinuxLibertineT-TLF/m/n/10 (-20) A finite-model search
+
+Overfull \hbox (5.31848pt too wide) in paragraph at lines 305--316
+ []\T1/LinuxLibertineT-TLF/b/it/10 (-20) Stage E: any-time proof search.[] \T1/
+LinuxLibertineT-TLF/m/n/10 (-20) The ordered-superposition
+
+Overfull \hbox (17.19392pt too wide) in paragraph at lines 305--316
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) en-gine, in the tra-di-tion of completion-
+based equa-tional provers [[],
+(/Users/lexa/Library/texmf/tex/latex/libertine/t1linuxbiolinumt-tlf.fd)
+[2.2{/Users/lexa/Library/texmf/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/User
+s/lexa/Library/texmf/fonts/enc/dvips/libertine/lbtn_edcawa.enc}{/Users/lexa/Lib
+rary/texmf/fonts/enc/dvips/libertine/lbtn_ki75ao.enc}]
+Underfull \vbox (badness 10000) has occurred while \output is active [3.3]
+Overfull \hbox (3.70074pt too wide) in paragraph at lines 436--446
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) small fi-nite fields. The lat-ter searches
+ in-clude two-dimensional
+[4.4] [5.5]
+Underfull \vbox (badness 10000) has occurred while \output is active [6.6]
+Overfull \hbox (9.08542pt too wide) in paragraph at lines 751--757
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) The of-fi-cial judge nor-mal-izes the as-t
+er-isk and di-a-mond spellings
+
+Underfull \vbox (badness 10000) has occurred while \output is active [7.7]
+Overfull \hbox (4.81966pt too wide) in paragraph at lines 913--920
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) Each re-sult file is bound by the repos-i-
+tory's \T1/zi4/m/n/10 PROVENANCE.json\T1/LinuxLibertineT-TLF/m/n/10 (-20) .
+[8.8]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Overfull \hbox (51.99623pt too wide) in paragraph at lines 1049--1052
+[]\T1/LinuxLibertineT-TLF/m/n/10 (-20) These fo-cused re-sults are recorded in 
+\T1/zi4/m/n/10 docs/TRUE_SIDE_G3_PROVER.md\T1/LinuxLibertineT-TLF/m/n/10 (-20) 
+;
+
+Underfull \vbox (badness 1137) has occurred while \output is active [9.9]
+Overfull \hbox (32.28488pt too wide) in paragraph at lines 1068--1073
+[]\T1/LinuxLibertineT-TLF/m/n/10 (-20) The ex-e-cuted pre-fix solver is bound i
+n \T1/zi4/m/n/10 docs/LIVE_RUN_NOTES.md
+
+Overfull \hbox (12.71115pt too wide) in paragraph at lines 1068--1073
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) data are in \T1/zi4/m/n/10 results/sample_
+20_live.json\T1/LinuxLibertineT-TLF/m/n/10 (-20) . Be-cause no ledger-
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [10.10]
+Overfull \hbox (38.3904pt too wide) in paragraph at lines 1128--1133
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) bles in this pa-per use the cur-rent v2.4 
+bind-ings from \T1/zi4/m/n/10 PROVENANCE.json\T1/LinuxLibertineT-TLF/m/n/10 (-2
+0) ,
+
+Overfull \hbox (9.40457pt too wide) in paragraph at lines 1164--1179
+\T1/zi4/m/n/10 stage2_stress_test\T1/LinuxLibertineT-TLF/m/n/10 (-20) , an-noun
+ced as mir-ror-ing the fi-nal leader-
+[11.11]
+Overfull \hbox (11.13844pt too wide) in paragraph at lines 1199--1209
+ []\T1/LinuxLibertineT-TLF/b/it/10 (-20) Superposition provers.[] \T1/LinuxLibe
+rtineT-TLF/m/n/10 (-20) Vam-pire [[]], E [[]], and Prover9 [[]]
+
+Overfull \hbox (37.69843pt too wide) in paragraph at lines 1199--1209
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) stan-dard ideas---ordered in-fer-ence, KBO
+, de-mod-u-la-tion, discrimination-
+
+Overfull \hbox (12.16968pt too wide) in paragraph at lines 1220--1226
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) print-ers are dis-tilled into one source f
+ile. The fixed-configuration
+(./main.bbl)
+
+Class acmart Warning: ACM reference format is mandatory 
+(acmart)              for papers over one page. 
+(acmart)              Please add printacmref=true to the 
+(acmart)              \settopmatter command..
+
+
+Class acmart Warning: CCS concepts are mandatory for papers over two pages.
+
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/se-pdfdoc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/se-utf8.def)
+[12.12{/Users/lexa/Library/texmf/fonts/enc/dvips/libertine/lbtn_7grukw.enc}]
+(./main.aux) )
+(see the transcript file for additional information)</Users/lexa/Library/texmf/
+fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/lexa/Library/texmf/
+fonts/type1/public/newtx/LibertineMathMI.pfb></Users/lexa/Library/texmf/fonts/t
+ype1/public/libertine/LinBiolinumT.pfb></Users/lexa/Library/texmf/fonts/type1/p
+ublic/libertine/LinLibertineT.pfb></Users/lexa/Library/texmf/fonts/type1/public
+/libertine/LinLibertineTB.pfb></Users/lexa/Library/texmf/fonts/type1/public/lib
+ertine/LinLibertineTBI.pfb></Users/lexa/Library/texmf/fonts/type1/public/libert
+ine/LinLibertineTI.pfb></Users/lexa/Library/texmf/fonts/type1/public/newtx/txmi
+aX.pfb></Users/lexa/Library/texmf/fonts/type1/public/newtx/txsym.pfb></Users/le
+xa/Library/texmf/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (12 pages, 508141 bytes).
+Transcript written on main.log.

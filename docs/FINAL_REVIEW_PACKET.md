@@ -18,9 +18,12 @@ Israel approved solver v2.2 at commit `b32306d18ab209b3e3a94f88e32e4438cb394d74`
 
 1. **v2.3 — core-only certificates.** The austin_nat family re-emitted without `import Mathlib.Tactic`
    (positive-form replay, `Nat` carrier, core-qualified lemmas). Motivation: the announced hosted judge
-   is Lean 4.32; the old certificate compiled in ~330 s there (over the 300 s judge phase cap) and in
-   <= 3.1 s after the change. A 120-certificate stratified corpus covering every emission family compiles
-   120/120 under Lean 4.32.0; every emitted family is Lean-core-only.
+   is Lean 4.32; the old certificate needed ~330 s of compilation there (phases of 184 s and 145 s,
+   uncomfortably close to the 300 s judge phase cap) and <= 3.1 s after the change. A 120-certificate
+   stratified migration corpus covering every emission family compiles 119/120 under exact Lean 4.32.0
+   (external attestation; the single non-pass is the legacy pre-rewrite certificate at an external
+   120 s-per-phase harness limit, passing at the judge-matching 300 s configuration); every emitted
+   family is Lean-core-only.
 2. **v2.4 — input encoding + the E168 family.** `_normalize_problem_equations` maps `*` to `◇` at both
    track intakes (the HuggingFace-aligned format uses `*`; the runner feeds the solver verbatim; the
    unpatched solver crashed on every `*`-form problem — measured 0/800 before, 800/800 after). A canned
@@ -47,7 +50,7 @@ Israel approved solver v2.2 at commit `b32306d18ab209b3e3a94f88e32e4438cb394d74`
 | Marathon canonical `normal_100` | 100/100, 0 tokens |
 | Stage 1 evaluation-distribution drill (4 x 200) | 800/800, full ground-truth agreement |
 | Hosted playground (all four categories) | 400/400 accepted (hosted measurement, stale-artifact runs excluded) |
-| Lean 4.32 certificate corpus | 120/120 |
+| Lean 4.32 migration corpus (external attestation) | 119/120; single non-pass = legacy pre-rewrite certificate at a 120 s-per-phase harness limit, passes at the judge-matching 300 s configuration |
 | `check_freeze.py` | PASS |
 
 ## Review commands (rerun from a clean clone)

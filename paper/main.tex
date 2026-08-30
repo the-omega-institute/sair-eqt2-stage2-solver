@@ -722,17 +722,20 @@ used \lean 4.32.0 with the corresponding Mathlib release.  Most emitted
 certificates already imported only judge modules and core definitions.  The
 exception was the infinite-carrier Austin family, whose tactic import made
 compilation sensitive to the larger library environment.  In a compatibility
-run, one such certificate exceeded 330 seconds.
+run, one such certificate required about 330 seconds of compilation.
 
 Rather than increasing the solver-side timeout, we rewrote the Austin
 certificate in positive form, replaced the broad tactic dependency with
 explicit core lemmas, and re-emitted the witness.  Its \lean 4.32 compilation
 then completed within 3.1 seconds.  A stratified corpus of 120 accepted certificates, covering every emission family and all fourteen former v1
-residuals, compiled 119 of 120 under the exact announced toolchain; the one
-non-passing certificate was the pre-rewrite Austin witness itself, which
-exceeded the judge's 300-second phase limit and passed once that limit was
-extended, motivating the rewrite; the judge support modules compiled
-unchanged.  That corpus run executed outside the repository
+residuals, compiled 119 of 120 under the exact announced toolchain in an
+external harness with a 120-second per-phase limit; the one non-pass was the
+pre-rewrite Austin witness itself, which passes under a 300-second per-phase
+configuration matching the judge (phases of 184 and 145 seconds).  The corpus
+therefore characterizes the migration-era certificate set rather than the
+frozen artifact's current output: the frozen solver's own certificate for the
+same problem imports only the judge module and is accepted in under five
+seconds.  The judge support modules compiled unchanged.  That corpus run executed outside the repository
 and is archived as an operator attestation
 (\code{results/lean432\_corpus/}).  When the organizers subsequently upgraded
 the judge to \lean 4.33.1 after the kernel-soundness review, the frozen
@@ -1019,7 +1022,7 @@ Measurement & Accepted & LLM/tokens & Wall statistic & Ledger provenance \\
 \code{evaluation\_hard} & 200/200 & 0 calls & sum 889.03 s & \prov{results/official\_distribution\_drill/evaluation\_hard\_results.json}{4505248a3531...} \\
 \code{evaluation\_normal} & 200/200 & 0 calls & sum 2288.06 s & \prov{results/official\_distribution\_drill/evaluation\_normal\_results.json}{2377747990d8...} \\
 Marathon \code{normal\_100} & 100/100 & 0 tokens & full default budget & \prov{results/marathon/normal\_100\_summary.json}{28fc79269ede...} \\
-Hosted playground & 200/200 & 0 calls & mean 4.89 s/problem & \prov{PROVENANCE.json: hosted\_playground\_measurement}{artifact 7916cbc2...} \\
+Hosted playground (\code{evaluation\_normal}) & 200/200 & 0 calls & mean 4.89 s/problem & \prov{PROVENANCE.json: hosted\_playground\_measurement}{artifact 7916cbc2...} \\
 \bottomrule
 \end{tabularx}
 \end{table*}
@@ -1160,8 +1163,11 @@ submission require organizer infrastructure.
 \paragraph{A measured outer boundary.}
 Shortly before submission the organizers released two additional official sets.
 On \code{stage2\_stress\_test}, announced as mirroring the final leaderboard
-configuration, the frozen solver accepts 200 of 200 problems with full
-ground-truth agreement and no language-model calls.  On
+configuration, the frozen solver accepts 200 of 200 problems with no
+language-model calls; the set publishes no per-item reference labels, but the
+per-category verdict counts match the announced composition of twenty-five
+true and twenty-five false in all four categories, and every accepted verdict
+is kernel-checked by the judge.  On
 \code{research\_order5\_hard} --- one hundred research-tier problems in which
 at least one side is an order-five Austin law, whose false direction provably
 admits no finite countermodel, and whose ground truth is in part unknown even

@@ -4,10 +4,25 @@ Date: 2026-08-20 (Asia/Singapore)
 
 ## Outcome
 
-The exact Lean 4.32.0 run is **blocked before compilation** in this managed
-workspace. `leanprover/lean4:v4.32.0` is not installed, and both Elan and curl
-are denied DNS/network access. Consequently this report does **not** claim that
-the certificates pass Lean 4.32.0.
+Two stages are recorded in this directory.
+
+**Preflight (blocked).** The first attempt was blocked before compilation in a
+managed workspace: `leanprover/lean4:v4.32.0` was not installed and Elan/curl
+were denied network access (`results.json`). That stage made no claim that the
+certificates pass Lean 4.32.0.
+
+**Exact run (completed).** The exact Lean 4.32.0 + Mathlib v4.32.0 run was
+subsequently completed on the operator host (`results-exact-4.32.json`):
+119/120 certificates pass under the harness's 120 s per-phase limit. The single
+non-pass is the legacy pre-v2.3 Mathlib-importing Austin certificate
+(`hard2_0027`), whose problem phase timed out at 120 s; under a 300 s-per-phase
+configuration matching the judge it passes (phases 183.6 s and 144.6 s, total
+330.5 s — `results-retry-hard2_0027.json`). The corpus characterizes the
+migration-era certificate set, not the frozen v2.5 artifact's current output:
+the frozen solver's own certificate for the same problem imports only
+`JudgeProblem` and is accepted in 4.93 s
+(`results/lean4331_revalidation/hard2.json`). These runs executed outside the
+repository and are recorded as external operator attestations.
 
 All work that does not require the missing executable is complete. The project,
 exact Mathlib lock, byte-identical judge modules, verify-compatible driver, and

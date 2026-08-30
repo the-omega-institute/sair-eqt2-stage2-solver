@@ -1,465 +1,465 @@
 {
- "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
- "solver_py_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
- "solver_py_bytes": 189504,
- "solver_version": "v2.5 (2026-08-27): v2.4 + LLM-fallback overhaul (operator normalization of returned Lean, corrected scope protocol, truthful timeout-aware hint, round-direction alternation, raw-certificate answers incl. infinite carriers, semantic pre-validation of countermodel tables with repair feedback). Deterministic definitions unchanged from v2.4.",
- "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
- "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
- "archived_full_regression_environment": {
-  "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
-  "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
-  "host_setup": "scripts/setup.sh rerun on the operator host on 2026-08-19 (Lean v4.30.0-rc2, mathlib 896cc56a); smoke test passed; sandbox.mode none; no API key",
-  "scope": "All six public sets and the 14-residual set below were produced by solver v2 under this revision."
- },
- "archived_deterministic_regression": {
-  "sample_20": {
-   "accepted": 20,
-   "total": 20,
-   "llm_calls": 0,
-   "judge_calls": 20,
-   "ledger": "results/v2_sample_20_official_2848228.json",
-   "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
-   "failed_ids": [],
-   "wall_clock_sum_s": 67.53
-  },
-  "sample_200": {
-   "accepted": 200,
-   "total": 200,
-   "llm_calls": 0,
-   "judge_calls": 200,
-   "ledger": "results/v2_sample_200_official_2848228.json",
-   "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
-   "failed_ids": [],
-   "wall_clock_sum_s": 964.12
-  },
-  "hard1": {
-   "accepted": 69,
-   "total": 69,
-   "llm_calls": 0,
-   "judge_calls": 69,
-   "ledger": "results/v2_hard1_official_2848228.json",
-   "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
-   "failed_ids": [],
-   "wall_clock_sum_s": 559.81
-  },
-  "hard2": {
-   "accepted": 200,
-   "total": 200,
-   "llm_calls": 0,
-   "judge_calls": 200,
-   "ledger": "results/v2_hard2_official_2848228.json",
-   "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
-   "failed_ids": [],
-   "wall_clock_sum_s": 1250.67
-  },
-  "hard3": {
-   "accepted": 400,
-   "total": 400,
-   "llm_calls": 0,
-   "judge_calls": 400,
-   "ledger": "results/v2_hard3_official_2848228.json",
-   "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
-   "failed_ids": [],
-   "wall_clock_sum_s": 2857.38
-  },
-  "normal": {
-   "accepted": 1000,
-   "total": 1000,
-   "llm_calls": 0,
-   "judge_calls": 1000,
-   "ledger": "results/v2_normal_official_2848228.json",
-   "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
-   "failed_ids": [],
-   "wall_clock_sum_s": 4128.3
-  }
- },
- "residual_set_regression": {
-  "accepted": 14,
-  "total": 14,
-  "llm_calls": 0,
-  "judge_calls": 14,
-  "ledger": "results/v2_residuals14_official_2848228.json",
-  "ledger_sha256": "c29e14e8410fa6547f7b27e5020f558e88053296b6a385a42a151f3b03ede0d9",
-  "failed_ids": [],
-  "wall_clock_sum_s": 131.66
- },
- "latest_upstream_validation": {
-  "validated_on": "2026-08-27",
-  "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
-  "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
-  "official_harness": {
-   "status": "GREEN",
-   "run_on": "2026-08-20 (operator host, revision 2848228)",
-   "zero_failures": true,
-   "case": "68/68",
-   "judge_internal": "32/32",
-   "banned_token": "24/24",
-   "pipeline": "55/55",
-   "repeatability": "4/4",
-   "verify_branch": "3/3",
-   "public_challenger": "79/79",
-   "infra_challenger": "4/4",
-   "loader": "7/7",
-   "submit_cli": "11/11",
-   "readme_consistency": "1/1",
-   "note": "one BrokenPipeError is printed by the harness's own fake-deadline pipeline case after the result JSON; it is not counted as a failure by the harness"
-  },
-  "deterministic_regression": {
-   "sample_20": {
-    "accepted": 20,
-    "total": 20,
-    "llm_calls": 0,
-    "judge_calls": 20,
-    "ledger": "results/v2_sample_20_official_2848228.json",
-    "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
-    "failed_ids": [],
-    "wall_clock_sum_s": 67.53
-   },
-   "sample_200": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 200,
-    "ledger": "results/v2_sample_200_official_2848228.json",
-    "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
-    "failed_ids": [],
-    "wall_clock_sum_s": 964.12
-   },
-   "hard1": {
-    "accepted": 69,
-    "total": 69,
-    "llm_calls": 0,
-    "judge_calls": 69,
-    "ledger": "results/v2_hard1_official_2848228.json",
-    "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
-    "failed_ids": [],
-    "wall_clock_sum_s": 559.81
-   },
-   "hard2": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 200,
-    "ledger": "results/v2_hard2_official_2848228.json",
-    "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
-    "failed_ids": [],
-    "wall_clock_sum_s": 1250.67
-   },
-   "hard3": {
-    "accepted": 400,
-    "total": 400,
-    "llm_calls": 0,
-    "judge_calls": 400,
-    "ledger": "results/v2_hard3_official_2848228.json",
-    "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
-    "failed_ids": [],
-    "wall_clock_sum_s": 2857.38
-   },
-   "normal": {
-    "accepted": 1000,
-    "total": 1000,
-    "llm_calls": 0,
-    "judge_calls": 1000,
-    "ledger": "results/v2_normal_official_2848228.json",
-    "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
-    "failed_ids": [],
-    "wall_clock_sum_s": 4128.3
-   }
-  },
-  "scope": "Same ledgers as archived_deterministic_regression (2848228 is the latest reviewed official revision)."
- },
- "local_official_harness_scores": {
-  "sample_20": "20/20",
-  "sample_200": "200/200",
-  "hard1": "69/69",
-  "hard2": "200/200",
-  "hard3": "400/400",
-  "normal": "1000/1000",
-  "marathon_normal_100": "100/100",
-  "official_distribution_drill": "800/800",
-  "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889; Marathon normal_100 100/100 (0 tokens); Stage 1 evaluation-distribution drill 800/800 with full ground-truth agreement. All accepted rows have llm_calls = 0."
- },
- "solver_artifact_roles": {
-  "current_and_final_regression": {
-   "solver_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
-   "solver_bytes": 189504,
-   "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md, six Solo ledgers, results/marathon/, results/official_distribution_drill/"
-  },
-  "superseded_v1_frozen_baseline": {
-   "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
-   "solver_bytes": 82370,
-   "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md §Superseded v1 baseline, results/LATEST_UPSTREAM_REGRESSION.md, results/PUBLIC_SETS_BASELINE_20260819.md, ledgers results/*_official_2848228.json and results/public_sets_20260819/",
-   "public_rows": "1875/1889"
-  },
-  "general66_targeted_replay": {
-   "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
-   "evidence": "results/general66_provenance_ledger.json",
-   "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
-  },
-  "superseded_v2_0": {
-   "solver_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
-   "solver_bytes": 160448,
-   "public_rows": "1888/1889",
-   "evidence": "branch history wenlin/v2-merge@928078d"
-  },
-  "superseded_v2_1": {
-   "solver_sha256": "1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534",
-   "solver_bytes": 168408,
-   "public_rows": "1889/1889 (Solo only, no Marathon entry)",
-   "evidence": "branch history wenlin/v2-merge@cedd65e"
-  },
-  "superseded_v2_2": {
-   "solver_sha256": "931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697",
-   "solver_bytes": 178769,
-   "public_rows": "1889/1889 Solo + 100/100 Marathon (austin certs still imported Mathlib.Tactic)",
-   "evidence": "branch history wenlin/v2-merge@b32306d"
-  },
-  "superseded_v2_3": {
-   "solver_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
-   "solver_bytes": 177993,
-   "public_rows": "1889/1889 Solo + 100/100 Marathon; crashed on '*'-encoded problem input; no E168 family coverage",
-   "evidence": "branch history wenlin/v2-merge@5ecc39a"
-  },
-  "superseded_v2_4": {
-   "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
-   "solver_bytes": 179888,
-   "public_rows": "1889/1889 Solo + 100/100 Marathon + 800/800 drill; LLM fallback carried the v1-era prompt defects",
-   "evidence": "branch history wenlin/v2-merge"
-  }
- },
- "superseded_v1": {
-  "solver_py_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
-  "solver_py_bytes": 82370,
+  "official_repo": "https://github.com/SAIRcompetition/equational-theories-lean-stage2",
+  "solver_py_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
+  "solver_py_bytes": 189504,
+  "solver_version": "v2.5 (2026-08-27): v2.4 + LLM-fallback overhaul (operator normalization of returned Lean, corrected scope protocol, truthful timeout-aware hint, round-direction alternation, raw-certificate answers incl. infinite carriers, semantic pre-validation of countermodel tables with repair feedback). Deterministic definitions unchanged from v2.4.",
+  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+  "llm_model_pinned_by_organizer": "openai/gpt-oss-120b (deepinfra/bf16, temp 0.0, reasoning medium, seed 0, 65536 tok)",
   "archived_full_regression_environment": {
-   "official_repo_sha": "6805e2323018fbd8a85f41ca09fc33d74d5a02a5",
-   "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
-   "scope": "The three full archived result ledgers below were produced under this revision. They have not been relabeled as results from a newer upstream revision."
-  },
-  "latest_upstream_validation": {
-   "validated_on": "2026-08-17",
-   "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
-   "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
-   "official_harness": {
-    "status": "GREEN",
-    "zero_failures": true,
-    "case": "68/68",
-    "judge_internal": "32/32",
-    "banned_token": "24/24",
-    "pipeline": "55/55",
-    "repeatability": "4/4",
-    "verify_branch": "3/3",
-    "public_challenger": "79/79",
-    "infra_challenger": "4/4",
-    "loader": "7/7",
-    "submit_cli": "11/11",
-    "readme_consistency": "1/1"
-   },
-   "deterministic_regression": {
-    "sample_20": {
-     "accepted": 20,
-     "total": 20,
-     "llm_calls": 0,
-     "judge_calls": 20,
-     "ledger": "results/sample_20_official_2848228.json",
-     "ledger_sha256": "33ad4b699eb5297e25132ff9ac2c01c4657ec61bcb62a9a918232e380ffdb177"
-    },
-    "sample_200": {
-     "accepted": 196,
-     "total": 200,
-     "llm_calls": 4,
-     "judge_calls": 196,
-     "ledger": "results/sample_200_official_2848228.json",
-     "ledger_sha256": "b7f47a2d36086f3fd58f792f6bcc5ffbbd57bc0a5e945206a0a881b5bde7c283"
-    },
-    "hard2": {
-     "accepted": 197,
-     "total": 200,
-     "llm_calls": 3,
-     "judge_calls": 197,
-     "ledger": "results/hard2_official_2848228.json",
-     "ledger_sha256": "631f35621b265f2fa58a597b341859a7c31b6f2fa79b752fb039e0c420f39fba"
-    }
-   },
-   "scope": "The full official harness and all three archived public regression sets were rerun under this revision."
-  },
-  "local_official_harness_scores": {
-   "sample_20": "20/20",
-   "hard2.jsonl": "197/200 in the archived full-set regression; a separate unarchived run recorded 196/200, with the cause not established",
-   "sample_200.json": "196/200",
-   "note": "LOCAL official-runner scores, not leaderboard scores. Every accepted row in the archived regression is a deterministic-stage certificate accepted by the real Lean judge. Preserve exact ledgers and distinguish the archived 197/200 hard2 result from the unarchived 196/200 observation; the available evidence does not establish the cause of the difference."
-  },
-  "solver_artifact_roles": {
-   "current_and_final_regression": {
-    "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
-    "solver_bytes": 82370,
-    "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md and its three linked ledgers"
-   },
-   "general66_targeted_replay": {
-    "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
-    "evidence": "results/general66_provenance_ledger.json",
-    "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
-   }
+    "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
+    "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+    "host_setup": "scripts/setup.sh rerun on the operator host on 2026-08-19 (Lean v4.30.0-rc2, mathlib 896cc56a); smoke test passed; sandbox.mode none; no API key",
+    "scope": "All six public sets and the 14-residual set below were produced by solver v2 under this revision."
   },
   "archived_deterministic_regression": {
-   "sample_20": {
-    "accepted": 20,
-    "total": 20,
+    "sample_20": {
+      "accepted": 20,
+      "total": 20,
+      "llm_calls": 0,
+      "judge_calls": 20,
+      "ledger": "results/v2_sample_20_official_2848228.json",
+      "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
+      "failed_ids": [],
+      "wall_clock_sum_s": 67.53
+    },
+    "sample_200": {
+      "accepted": 200,
+      "total": 200,
+      "llm_calls": 0,
+      "judge_calls": 200,
+      "ledger": "results/v2_sample_200_official_2848228.json",
+      "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
+      "failed_ids": [],
+      "wall_clock_sum_s": 964.12
+    },
+    "hard1": {
+      "accepted": 69,
+      "total": 69,
+      "llm_calls": 0,
+      "judge_calls": 69,
+      "ledger": "results/v2_hard1_official_2848228.json",
+      "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
+      "failed_ids": [],
+      "wall_clock_sum_s": 559.81
+    },
+    "hard2": {
+      "accepted": 200,
+      "total": 200,
+      "llm_calls": 0,
+      "judge_calls": 200,
+      "ledger": "results/v2_hard2_official_2848228.json",
+      "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
+      "failed_ids": [],
+      "wall_clock_sum_s": 1250.67
+    },
+    "hard3": {
+      "accepted": 400,
+      "total": 400,
+      "llm_calls": 0,
+      "judge_calls": 400,
+      "ledger": "results/v2_hard3_official_2848228.json",
+      "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
+      "failed_ids": [],
+      "wall_clock_sum_s": 2857.38
+    },
+    "normal": {
+      "accepted": 1000,
+      "total": 1000,
+      "llm_calls": 0,
+      "judge_calls": 1000,
+      "ledger": "results/v2_normal_official_2848228.json",
+      "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
+      "failed_ids": [],
+      "wall_clock_sum_s": 4128.3
+    }
+  },
+  "residual_set_regression": {
+    "accepted": 14,
+    "total": 14,
     "llm_calls": 0,
-    "judge_calls": 20,
-    "ledger": "results/sample_20_deterministic_final.json",
-    "ledger_sha256": "f6c8732807758486be94c0cedadfca317e2221308a355fb8b4c944a3e1fab819"
-   },
-   "sample_200": {
-    "accepted": 196,
-    "total": 200,
-    "llm_calls": 4,
-    "judge_calls": 196,
-    "ledger": "results/sample_200_deterministic_final.json",
-    "ledger_sha256": "46260ef51cf3a600dad091a93c9498a87c71025e6174dde9f80b5c73ae9d3490"
-   },
-   "hard2": {
-    "accepted": 197,
-    "total": 200,
-    "llm_calls": 3,
-    "judge_calls": 197,
-    "ledger": "results/hard2_deterministic_final.json",
-    "ledger_sha256": "448d3ff415e3e23901815b81a3713f0ccea694490986e0d04d18ab7b1eeb568c"
-   }
+    "judge_calls": 14,
+    "ledger": "results/v2_residuals14_official_2848228.json",
+    "ledger_sha256": "c29e14e8410fa6547f7b27e5020f558e88053296b6a385a42a151f3b03ede0d9",
+    "failed_ids": [],
+    "wall_clock_sum_s": 131.66
+  },
+  "latest_upstream_validation": {
+    "validated_on": "2026-08-27",
+    "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
+    "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+    "official_harness": {
+      "status": "GREEN",
+      "run_on": "2026-08-20 (operator host, revision 2848228)",
+      "zero_failures": true,
+      "case": "68/68",
+      "judge_internal": "32/32",
+      "banned_token": "24/24",
+      "pipeline": "55/55",
+      "repeatability": "4/4",
+      "verify_branch": "3/3",
+      "public_challenger": "79/79",
+      "infra_challenger": "4/4",
+      "loader": "7/7",
+      "submit_cli": "11/11",
+      "readme_consistency": "1/1",
+      "note": "one BrokenPipeError is printed by the harness's own fake-deadline pipeline case after the result JSON; it is not counted as a failure by the harness"
+    },
+    "deterministic_regression": {
+      "sample_20": {
+        "accepted": 20,
+        "total": 20,
+        "llm_calls": 0,
+        "judge_calls": 20,
+        "ledger": "results/v2_sample_20_official_2848228.json",
+        "ledger_sha256": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
+        "failed_ids": [],
+        "wall_clock_sum_s": 67.53
+      },
+      "sample_200": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 200,
+        "ledger": "results/v2_sample_200_official_2848228.json",
+        "ledger_sha256": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
+        "failed_ids": [],
+        "wall_clock_sum_s": 964.12
+      },
+      "hard1": {
+        "accepted": 69,
+        "total": 69,
+        "llm_calls": 0,
+        "judge_calls": 69,
+        "ledger": "results/v2_hard1_official_2848228.json",
+        "ledger_sha256": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
+        "failed_ids": [],
+        "wall_clock_sum_s": 559.81
+      },
+      "hard2": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 200,
+        "ledger": "results/v2_hard2_official_2848228.json",
+        "ledger_sha256": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
+        "failed_ids": [],
+        "wall_clock_sum_s": 1250.67
+      },
+      "hard3": {
+        "accepted": 400,
+        "total": 400,
+        "llm_calls": 0,
+        "judge_calls": 400,
+        "ledger": "results/v2_hard3_official_2848228.json",
+        "ledger_sha256": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
+        "failed_ids": [],
+        "wall_clock_sum_s": 2857.38
+      },
+      "normal": {
+        "accepted": 1000,
+        "total": 1000,
+        "llm_calls": 0,
+        "judge_calls": 1000,
+        "ledger": "results/v2_normal_official_2848228.json",
+        "ledger_sha256": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
+        "failed_ids": [],
+        "wall_clock_sum_s": 4128.3
+      }
+    },
+    "scope": "Same ledgers as archived_deterministic_regression (2848228 is the latest reviewed official revision)."
+  },
+  "local_official_harness_scores": {
+    "sample_20": "20/20",
+    "sample_200": "200/200",
+    "hard1": "69/69",
+    "hard2": "200/200",
+    "hard3": "400/400",
+    "normal": "1000/1000",
+    "marathon_normal_100": "100/100",
+    "official_distribution_drill": "800/800",
+    "note": "LOCAL official-runner scores, not leaderboard scores. Solo 1889/1889; Marathon normal_100 100/100 (0 tokens); Stage 1 evaluation-distribution drill 800/800 with full ground-truth agreement. All accepted rows have llm_calls = 0."
+  },
+  "solver_artifact_roles": {
+    "current_and_final_regression": {
+      "solver_sha256": "f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
+      "solver_bytes": 189504,
+      "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md, six Solo ledgers, results/marathon/, results/official_distribution_drill/"
+    },
+    "superseded_v1_frozen_baseline": {
+      "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
+      "solver_bytes": 82370,
+      "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md §Superseded v1 baseline, results/LATEST_UPSTREAM_REGRESSION.md, results/PUBLIC_SETS_BASELINE_20260819.md, ledgers results/*_official_2848228.json and results/public_sets_20260819/",
+      "public_rows": "1875/1889"
+    },
+    "general66_targeted_replay": {
+      "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
+      "evidence": "results/general66_provenance_ledger.json",
+      "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
+    },
+    "superseded_v2_0": {
+      "solver_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
+      "solver_bytes": 160448,
+      "public_rows": "1888/1889",
+      "evidence": "branch history wenlin/v2-merge@928078d"
+    },
+    "superseded_v2_1": {
+      "solver_sha256": "1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534",
+      "solver_bytes": 168408,
+      "public_rows": "1889/1889 (Solo only, no Marathon entry)",
+      "evidence": "branch history wenlin/v2-merge@cedd65e"
+    },
+    "superseded_v2_2": {
+      "solver_sha256": "931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697",
+      "solver_bytes": 178769,
+      "public_rows": "1889/1889 Solo + 100/100 Marathon (austin certs still imported Mathlib.Tactic)",
+      "evidence": "branch history wenlin/v2-merge@b32306d"
+    },
+    "superseded_v2_3": {
+      "solver_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
+      "solver_bytes": 177993,
+      "public_rows": "1889/1889 Solo + 100/100 Marathon; crashed on '*'-encoded problem input; no E168 family coverage",
+      "evidence": "branch history wenlin/v2-merge@5ecc39a"
+    },
+    "superseded_v2_4": {
+      "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
+      "solver_bytes": 179888,
+      "public_rows": "1889/1889 Solo + 100/100 Marathon + 800/800 drill; LLM fallback carried the v1-era prompt defects",
+      "evidence": "branch history wenlin/v2-merge"
+    }
+  },
+  "superseded_v1": {
+    "solver_py_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
+    "solver_py_bytes": 82370,
+    "archived_full_regression_environment": {
+      "official_repo_sha": "6805e2323018fbd8a85f41ca09fc33d74d5a02a5",
+      "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+      "scope": "The three full archived result ledgers below were produced under this revision. They have not been relabeled as results from a newer upstream revision."
+    },
+    "latest_upstream_validation": {
+      "validated_on": "2026-08-17",
+      "official_repo_sha": "2848228ff490422442878fd6f5abaf4cfa95257d",
+      "pipeline_config_sha256": "82aca7ad4709cf57f67979aeed0e954bd17ddeacc3c2d9dc70e2130e1d44300b",
+      "official_harness": {
+        "status": "GREEN",
+        "zero_failures": true,
+        "case": "68/68",
+        "judge_internal": "32/32",
+        "banned_token": "24/24",
+        "pipeline": "55/55",
+        "repeatability": "4/4",
+        "verify_branch": "3/3",
+        "public_challenger": "79/79",
+        "infra_challenger": "4/4",
+        "loader": "7/7",
+        "submit_cli": "11/11",
+        "readme_consistency": "1/1"
+      },
+      "deterministic_regression": {
+        "sample_20": {
+          "accepted": 20,
+          "total": 20,
+          "llm_calls": 0,
+          "judge_calls": 20,
+          "ledger": "results/sample_20_official_2848228.json",
+          "ledger_sha256": "33ad4b699eb5297e25132ff9ac2c01c4657ec61bcb62a9a918232e380ffdb177"
+        },
+        "sample_200": {
+          "accepted": 196,
+          "total": 200,
+          "llm_calls": 4,
+          "judge_calls": 196,
+          "ledger": "results/sample_200_official_2848228.json",
+          "ledger_sha256": "b7f47a2d36086f3fd58f792f6bcc5ffbbd57bc0a5e945206a0a881b5bde7c283"
+        },
+        "hard2": {
+          "accepted": 197,
+          "total": 200,
+          "llm_calls": 3,
+          "judge_calls": 197,
+          "ledger": "results/hard2_official_2848228.json",
+          "ledger_sha256": "631f35621b265f2fa58a597b341859a7c31b6f2fa79b752fb039e0c420f39fba"
+        }
+      },
+      "scope": "The full official harness and all three archived public regression sets were rerun under this revision."
+    },
+    "local_official_harness_scores": {
+      "sample_20": "20/20",
+      "hard2.jsonl": "197/200 in the archived full-set regression; a separate unarchived run recorded 196/200, with the cause not established",
+      "sample_200.json": "196/200",
+      "note": "LOCAL official-runner scores, not leaderboard scores. Every accepted row in the archived regression is a deterministic-stage certificate accepted by the real Lean judge. Preserve exact ledgers and distinguish the archived 197/200 hard2 result from the unarchived 196/200 observation; the available evidence does not establish the cause of the difference."
+    },
+    "solver_artifact_roles": {
+      "current_and_final_regression": {
+        "solver_sha256": "ea2946fec56e407382434a4c9ac2b55988de340d0b3c8b7abd7d61d64ed7600a",
+        "solver_bytes": 82370,
+        "evidence": "results/FINAL_DETERMINISTIC_REGRESSION.md and its three linked ledgers"
+      },
+      "general66_targeted_replay": {
+        "solver_sha256": "0b1c5008eb52942afd03ad34c45ef1b6ce4f54d8e376d84e26e605a82f253294",
+        "evidence": "results/general66_provenance_ledger.json",
+        "relationship_to_current": "The current solver differs only by PR #7's five-line clean_proof_body change on the LLM path. Deterministic stages are unchanged, so the 61/66 component attribution remains valid; byte-identical replay of the current solver would require rerunning under ea2946fe."
+      }
+    },
+    "archived_deterministic_regression": {
+      "sample_20": {
+        "accepted": 20,
+        "total": 20,
+        "llm_calls": 0,
+        "judge_calls": 20,
+        "ledger": "results/sample_20_deterministic_final.json",
+        "ledger_sha256": "f6c8732807758486be94c0cedadfca317e2221308a355fb8b4c944a3e1fab819"
+      },
+      "sample_200": {
+        "accepted": 196,
+        "total": 200,
+        "llm_calls": 4,
+        "judge_calls": 196,
+        "ledger": "results/sample_200_deterministic_final.json",
+        "ledger_sha256": "46260ef51cf3a600dad091a93c9498a87c71025e6174dde9f80b5c73ae9d3490"
+      },
+      "hard2": {
+        "accepted": 197,
+        "total": 200,
+        "llm_calls": 3,
+        "judge_calls": 197,
+        "ledger": "results/hard2_deterministic_final.json",
+        "ledger_sha256": "448d3ff415e3e23901815b81a3713f0ccea694490986e0d04d18ab7b1eeb568c"
+      }
+    }
+  },
+  "live_llm_measurement": "Archived in docs/LIVE_RUN_NOTES.md and results/*_live.json. The pre-optimization gpt-oss-120b runs solved 0/6 sample_20 residuals; generation was nondeterministic despite fixed provider settings.",
+  "note": "These are LOCAL official-runner scores, NOT hosted leaderboard scores. The matching scores and failed-ID sets across the two upstream revisions are independent replay evidence, not a hosted result.",
+  "marathon_track_validation": {
+    "runner": "scripts/run_marathon.py at official revision 2848228, canonical manifest examples/problems/marathon/normal_100.jsonl, full default budgets",
+    "attempted": 100,
+    "by_status": {
+      "accepted": 100
+    },
+    "tokens_used": 0,
+    "summary": "results/marathon/normal_100_summary.json",
+    "summary_sha256": "d422d4ad6703c2670f56daa9878ec3b74627c26385b832b811c414145b77bac9",
+    "answers": "results/marathon/normal_100_answers.jsonl",
+    "answers_sha256": "dce8fe3ea25ab16239b074bef1f3d7e02b6639a979271f9b7e73df7c2d8c43dc",
+    "fixture_checks": "tests/marathon_fixtures normal_5 5/5 accepted; external-solver marathon harness 2/2",
+    "note": "LOCAL official-runner Marathon measurement, not a hosted result."
+  },
+  "lean_432_compatibility": {
+    "context": "rules commits 119dbfe/e00901b (2026-08-20) announce Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment while the public harness remains v4.30.0-rc2",
+    "corpus": "120 stratified accepted certificates covering every emission family + all 14 former v1 residuals",
+    "result": "EXACT Lean 4.32.0 + Mathlib v4.32.0 run (results-exact-4.32.json): 119/120 certificates pass under the harness's 120 s per-phase limit; the single non-pass was the legacy pre-v2.3 Mathlib-importing Austin certificate, whose problem phase timed out at 120 s. Under a 300 s-per-phase configuration matching the judge it passes (phases 183.6 s and 144.6 s, total 330.5 s - results-retry-hard2_0027.json). This corpus characterizes the migration-era certificate set, not the frozen artifact's current output: the frozen v2.5 solver's own certificate for the same problem (hard2_0027) imports only JudgeProblem and is accepted in 4.93 s (results/lean4331_revalidation/hard2.json). results.json in the same directory records an earlier BLOCKED preflight from before the toolchain was installed and is retained for completeness only.",
+    "harness": "external directory lean432-cert-check (operator host), not part of this repository",
+    "archived_artifacts": {
+      "results/lean432_corpus/results-proxy-4.33-merged.json": "cff308dbbb95d88e3d785a1122bd6e28acb0ccb693ef9bad3c7e2683c88610f8",
+      "results/lean432_corpus/REPORT.md": "ceec9e7c25ea569481207ac2e327b3b2b128da37feed2da1898b5e12c5704936",
+      "results/lean432_corpus/results.json": "f33ed0f886e0edd57f8e20fe89edc00995d4b76cbbc72dab235c7fa11466f340",
+      "results/lean432_corpus/results-exact-4.32.json": "a68f3740ae93cb8caa2f07b2b5c83ec290a5b402508753188919c091d43add09",
+      "results/lean432_corpus/results-retry-hard2_0027.json": "33c23bb877db38749a8a6dd3f7f255a36fed54a8e9c81df1f4fade6ab60a0feb",
+      "results/lean432_corpus/corpus/retry_cn.json": "a26ae19e785ca04ae594f34490dbabb312648b6b9a911abf64ce13e1357a10bb",
+      "results/lean432_corpus/corpus/retry_nm.json": "5e16025759fae916a8927e880d5e1655f23362082bc9d1843809fe08064daf6f",
+      "results/lean432_corpus/corpus/retry_1.json": "9363a13c1c444fe008e453b1d4188a062593493ac3a5bf4d6e3db1374052e853",
+      "results/lean432_corpus/corpus/retry_cn2.json": "d98e93c8295702a790bea3be16c7b6dd2d70312a747d65b2fc17176a7cf628a9",
+      "results/lean432_corpus/corpus/sample_120.json": "ed7eb39fa7eda8b6739d056dbb669be21c79ef1f1f3027e12bbe8d3309168b2c"
+    },
+    "evidence_status": "External-operator run, archived with hash-bound ledgers in results/lean432_corpus/. It predates the v2.5 file; the repository-verifiable toolchain evidence for the exact v2.5 artifact is lean_4331_revalidation."
+  },
+  "official_distribution_drill": {
+    "source": "HuggingFace SAIRfoundation/equational-theories-selected-problems, the four Stage 1 evaluation splits (the announced Stage 2 scoring categories), 200 problems each, '*'-encoded as published",
+    "results": {
+      "evaluation_order5": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 200,
+        "ledger": "results/official_distribution_drill/evaluation_order5_results.json",
+        "ledger_sha256": "6647e3a13fc04a1117222e1990852509de8a52153c3c3b9e3c99c47865467690",
+        "failed_ids": [],
+        "wall_clock_sum_s": 2047.27
+      },
+      "evaluation_extra_hard": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 210,
+        "ledger": "results/official_distribution_drill/evaluation_extra_hard_results.json",
+        "ledger_sha256": "2025ca90a8921c0ebea1dc0c7c88b1f1842144e0f429d7c66c0959479f47f084",
+        "failed_ids": [],
+        "wall_clock_sum_s": 17307.45
+      },
+      "evaluation_hard": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 201,
+        "ledger": "results/official_distribution_drill/evaluation_hard_results.json",
+        "ledger_sha256": "b931bbf33007148e946c8bd535c5e156a04039abb3f419c68bcc020ff1d6f60c",
+        "failed_ids": [],
+        "wall_clock_sum_s": 2228.57
+      },
+      "evaluation_normal": {
+        "accepted": 200,
+        "total": 200,
+        "llm_calls": 0,
+        "judge_calls": 200,
+        "ledger": "results/official_distribution_drill/evaluation_normal_results.json",
+        "ledger_sha256": "d7ef36ee24f77bf5f586660cef6840688bd92174027d1431f841a1a1de69cc65",
+        "failed_ids": [],
+        "wall_clock_sum_s": 1019.91
+      }
+    },
+    "verdict_agreement": "every accepted verdict matches the published ground-truth answer in all four splits",
+    "note": "LOCAL official-runner measurement on Stage 1 evaluation problems; Stage 2 will not reuse these problems — this measures distribution-level readiness, not a hosted score."
+  },
+  "hosted_playground_measurement": {
+    "dates": "2026-08-21..28",
+    "scope": "SAIR Stage 2 playground, official infrastructure (Lean 4.32 toolchain)",
+    "results": {
+      "evaluation_normal": "200/200 accepted (complete split; 100T/100F; mean 4.89 s; TRUE mean 7.08 s max 23.8 s, FALSE mean 2.69 s max 6.5 s)",
+      "evaluation_hard": "50/50 accepted (#0-49; TRUE mean 5.38 s max 10.3 s, FALSE mean 2.74 s)",
+      "evaluation_extra_hard": "200/200 accepted with the frozen v2.5 file (the tail #150-199 rerun 2026-08-28: 50/50, 0 LLM calls, 565 s total, max 12.8 s; an earlier 186/200 batch was a stale pre-v2.4 artifact and is excluded)",
+      "evaluation_order5": "100/100 accepted, 0 errors"
+    },
+    "totals": "all four categories accepted at 100% on the hosted judge (Lean 4.33.1) with the frozen file; 0 LLM calls throughout",
+    "note": "Hosted playground measurements, not leaderboard scores. Driven by the operator via the playground UI (10 problems/run, daily credits).",
+    "evidence_status": "External operator attestation: playground runs execute on SAIR's hosted infrastructure through the operator's browser session and produce no repository-committable ledger. Recorded here as attested observations; the repository-verifiable evidence for the same categories is the committed drill and Solo/Marathon ledgers."
+  },
+  "lean_4331_revalidation": {
+    "date": "2026-08-27",
+    "context": "Following the Lean kernel soundness bug hunt, the organizers upgraded the judge (harness, playground, official evaluation) from Lean/Mathlib 4.32.2 to 4.33.1. The frozen v2.5 solver file is byte-unchanged.",
+    "judge_revision": "1364868 (official main, lean-toolchain leanprover/lean4:v4.33.1, mathlib 0df444a3)",
+    "official_harness": "GREEN, zero case failures (results captured in the run log)",
+    "results": {
+      "solo_six_sets": "1889/1889 (llm_calls=0 everywhere)",
+      "official_distribution_drill": "800/800, full ground-truth agreement",
+      "marathon_normal_100": "100/100, 0 tokens"
+    },
+    "ledgers": {
+      "evaluation_extra_hard.json": "61f86f7b9a11437f97fae7e49c01a7ee59bb0daa7201801ba6476f4f158a90a0",
+      "evaluation_hard.json": "975f8f8c9b6b5ae48eb4ce2a3e72eb4554597e1e69cd84b73272bc13997d4b54",
+      "evaluation_normal.json": "549c21c42e79c3fed745c3ab18c7514bfa67bbcf416a41bf4b56af25acea0243",
+      "evaluation_order5.json": "d88eab184e30f55f1e8060c05d18d53b8713fe351f9acb0352d71c2543a3983a",
+      "hard1.json": "45ddd904ce61b0136dccfdc09291b59a01155b2453f703f97ca97a0c3e2fd5a0",
+      "hard2.json": "14da2eb283d5f24966fe0beafd2a382eadfe31325f639a05ac8de416586fa874",
+      "hard3.json": "f48d8cfb9863903490e891cb43683aaaa312268ed0bbc1332bec35c63893aaa8",
+      "marathon_summary.json": "6d7f51f6d518c38320fde311279acf5e388314fb968f3eabe5e72c2e97f46146",
+      "normal.json": "16b726b8a3c9f579fd4330adf50dec69b1c35de60a6735057a9a8cceb615bf51",
+      "sample_20.json": "cdf2ca58103aee9f56c7af3c2c2641e619aa32c08fc90cd17a99fa1670529cf6",
+      "sample_200.json": "01c1f1dd9a4cf2a1d9772c671136c18350ae6bf8a8dfd8531de5be9d2ed63925"
+    },
+    "note": "Every certificate family is Lean-core-only and relies on no unsound kernel behavior; the organizers state existing valid certificates remain valid. This section is measured confirmation, not inference."
+  },
+  "stage2_stress_test": {
+    "date": "2026-08-28",
+    "source": "official stage2_stress_test dataset (announced as mirroring the final main-leaderboard configuration: 4 categories x 50, 25 true / 25 false each)",
+    "result": "200/200 accepted, 0 LLM calls; per-category verdict counts match the announced 25 true / 25 false composition exactly in all four categories (the set publishes no per-item reference labels; every accepted verdict is kernel-checked by the judge); wall 22m25s including per-item judge compilation",
+    "ledger": "results/stage2_stress_test_results.json",
+    "ledger_sha256": "c741609293d136c6b2c38fda796242bb035347eec940bb0cc97e18d903bc0234"
+  },
+  "research_order5_hard_attempt": {
+    "date": "2026-08-28/29",
+    "source": "official research_order5_hard dataset (100 order-5 problems where at least one side is an Austin law; ground truth partly unknown; explicitly not part of the leaderboard evaluation)",
+    "result": "0/100 within the frozen budgets (73 full deep-budget exhaustions, 27 candidate certificates rejected by the kernel); recorded as an honest negative measurement delimiting the cascade's coverage",
+    "ledger": "results/research_order5_hard_attempt.json",
+    "ledger_sha256": "86fc2764fdb9b1086184eb69c91ddcc26211ad5cd58b6fc8199edb0128a31c96",
+    "ledger_note": "slimmed per-row summary (id/verdict/timing/call counts); full event logs retained off-repository by the operator"
   }
- },
- "live_llm_measurement": "Archived in docs/LIVE_RUN_NOTES.md and results/*_live.json. The pre-optimization gpt-oss-120b runs solved 0/6 sample_20 residuals; generation was nondeterministic despite fixed provider settings.",
- "note": "These are LOCAL official-runner scores, NOT hosted leaderboard scores. The matching scores and failed-ID sets across the two upstream revisions are independent replay evidence, not a hosted result.",
- "marathon_track_validation": {
-  "runner": "scripts/run_marathon.py at official revision 2848228, canonical manifest examples/problems/marathon/normal_100.jsonl, full default budgets",
-  "attempted": 100,
-  "by_status": {
-   "accepted": 100
-  },
-  "tokens_used": 0,
-  "summary": "results/marathon/normal_100_summary.json",
-  "summary_sha256": "d422d4ad6703c2670f56daa9878ec3b74627c26385b832b811c414145b77bac9",
-  "answers": "results/marathon/normal_100_answers.jsonl",
-  "answers_sha256": "dce8fe3ea25ab16239b074bef1f3d7e02b6639a979271f9b7e73df7c2d8c43dc",
-  "fixture_checks": "tests/marathon_fixtures normal_5 5/5 accepted; external-solver marathon harness 2/2",
-  "note": "LOCAL official-runner Marathon measurement, not a hosted result."
- },
- "lean_432_compatibility": {
-  "context": "rules commits 119dbfe/e00901b (2026-08-20) announce Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment while the public harness remains v4.30.0-rc2",
-  "corpus": "120 stratified accepted certificates covering every emission family + all 14 former v1 residuals",
-  "result": "EXACT Lean 4.32.0 + Mathlib v4.32.0 run (results-exact-4.32.json): 119/120 certificates pass; the single non-pass was the pre-v2.3 Mathlib-importing Austin certificate exceeding the judge's 300 s phase limit (it passes at 330 s with an extended limit — results-retry-hard2_0027.json). That family was re-emitted core-only in v2.3. results.json in the same directory records an earlier BLOCKED preflight from before the toolchain was installed and is retained for completeness only.",
-  "harness": "external directory lean432-cert-check (operator host), not part of this repository",
-  "archived_artifacts": {
-   "results/lean432_corpus/results-proxy-4.33-merged.json": "cff308dbbb95d88e3d785a1122bd6e28acb0ccb693ef9bad3c7e2683c88610f8",
-   "results/lean432_corpus/REPORT.md": "ac7489516750c2f48f04e62a02e36ba200d4c26ff718e06afa18534ce4fd34f6",
-   "results/lean432_corpus/results.json": "f33ed0f886e0edd57f8e20fe89edc00995d4b76cbbc72dab235c7fa11466f340",
-   "results/lean432_corpus/results-exact-4.32.json": "a68f3740ae93cb8caa2f07b2b5c83ec290a5b402508753188919c091d43add09",
-   "results/lean432_corpus/results-retry-hard2_0027.json": "33c23bb877db38749a8a6dd3f7f255a36fed54a8e9c81df1f4fade6ab60a0feb",
-   "results/lean432_corpus/corpus/retry_cn.json": "a26ae19e785ca04ae594f34490dbabb312648b6b9a911abf64ce13e1357a10bb",
-   "results/lean432_corpus/corpus/retry_nm.json": "5e16025759fae916a8927e880d5e1655f23362082bc9d1843809fe08064daf6f",
-   "results/lean432_corpus/corpus/retry_1.json": "9363a13c1c444fe008e453b1d4188a062593493ac3a5bf4d6e3db1374052e853",
-   "results/lean432_corpus/corpus/retry_cn2.json": "d98e93c8295702a790bea3be16c7b6dd2d70312a747d65b2fc17176a7cf628a9",
-   "results/lean432_corpus/corpus/sample_120.json": "ed7eb39fa7eda8b6739d056dbb669be21c79ef1f1f3027e12bbe8d3309168b2c"
-  },
-  "evidence_status": "External-operator run, archived with hash-bound ledgers in results/lean432_corpus/. It predates the v2.5 file; the repository-verifiable toolchain evidence for the exact v2.5 artifact is lean_4331_revalidation."
- },
- "official_distribution_drill": {
-  "source": "HuggingFace SAIRfoundation/equational-theories-selected-problems, the four Stage 1 evaluation splits (the announced Stage 2 scoring categories), 200 problems each, '*'-encoded as published",
-  "results": {
-   "evaluation_order5": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 200,
-    "ledger": "results/official_distribution_drill/evaluation_order5_results.json",
-    "ledger_sha256": "6647e3a13fc04a1117222e1990852509de8a52153c3c3b9e3c99c47865467690",
-    "failed_ids": [],
-    "wall_clock_sum_s": 2047.27
-   },
-   "evaluation_extra_hard": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 210,
-    "ledger": "results/official_distribution_drill/evaluation_extra_hard_results.json",
-    "ledger_sha256": "2025ca90a8921c0ebea1dc0c7c88b1f1842144e0f429d7c66c0959479f47f084",
-    "failed_ids": [],
-    "wall_clock_sum_s": 17307.45
-   },
-   "evaluation_hard": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 201,
-    "ledger": "results/official_distribution_drill/evaluation_hard_results.json",
-    "ledger_sha256": "b931bbf33007148e946c8bd535c5e156a04039abb3f419c68bcc020ff1d6f60c",
-    "failed_ids": [],
-    "wall_clock_sum_s": 2228.57
-   },
-   "evaluation_normal": {
-    "accepted": 200,
-    "total": 200,
-    "llm_calls": 0,
-    "judge_calls": 200,
-    "ledger": "results/official_distribution_drill/evaluation_normal_results.json",
-    "ledger_sha256": "d7ef36ee24f77bf5f586660cef6840688bd92174027d1431f841a1a1de69cc65",
-    "failed_ids": [],
-    "wall_clock_sum_s": 1019.91
-   }
-  },
-  "verdict_agreement": "every accepted verdict matches the published ground-truth answer in all four splits",
-  "note": "LOCAL official-runner measurement on Stage 1 evaluation problems; Stage 2 will not reuse these problems — this measures distribution-level readiness, not a hosted score."
- },
- "hosted_playground_measurement": {
-  "dates": "2026-08-21..28",
-  "scope": "SAIR Stage 2 playground, official infrastructure (Lean 4.32 toolchain)",
-  "results": {
-   "evaluation_normal": "200/200 accepted (complete split; 100T/100F; mean 4.89 s; TRUE mean 7.08 s max 23.8 s, FALSE mean 2.69 s max 6.5 s)",
-   "evaluation_hard": "50/50 accepted (#0-49; TRUE mean 5.38 s max 10.3 s, FALSE mean 2.74 s)",
-   "evaluation_extra_hard": "200/200 accepted with the frozen v2.5 file (the tail #150-199 rerun 2026-08-28: 50/50, 0 LLM calls, 565 s total, max 12.8 s; an earlier 186/200 batch was a stale pre-v2.4 artifact and is excluded)",
-   "evaluation_order5": "100/100 accepted, 0 errors"
-  },
-  "totals": "all four categories accepted at 100% on the hosted judge (Lean 4.33.1) with the frozen file; 0 LLM calls throughout",
-  "note": "Hosted playground measurements, not leaderboard scores. Driven by the operator via the playground UI (10 problems/run, daily credits).",
-  "evidence_status": "External operator attestation: playground runs execute on SAIR's hosted infrastructure through the operator's browser session and produce no repository-committable ledger. Recorded here as attested observations; the repository-verifiable evidence for the same categories is the committed drill and Solo/Marathon ledgers."
- },
- "lean_4331_revalidation": {
-  "date": "2026-08-27",
-  "context": "Following the Lean kernel soundness bug hunt, the organizers upgraded the judge (harness, playground, official evaluation) from Lean/Mathlib 4.32.2 to 4.33.1. The frozen v2.5 solver file is byte-unchanged.",
-  "judge_revision": "1364868 (official main, lean-toolchain leanprover/lean4:v4.33.1, mathlib 0df444a3)",
-  "official_harness": "GREEN, zero case failures (results captured in the run log)",
-  "results": {
-   "solo_six_sets": "1889/1889 (llm_calls=0 everywhere)",
-   "official_distribution_drill": "800/800, full ground-truth agreement",
-   "marathon_normal_100": "100/100, 0 tokens"
-  },
-  "ledgers": {
-   "evaluation_extra_hard.json": "61f86f7b9a11437f97fae7e49c01a7ee59bb0daa7201801ba6476f4f158a90a0",
-   "evaluation_hard.json": "975f8f8c9b6b5ae48eb4ce2a3e72eb4554597e1e69cd84b73272bc13997d4b54",
-   "evaluation_normal.json": "549c21c42e79c3fed745c3ab18c7514bfa67bbcf416a41bf4b56af25acea0243",
-   "evaluation_order5.json": "d88eab184e30f55f1e8060c05d18d53b8713fe351f9acb0352d71c2543a3983a",
-   "hard1.json": "45ddd904ce61b0136dccfdc09291b59a01155b2453f703f97ca97a0c3e2fd5a0",
-   "hard2.json": "14da2eb283d5f24966fe0beafd2a382eadfe31325f639a05ac8de416586fa874",
-   "hard3.json": "f48d8cfb9863903490e891cb43683aaaa312268ed0bbc1332bec35c63893aaa8",
-   "marathon_summary.json": "6d7f51f6d518c38320fde311279acf5e388314fb968f3eabe5e72c2e97f46146",
-   "normal.json": "16b726b8a3c9f579fd4330adf50dec69b1c35de60a6735057a9a8cceb615bf51",
-   "sample_20.json": "cdf2ca58103aee9f56c7af3c2c2641e619aa32c08fc90cd17a99fa1670529cf6",
-   "sample_200.json": "01c1f1dd9a4cf2a1d9772c671136c18350ae6bf8a8dfd8531de5be9d2ed63925"
-  },
-  "note": "Every certificate family is Lean-core-only and relies on no unsound kernel behavior; the organizers state existing valid certificates remain valid. This section is measured confirmation, not inference."
- },
- "stage2_stress_test": {
-  "date": "2026-08-28",
-  "source": "official stage2_stress_test dataset (announced as mirroring the final main-leaderboard configuration: 4 categories x 50, 25 true / 25 false each)",
-  "result": "200/200 accepted, 0 LLM calls, full ground-truth agreement; wall 22m25s including per-item judge compilation",
-  "ledger": "results/stage2_stress_test_results.json",
-  "ledger_sha256": "c741609293d136c6b2c38fda796242bb035347eec940bb0cc97e18d903bc0234"
- },
- "research_order5_hard_attempt": {
-  "date": "2026-08-28/29",
-  "source": "official research_order5_hard dataset (100 order-5 problems where at least one side is an Austin law; ground truth partly unknown; explicitly not part of the leaderboard evaluation)",
-  "result": "0/100 within the frozen budgets (73 full deep-budget exhaustions, 27 candidate certificates rejected by the kernel); recorded as an honest negative measurement delimiting the cascade's coverage",
-  "ledger": "results/research_order5_hard_attempt.json",
-  "ledger_sha256": "86fc2764fdb9b1086184eb69c91ddcc26211ad5cd58b6fc8199edb0128a31c96",
-  "ledger_note": "slimmed per-row summary (id/verdict/timing/call counts); full event logs retained off-repository by the operator"
- }
 }
