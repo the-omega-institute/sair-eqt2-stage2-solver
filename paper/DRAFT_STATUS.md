@@ -31,8 +31,11 @@ statement. This is a working draft, not a submission claim.
 - All three build modes compile with zero errors; per-mode pdflatex/bibtex logs
   are committed under `paper/build_logs/` as the verification artifact:
   plain-article fallback (`make plain`, pdflatex + BibTeX, 13 pages), ACM
-  `sigplan,screen` default (12 pages; `acmart.cls` is installed in the local
-  texmf tree), and the anonymized `\ANONSUBMISSION` CPP submission mode.
+  `sigplan,screen` default (`make acm`, 12 pages), and the anonymized ACM
+  `\ANONSUBMISSION` CPP submission mode (`make anon`, 12 pages). The ACM
+  modes require `acmart.cls` (present in the operator's local texmf tree, not
+  vendored here); reviewers without acmart can verify the plain mode and audit
+  the committed ACM build logs.
 - There are no undefined citations or undefined references in any mode.
 
 ## Review status

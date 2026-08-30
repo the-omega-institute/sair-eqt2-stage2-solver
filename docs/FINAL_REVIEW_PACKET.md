@@ -49,7 +49,7 @@ Israel approved solver v2.2 at commit `b32306d18ab209b3e3a94f88e32e4438cb394d74`
 | Solo six public sets | 1889/1889, llm_calls = 0 everywhere |
 | Marathon canonical `normal_100` | 100/100, 0 tokens |
 | Stage 1 evaluation-distribution drill (4 x 200) | 800/800, full ground-truth agreement |
-| Hosted playground (all four categories) | 400/400 accepted (hosted measurement, stale-artifact runs excluded) |
+| Hosted playground (external attestation) | every attempted problem accepted across the four categories (550 attempts incl. the extra-hard tail rerun with the frozen file); the tabulated 200/200 row is evaluation_normal specifically |
 | Lean 4.32 migration corpus (external attestation) | 119/120; single non-pass = legacy pre-rewrite certificate at a 120 s-per-phase harness limit, passes at the judge-matching 300 s configuration |
 | `check_freeze.py` | PASS |
 

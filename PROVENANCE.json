@@ -350,7 +350,7 @@
     "harness": "external directory lean432-cert-check (operator host), not part of this repository",
     "archived_artifacts": {
       "results/lean432_corpus/results-proxy-4.33-merged.json": "cff308dbbb95d88e3d785a1122bd6e28acb0ccb693ef9bad3c7e2683c88610f8",
-      "results/lean432_corpus/REPORT.md": "ceec9e7c25ea569481207ac2e327b3b2b128da37feed2da1898b5e12c5704936",
+      "results/lean432_corpus/REPORT.md": "a0dcc9c56b5774cef5f394ed1f39dec503affa8bfbc90c7227c81cb9f4541d76",
       "results/lean432_corpus/results.json": "f33ed0f886e0edd57f8e20fe89edc00995d4b76cbbc72dab235c7fa11466f340",
       "results/lean432_corpus/results-exact-4.32.json": "a68f3740ae93cb8caa2f07b2b5c83ec290a5b402508753188919c091d43add09",
       "results/lean432_corpus/results-retry-hard2_0027.json": "33c23bb877db38749a8a6dd3f7f255a36fed54a8e9c81df1f4fade6ab60a0feb",

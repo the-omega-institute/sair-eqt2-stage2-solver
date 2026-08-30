@@ -21,4 +21,7 @@ clean:
 	rm -f main.aux main.bbl main.blg main.log main.out main.pdf
 
 anon:
-	pdflatex -interaction=nonstopmode "\\def\\ANONSUBMISSION{1}\\def\\PLAINARTICLE{1}\\input{main.tex}" >/dev/null && pdflatex -interaction=nonstopmode "\\def\\ANONSUBMISSION{1}\\def\\PLAINARTICLE{1}\\input{main.tex}" >/dev/null
+	$(TEX) -interaction=nonstopmode -halt-on-error "\def\ANONSUBMISSION{1}\input{main.tex}"
+	$(BIB) main
+	$(TEX) -interaction=nonstopmode -halt-on-error "\def\ANONSUBMISSION{1}\input{main.tex}"
+	$(TEX) -interaction=nonstopmode -halt-on-error "\def\ANONSUBMISSION{1}\input{main.tex}"

@@ -188,24 +188,22 @@ core-only family, including the longest `congrArg` replay and `Fin 13`
 arithmetic witness, survives the newer 4.33.0-rc1 proxy unchanged.
 
 Do not change `austin_nat`, `omega`, or `grind` emission based on the proxy's
-missing-Mathlib error. If the exact run later rejects `hard2_0027`, use that
-actual diagnostic to choose the smallest change; likely branches would be a
-tactic import/API adjustment or a local proof rewrite, but neither is presently
-evidenced.
+missing-Mathlib error. The exact run subsequently answered this question:
+`hard2_0027` fails only by timeout at the 120 s per-phase harness limit and
+compiles correctly at the judge-matching 300 s configuration, so no tactic or
+proof change was needed; the v2.3 core-only re-emission had already removed
+the Mathlib dependency from the solver's output.
 
 For performance only, the test runner should avoid oversubscribing
 `decideFin!` compilations. This is a harness/concurrency recommendation, not a
 solver-code change.
 
-## Completing the exact run
+## How the exact run was completed
 
-Once Lean 4.32.0 can be installed or made available on `PATH`, run from this
-directory:
+The exact run recorded in `results-exact-4.32.json` was produced on the
+operator host with `leanprover/lean4:v4.32.0` installed, from this directory:
 
 ```bash
-elan toolchain install leanprover/lean4:v4.32.0
-lake update
-lake exe cache get
 python3 scripts/verify_corpus.py \
   --input corpus/sample_120.json \
   --output results-exact-4.32.json \
@@ -214,7 +212,7 @@ python3 scripts/verify_corpus.py \
   --timeout 120
 ```
 
-Use `--jobs 1` for the first measurement because the proxy demonstrated
-contention sensitivity. A completed exact run can then replace the blocked
-entry in `results.json` and supply the requested definitive migration and
-solver recommendations.
+`--jobs 1` was used because the proxy demonstrated contention sensitivity;
+the 120 s per-phase timeout is the harness setting referenced in the Outcome
+section. The single timeout row was retried with `--timeout 300`
+(`results-retry-hard2_0027.json`) and passed.
