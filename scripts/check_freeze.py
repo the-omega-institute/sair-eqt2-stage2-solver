@@ -99,6 +99,19 @@ def check_ledgers(provenance: dict) -> None:
     report = (ROOT / "results" / "FINAL_DETERMINISTIC_REGRESSION.md").read_text(encoding="utf-8")
     if provenance["solver_py_sha256"] not in report:
         raise FreezeError("final regression report does not bind the current solver")
+    # The displayed regression table must match the committed ledgers: every
+    # bound ledger's 16-hex prefix and wall-clock sum must appear verbatim.
+    for label, record in provenance["archived_deterministic_regression"].items():
+        prefix = record["ledger_sha256"][:16]
+        if prefix not in report:
+            raise FreezeError(
+                f"regression report is missing the {label} ledger prefix {prefix}"
+            )
+        wall = str(record["wall_clock_sum_s"])
+        if wall not in report:
+            raise FreezeError(
+                f"regression report wall-clock for {label} ({wall}) not found"
+            )
 
     latest_records = provenance["latest_upstream_validation"][
         "deterministic_regression"

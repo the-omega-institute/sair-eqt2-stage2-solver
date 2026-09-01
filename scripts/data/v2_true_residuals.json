@@ -1,0 +1,104 @@
+[
+{
+"id": "true_2860_3458",
+"eq1_id": 2860,
+"eq2_id": 3458,
+"equation1": "x = ((x ◇ (x ◇ y)) ◇ z) ◇ z",
+"equation2": "x ◇ x = x ◇ ((x ◇ y) ◇ x)",
+"answer": true
+},
+{
+"id": "true_2135_2128",
+"eq1_id": 2135,
+"eq2_id": 2128,
+"equation1": "x = ((y ◇ y) ◇ y) ◇ (x ◇ y)",
+"equation2": "x = ((y ◇ y) ◇ x) ◇ (y ◇ y)",
+"answer": true
+},
+{
+"id": "true_2055_2656",
+"eq1_id": 2055,
+"eq2_id": 2656,
+"equation1": "x = ((x ◇ y) ◇ x) ◇ (y ◇ z)",
+"equation2": "x = ((x ◇ x) ◇ (y ◇ z)) ◇ y",
+"answer": true
+},
+{
+"id": "true_1636_1839",
+"eq1_id": 1636,
+"eq2_id": 1839,
+"equation1": "x = (x ◇ x) ◇ ((y ◇ x) ◇ z)",
+"equation2": "x = (x ◇ (x ◇ y)) ◇ (x ◇ z)",
+"answer": true
+},
+{
+"id": "hard2_0178",
+"index": 178,
+"difficulty": "hard",
+"eq1_id": 853,
+"eq2_id": 849,
+"equation1": "x = x ◇ ((y ◇ z) ◇ (x ◇ y))",
+"equation2": "x = x ◇ ((y ◇ y) ◇ (z ◇ y))",
+"answer": true
+},
+{
+"id": "hard3_0106",
+"index": 106,
+"difficulty": "hard",
+"eq1_id": 853,
+"eq2_id": 160,
+"equation1": "x = x ◇ ((y ◇ z) ◇ (x ◇ y))",
+"equation2": "x = (x ◇ y) ◇ (y ◇ y)",
+"answer": true
+},
+{
+"id": "hard3_0208",
+"index": 208,
+"difficulty": "hard",
+"eq1_id": 1962,
+"eq2_id": 4175,
+"equation1": "x = (y ◇ (z ◇ x)) ◇ (y ◇ x)",
+"equation2": "x ◇ y = ((y ◇ z) ◇ x) ◇ y",
+"answer": true
+},
+{
+"id": "hard3_0214",
+"index": 214,
+"difficulty": "hard",
+"eq1_id": 2042,
+"eq2_id": 2692,
+"equation1": "x = ((x ◇ x) ◇ y) ◇ (x ◇ z)",
+"equation2": "x = ((x ◇ y) ◇ (z ◇ w)) ◇ y",
+"answer": true
+},
+{
+"id": "hard3_0271",
+"index": 271,
+"difficulty": "hard",
+"eq1_id": 2575,
+"eq2_id": 2227,
+"equation1": "x = (y ◇ ((z ◇ x) ◇ z)) ◇ x",
+"equation2": "x = ((y ◇ z) ◇ w) ◇ (w ◇ x)",
+"answer": true
+},
+{
+"id": "hard3_0353",
+"index": 353,
+"difficulty": "hard",
+"eq1_id": 3349,
+"eq2_id": 4682,
+"equation1": "x ◇ y = y ◇ (x ◇ (z ◇ y))",
+"equation2": "(x ◇ y) ◇ z = (y ◇ w) ◇ z",
+"answer": true
+},
+{
+"id": "hard3_0314",
+"index": 314,
+"difficulty": "hard",
+"eq1_id": 2923,
+"eq2_id": 1623,
+"equation1": "x = ((y ◇ (x ◇ z)) ◇ y) ◇ x",
+"equation2": "x = (y ◇ z) ◇ (w ◇ (u ◇ x))",
+"answer": true
+}
+]

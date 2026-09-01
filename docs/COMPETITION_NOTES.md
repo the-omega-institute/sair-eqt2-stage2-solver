@@ -6,7 +6,7 @@ file, helper test, or provenance file belongs in the hosted submission.
 
 ## Current official contract
 
-- Competition status checked on 2026-08-17: active.
+- Competition status checked on 2026-08-22: active.
 - Deadline: 2026-08-31 23:59 AoE (2026-09-01 11:59:59 UTC).
 - Submission: one `solver.py`, at most 500,000 bytes.
 - Local runner scores are not hosted leaderboard results.
@@ -23,15 +23,23 @@ The official platform/validator issue remains tracked upstream as issue #3.
 ## Validated evidence
 
 The complete official harness passed with zero failures under `2848228` on
-2026-08-17. The frozen solver then scored 20/20 on `sample_20`, 196/200 on
-`sample_200`, and 197/200 on `hard2`. All 413 accepted rows were produced
-before the LLM fallback and accepted by the Lean judge. The seven failed rows
-entered a no-key fallback and produced no model certificate.
+2026-08-17 and again on the operator host on 2026-08-20. Solver v2.5
+(`f2392533…`, 189,504 bytes) scored 20/20 `sample_20`, 200/200 `sample_200`,
+69/69 `hard1`, 200/200 `hard2`, 400/400 `hard3`, and 1000/1000 `normal` —
+**1889/1889**. Every accepted row was produced before the LLM fallback and
+accepted by the Lean judge. The same file scored 100/100 with 0 tokens on the
+local official Marathon `normal_100` manifest and 800/800 with full
+ground-truth agreement on the four published Stage 1 evaluation splits. The
+superseded v1 solver (`ea2946fe…`) scored 1875/1889.
 
-The same scores were first archived under official revision `6805e232`. The
-failed-ID sets match exactly across both revisions. `PROVENANCE.json` binds
-both environments to their exact solver, runner configuration, and ledger
-hashes; `results/LATEST_UPSTREAM_REGRESSION.md` records the newer replay.
+The v1 scores were first archived under official revision `6805e232`; their
+failed-ID sets match exactly across both reviewed revisions. `PROVENANCE.json`
+binds every current and superseded measurement to its exact solver, runner
+configuration, and ledger hashes. The hosted Stage 2 playground separately
+accepted the same frozen v2.5 file on all 200 `evaluation_normal` problems
+under the official Lean 4.32 infrastructure, with 0 rejected, 0 errors, and
+0 LLM calls. This is a hosted playground measurement, not a formal submission,
+leaderboard score, or rank.
 
 The organizer-pinned live `gpt-oss-120b` experiment is already complete for
 the original six `sample_20` residuals: it solved 0/6. See
@@ -68,8 +76,9 @@ solved before the LLM fallback.
 
 ## Remaining gates
 
-- Israel reviews the exact solver hash, latest rules/harness compliance,
-  evidence traceability, and competition-paper claim boundary.
+- After the planned quiet window, Israel performs one final review of the exact
+  solver hash, v2.2-to-final delta, latest rules/harness compliance, evidence
+  traceability, and competition-paper claim boundary.
 - A human confirms the track and uploads the frozen `submission/solver.py`.
 - The hosted submission timestamp, solver hash, score, and public result URL
   are recorded only after the platform returns them.

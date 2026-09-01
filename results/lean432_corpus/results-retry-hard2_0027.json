@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "run": {
+    "label": "Lean 4.32.0 / Mathlib v4.32.0",
+    "started_at": "2026-08-20T15:48:11.504861+00:00",
+    "finished_at": "2026-08-20T15:54:07.836746+00:00",
+    "expected_toolchain": "leanprover/lean4:v4.32.0",
+    "expected_mathlib_tag": "v4.32.0",
+    "actual_lean_version": "Lean (version 4.32.0, arm64-apple-darwin24.6.0, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)",
+    "input": "corpus/retry_1.json",
+    "input_sha256": "9363a13c1c444fe008e453b1d4188a062593493ac3a5bf4d6e3db1374052e853",
+    "jobs": 1,
+    "timeout_seconds_per_phase": 300,
+    "direct_support_build": false
+  },
+  "summary": {
+    "overall": {
+      "total": 1,
+      "pass": 1
+    },
+    "families": {
+      "austin_nat": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "timeout": 0
+      },
+      "grind_any": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "timeout": 0
+      },
+      "lemma_pool_grind": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "timeout": 0
+      },
+      "nat_infinite_carrier_false": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "timeout": 0
+      }
+    }
+  },
+  "rows": [
+    {
+      "row_uid": "v2_residuals14_official_2848228.json::hard2_0027::60469b3856e6",
+      "id": "hard2_0027",
+      "source": "v2_residuals14_official_2848228.json",
+      "verdict": "false",
+      "families": [
+        "nat_infinite_carrier_false",
+        "austin_nat",
+        "lemma_pool_grind",
+        "grind_any"
+      ],
+      "status": "pass",
+      "failure_phase": null,
+      "error": "",
+      "elapsed_seconds": 330.52,
+      "direct_declarations": [
+        "And",
+        "And.intro",
+        "Bool",
+        "Bool.true",
+        "Decidable.decide",
+        "Eq",
+        "Eq.refl",
+        "EquationLHS",
+        "EquationRHS",
+        "Exists",
+        "Exists.intro",
+        "False",
+        "Goal",
+        "Magma",
+        "Magma.mk",
+        "Magma.op",
+        "Nat",
+        "Not",
+        "OfNat.ofNat",
+        "absurd",
+        "id",
+        "instDecidableEqNat",
+        "instDecidableNot",
+        "instOfNatNat",
+        "of_decide_eq_true",
+        "submission.f",
+        "submission.f_2473"
+      ],
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "phases": [
+        {
+          "phase": "judge_problem",
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_seconds": 2.303,
+          "timeout": false
+        },
+        {
+          "phase": "submission",
+          "returncode": 0,
+          "stdout": "/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:101: warning: 'exact h _ _ _' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:117: warning: 'exact (h _ _).symm' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:138: warning: 'exact h _ _' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:152: warning: 'exact (h _ _ _ _).symm' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:177: warning: 'exact h _ _ _ _' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:163:81: warning: 'exact Ne.symm nh' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:161: warning: 'exact hb.symm' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:177: warning: 'exact Ne.symm hb' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:197: warning: '(rw [← ha] at hb;\n  first\n  | exact hb\n  | exact hb.symm\n  | exact Ne.symm hb)' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:270: warning: 'grind' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:199: warning: 'exact Ne.symm hb' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:219: warning: '(rw [← ha] at hb;\n  first\n  | exact hb\n  | exact hb.symm\n  | exact Ne.symm hb)' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:292: warning: 'grind' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:137: warning: 'exact hb.symm' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:153: warning: 'exact Ne.symm hb' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:173: warning: '(rw [ha] at hb;\n  first\n  | exact hb\n  | exact hb.symm\n  | exact Ne.symm hb)' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:244: warning: 'grind' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:167:61: warning: 'exact eq19 rfl' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:167:78: warning: 'grind' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:101: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:117: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:138: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:152: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:162:177: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:163:81: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:161: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:177: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:197: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:164:270: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:199: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:219: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:165:292: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:137: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:153: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:173: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:166:244: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:167:61: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:167:78: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/Users/lexa/Desktop/lexa/omega/lean432-cert-check/artifacts-retry/hard2_0027.30ee8c823347/Submission.lean:174:0: warning: Definition `submission` is a proposition; use `theorem` instead of `def`\n\nNote: This linter can be disabled with `set_option linter.defProp false`\n",
+          "stderr": "",
+          "elapsed_seconds": 183.599,
+          "timeout": false
+        },
+        {
+          "phase": "problem",
+          "returncode": 0,
+          "stdout": "JUDGE_REPORT {\"axioms\":[\"propext\",\"Classical.choice\",\"Quot.sound\"],\"direct_declarations\":[\"And\",\"Bool\",\"Eq\",\"EquationLHS\",\"EquationRHS\",\"Exists\",\"False\",\"Goal\",\"Magma\",\"Nat\",\"Not\",\"absurd\",\"id\",\"instDecidableEqNat\",\"instDecidableNot\",\"instOfNatNat\",\"of_decide_eq_true\",\"And.intro\",\"Bool.true\",\"Decidable.decide\",\"Eq.refl\",\"Exists.intro\",\"Magma.mk\",\"Magma.op\",\"OfNat.ofNat\",\"submission.f\",\"submission.f_2473\"],\"nonce\":\"5389e6ab5a32bc8516cdb8f956e7a35f\",\"target\":\"submission\"}\n",
+          "stderr": "",
+          "elapsed_seconds": 144.613,
+          "timeout": false
+        }
+      ],
+      "artifact": "artifacts-retry/hard2_0027.30ee8c823347"
+    }
+  ]
+}

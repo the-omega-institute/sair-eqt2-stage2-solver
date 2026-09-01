@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "blocked_preflight",
+  "exact_run": {
+    "expected_toolchain": "leanprover/lean4:v4.32.0",
+    "expected_mathlib_tag": "v4.32.0",
+    "toolchain_available": false,
+    "mathlib_release_resolved": true,
+    "mathlib_release_commit": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "lake_cache_get_completed": false,
+    "commands_attempted": [
+      {
+        "command": "lake --version",
+        "exit_code": 1,
+        "error": "elan attempted to download leanprover/lean4:v4.32.0 but shell networking could not resolve github.com"
+      },
+      {
+        "command": "lake exe cache get",
+        "exit_code": 1,
+        "error": "elan could not start Lake because downloading leanprover/lean4:v4.32.0 failed: Could not resolve host github.com"
+      },
+      {
+        "command": "curl -I https://releases.lean-lang.org/lean4/v4.32.0/lean-4.32.0-darwin_aarch64.tar.zst",
+        "exit_code": 6,
+        "error": "Could not resolve host: releases.lean-lang.org"
+      },
+      {
+        "command": "git init",
+        "exit_code": 1,
+        "error": "/Users/lexa/Desktop/lexa/omega/lean432-cert-check/.git: Operation not permitted by managed filesystem"
+      }
+    ],
+    "blocking_condition": "The exact Lean 4.32.0 executable is absent and network downloads are disabled in the shell sandbox. Exact support-module and certificate compilation therefore did not run."
+  },
+  "sample": {
+    "path": "corpus/sample_120.json",
+    "sha256": "ed7eb39fa7eda8b6739d056dbb669be21c79ef1f1f3027e12bbe8d3309168b2c",
+    "rows": 120,
+    "all_residual14_included": true
+  },
+  "proxy": {
+    "status": "completed",
+    "path": "results-proxy-4.33-merged.json",
+    "environment": "Lean 4.33.0-rc1, direct-built unchanged core judge modules, no Mathlib",
+    "claim": "forward proxy only; must not be reported as Lean 4.32.0 compatibility"
+  }
+}

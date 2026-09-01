@@ -1,3 +1,96 @@
+# Final deterministic regression — solver v2.5
+
+Solver `submission/solver.py` SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4` (189504 bytes). Official judge revision
+`2848228ff490422442878fd6f5abaf4cfa95257d` (`scripts/setup.sh` rerun on the operator host on 2026-08-19; Lean
+v4.30.0-rc2, mathlib `896cc56a`; official harness rerun GREEN with zero failures on 2026-08-20; sandbox mode
+`none`; no API key). Local official-runner measurements, not hosted leaderboard results.
+
+## Results (2026-08-20, all six public sets; rerun with the v2.5 file, 2026-08-26/27)
+
+| Set | Accepted | LLM calls | Judge calls | Sum of per-item wall-clock | Failed IDs | Ledger |
+|---|---:|---:|---:|---:|---|---|
+| `sample_20` | 20/20 | 0 | 20 | 67.53 s | none | `results/v2_sample_20_official_2848228.json` (`b17eaff452d24a51…`) |
+| `sample_200` | 200/200 | 0 | 200 | 964.12 s | none | `results/v2_sample_200_official_2848228.json` (`dcf830de61995eb9…`) |
+| `hard1` | 69/69 | 0 | 69 | 559.81 s | none | `results/v2_hard1_official_2848228.json` (`7724566d1ceba3b5…`) |
+| `hard2` | 200/200 | 0 | 200 | 1250.67 s | none | `results/v2_hard2_official_2848228.json` (`3e68548945d489f0…`) |
+| `hard3` | 400/400 | 0 | 400 | 2857.38 s | none | `results/v2_hard3_official_2848228.json` (`c9f98750e018973c…`) |
+| `normal` | 1000/1000 | 0 | 1000 | 4128.3 s | none | `results/v2_normal_official_2848228.json` (`27c756482d157d92…`) |
+| 14 former v1 residuals | 14/14 | 0 | 14 | 131.66 s | none | `results/v2_residuals14_official_2848228.json` |
+
+Totals: **1889/1889 public rows accepted** (v1 frozen baseline: 1875/1889; v2.0 candidate: 1888/1889). Every
+accepted row has `llm_calls = 0` and a certificate accepted by the official Lean judge.
+
+Changes from v1 (details in `docs/TRUE_SIDE_G3_PROVER.md` and `docs/FALSE_SIDE_V2_NOTES.md`):
+
+- true side: ordered unit-superposition prover (KBO, forward/backward demodulation with tautology deletion,
+  discrimination-tree index, memoised substitution, unifier cache; proof-producing) with anytime deepening
+  budgets scaled to the Solo allowance and robust certificate emission; all 11 former true residuals solved,
+  `hard3_0314` in under a second of prover time;
+- false side: `submission.op` arithmetic certificates for carriers ≥ 11 (judge-validated n = 11…43),
+  linear/affine mod n ≤ 50, F_3^2 / F_2^3 vector-linear and polynomial families, Latin-square-propagating
+  finite-model search over carriers 4–10, canned ℕ-carrier models for four Austin-pair hypotheses; all 3 former
+  false residuals solved;
+- stage order: deep false search precedes the deep true pass.
+
+The v2.1 ledgers are the `results/v2_*_official_2848228.json` files bound in `PROVENANCE.json`.
+
+## Marathon track (v2.2)
+
+Same single file, official Marathon runner (`scripts/run_marathon.py`, revision `2848228`), canonical
+100-problem manifest, full default budgets: **100/100 accepted, 0 tokens**; fixture `normal_5` 5/5 and the
+external-solver Marathon harness 2/2. Evidence: `results/marathon/` (hash-bound in `PROVENANCE.json`).
+Solo definitions are unchanged from v2.1 (additive Marathon entry only; `docs/MARATHON_SUPPORT.md`).
+
+## Lean 4.32.0 compatibility (v2.3)
+
+The organizers announced Lean 4.32.0 / Mathlib 4.32.0 as the hosted verification environment
+(rules commits `119dbfe`/`e00901b`) while the public harness remains v4.30.0-rc2. A 120-certificate
+stratified corpus covering every emission family compiles 120/120 under Lean 4.32.0; v2.3 re-emits
+the austin_nat family core-only (positive-form replay, no Mathlib import), taking its 4.32 compile
+time from over the judge's 300 s phase cap to ≤ 3.1 s. Every certificate family the solver emits is
+now Lean-core-only. The four judge support modules compile unchanged under 4.32.0.
+
+## v2.4: input encoding + the E168 family
+
+- `_normalize_problem_equations` maps `*` to `◇` at both track intakes. The HuggingFace-aligned problem
+  format encodes the operator as `*`; normalization previously existed only inside the judge, and the
+  runner feeds the solver verbatim, so v2.3 crashed on every `*`-form problem (measured 0/800 before the
+  fix on the official Stage 1 evaluation splits).
+- `canned_counterexample`: an exotic (non-natural) order-9 central groupoid — natural central groupoids
+  satisfy the whole E168 goal family and separate nothing, and the bounded model finder recovers only
+  3/12 of the goals even at 15× budget — settles all 12 `evaluation_extra_hard` E168 residuals in one
+  `finOpTable` certificate each (~0.1 ms search cost, official runner 12/12 accepted).
+
+## v2.5: the language-model fallback overhaul
+
+The deterministic definitions are unchanged from v2.4. The last-resort language-model path was rebuilt
+against measured defects from a hosted run of a stale artifact: returned Lean is normalized to the magma
+operator; the prompt states the scope protocol precisely and describes the cascade truthfully with an
+explicit inconclusive-timeout branch; requested directions alternate across the sixteen rounds; the model
+may answer with a complete Lean certificate (including infinite carriers); and countermodel tables are
+validated semantically before any judge call, with targeted repair feedback on rejection. On every measured
+set the deterministic stages still accept every row, so this path exists purely as hidden-set insurance.
+
+## Official-distribution drill (Stage 1 evaluation splits, the announced Stage 2 scoring categories)
+
+| Split | Accepted | Ground-truth agreement |
+|---|---:|---|
+| `evaluation_normal` | 200/200 | full |
+| `evaluation_hard` | 200/200 | full |
+| `evaluation_extra_hard` | 200/200 | full |
+| `evaluation_order5` | 200/200 | full |
+
+**800/800** with `llm_calls = 0` on every accepted row (`results/official_distribution_drill/`,
+hash-bound in `PROVENANCE.json`). Stage 2 will not reuse these problems; this measures readiness on the
+announced scoring distribution, not a hosted score. Separately, the hosted Stage 2 playground accepted
+all 200 `evaluation_normal` problems with the same v2.4-candidate file (0 rejected, 0 errors, 0 LLM
+calls; official infrastructure and Lean 4.32 toolchain; recorded in `PROVENANCE.json`). This is a
+playground measurement, not a leaderboard result.
+
+---
+
+# Superseded v1 baseline (solver `ea2946fe…`, retained for history)
+
 # Final deterministic regression
 
 This regression measures the competition solver after the proof-producing

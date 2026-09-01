@@ -29,12 +29,16 @@ not a new completeness theorem.
 
 ## 5. Local official-runner evaluation
 
-Report the 20/20, 196/200, and 197/200 ledgers with exact solver, judge,
-config, and ledger hashes. Record their independent reproduction under
-official revisions `6805e232` and `2848228`, including the identical failed-ID
-sets. State the wall-clock cutoff and local-runner boundaries. Analyze the
-seven distinct residual IDs across `sample_200` and `hard2` without tuning
-claims from hidden competition data.
+Report solver v2.5's 1889/1889 aggregate over all six public sets, the local
+Marathon `normal_100` result (100/100, 0 tokens), and the published
+evaluation-distribution drill (800/800), each with the exact solver, judge,
+configuration, and ledger hashes. Keep the superseded v1 results
+(20/20 `sample_20`, 196/200 `sample_200`, 197/200 `hard2`, 1875/1889 overall)
+as the ablation/progression baseline and record their independent reproduction
+under official revisions `6805e232` and `2848228`. State wall-clock and
+public-set-tuning boundaries. Report the hosted playground's 200/200 only as
+an infrastructure measurement, not as a leaderboard result or hidden-set
+generalization claim.
 
 ## 6. Organizer-model fallback
 
