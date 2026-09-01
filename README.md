@@ -1,13 +1,12 @@
 # SAIR EQT2 Stage 2 solver
 
 The Omega Institute entry to the SAIR Mathematics Distillation Challenge,
-Equational Theories Stage 2 (team `EQT02-T00249`: Haobo Ma, Wenlin Zhang,
-Manuel Israel Cázares). The frozen solver was submitted on Aug 30, 2026 to all
-four track x model leaderboards (Solo/Marathon x gpt-oss-120b/gemma4-31b),
-same file, SHA-256 `f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4`.
-Before submission the evidence chain went through four independent read-only
-audit rounds by Manuel Israel Cázares, recorded on the pull requests of this
-repository; every review finding and its resolution is preserved there.
+Equational Theories Stage 2, by Haobo Ma, Wenlin Zhang, and Manuel Israel
+Cázares. One frozen single-file solver was submitted to all four track x model
+leaderboards. Before submission the evidence chain went through four
+independent read-only audit rounds by Manuel Israel Cázares, preserved in this
+repository's pull requests. Artifact identity and hashes are recorded in
+[`PROVENANCE.json`](PROVENANCE.json).
 
 The only competition-submittable artifact is
 [`submission/solver.py`](submission/solver.py). The submission directory is
