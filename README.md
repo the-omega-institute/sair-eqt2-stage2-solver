@@ -27,8 +27,11 @@ file. No dependencies, no data files.
 
 ## The paper
 
-**[`paper/main.pdf`](paper/main.pdf)** — a system description of the solver
-and its evidence discipline. arXiv link will be added on announcement.
+**A Certificate-Producing Cascade for Equational Implication: The SAIR EQT2
+Stage 2 Solver** — a system description of the solver and its evidence
+discipline.
+
+[arXiv:2609.00706](https://arxiv.org/abs/2609.00706) · [`paper/main.pdf`](paper/main.pdf) (this repository's build)
 
 ## How it works
 
