@@ -1,0 +1,142 @@
+[
+  {
+    "id": "normal_0646",
+    "eq1_id": 2034,
+    "eq2_id": 2417,
+    "equation1": "x = (y ◇ (z ◇ w)) ◇ (u ◇ v)",
+    "equation2": "x = (y ◇ (z ◇ (w ◇ x))) ◇ z"
+  },
+  {
+    "id": "normal_0103",
+    "eq1_id": 248,
+    "eq2_id": 702,
+    "equation1": "x = (y ◇ (z ◇ z)) ◇ z",
+    "equation2": "x = y ◇ (x ◇ ((z ◇ w) ◇ u))"
+  },
+  {
+    "id": "normal_0028",
+    "eq1_id": 1185,
+    "eq2_id": 796,
+    "equation1": "x = y ◇ ((z ◇ (z ◇ y)) ◇ y)",
+    "equation2": "x = y ◇ (z ◇ ((w ◇ y) ◇ x))"
+  },
+  {
+    "id": "normal_0749",
+    "eq1_id": 701,
+    "eq2_id": 2035,
+    "equation1": "x = y ◇ (x ◇ ((z ◇ w) ◇ w))",
+    "equation2": "x = ((x ◇ x) ◇ x) ◇ (x ◇ x)"
+  },
+  {
+    "id": "normal_0260",
+    "eq1_id": 1808,
+    "eq2_id": 3695,
+    "equation1": "x = (y ◇ z) ◇ ((w ◇ x) ◇ z)",
+    "equation2": "x ◇ x = (y ◇ z) ◇ (x ◇ y)"
+  },
+  {
+    "id": "normal_0227",
+    "eq1_id": 2377,
+    "eq2_id": 1139,
+    "equation1": "x = (y ◇ (z ◇ (x ◇ w))) ◇ y",
+    "equation2": "x = y ◇ ((y ◇ (z ◇ z)) ◇ z)"
+  },
+  {
+    "id": "normal_0210",
+    "eq1_id": 2421,
+    "eq2_id": 3205,
+    "equation1": "x = (y ◇ (z ◇ (w ◇ y))) ◇ y",
+    "equation2": "x = (((y ◇ z) ◇ y) ◇ w) ◇ x"
+  },
+  {
+    "id": "normal_0126",
+    "eq1_id": 3110,
+    "eq2_id": 4441,
+    "equation1": "x = (((y ◇ x) ◇ x) ◇ z) ◇ z",
+    "equation2": "x ◇ (y ◇ x) = (x ◇ z) ◇ w"
+  },
+  {
+    "id": "normal_0747",
+    "eq1_id": 30,
+    "eq2_id": 3152,
+    "equation1": "x = (y ◇ x) ◇ z",
+    "equation2": "x = (((y ◇ y) ◇ y) ◇ y) ◇ x"
+  },
+  {
+    "id": "normal_0092",
+    "eq1_id": 2581,
+    "eq2_id": 444,
+    "equation1": "x = (y ◇ ((z ◇ x) ◇ w)) ◇ z",
+    "equation2": "x = x ◇ (y ◇ (y ◇ (z ◇ z)))"
+  },
+  {
+    "id": "normal_0703",
+    "eq1_id": 4540,
+    "eq2_id": 3651,
+    "equation1": "x ◇ (y ◇ z) = (z ◇ x) ◇ x",
+    "equation2": "x ◇ y = z ◇ ((w ◇ w) ◇ w)"
+  },
+  {
+    "id": "normal_0775",
+    "eq1_id": 3622,
+    "eq2_id": 1809,
+    "equation1": "x ◇ y = z ◇ ((z ◇ y) ◇ z)",
+    "equation2": "x = (y ◇ z) ◇ ((w ◇ x) ◇ w)"
+  },
+  {
+    "id": "normal_0905",
+    "eq1_id": 3979,
+    "eq2_id": 1195,
+    "equation1": "x ◇ y = (y ◇ (z ◇ z)) ◇ x",
+    "equation2": "x = y ◇ ((z ◇ (z ◇ w)) ◇ w)"
+  },
+  {
+    "id": "normal_0570",
+    "eq1_id": 1069,
+    "eq2_id": 3681,
+    "equation1": "x = x ◇ ((y ◇ (z ◇ w)) ◇ z)",
+    "equation2": "x ◇ x = (y ◇ x) ◇ (z ◇ y)"
+  },
+  {
+    "id": "normal_0102",
+    "eq1_id": 4585,
+    "eq2_id": 798,
+    "equation1": "(x ◇ x) ◇ x = (x ◇ y) ◇ y",
+    "equation2": "x = y ◇ (z ◇ ((w ◇ y) ◇ z))"
+  },
+  {
+    "id": "normal_0618",
+    "eq1_id": 528,
+    "eq2_id": 162,
+    "equation1": "x = y ◇ (y ◇ (z ◇ (z ◇ x)))",
+    "equation2": "x = (x ◇ y) ◇ (z ◇ x)"
+  },
+  {
+    "id": "normal_0456",
+    "eq1_id": 1233,
+    "eq2_id": 552,
+    "equation1": "x = x ◇ (((x ◇ y) ◇ y) ◇ z)",
+    "equation2": "x = y ◇ (z ◇ (x ◇ (w ◇ w)))"
+  },
+  {
+    "id": "normal_0030",
+    "eq1_id": 649,
+    "eq2_id": 4175,
+    "equation1": "x = x ◇ (y ◇ ((z ◇ x) ◇ x))",
+    "equation2": "x ◇ y = ((y ◇ z) ◇ x) ◇ y"
+  },
+  {
+    "id": "normal_0029",
+    "eq1_id": 627,
+    "eq2_id": 1438,
+    "equation1": "x = x ◇ (x ◇ ((y ◇ z) ◇ z))",
+    "equation2": "x = (x ◇ x) ◇ (y ◇ (z ◇ y))"
+  },
+  {
+    "id": "normal_0108",
+    "eq1_id": 4693,
+    "eq2_id": 3936,
+    "equation1": "(x ◇ y) ◇ z = (w ◇ u) ◇ z",
+    "equation2": "x ◇ y = (x ◇ (z ◇ x)) ◇ z"
+  }
+]

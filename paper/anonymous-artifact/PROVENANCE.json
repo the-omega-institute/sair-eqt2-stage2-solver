@@ -200,31 +200,31 @@
       "solver_sha256": "29ba1ec88c87fe051afd3f8bf007b2b9b8efa415e33597faba6d4df9fa07e36c",
       "solver_bytes": 160448,
       "public_rows": "1888/1889",
-      "evidence": "branch history wenlin/v2-merge@928078d"
+      "evidence": "branch history anonymous/v2-merge@928078d"
     },
     "superseded_v2_1": {
       "solver_sha256": "1a931a47794a322022b652f2cb6e9a04cfa7558fbae9c8848633192894711534",
       "solver_bytes": 168408,
       "public_rows": "1889/1889 (Solo only, no Marathon entry)",
-      "evidence": "branch history wenlin/v2-merge@cedd65e"
+      "evidence": "branch history anonymous/v2-merge@cedd65e"
     },
     "superseded_v2_2": {
       "solver_sha256": "931b08812ecae603dfa80e82c214d193c3ec8f82d703ab06a8edc3bdddef4697",
       "solver_bytes": 178769,
       "public_rows": "1889/1889 Solo + 100/100 Marathon (austin certs still imported Mathlib.Tactic)",
-      "evidence": "branch history wenlin/v2-merge@b32306d"
+      "evidence": "branch history anonymous/v2-merge@b32306d"
     },
     "superseded_v2_3": {
       "solver_sha256": "f23552753708cda899719158079be88b6dc53269b8b70a8499b3e96404f91a5b",
       "solver_bytes": 177993,
       "public_rows": "1889/1889 Solo + 100/100 Marathon; crashed on '*'-encoded problem input; no E168 family coverage",
-      "evidence": "branch history wenlin/v2-merge@5ecc39a"
+      "evidence": "branch history anonymous/v2-merge@5ecc39a"
     },
     "superseded_v2_4": {
       "solver_sha256": "e89cd010b322f77b85099756ce47dcc42a26b45959b2383c7aea9704259ea2a9",
       "solver_bytes": 179888,
       "public_rows": "1889/1889 Solo + 100/100 Marathon + 800/800 drill; LLM fallback carried the v1-era prompt defects",
-      "evidence": "branch history wenlin/v2-merge"
+      "evidence": "branch history anonymous/v2-merge"
     }
   },
   "superseded_v1": {
@@ -470,7 +470,7 @@
   },
   "platform_submission": {
     "date": "2026-08-30",
-    "team": "EQT02-T00249 (owner Wenlin Zhang; members Israel Cazares, auric/Haobo Ma)",
+    "team": "anonymous competition team",
     "participations": [
       {
         "track": "Solo",

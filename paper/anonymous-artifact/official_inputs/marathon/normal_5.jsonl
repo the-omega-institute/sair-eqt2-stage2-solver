@@ -1,0 +1,5 @@
+{"id": "normal_0001", "index": 1, "difficulty": "normal", "eq1_id": 2918, "eq2_id": 1911, "equation1": "x = ((y ◇ (x ◇ y)) ◇ z) ◇ w", "equation2": "x = (y ◇ (x ◇ z)) ◇ (y ◇ w)", "answer": true}
+{"id": "normal_0002", "index": 2, "difficulty": "normal", "eq1_id": 3454, "eq2_id": 4503, "equation1": "x ◇ y = z ◇ (w ◇ (u ◇ u))", "equation2": "x ◇ (y ◇ y) = (z ◇ w) ◇ z", "answer": true}
+{"id": "normal_0003", "index": 3, "difficulty": "normal", "eq1_id": 649, "eq2_id": 2608, "equation1": "x = x ◇ (y ◇ ((z ◇ x) ◇ x))", "equation2": "x = (y ◇ ((z ◇ z) ◇ y)) ◇ w", "answer": false}
+{"id": "normal_0004", "index": 4, "difficulty": "normal", "eq1_id": 815, "eq2_id": 2164, "equation1": "x = y ◇ (z ◇ ((w ◇ u) ◇ u))", "equation2": "x = ((y ◇ z) ◇ x) ◇ (x ◇ w)", "answer": true}
+{"id": "normal_0005", "index": 5, "difficulty": "normal", "eq1_id": 905, "eq2_id": 3050, "equation1": "x = y ◇ ((x ◇ z) ◇ (w ◇ u))", "equation2": "x = (((x ◇ x) ◇ x) ◇ x) ◇ x", "answer": true}

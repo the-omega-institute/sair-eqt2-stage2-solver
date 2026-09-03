@@ -1,0 +1,88 @@
+{
+  "method": "UTF-8 certificate bytes; upper median; index floor(0.95*n) for p95; final accepted judge event",
+  "source_ledgers": {
+    "results/v2_sample_20_official_2848228.json": "b17eaff452d24a51adabb87149532895386d19e6da5ba076a0c353b544953361",
+    "results/v2_sample_200_official_2848228.json": "dcf830de61995eb9961e6f3e10b676e2025d902d05875387255caf5b33f2fac8",
+    "results/v2_hard1_official_2848228.json": "7724566d1ceba3b529d9b42bac108ce249dd1fa6f513ff551364d59e07e358e6",
+    "results/v2_hard2_official_2848228.json": "3e68548945d489f06e20b35c7ce6133035615e1518175ad641254761471d59a7",
+    "results/v2_hard3_official_2848228.json": "c9f98750e018973c68f8effffc82bae587d89fb1f40b2512300426bfc8e5502c",
+    "results/v2_normal_official_2848228.json": "27c756482d157d92227a1268843f978f23aeef0aaddc0eb2d2de5585380e4812",
+    "results/stage2_stress_test_results.json": "c741609293d136c6b2c38fda796242bb035347eec940bb0cc97e18d903bc0234"
+  },
+  "public_six_sets": {
+    "false": {
+      "n": 960,
+      "certificate_bytes": {
+        "median": 306,
+        "p95": 498,
+        "max": 6885
+      },
+      "accepted_judge_event_seconds": {
+        "median": 2.2,
+        "p95": 8.85,
+        "max": 41.74
+      },
+      "end_to_end_wall_seconds": {
+        "median": 2.3,
+        "p95": 13.43,
+        "max": 41.95
+      }
+    },
+    "true": {
+      "n": 929,
+      "certificate_bytes": {
+        "median": 494,
+        "p95": 1392,
+        "max": 10766
+      },
+      "accepted_judge_event_seconds": {
+        "median": 1.43,
+        "p95": 6.98,
+        "max": 23.21
+      },
+      "end_to_end_wall_seconds": {
+        "median": 4.26,
+        "p95": 15.43,
+        "max": 35.29
+      }
+    }
+  },
+  "temporal_holdout": {
+    "false": {
+      "n": 100,
+      "certificate_bytes": {
+        "median": 323,
+        "p95": 551,
+        "max": 551
+      },
+      "accepted_judge_event_seconds": {
+        "median": 2.64,
+        "p95": 14.89,
+        "max": 17.92
+      },
+      "end_to_end_wall_seconds": {
+        "median": 2.77,
+        "p95": 15.69,
+        "max": 18.04
+      }
+    },
+    "true": {
+      "n": 100,
+      "certificate_bytes": {
+        "median": 500,
+        "p95": 1406,
+        "max": 12485
+      },
+      "accepted_judge_event_seconds": {
+        "median": 1.72,
+        "p95": 6.13,
+        "max": 10.04
+      },
+      "end_to_end_wall_seconds": {
+        "median": 5.91,
+        "p95": 12.12,
+        "max": 66.49
+      }
+    }
+  }
+}

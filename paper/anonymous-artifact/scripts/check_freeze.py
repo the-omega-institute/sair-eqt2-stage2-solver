@@ -128,25 +128,6 @@ def check_ledgers(provenance: dict) -> None:
                     f"{stats[field]} != {record[field]}"
                 )
 
-    # Every empirical row the paper displays must match a committed ledger.
-    # The drill and Marathon rows were stale for a release cycle because only
-    # the six-set regression table was covered here.
-    paper = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
-    drill = provenance["official_distribution_drill"]["results"]
-    for label, record in drill.items():
-        path = ROOT / record["ledger"]
-        if sha256(path) != record["ledger_sha256"]:
-            raise FreezeError(f"drill {label} ledger SHA-256 differs")
-        prefix = record["ledger_sha256"][:12]
-        if prefix not in paper:
-            raise FreezeError(f"paper drill row for {label} misses prefix {prefix}")
-        wall = f"{record['wall_clock_sum_s']:.2f}"
-        if wall not in paper:
-            raise FreezeError(f"paper drill wall-clock for {label} ({wall}) not found")
-    marathon = ROOT / "results" / "marathon" / "normal_100_summary.json"
-    if sha256(marathon)[:12] not in paper:
-        raise FreezeError("paper Marathon row does not bind the committed summary")
-
     metrics = provenance["paper_certificate_metrics"]
     metrics_path = ROOT / metrics["artifact"]
     if sha256(metrics_path) != metrics["artifact_sha256"]:

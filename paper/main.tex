@@ -34,6 +34,12 @@
   \citestyle{acmnumeric}
 \fi
 
+\ifplainarticle
+  % acmart supplies \Description for figure accessibility; the portable
+  % fallback class does not, so absorb it there.
+  \providecommand{\Description}[1]{}
+\fi
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
@@ -56,12 +62,50 @@
 \newcommand{\Nat}{\mathbb{N}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\prov}[2]{\begingroup\scriptsize\raggedright\nolinkurl{#1}\\[-1pt]\texttt{#2}\par\endgroup}
-\newcommand{\pending}{\mbox{\textbf{PENDING}}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}p{0.65in}}
 
-\title{A Certificate-Producing Cascade for Equational Implication:\
-The SAIR EQT2 Stage 2 Solver}
+\newcommand{\paperabstract}{%
+Proof-producing automation concentrates on establishing theorems, while
+counterexample generation is usually the province of separate model-finding
+tools.  Equational implication demands both polarities at once: every input
+requires either a universal \lean proof or an explicit \lean countermodel, and
+an unverified failure on one side must never be treated as evidence for the
+other.  We present a deterministic dual-polarity certifying architecture in
+which ordered superposition, structured algebraic search, bounded
+finite-model construction, and infinite-witness generation all compile into
+first-class \lean terms of opposite logical shape, checked against the same
+judge-generated goal under one dependency policy.  The unit of success is a
+typed \lean artifact rather than a verdict: search state, heuristics, and
+unverified labels are compiled away before anything reaches the answer
+channel, so an aggressive and incomplete searcher cannot produce an accepted
+wrong answer.  Ordered superposition is one producer inside this
+architecture.
+
+Table~\ref{tab:identity} identifies the frozen 189,504-byte artifact by its
+full SHA-256 digest.  Across the six public sets and an official stress set it
+produced 2,089 judge-accepted \lean certificates: 1,029 universal proofs and
+1,060 existential countermodels.  Including the published distribution
+drills, the principal evaluation records 2,889 accepted rows, with no
+language-model and no external-prover calls in any reported run.  The
+byte-identical artifact was frozen before the stress set was released and
+subsequently accepted all 200 of its rows; we treat this as a temporal
+holdout.  The certificates stay small and cheap to check --- median 494 bytes
+for proofs and 306 bytes for countermodels on the public sets, with
+comparable figures under holdout --- which is what makes production at this
+scale possible inside the deployment envelope.  A harder research-tier corpus
+remains unsolved, giving a concrete boundary for finite and budgeted methods.
+The paper makes no completeness or cross-system superiority claim, and binds
+every empirical table to immutable ledgers.}
+
+\title{A Dual-Polarity Certifying Cascade for Equational Implication:\\
+Lean Proofs and Countermodels under Resource Bounds}
+
+\ifplainarticle\else
+  \acmConference[CPP 2027]{Certified Programs and Proofs}{January 11--12, 2027}{Mexico City, Mexico}
+  \acmYear{2027}
+  \setlength{\headheight}{18.5pt}
+\fi
 
 % TODO(author order): author order is TBD.
 % Author order agreed 2026-08-24 (order reflects contribution; CRediT below).
@@ -87,55 +131,11 @@ The SAIR EQT2 Stage 2 Solver}
 \ifplainarticle
   \maketitle
 \begin{abstract}
-The SAIR Mathematics Distillation Challenge on Equational Theories asks a
-solver to classify whether one magma identity implies another and, for either
-verdict, to return a certificate accepted by a deterministic \lean judge.
-We present a single-file solver organized as a cheapest-first cascade.  Its
-false branch combines coefficient tests over structured algebra families,
-bounded finite-model search, an explicit central-groupoid witness, and several
-infinite-carrier witnesses.  Its true branch is a proof-producing ordered unit
-superposition procedure with Knuth--Bendix ordering, bidirectional
-demodulation, indexing, memoised substitution, and anytime size deepening.
-Search results remain outside the trusted base: successful derivations are
-replayed as small \lean terms, and countermodels are rechecked by the
-competition judge.
-
-The frozen solver is a 189,504-byte Python file with SHA-256
-\texttt{f2392533c9f4c03b...}.  In local runs through official judge revision
-\texttt{2848228}, it produced accepted certificates for all 1,889 rows of the
-six public sets with no language-model calls.  Separate measurements recorded
-full agreement on the 800 published Stage 1 evaluation-distribution problems,
-100 accepted rows in the canonical Marathon manifest without tokens, and 200
-accepted rows in the hosted playground.  These are regression and playground
-measurements, not a leaderboard result and not evidence about a hidden set.
-All quantitative claims are tied to immutable result ledgers; the paper makes
-no completeness or comparative-superiority claim.
+\paperabstract
 \end{abstract}
 \else
 \begin{abstract}
-The SAIR Mathematics Distillation Challenge on Equational Theories asks a
-solver to classify whether one magma identity implies another and, for either
-verdict, to return a certificate accepted by a deterministic \lean judge.
-We present a single-file solver organized as a cheapest-first cascade.  Its
-false branch combines coefficient tests over structured algebra families,
-bounded finite-model search, an explicit central-groupoid witness, and several
-infinite-carrier witnesses.  Its true branch is a proof-producing ordered unit
-superposition procedure with Knuth--Bendix ordering, bidirectional
-demodulation, indexing, memoised substitution, and anytime size deepening.
-Search results remain outside the trusted base: successful derivations are
-replayed as small \lean terms, and countermodels are rechecked by the
-competition judge.
-
-The frozen solver is a 189,504-byte Python file with SHA-256
-\texttt{f2392533c9f4c03b...}.  In local runs through official judge revision
-\texttt{2848228}, it produced accepted certificates for all 1,889 rows of the
-six public sets with no language-model calls.  Separate measurements recorded
-full agreement on the 800 published Stage 1 evaluation-distribution problems,
-100 accepted rows in the canonical Marathon manifest without tokens, and 200
-accepted rows in the hosted playground.  These are regression and playground
-measurements, not a leaderboard result and not evidence about a hidden set.
-All quantitative claims are tied to immutable result ledgers; the paper makes
-no completeness or comparative-superiority claim.
+\paperabstract
 \end{abstract}
   \maketitle
 \fi
@@ -148,118 +148,292 @@ proof certificates, reproducibility}
 \section{Introduction}
 
 An equational theory of magmas has one binary operation and no assumed
-associativity, identity, or cancellation law.  Given equations
-$E_1$ and $E_2$, the implication problem asks whether every magma satisfying
-$E_1$ also satisfies $E_2$.  The SAIR Mathematics Distillation Challenge,
-organized by Damek Davis and Terence Tao with the SAIR Foundation, turns that
-question into a certificate-production task grounded in the Equational
-Theories Project~\cite{competition,etp}.  A true answer must contain a \lean
-proof of the universal implication.  A false answer must exhibit a magma in
-which the hypothesis holds and the conclusion fails.  The same deterministic
-judge checks both forms.  An accepted certificate solves the row; a plausible
-label, proof sketch, or partly checked derivation receives no credit
-\cite{competition,competitionRules}.
+associativity, identity, or cancellation law.  Given equations $E_1$ and
+$E_2$, the implication problem asks whether every magma satisfying $E_1$ also
+satisfies $E_2$.  Proof-producing provers principally target the positive
+direction: they establish a theorem or reconstruct a proof found by an ATP.
+Counterexample generation is usually exposed through a separate model finder.
+Neither interface alone meets the implication problem's two-sided contract.
+Each input requires one of two mathematically opposed objects, and failure to
+find or validate one object is never evidence for the other polarity.
 
-This contract changes the design objective.  A classifier may be useful while
-remaining difficult to audit, whereas a certificate producer must preserve
-enough structure to reconstruct a kernel-checkable witness.  At the same time,
-the kernel boundary permits aggressive untrusted search.  A defect in our term
-ordering, unifier, model finder, or certificate printer may increase resource
-use or prevent a solution from being found, but it cannot cause an invalid
-certificate to be accepted.
-The competition proxy records success only after the official judge has
-compiled the submitted term and checked its dependency policy.
+The SAIR Mathematics Distillation Challenge, organized by Damek Davis and
+Terence Tao with the SAIR Foundation, makes that gap operational
+\cite{competition,etp}.  A true answer must contain a \lean proof of the
+universal implication; a false answer must exhibit a magma in which the
+hypothesis holds and the conclusion fails.  The same judge checks both forms.
+A plausible label, proof sketch, failed proof search, or failed model search
+receives no credit~\cite{competition,competitionRules}.
 
-Our system implements a deterministic-first cascade in one Python file.  The
-early stages recognize direct implications and search inexpensive countermodel
-families.  A bounded irregular model finder and deeper structured families
-handle false residuals.  An ordered unit-superposition engine handles true
-residuals and records a replayable derivation rather than only a refutation
-bit.  The same source dispatches to the Solo protocol, in which one process
-handles one problem, or the Marathon protocol, in which one process shares a
-global budget among a manifest of problems.  Every successful path ends in a
-\lean certificate.
+We address this gap with a Lean-facing dual-polarity certificate architecture.
+Ordered superposition compiles to a positive equality term; finite and
+structured models compile to reflected existential witnesses; and infinite
+Austin models compile to explicit mathematical theorems and a separating
+tuple.  All three paths target the judge-generated \code{Goal} and the same
+dependency policy.  The unit of success is thus a typed \lean artifact, not a
+verdict.  Search state is compiled away, and judge acceptance is the only
+commit point.
 
-The central empirical result is deliberately narrower than a completeness
-claim.  The cascade covers every row in the measured public,
-distribution-drill, and hosted-playground corpora within the recorded budgets.
-Neither the countermodel families nor the superposition implementation is
-proved complete, and the deeper stages stop at wall-clock limits.  We therefore
-do not infer performance on the held-back evaluation set.  The result is a
-system description and an auditable regression report, not a theorem about all
-single-identity implications.
+The producers run as a resource-bounded cascade in one Python file, under both
+the per-problem Solo protocol and the globally budgeted Marathon protocol.
+Across the principal public, temporal-holdout, and distribution-drill
+evaluation, the frozen artifact produced 2,889 accepted artifacts: 1,429
+positive proofs and 1,460 negative witnesses.  Its bytes were frozen before
+the official stress set was released; the same bytes later produced 200/200
+accepted certificates on that set.  All reported accepted results are
+produced deterministically, with zero language-model and zero external-prover
+calls.  The separate research-tier experiment in
+Section~\ref{sec:holdout} records the boundary of this coverage.
 
 This paper makes four contributions.
 \begin{itemize}
-  \item We present a certificate-producing cascade that integrates
-  complementary algebraic model families and proof-producing superposition
-  behind one competition interface.
-  \item We describe certificate encodings that satisfy the judge's dependency
-  policy, including encodings for finite carriers beyond the direct table
-  helper's single-digit range and core-only proofs over infinite carriers.
-  \item We analyze two consequential implementation failures: retention of
-  tautologies in the active superposition set and inconsistent handling of the
-  two accepted spellings of the magma operation.  End-to-end certificate runs,
-  rather than label accuracy alone, exposed both failures.
-  \item We provide a hash-bound claim ledger that connects the solver bytes,
-  judge revision, result files, and every evaluation-table row to SHA-256
-  identifiers.
+  \item A Lean-facing dual-polarity architecture makes positive proofs and
+  negative witnesses first-class terms under one judge-generated goal and
+  dependency policy, with acceptance rather than a search verdict as commit.
+  \item A certificate-preserving compiler translates superposition traces into
+  compact core-Lean proofs.  It slices the reachable recipe DAG, reconstructs
+  substitutions and one-hole contexts, lifts equalities with \code{congrArg},
+  composes symmetry and transitivity, and emits shared ancestors once in
+  topological order.
+  \item Three negative compilers produce finite, structured, and genuinely
+  infinite countermodels.  The infinite path carries the full mathematical
+  argument because exhaustive checking over $\Nat$ is unavailable.
+  \item Under strict resource bounds, the implementation produced thousands
+  of judge-accepted artifacts, including a temporal holdout produced by the
+  frozen bytes; the evidence separates this result from completeness or
+  cross-system superiority claims.
 \end{itemize}
 
-The rest of the paper follows the execution path.  Section~\ref{sec:arch}
-gives the single-file architecture.  Sections~\ref{sec:false} and
-\ref{sec:true} describe the countermodel and proof branches.
-Section~\ref{sec:hosted} covers deployment constraints, and
-Section~\ref{sec:evaluation} reports measurements.  We then state the
-reproducibility boundary and place the system relative to equational-theory,
-superposition, and proof-assistant work.
+This architecture occupies a different point from existing positive-proof
+automation.  Duper supplies proof-producing superposition inside Lean, while
+Lean-Auto, Lean on Vampire, and Isabelle reconstruction connect mature provers
+to proof assistants~\cite{duper,leanAuto,leanVampire,slam}.  Our narrower
+equational engine does not replace those contributions.  It is one producer in
+a two-polarity system that also generates checked finite and infinite models
+under a single-file deployment contract.  Section~\ref{sec:rw} gives the full
+comparison.
+
+\begin{table*}[t]
+\caption{Positioning against the closest automation architectures.  ``Negative''
+means an explicit countermodel certificate, not failure to prove.}
+\label{tab:systems}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYYY@{}}
+\toprule
+System & Search locus & Checked positive result & Negative certificate & Deployment distinction \\
+\midrule
+Duper~\cite{duper} & Lean tactic, dependent type theory & Lean proof & no & general proof-assistant integration \\
+Lean-Auto~\cite{leanAuto} & external E/Vampire/Z3 & reconstructed Lean proof & no & multi-ATP interface \\
+Lean on Vampire~\cite{leanVampire} & external Vampire & reconstructed Lean proof & no & imports mature ATP proofs \\
+\textsc{slam}~\cite{slam} & Isabelle $\lambda$-superposition & Isabelle proof & no & higher-order / Sledgehammer backend \\
+\solver & single Python file, unit equations & positive Lean equality proof & finite or infinite Lean witness & dual polarity, no external prover, hash-bound holdout \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+Section~\ref{sec:certarch} defines the Lean certificate architecture before
+Section~\ref{sec:arch} presents the Python search cascade that supplies it.
+Sections~\ref{sec:false} and~\ref{sec:true} describe the countermodel and proof
+searches; Sections~\ref{sec:hosted} and~\ref{sec:evaluation} cover deployment
+and evaluation.  We then state the reproducibility boundary and position the
+system relative to equational-theory, superposition, and proof-assistant work.
+
+\section{Lean Certificate Architecture}
+\label{sec:certarch}
+
+The architectural interface is a pair of Lean types, not a pair of Boolean
+labels.  For each parsed input the judge generates a verdict-specific
+\code{Goal}.  Suppressing the bound variables inside the identities, the two
+shapes are
+\[
+  \mathit{Goal}^{+} :=
+  \forall (G : \mathsf{Type})\,[\mathsf{Magma}\;G],\ E_1(G)\to E_2(G)
+\]
+and
+\[
+  \mathit{Goal}^{-} :=
+  \exists (G : \mathsf{Type})\,(_ : \mathsf{Magma}\;G),\
+  E_1(G)\mathbin{\land}\neg E_2(G).
+\]
+The solver submits a definition named \code{submission : Goal}; it never
+reconstructs a look-alike proposition from its own parser.  Consequently,
+Lean elaboration checks the actual binder order, operation instance, and
+polarity chosen by the judge.
+
+\begin{figure*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}c@{\ }c@{\ }c@{\ }c@{\ }c@{}}
+\fbox{superposition recipe DAG} & $\longrightarrow$ &
+\fbox{positive equality compiler} & $\longrightarrow$ &
+$\forall G,\ E_1\to E_2$ \\
+\fbox{finite / structured model} & $\longrightarrow$ &
+\fbox{reflected witness compiler} & $\longrightarrow$ &
+$\exists G,\ E_1\land\neg E_2$ \\
+\fbox{infinite Austin model} & $\longrightarrow$ &
+\fbox{explicit theorem compiler} & $\longrightarrow$ &
+$\exists G,\ E_1\land\neg E_2$ \\
+&&&& $\downarrow$ \\
+\multicolumn{5}{c}{\fbox{elaboration $+$ kernel checking $+$ dependency policy}}
+\end{tabular}
+\caption{Three certificate-producing pipelines share one Lean acceptance
+boundary.  Search-specific representations disappear before acceptance.}
+\Description{A superposition recipe DAG, finite or structured model, and
+infinite Austin model pass through three compilers to positive or negative
+Lean goals, then converge at elaboration, kernel checking, and dependency
+inspection.}
+\label{fig:certificate-compilation}
+\end{figure*}
+
+\subsection{Positive equality compiler}
+
+The positive producer does not export its internal refutation.  Search treats
+the negated goal $u\neq v$ as a negative unit clause and closes it when the two
+sides unify.  Compilation then walks backward from that closure and retains
+only recipes reachable from the two final equality chains.  The resulting DAG
+excludes irrelevant saturation state; a topological traversal emits every
+shared ancestor exactly once.
+
+Each recipe records its source and target equations, directions, overlap
+position, and substitution.  The compiler reconstructs the instantiated terms
+and the one-hole target context.  It turns the source equality into an equality
+at the overlap with \code{congrArg}, selects symmetry when a recorded direction
+requires it, and joins the lifted source equality to the target equality by
+transitivity.  Demodulation uses the same construction with one-way matching.
+Thus a search over a negative clause becomes a positive equality chain in
+core Lean, expressed as locally typed \code{have} bindings followed by an
+\code{exact} term.
+
+Compilation balances source size against transparent replay.  Printing every
+normalization micro-step repeats contexts and substitutions, whereas replacing
+the whole derivation by a large tactic call reintroduces tactic behavior and
+library imports.  The compiler therefore emits one named equality per selected
+inference, with normalization represented by explicit transitivity as needed.
+If the direct printer is rejected, robust re-emission wraps individual steps in
+a small set of core closing alternatives and resubmits the same derivation; it
+does not rerun superposition or change the theorem.  If search ends without a
+direct closure, a separate lemma-pool path may emit a bounded selection of the
+smallest proved consequences, but the resulting tactic must still close the
+exact judge goal or the row remains unanswered.
+
+For example, from $x\op y=x$ the goal $(a\op b)\op c=a$ is compiled by putting
+the instance $a\op b=a$ in the context $q\mapsto q\op c$ and composing with
+$a\op c=a$:
+\begin{quote}
+\small\ttfamily
+import JudgeProblem\\
+def submission : Goal := by\\
+\ \ intro G \_ h a b c\\
+\ \ have e0 : (a $\diamond$ b) $\diamond$ c = a $\diamond$ c :=\\
+\ \ \ \ congrArg (fun q => q $\diamond$ c) (h a b)\\
+\ \ exact e0.trans (h a c)
+\end{quote}
+Term ordering, unification code, and the refutation data structure do not occur
+in this artifact.
+
+\subsection{Negative witness compilers}
+
+A finite or structured search result is compiled into the carrier, a total
+$\mathsf{Magma}$ operation, a proof that every assignment satisfies $E_1$, and a
+concrete assignment falsifying $E_2$.  For carriers through ten,
+\code{finOpTable} embeds a JSON-like Cayley table and \code{decideFin!}
+reflects the finite checks.  Its parser extracts individual decimal
+characters, so it cannot faithfully encode multi-digit entries.  Larger
+finite carriers and algebraically structured families instead receive a
+transparent operation such as \code{submission.op}, defined by core arithmetic
+or a packed-table lookup.  The submitted theorem refers to that operation
+directly, allowing Lean to evaluate the same structure without the table
+parser.
+
+Infinite witnesses require a different compiler.  For a recognized Austin
+pair it defines the selected operation on $\Nat$ (or the opposite operation),
+instantiates a fixed sequence of elementary lemmas proving $E_1$ universally,
+and supplies a small tuple proving $\neg E_2$.  No exhaustive tactic can decide
+the universal premise over $\Nat$; the full mathematical argument is therefore
+part of the certificate rather than a Python-side claim.
+
+\subsection{Dependency policy and acceptance}
+
+The permitted imports are the judge's problem module and, for reflected finite
+witnesses, its finite-decision support modules; positive proofs and current
+infinite witnesses otherwise use core definitions and equality eliminators.
+The emitted source contains no admitted terms.  The dependency inspector
+checks the transitive declaration and axiom closure of \code{submission}
+against the judge policy.  Submission-local helpers are the documented way to
+package operations and lemmas: they are not global dependencies, but their
+transparent bodies are still elaborated, compiled, and traversed by the kernel.
+In particular, the allow-list inspects direct constants in the submitted term;
+the documented exemption for names in the \code{submission} namespace permits
+local auxiliary definitions but does not exempt their bodies from kernel
+checking.  The policy controls dependencies, not the truth of definitions.
+
+Acceptance is a commit operation.  Python-side evaluation can discard a bad
+table or malformed term cheaply, but passing such a check records only a
+candidate.  The solver commits a row only after the official judge has
+elaborated \code{submission : Goal}, kernel-checked it, and accepted its
+dependency closure.  A rejected term has no evidential effect on either
+polarity; the next producer may run, or the row remains unanswered.
+
+The positive compiler maintains a more precise replay invariant: for every
+retained equation $a=b$, the recipe DAG emits a Lean term whose type is exactly
+$a=b$ under instances of the input hypothesis.  The base recipe is an input
+hypothesis instance.  The overlap and demodulation cases follow from the
+recorded substitution, one-hole context, \code{congrArg}, symmetry, and
+transitivity.  Since dependencies precede users in the acyclic emission order,
+induction over that order proves the invariant.  At the closure roots the two
+chains meet at the unified negative goal, yielding the requested positive
+equality.  This argument specifies the compiler; the judge still checks each
+emitted instance and is the only trusted checker.
+
+\begin{table*}[t]
+\caption{Lean-specific challenges, compiler responses, and previously bound
+evidence.  The provenance cells reuse the artifact pointers of the original
+measurements; this table introduces no new measurement.}
+\label{tab:lean-design}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{@{}p{0.17\textwidth}p{0.27\textwidth}YY@{}}
+\toprule
+Challenge & Certificate response & Evidence & Bound source \\
+\midrule
+Saturation traces are too large & Reachable-recipe slicing, topological
+emission, and one binding per shared ancestor & Public and holdout certificate
+size distributions in Table~\ref{tab:certcost} &
+\prov{results/paper\_certificate\_metrics.json}{56f233426fd63009...} \\
+Broad tactic imports are too expensive & Core-only positive proof with
+explicit lemmas & Austin compilation fell from about 330 s to within 3.1 s &
+\prov{results/FINAL\_DETERMINISTIC\_REGRESSION.md}{PROVENANCE.json: current\_and\_final\_regression} \\
+\code{finOpTable} cannot encode multi-digit entries & Transparent namespaced
+operation over the larger carrier & The official judge accepted the recorded
+larger-carrier witnesses &
+\prov{paper/CLAIMS\_LEDGER.md}{PROVENANCE.json: supported claim surface} \\
+The searcher or printer may be wrong & Compile search state away; require a
+term of the exact judge type & Kernel-rejected frontier candidates remained
+unaccepted &
+\prov{results/research\_order5\_hard\_attempt.json}{86fc2764fdb9...} \\
+The hosted toolchain changes & Keep certificates dependency-light and locally
+typed & Full frozen-artifact revalidation under Lean 4.33.1 &
+\prov{results/lean4331\_revalidation/}{hashes in PROVENANCE.json} \\
+\bottomrule
+\end{tabularx}
+\end{table*}
 
 \section{Single-File Solver Architecture}
 \label{sec:arch}
 
-\subsection{Contract and trusted boundary}
+\subsection{Deployment contract}
 
 The submission contract requires one \code{solver.py} file no larger than the
 competition limit.  Solver v2.5 is 189,504 bytes, and therefore remains below
 that limit while containing all search code and fixed data.  In Solo mode the
-proxy sends one JSON problem and its budget to a fresh process; the solver sends
-judge or language-model requests back over line-delimited JSON.  In Marathon
-mode the runner supplies a JSONL manifest and an append-only output path.  The
-same source supports both modes, selected by the runner-owned Marathon
-environment variable~\cite{competitionRules}.
-
-The trusted computing base for a verdict is not the Python implementation.
-The judge generates the problem statement and the verdict-specific \code{Goal}
-type.  A true goal has the form
-\[
-  \forall (G : \mathsf{Type})\,[\mathsf{Magma}\;G],\quad E_1(G)\to E_2(G),
-\]
-whereas a false goal existentially quantifies a carrier and magma for which
-$E_1$ holds and $E_2$ does not.  The solver supplies a definition named
-\code{submission}; \lean elaboration, kernel checking, and the dependency
-inspector determine acceptance.  Search is therefore an untrusted producer of
-candidate proof objects.
-
-The interface creates three distinct obligations.  First, a candidate must
-have the right polarity: a universal implication for a true verdict or an
-existential separating structure for a false verdict.  Second, the term must
-inhabit the judge-generated goal rather than a solver-reconstructed copy that
-might differ in variable order or parsing.  Third, all transitive dependencies
-must satisfy the proof policy.  The judge enforces the first two by type
-checking \code{submission : Goal}; its inspection pass enforces the third.
-The emitted source never uses admitted terms.  This separation is why a
-successful Python-side check is called a candidate throughout the
-implementation, while ``accepted'' is reserved for the judge status.
-
-The polarity boundary also determines failure recovery.  The solver does not
-cache an unverified Boolean verdict and ask later stages merely to justify it.  Each
-stage returns a self-contained candidate of one polarity, submits that
-candidate, and continues if checking fails.  For example, an arithmetic
-countermodel whose certificate exceeds an instance budget does not bias the
-proof branch toward false; it is discarded as an unavailable witness.  A
-superposition trace that cannot be replayed is likewise not evidence for a
-true output.  This discipline prevents a search heuristic from escaping into
-the externally visible result.
+proxy sends one JSON problem and its budget to a fresh process and receives
+service requests over line-delimited JSON.  In Marathon mode the runner supplies
+a JSONL manifest and an append-only output path.  The same source supports both
+modes, selected by the runner-owned Marathon environment
+variable~\cite{competitionRules}.  Section~\ref{sec:certarch} defines the
+shared typed interface and explains why Python search remains outside the
+trusted boundary.
 
 At both protocol entry points we normalize the input operation symbol.  The
 official problem format permits either an asterisk or a diamond, but the
@@ -290,7 +464,7 @@ general superposition engine follows with a quick budget
 seconds for a process allowance $T$; this is six seconds under the recorded
 Solo allowance.  Most provable public instances terminate within this cap.
 
-\paragraph{Stage C: bounded irregular models.}
+\paragraph{Stage C: irregular models.}
 A finite-model search over carriers four through ten receives eight seconds.
 It propagates the universal instances of the hypothesis and Latin-square
 constraints rather than enumerating complete tables.
@@ -301,18 +475,66 @@ seconds, followed by another finite-model pass capped at one hundred twenty
 seconds.  Deep false search precedes the deepest proof pass so that a difficult
 false row does not consume most of its allowance in proof saturation.
 
-\paragraph{Stage E: anytime proof search.}
-The ordered-superposition engine, in the tradition of completion-based
-equational provers~\cite{knuthBendix,bachmairGanzinger}, receives
+\paragraph{Stage E: proof search.}
+The ordered-superposition engine follows the completion tradition of
+equational provers~\cite{knuthBendix,bachmairGanzinger} and receives
 \(
 \min(600,\max(20,T/6))
 \)
 seconds, which is six hundred seconds under the Solo allowance.  The engine
 repeatedly raises term-size and variable caps.  If no direct refutation is returned, a
 small pool of derived equalities can be emitted as exact lemmas followed by a
-kernel-checked closing tactic.  A language-model feedback loop follows
-the deterministic cascade, but none of the accepted rows in the archived
-regression invoked it.
+kernel-checked closing tactic.  Solo also contains a last-resort language-model
+fallback, but it was never called for any archived accepted row; its measured
+history is reported in Section~\ref{sec:evaluation}.
+
+\begin{figure*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}c@{\ }c@{\ }c@{\ }c@{\ }c@{}}
+\fbox{A: structured models} & $\rightarrow$ &
+\fbox{B: direct proofs + quick G3} & $\rightarrow$ &
+\fbox{C: finite-model search} \\
+&& $\downarrow$ && \\
+\fbox{accepted certificate} & $\leftarrow$ &
+\fbox{official \lean judge} & $\leftarrow$ &
+\fbox{D: deep models $\rightarrow$ E: anytime G3}
+\end{tabular}
+\vspace{3pt}
+
+\begin{minipage}{0.94\textwidth}
+\footnotesize
+Each search box is untrusted and may return no candidate.  Every Solo arrow to
+the left carries a complete positive or negative certificate; only the judge's
+accepted response terminates the cascade.  Marathon executes the same boxes in
+two fairness passes and defers judging until the append-only answer file is
+closed.
+\end{minipage}
+\caption{Cascade and trust boundary.  The distinctive interface is
+dual-polarity: proof search and model search share the same fail-closed commit
+point.}
+\Description{A five-stage cascade sends proof and countermodel certificates to
+the official Lean judge; only judge acceptance commits an answer.}
+\label{fig:cascade}
+\end{figure*}
+
+\begin{figure}[t]
+\footnotesize\ttfamily
+normalize both input equations\par
+for stage in [A, B, C, D, E]:\par
+\hspace*{1em}candidate := run(stage, remaining time)\par
+\hspace*{1em}if candidate = none: continue\par
+\hspace*{1em}reply := judge(candidate.polarity, candidate.code)\par
+\hspace*{1em}if reply = accepted: return\par
+return unanswered
+\caption{Solo scheduling pseudocode.  Search never exports a cached Boolean
+verdict; a rejected candidate has no effect on the opposite polarity.}
+\Description{Pseudocode normalizes the equations, executes five stages in
+order, submits each complete candidate to the judge, and stops only on
+acceptance.}
+\label{fig:scheduler}
+\end{figure}
 
 Every stage independently verifies its candidate before the solver stops.  A
 rejected certificate proceeds to the next strategy; a successful search
@@ -361,9 +583,8 @@ branch receives the rest.
 Marathon outputs constitute durable state.  Each answer is one JSON line, flushed and
 synchronized before the next row.  If the runner terminates the process, all
 complete earlier lines remain scoreable.  A process-level timer bounds legacy
-search loops that predate the batch driver.  The batch path issues no speculative
-language-model calls and leaves a residual unanswered rather than consuming
-tokens without producing a certificate.
+search loops that predate the batch driver.  The batch path leaves a residual
+unanswered when its certificate-producing stages are exhausted.
 
 \subsection{Cascade invariants and failure isolation}
 
@@ -402,21 +623,14 @@ in principle share more proof state across rows, but the current implementation
 does not rely on cross-problem lemmas.  This keeps Solo and Marathon certificate
 semantics aligned and limits memory growth under a long manifest.
 
-The fallback model follows the complete deterministic cascade in Solo and is
-not invoked in the archived accepted rows.  Its proposals still pass through
-the same printer and judge, so adding the fallback does not enlarge the trusted
-base.  In Marathon it is disabled to preserve the global token budget; the
-result is a partial manifest containing only verified deterministic answers.
-These are scheduling choices, not claims about the intrinsic capabilities of
-the configured model.
-
 \section{Countermodel Construction}
 \label{sec:false}
 
 For a false implication the solver must find an operation satisfying all
 assignments of the hypothesis and at least one assignment falsifying the
-goal.  It evaluates candidate families in Python, retains a concrete witness,
-and emits a certificate in which the judge repeats the decisive checks.
+goal.  It evaluates candidate families in Python and retains a concrete
+witness; the three negative certificate shapes and their common acceptance
+boundary are defined in Section~\ref{sec:certarch}.
 
 \subsection{Coefficient matching over structured families}
 
@@ -433,9 +647,9 @@ representation quickly locates an assignment on which the goal coefficients
 differ.  The scan includes composite moduli and its shallow range extends to
 the largest carrier admitted by the certificate-instance guard.
 
-Affine operations add a constant term, and matrix-linear operations replace
-the scalar coefficients by matrices over small finite fields.  The latter
-searches include two-dimensional vectors over the three-element field and
+Affine operations add a constant term.  Matrix-linear operations replace
+scalar coefficients by matrices over small finite fields.  These searches
+include two-dimensional vectors over the three-element field and
 three-dimensional vectors over the two-element field.  Polynomial candidates
 are evaluated on full assignments when the carrier and hypothesis arity make
 that feasible.  The deep pass adds a quadratic grid, a two-dimensional family
@@ -543,36 +757,19 @@ and a small tuple falsifying the goal.  The certificate proves the hypothesis
 through a fixed sequence of elementary lemmas and closes the negated goal with
 the concrete tuple.
 
-This is qualitatively different from finite decision.  There is no exhaustive
-tactic over $\Nat$, so the complete mathematical argument must be expressed in
-the certificate.  The original certificates imported a broad tactic module;
-Section~\ref{sec:leanmigration} describes why those imports became an
-operational problem and how positive-form replay reduced their compile time.
+Unlike finite decision, this search cannot discharge the universal premise by
+enumeration.  Section~\ref{sec:certarch} gives the explicit theorem compiler;
+Section~\ref{sec:leanmigration} records the import and compilation costs that
+motivated its core-only form.
 
 \subsection{Certificate shapes and the allow-list}
 \label{sec:allowlist}
 
-For carriers through ten, \code{finOpTable} embeds a JSON-like Cayley table and
-\code{decideFin!} checks the finite existential goal.  The helper extracts
-individual decimal characters, so a table entry with multiple digits is not a
-faithful encoding.  Larger carrier tables therefore cannot use that direct
-shape.
-
-The alternative is a definition such as \code{submission.op} whose body
-computes a linear, affine, polynomial, or packed-table lookup operation.  The
-judge checks its allow-list on the direct constants of the submitted term;
-helpers inside the \code{submission} namespace are unrestricted, which the
-organizers document as intended for auxiliary definitions.  The final theorem
-refers directly to the namespaced operation and core arithmetic.  This route
-was accepted by the official judge for the recorded larger carrier sizes and
-avoids relying on the table parser.
-
-This distinction affects dependency enforcement but does not circumvent it.
-The helper definition is part of the submitted source, is compiled by \lean, and is traversed by the
-kernel when its theorem is checked.  The allow-list controls dependencies, not
-the truth of definitions.  As specified by the documented proof interface,
-submission-local auxiliary definitions provide the intended mechanism for
-packaging operations and lemmas that are not global library dependencies.
+Section~\ref{sec:certarch} specifies the reflected finite shape, the
+single-digit limitation of \code{finOpTable}, the transparent namespaced
+operation used for larger carriers, and how the dependency inspector treats
+local definitions.  The official judge accepted the recorded larger-carrier
+certificates in this alternative shape.
 
 \section{Proof-Producing Ordered Superposition}
 \label{sec:true}
@@ -592,6 +789,39 @@ side with a non-variable subterm of another maximal side, computes a most
 general unifier, and constructs the resulting equality.  Ordering checks are
 repeated after unification, because substitution can change comparisons.
 Equations that cannot be oriented remain available for symmetric inferences.
+
+More precisely, all variables in the two premises are renamed apart.  For
+equations $l=r$ and $s=t$, a non-variable position $p$ of $s$, and
+$\sigma=\mathop{\mathrm{mgu}}(l,s|_p)$ (with an occurs check), the implemented
+positive inference has the schematic form
+\[
+\frac{l=r \qquad s=t}
+     {s[r]_p\sigma=t\sigma}.
+\tag{SP}
+\]
+The selected source direction must be KBO-decreasing after instantiation unless
+the premise is unorientable; for an unorientable premise the direction is
+eligible only when its instantiated right side is not greater.  The selected
+target side must be maximal after instantiation, i.e., $t\sigma\not> s\sigma$.
+The implementation considers both sides exactly when static KBO cannot orient
+the premise.  With unit weights, KBO first checks the variable-occurrence
+condition, then total tree size, and finally lexicographic order for the single
+binary symbol; fresh goal constants are ordered by their names.
+
+Demodulation is the matching instance of (SP).  If $l\theta=s|_p$, it rewrites
+$s$ to $s[r\theta]_p$ only for an oriented rule or when the concrete rewrite is
+KBO-decreasing.  Forward demodulation normalizes new equations; a newly active
+oriented rule backward-demodulates and retires reducible active equations.
+Equations reduced to $q=q$ are deleted.  For a negative goal $u\neq v$, the
+corresponding rule is
+\[
+\frac{l=r \qquad u\neq v}
+     {u[r]_p\sigma\neq v\sigma},
+\tag{NEG}
+\]
+with the same source condition and a maximality check on the selected negative
+side.  A negative clause closes when its two sides unify.  These rules describe
+the implementation rather than asserting a new completeness theorem.
 
 The goal is represented internally as a negative unit clause $u\neq v$ over
 fresh constants.  Active equalities can superpose into either side; ordinary
@@ -676,50 +906,22 @@ Section~\ref{sec:evaluation} measures this implementation on fixed corpora.
 
 \subsection{Replay into the \lean kernel}
 
-Every retained equation stores a derivation recipe.  Replay recursively
-reconstructs source equations, instantiates the universally quantified
-hypothesis, and uses congruence to place an equality inside the overlap
-context.  A superposition step becomes a \code{have} binding assembled from
-\code{congrArg}, symmetry, and transitivity.  Goal simplifications become
-another exact equality chain.  The final proof is a sequence of
-\code{have}/\code{rw}/\code{exact}-style core terms in positive form.
-
-Positive replay isolates search from trust.  The Python engine can orient an
-equation incorrectly, use a stale cache, or reconstruct the wrong path; any of
-these produces a term that fails to elaborate or has the wrong type.  The
-judge then rejects it, and the solver may retry robust emission or continue to
-another stage.  A prover defect can therefore cause a missed proof or a slower
-run, but cannot cause a wrong acceptance unless there is also a defect below
-the \lean kernel boundary.
-
-Replay granularity and certificate size impose competing requirements.
-Emitting every normalization micro-step is easy to audit but repeats contexts
-and substitutions.  Compressing an entire derivation into a large tactic call
-reduces source size but reintroduces a dependency on tactic behavior and
-library imports.  The solver uses one named equality per selected inference,
-with normalization represented as explicit transitivity where needed.  Shared
-ancestors are emitted once in topological order.  This keeps proof text close
-to the saturation trace while allowing \lean to elaborate each local equality
-without reconstructing the global search.
-
-Robust re-emission addresses elaboration rather than logical inference.  The
-first printer uses direct exact terms.  If the judge rejects that source, the solver can wrap
-individual equality steps in a small sequence of core closing alternatives and
-resubmit the same derivation; it does not rerun superposition or change the
-claimed theorem.  If search exhausts its deadline without a refutation, the
-lemma-pool path emits a bounded selection of the smallest already proved
-consequences.  Any final tactic must still close the judge goal from exact
-lemmas.  Failure to do so leaves the row unanswered.
+Section~\ref{sec:certarch} gives the complete compiler: reachable-proof
+slicing, substitution and context reconstruction, topological emission,
+positive-chain conversion, robust re-emission, the replay invariant, and a
+worked Lean term.  The search engine described in this section supplies its
+recipe DAG; it never asks Lean to trust the ordering or refutation calculus.
 
 \section{Engineering for the Hosted Environment}
 \label{sec:hosted}
 
-\subsection{Core-only certificates}
+\subsection{Toolchain migration}
 \label{sec:leanmigration}
 
-The public harness used \lean 4.30.0-rc2, while the announced hosted verifier
-used \lean 4.32.0 with the corresponding Mathlib release.  Most emitted
-certificates already imported only judge modules and core definitions.  The
+Section~\ref{sec:certarch} gives the final core-and-judge-module dependency
+policy.  Historically, the public harness used \lean 4.30.0-rc2, while the
+announced hosted verifier used \lean 4.32.0 with the corresponding Mathlib
+release.  Most emitted certificates already followed that policy.  The
 exception was the infinite-carrier Austin family, whose tactic import made
 compilation sensitive to the larger library environment.  In a compatibility
 run, one such certificate required about 330 seconds of compilation.
@@ -748,14 +950,14 @@ hosted scoring.
 \subsection{Input encoding}
 \label{sec:encoding}
 
-The official judge normalizes the asterisk and diamond spellings when it builds
-the \lean problem.  The runner, however, passes the original problem text to
+The official judge normalizes both operation spellings when it builds the
+\lean problem.  The runner, however, passes the original problem text to
 the contestant process.  An earlier solver normalized only along one internal
 path.  When the Stage 1 evaluation splits were supplied in their published
 asterisk encoding, the solver crashed before certificate search and recorded
 zero accepted rows out of 800.
 
-Version v2.4 introduced, and v2.5 retains, normalization of both equations at both the Solo and Marathon intakes.
+The frozen solver normalizes both equations at both the Solo and Marathon intakes.
 The same drill then recorded 800 accepted certificates with full agreement
 against the published answers.  Thus, verified output does not address failures
 in an unverified parser; normalization must occur at the protocol boundary,
@@ -779,150 +981,55 @@ checkout's default artifact directory could be unwritable in a managed
 workspace; redirecting judge artifacts to temporary storage resolved the
 environmental failure without changing judge sources.
 
-\section{End-to-End Certificate Production}
-\label{sec:certificates}
-
-Search and replay together form a single transaction.  This section follows
-representative false and true candidates
-from a parsed equation pair to the theorem checked by the judge.  The examples
-show certificate shape rather than a particular benchmark row; the concrete
-generated sources remain in the archived result ledgers.
-
-\subsection{Finite countermodel transaction}
-
-Suppose coefficient matching or table search returns a carrier $\Fin n$, an
-operation $m$, and an assignment $\rho$ that separates the goal.  Before
-printing \lean, the solver performs three checks.  It confirms that every
-table entry or arithmetic result belongs to the carrier.  It enumerates every
-assignment required by the hypothesis and checks equality of the evaluated
-sides.  Finally, it reevaluates the two goal terms at $\rho$ and checks that
-their values differ.  A failure at any point discards the candidate without a
-judge call.
-
-For a small table the emitted proof has the following schematic form:
-\begin{verbatim}
-def submission : Goal := by
-  let m : Magma (Fin n) :=
-    { op := finOpTable "<table>" }
-  refine <Fin n, m, ?_>
-  decideFin!
-\end{verbatim}
-The angle-bracket line is printed with \lean's tuple notation in the actual
-source.  The judge's decision tactic expands the finite universal hypothesis
-and the existential goal witness under the supplied operation.  Thus the
-stored Python assignment is useful for prechecking, but the accepted theorem
-does not rely on the Python evaluator.
-
-For a larger structured carrier, the transaction changes only in how $m$ is
-defined.  A helper inside the \code{submission} namespace computes the
-operation using \code{Nat} and \code{Fin} primitives.  The theorem refers to
-that helper when constructing the magma, and finite decision closes the same
-logical goal.  Packed-table witnesses use a natural-number payload and an
-indexing expression in the helper body.  Arithmetic families print their
-closed form directly.  Both routes keep multi-digit entries away from
-\code{finOpTable} while leaving the operation transparent to the kernel.
-
-The certificate has two independent failure modes.  The operation may not be a
-countermodel, in which case finite decision fails with an ordinary proof
-error.  Or the source may use a dependency outside the policy, in which case
-inspection classifies it as incomplete.  Development probes must run through
-the complete official policy: an earlier permissive harness omitted the
-declaration restriction and made a rejected arithmetic shape appear usable.
-Only the official runner result was retained as evidence.
-
-\subsection{Infinite countermodel transaction}
-
-An infinite witness cannot delegate universal checking to finite reflection.
-The Austin path first matches the parsed hypothesis against a stored law up to
-renaming.  It selects an operation $f : \Nat\to\Nat\to\Nat$, instantiates a
-fixed proof that $f$ satisfies the law, and evaluates candidate tuples until
-the goal sides differ.  Emission packages $\Nat$, the magma instance, the
-hypothesis theorem, and a function that turns any assumed goal equality at the
-chosen tuple into a contradiction.
-
-The hypothesis theorem is the expensive part of the source.  Its core-only
-version is a sequence of named local facts about the operation followed by the
-target identity.  The goal refutation is intentionally concrete.  It applies
-the universally quantified conclusion to the stored natural-number tuple and
-uses computation to show that the resulting equality is impossible.  This
-division makes the reusable part of the mathematical construction visible
-while keeping each problem-specific separation small.
-
-As with finite models, recognizing the hypothesis is not itself trusted.  A
-renaming bug would instantiate a lemma at the wrong law, and \lean would reject
-the resulting type.  A wrong tuple would fail to close the negation.  The
-kernel therefore checks both the reusable model theorem and its application to
-the current judge-generated equations.
-
-\subsection{Superposition replay transaction}
-
-A successful G3 search returns a refuted negative goal plus a directed acyclic
-graph of selected inference recipes.  Replay begins from the nodes reachable
-from the refutation and topologically orders them; irrelevant saturation
-clauses are omitted.  Hypothesis leaves become applications of the input
-identity with a substitution for its universally quantified variables.
-Derived leaves created by symmetry or reflexivity become the corresponding
-core constructors.
-
-For an overlap, replay first obtains the equality used as a rewrite.  It lifts
-that equality through the surrounding term context with \code{congrArg},
-choosing symmetry if the search used the reverse direction.  It then composes
-the lifted equality with the instantiated target equation by transitivity.
-The generated source consequently resembles
-\begin{verbatim}
-have eA (...) : lhsA = rhsA := by exact h ...
-have eB (...) : lhsB = rhsB := by
-  have lifted := congrArg C (eA ...)
-  exact lifted.trans ...
-...
-exact finalEquality
-\end{verbatim}
-where actual variable binders, contexts, and equation sides are printed from
-the replay graph.  No saturation data structure or KBO comparison is imported
-into \lean.  The certificate states only the equational consequences needed
-for the final chain.
-
-This proof shape also supports robust recovery.  If an exact term is difficult
-for elaboration because an implicit argument is ambiguous, the robust printer
-adds local type information or a small closing alternative around that step.
-It never replaces a missing inference with an axiom.  Because reachable nodes
-are emitted once, a clause used by several descendants is shared by name rather
-than duplicating its derivation.
-
-\subsection{Acceptance as the commit point}
-
-In Solo mode the solver sends the complete source in a judge request.  The
-proxy writes the judge-controlled problem module, compiles the candidate, runs
-dependency inspection, and returns one of the documented statuses.  Only the
-accepted status commits a solution row.  All other statuses preserve enough
-error text for robust re-emission or later fallback, subject to the remaining
-wall-clock budget.
-
-Marathon cannot make interactive judge calls.  Its commit point is therefore
-split: the solver durably appends a complete candidate row, and the runner
-checks the last complete candidate for each identifier after process exit.
-The append-and-synchronize protocol ensures that termination between problems
-cannot corrupt already emitted source.  This difference changes scheduling
-but not trust: the same verifier and proof policy decide both tracks.
-
 \section{Evaluation}
 \label{sec:evaluation}
 
 \subsection{Method and provenance discipline}
 
 Unless marked hosted, measurements in this section are local runs of the
-official runner and deterministic \lean judge.  The main regression used
+official runner and \lean judge.  The main regression used
 official repository revision \texttt{2848228ff490...}; the harness completed
-without errors on the operator host.  The tested solver is v2.5, SHA-256
-\texttt{f2392533c9f4...}, with byte count given in the abstract.  Each result
-file is bound by the repository's \code{PROVENANCE.json}.  The short hashes in
-the tables are prefixes of the full SHA-256 values in that file.
+without errors on the operator host.  Table~\ref{tab:identity} is the sole
+artifact identity used by every result below.  Each result file is bound by the
+repository provenance manifest; short hashes in later tables are prefixes of
+the full SHA-256 values in \code{PROVENANCE.json}.
+
+\begin{table}[t]
+\caption{Canonical artifact identity.  The freeze timestamp precedes the
+official stress-set release dated 2026-08-28.}
+\label{tab:identity}
+\small
+\begin{tabularx}{\columnwidth}{@{}lY@{}}
+\toprule
+Field & Canonical value \\
+\midrule
+Solver & v2.5, 189,504 bytes \\
+SHA-256 & \scriptsize\texttt{f2392533c9f4c03b292be80bc6d12e98}\newline
+  \scriptsize\texttt{e5254cc4861d1cc4b227957ad5ed89b4} \\
+Freeze & \scriptsize\texttt{7b636bc3c3e8f4eed80fea1809ba940af3c466f0}, 2026-08-26 21:31:32 UTC \\
+Local judge & \scriptsize\texttt{2848228ff490422442878fd6f5abaf4cfa95257d}; Lean 4.30.0-rc2, Mathlib \texttt{896cc56a} \\
+Hosted recheck & \scriptsize\texttt{13648682a5553717ea91b86513ed140b39160cf5}; Lean 4.33.1, Mathlib \texttt{0df444a3} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 The reported wall-clock time is the sum of per-row runner measurements, not
 elapsed parallel makespan and not a hardware-independent cost model.  Solver stages
 with deadlines may take different paths under heavier load.  ``LLM'' counts
-language-model calls attributed by the runner; a zero means the deterministic
-cascade produced the accepted certificate.
+language-model calls attributed by the runner.  All reported accepted results
+are produced deterministically, with zero language-model and zero
+external-prover calls.
+
+The Solo path retains a fallback that calls a language model only after the
+certificate stages.  Marathon disables it to preserve its global token budget,
+and any Solo proposal still passes through the same printer and judge.  No
+archived accepted row invoked this path.  In a separate historical measurement
+before its optimization, the organizer-pinned \code{gpt-oss-120b}
+solved 0/6 original \code{sample\_20} residuals and produced different first
+attempts under the same advertised temperature and seed settings.  This is a
+diagnosis of that configuration, not a general claim about model effectiveness
+or nondeterminism.  The run notes and live result ledgers are recorded in the
+corresponding measurement entry of \code{PROVENANCE.json}.
 
 \subsection{Six public sets}
 
@@ -958,10 +1065,66 @@ The totals establish regression coverage of these public artifacts only.  The
 private evaluation set is separate, and public-set tuning is possible.  We do
 not treat Table~\ref{tab:public} as a hidden-set estimate.
 
+\subsection{Certificate and checking cost}
+
+Table~\ref{tab:certcost} first counts the accepted Lean artifacts in the
+principal evaluation and then aggregates UTF-8 source bytes and accepted
+judge-event time from the bound public and holdout ledgers.  ``Check'' includes
+judge orchestration around Lean compilation and kernel checking; it is not
+prover search time.  Size and time distributions are separated by polarity
+because reflected countermodels and equality-chain proofs have different
+shapes.
+
+\begin{table*}[t]
+\caption{Accepted Lean artifacts and certificate costs.  Panel (a) binds each
+empirical corpus to its source; the total is their arithmetic sum.  In panel
+(b), entries are median / 95th percentile / maximum.  Public and holdout
+statistics derive from \code{results/paper\_certificate\_metrics.json},
+SHA-256 \texttt{56f233426fd63009...}; its embedded source hashes include the
+holdout ledger \texttt{c741609293d136c6...}.}
+\label{tab:certcost}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}p{1.28in}rrrrrY@{}}
+\toprule
+\multicolumn{7}{@{}l}{\textbf{(a) Accepted Lean artifact production}} \\
+Corpus & \shortstack{Positive Lean\\proofs} &
+\shortstack{Negative Lean\\witnesses} & Total & LLM calls &
+\shortstack{External\\prover} & Ledger provenance \\
+\midrule
+Six public sets & 929 & 960 & 1,889 & 0 & 0 &
+\prov{results/paper\_certificate\_metrics.json}{56f233426fd63009...} \\
+Temporal holdout (official stress set) & 100 & 100 & 200 & 0 & 0 &
+\prov{results/stage2\_stress\_test\_results.json}{c741609293d136c6...} \\
+Published distribution drills & 400 & 400 & 800 & 0 & 0 &
+\prov{results/official\_distribution\_drill/*.json}{6647e3a13fc0... / 2025ca90a892... / b931bbf33007... / d7ef36ee24f7...} \\
+\textbf{Total} & \textbf{1,429} & \textbf{1,460} & \textbf{2,889} &
+\textbf{0} & \textbf{0} & Derived from the three hash-bound rows above \\
+\bottomrule
+\end{tabularx}
+\vspace{5pt}
+
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+\multicolumn{5}{@{}l}{\textbf{(b) Certificate source and checking cost}} \\
+Corpus & Verdict ($n$) & Certificate bytes & Check time (s) & End-to-end wall (s) \\
+\midrule
+Public & false (960) & 306 / 498 / 6,885 & 2.20 / 8.85 / 41.74 & 2.30 / 13.43 / 41.95 \\
+Public & true (929) & 494 / 1,392 / 10,766 & 1.43 / 6.98 / 23.21 & 4.26 / 15.43 / 35.29 \\
+Temporal holdout & false (100) & 323 / 551 / 551 & 2.64 / 14.89 / 17.92 & 2.77 / 15.69 / 18.04 \\
+Temporal holdout & true (100) & 500 / 1,406 / 12,485 & 1.72 / 6.13 / 10.04 & 5.91 / 12.12 / 66.49 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Peak memory was not recorded by the official runner and is therefore not
+reported.  The bounded recipe queues described in Section~\ref{sec:true} are a
+design response to the hosted limit, not a substitute for measured resident
+set size.
+
 \subsection{Component-level interpretation}
 
 The superseded v1 baseline left fourteen public residuals: eleven true
-implications without a deterministic proof inside its budgets and three false
+implications without a proof inside its budgets and three false
 implications without a model in its available families and carriers.  The v2
 development was organized around those failure classes.  G3 plus the
 tautology-deletion correction supplies certificates for the true residuals;
@@ -1017,11 +1180,11 @@ ledger file.}
 \toprule
 Measurement & Accepted & LLM/tokens & Wall statistic & Ledger provenance \\
 \midrule
-\code{evaluation\_order5} & 200/200 & 0 calls & sum 583.29 s & \prov{results/official\_distribution\_drill/evaluation\_order5\_results.json}{422ecdf5a856...} \\
-\code{evaluation\_extra\_hard} & 200/200 & 0 calls & sum 1735.26 s & \prov{results/official\_distribution\_drill/evaluation\_extra\_hard\_results.json}{99d16aecd72f...} \\
-\code{evaluation\_hard} & 200/200 & 0 calls & sum 889.03 s & \prov{results/official\_distribution\_drill/evaluation\_hard\_results.json}{4505248a3531...} \\
-\code{evaluation\_normal} & 200/200 & 0 calls & sum 2288.06 s & \prov{results/official\_distribution\_drill/evaluation\_normal\_results.json}{2377747990d8...} \\
-Marathon \code{normal\_100} & 100/100 & 0 tokens & full default budget & \prov{results/marathon/normal\_100\_summary.json}{28fc79269ede...} \\
+\code{evaluation\_order5} & 200/200 & 0 calls & sum 2047.27 s & \prov{results/official\_distribution\_drill/evaluation\_order5\_results.json}{6647e3a13fc0...} \\
+\code{evaluation\_extra\_hard} & 200/200 & 0 calls & sum 17307.45 s & \prov{results/official\_distribution\_drill/evaluation\_extra\_hard\_results.json}{2025ca90a892...} \\
+\code{evaluation\_hard} & 200/200 & 0 calls & sum 2228.57 s & \prov{results/official\_distribution\_drill/evaluation\_hard\_results.json}{b931bbf33007...} \\
+\code{evaluation\_normal} & 200/200 & 0 calls & sum 1019.91 s & \prov{results/official\_distribution\_drill/evaluation\_normal\_results.json}{d7ef36ee24f7...} \\
+Marathon \code{normal\_100} & 100/100 & 0 tokens & full default budget & \prov{results/marathon/normal\_100\_summary.json}{d422d4ad6703...} \\
 Hosted playground (\code{evaluation\_normal}) & 200/200 & 0 calls & mean 4.89 s/problem & \prov{PROVENANCE.json: hosted\_playground\_measurement}{artifact 7916cbc2...} \\
 \bottomrule
 \end{tabularx}
@@ -1033,62 +1196,48 @@ respectively.  Those values include hosted orchestration and certificate
 checking as exposed by the playground, and should not be compared directly to
 the local prover-only benchmark below.
 
-\subsection{Focused prover measurement}
+\subsection{Temporal holdout and research frontier}
+\label{sec:holdout}
 
-To test the G3 search independently of the full cascade, development used a
-corpus of 254 ETP pairs selected because an existing Vampire derivation was
-available and the earlier prover found them difficult.  Under a thirty-second
-per-pair prover cap, the optimized engine found all 254 derivations; maximum
-prover time was 2.7 seconds and the sum was sixteen seconds.  On all 819 public
-true problems under the quick cap, the prover found all proofs with median one
-millisecond and maximum 1.2 seconds.  These are prover-only measurements on the
-development machine, not judge wall-clock time and not a comparison claiming
-superiority over Vampire.  Vampire served as a source of hard instances and
-derivation guidance.
+The solver artifact in Table~\ref{tab:identity} was frozen at 21:31:32 UTC on
+2026-08-26.  The organizers released the official Stage 2 stress
+set on 2026-08-28, after that freeze.  The set was
+announced as mirroring the final leaderboard composition: four categories of
+fifty rows, each containing twenty-five true and twenty-five false
+implications.  The byte-identical solver then produced 200/200 accepted
+certificates with zero language-model calls in 22 minutes 25 seconds.  Its
+per-category verdict counts match the announced composition, although the set
+does not publish per-item reference labels.  Its ledger has SHA-256 prefix
+\texttt{c741609293d136c6}; the full digest is bound in \code{PROVENANCE.json}.
 
-These focused results are recorded in
-\code{docs/TRUE\_SIDE\_G3\_PROVER.md}; they have no standalone hash-bound
-runner ledger and are therefore not included in the ledger tables.
+The temporal ordering, immutable solver hash, and absence of post-release
+parameter changes make this a holdout with respect to solver development.  It
+is not a random sample from all magma implications, and its announced
+competition distribution may resemble the public suites, but unlike those
+suites no row could have driven a solver change.
 
-\subsection{Bounded language-model measurement}
-
-Before the v2 deterministic extensions, a fixed-configuration run exercised
-the organizer-pinned \code{gpt-oss-120b} fallback on six unsolved
-\code{sample\_20} residuals.  It solved zero of the six.  Pilot and canonical
-runs also produced different first attempts despite the advertised zero
-temperature and fixed seed.  The canonical run cost \$0.1350 in total,
-measured from provider credits-balance deltas rather than runner logs ---
-about \$0.023 per residual item under the sixteen-round cap.  Per-call
-latency and token telemetry are recorded as unavailable in the run notes, so
-no per-call figures are reported here.  We report this bounded negative measurement
-of one model, provider route, solver version, prompt, and residual set.  It
-does not support a general statement that language
-models are ineffective for theorem proving or for this competition.
-
-The executed pre-fix solver is bound in \code{docs/LIVE\_RUN\_NOTES.md} by
-SHA-256 prefix \texttt{22a0bc846288...}; the canonical row data are in
-\code{results/sample\_20\_live.json}.  Because no ledger-file hash for this
-historical run appears in the claims provenance, it is reported in prose rather
-than the hash-bound tables.
+The simultaneously released, unscored order-five research set gives the
+opposite result.  It contains 100 research-tier problems with an
+order-five Austin law on at least one side, partly unknown ground truth, and no
+finite countermodel for the relevant false directions.  The artifact
+certified 0/100 within budget: 73 searches exhausted the deep budget and 27
+candidate certificates were rejected by the kernel.  This negative ledger
+(SHA-256 \texttt{86fc2764fdb9...}) prevents the holdout result from being read
+as broad completeness.
 
 \section{Honest Boundary and Reproducibility}
 \label{sec:repro}
 
-\subsection{Hosted result: \pending}
+\subsection{Scope of the empirical claims}
 
-At the time of this draft there is no hosted leaderboard score or rank.  The
-hosted playground is a diagnostic service and is labeled as such.  The six-set
-and distribution-drill results are local official-runner measurements.  None
-of them establishes transfer to the hidden evaluation distribution.
-
-There is also no completeness theorem for either branch.  Structured
-countermodels cover chosen families, the finite-model search has carrier and
-time bounds, and the superposition implementation deepens only until its
-deadline.  Deep-stage outcomes can vary with machine load even though the
-judge's verdict on a fixed certificate is deterministic.  We make no
-performance-superiority claim over another solver or prover.  The empirical
-statement is exactly that the archived certificates were accepted in the
-recorded runs.
+The scientific claims do not depend on a leaderboard score or rank.  Public
+and distribution-drill rows measure regression; the hosted playground measures
+toolchain compatibility; Section~\ref{sec:holdout} supplies the temporal
+holdout.  None is a completeness theorem or a cross-system comparison.
+Structured countermodels cover chosen families, finite-model search has
+carrier and time bounds, and superposition deepens only until its deadline.
+Deep-stage paths can vary with machine load; under a pinned toolchain, the
+judge's acceptance of a fixed certificate is stable.
 
 \subsection{Threats to validity}
 
@@ -1125,33 +1274,23 @@ and separately lists prohibited inferences.  The repository script
 accepted-row metadata, verifies the one-file submission layout, and fails
 closed on drift.
 
-This structure is intended to prevent stale measurements from being attributed
-to a revised solver.  Historical v1 and intermediate v2
-artifacts remain named as superseded.  The tables in this paper use the current
-v2.4 bindings from \code{PROVENANCE.json}, even where an older narrative report
-contains timings from a previous rerun.
+This structure prevents stale measurements from being attributed to a
+different solver.  Every table uses the v2.5 identity in
+Table~\ref{tab:identity}; older provenance entries are outside the paper's
+quantitative claim surface.
 
 \subsection{Replay procedure}
 
-Reproduction requires two checkouts: this artifact and the official Stage 2
-judge at the pinned revision.  In the artifact checkout, first run
+Reproduction requires this artifact and the official Stage 2 judge at the
+pinned revision.  The artifact-side integrity check is
 \begin{verbatim}
 python3 scripts/check_freeze.py
 \end{verbatim}
-to check immutable bindings.  In the official checkout, run
-\code{bash scripts/setup.sh}, source \code{.env.judge}, and invoke the Solo
-runner with a submission-only directory containing the frozen
-\code{solver.py}.  For example, the public normal set uses
-\begin{verbatim}
-python3 -m pipeline.runner \
-  --submission /path/to/submission \
-  --problems examples/problems/normal.jsonl \
-  --output /tmp/normal-results.json
-\end{verbatim}
-The Marathon replay uses \code{scripts/run\_marathon.py}, the canonical
-\code{normal\_100.jsonl} manifest, and an output directory outside a read-only
-checkout.  Recomputed output hashes should be recorded as a new run rather
-than overwriting the archived ledgers.
+The pinned Solo or Marathon runner then consumes a submission directory
+containing only the frozen \code{solver.py}.
+The anonymous supplement includes the exact pinned revisions, manifests,
+ledgers, and replay commands.  Recomputed output must be stored separately
+rather than overwriting the archived evidence.
 
 The \lean 4.32 compatibility corpus was run in an external directory and is
 described in the provenance record; it is not presently packaged as a
@@ -1160,24 +1299,8 @@ official harness, freeze checker, ledger files, and public-runner commands are
 available locally; hosted playground interaction and any future leaderboard
 submission require organizer infrastructure.
 
-\paragraph{A measured outer boundary.}
-Shortly before submission the organizers released two additional official sets.
-On \code{stage2\_stress\_test}, announced as mirroring the final leaderboard
-configuration, the frozen solver accepts 200 of 200 problems with no
-language-model calls; the set publishes no per-item reference labels, but the
-per-category verdict counts match the announced composition of twenty-five
-true and twenty-five false in all four categories, and every accepted verdict
-is kernel-checked by the judge.  On
-\code{research\_order5\_hard} --- one hundred research-tier problems in which
-at least one side is an order-five Austin law, whose false direction provably
-admits no finite countermodel, and whose ground truth is in part unknown even
-to the organizers --- the frozen solver certifies none within its budgets.
-Both ledgers are committed and hash-bound.  The pair delimits the system
-precisely: complete coverage of the announced evaluation distribution, and a
-research frontier, coinciding with open territory in the Equational Theories
-Project, that finite methods do not reach.
-
 \section{Related Work}
+\label{sec:rw}
 
 \paragraph{Equational theories.}
 The Equational Theories Project builds a collaborative implication graph for
@@ -1195,46 +1318,75 @@ not separate the goals encountered in the drill.  The infinite-carrier Austin
 models similarly draw on constructions represented in the Equational Theories
 Project rather than proposing a general finite-model theorem.
 
-\paragraph{Superposition provers.}
-Vampire~\cite{vampire}, E~\cite{eprover}, and Prover9~\cite{prover9} are
-mature first-order theorem provers implementing
-variants of resolution, superposition, completion, simplification, and
-given-clause saturation~\cite{vampire,eprover,prover9}.  Our engine borrows
-standard ideas---ordered inference, KBO, demodulation, discrimination-tree
-retrieval, and age/weight selection---but specializes them to unit equations
-over one binary symbol.  The system-level difference is the output contract:
-the search trace is compiled into a positive \lean equality proof acceptable
-under the competition policy.  We do not compare throughput or coverage
-against these systems.
+\paragraph{Proof-producing superposition and reconstruction.}
+Duper is the closest direct precedent: it implements proof-producing
+superposition as a Lean tactic and addresses proof search and reconstruction
+for dependent type theory~\cite{duper}.  It sets the positive baseline here and
+is broader in logic and tighter in proof-assistant integration.  Our system
+occupies a complementary point in the design space: a narrower equality
+compiler is coupled to finite and infinite negative witness compilers, one
+dependency policy, and a single-file resource scheduler.
 
-\paragraph{Proof assistants and certificate checking.}
-\lean is both the certificate language and the final trusted checker
-\cite{lean4}; Mathlib supplies the surrounding library in the official judge
-environment~\cite{mathlib}.  The solver follows the proof-producing automation
-pattern in which a fast untrusted procedure returns an object reconstructed or
-checked by a small trusted kernel.  Finite countermodels are likewise proof
-objects: exhaustive reflection closes the concrete finite statement, while
-infinite witnesses use explicit lemmas.
+Lean-Auto translates Lean goals to first-order provers and reconstructs their
+answers~\cite{leanAuto}; Lean on Vampire similarly reconstructs Vampire proofs
+as trusted Lean proofs~\cite{leanVampire}.  These systems answer the natural
+alternative ``call a mature ATP, then replay.''  That architecture offers a
+stronger general prover, but the competition submission may contain only one
+Python file.  Specialization lets proof search share parsing, budgets, and
+certificate dispatch with the countermodel branch.  This is an engineering
+tradeoff, not a claim that the specialized prover has better coverage.
 
-\paragraph{Distillation artifacts.}
-The competition is motivated by work on distilling many-shot context into a
-compact cheat sheet~\cite{hondaCheatSheet}.  The artifact here is executable
-rather than a natural-language sheet: algebraic families, search control, and
-proof printers are distilled into one source file.  The fixed-configuration
-language-model measurement is included to document the development path, not
-to argue that symbolic search and language models are mutually exclusive.
+Isabelle's Sledgehammer architecture delegates search to external provers and
+uses tactics such as Metis for reconstruction~\cite{sledgehammer,metis}.
+The \textsc{slam} tactic instead targets higher-order logic directly with
+$\lambda$-superposition and can itself serve as a Sledgehammer backend
+\cite{slam}.  Our positive replay shares the same skeptical principle, but it
+emits first-order unit-equality chains rather than translating higher-order
+proofs.  TSTP provides a general interchange vocabulary for ATP problems and
+derivations~\cite{tstp}; our recipes are smaller and domain-specific, but this
+choice sacrifices interoperability with mature ATP tooling.
+
+\paragraph{Formalized calculi and model finding.}
+Formalizations of superposition study the soundness and completeness of the
+calculus itself; recent Isabelle work extends such a framework with sorts
+\cite{sortedSuperposition}.  Our Python calculus is not formally verified.
+Instead, each successful derivation is compiled away and checked extensionally
+as a Lean equality proof.  This reduces the trusted base for each answer but
+does not establish completeness or correctness of the search algorithm.
+
+Vampire~\cite{vampire}, E~\cite{eprover}, and Prover9/Mace4
+\cite{prover9} implement mature saturation and finite-model architectures;
+Paradox develops efficient MACE-style finite model finding
+\cite{paradox}.  Our bounded finder is less general.  Its system contribution
+is that the discovered table is not accepted as a Python-side Boolean: it is
+embedded in a negative Lean witness and exhaustively checked under the same
+contract as a positive proof.  Structured and infinite families cover cases
+where generic small-table enumeration is either wasteful or inapplicable.
+
+\paragraph{Lean integration.}
+Section~\ref{sec:certarch} collects the Lean-specific consequences of equality
+elimination, finite reflection, dependency inspection, and toolchain startup
+\cite{lean4,mathlib}.  Together they favor small, locally typed certificates
+over replaying a global search trace.  A reusable length-independent
+finite-operation certificate API would remove the remaining
+proof-assistant-specific printer branch.
 
 \section{Conclusion}
 
 The SAIR EQT2 Stage 2 contract rewards an answer only when the same artifact
 also supplies a machine-checked reason.  The solver described here meets that
-contract with a cheapest-first combination of structured and irregular
-countermodels, infinite witnesses, and ordered unit superposition, followed by
-replay through the \lean kernel.  Hash-bound local regressions account for all
-measured public and distribution-drill rows, and a separately labeled hosted
-playground measurement exercises the announced toolchain.  The remaining
-boundary is explicit: no leaderboard result, hidden-set claim, completeness
-theorem, or comparative claim is available at this draft stage.
+contract with one fail-closed cascade for both polarities: structured and
+irregular countermodels, infinite witnesses, and ordered unit superposition
+all terminate in judge-checked Lean terms.  This dual-polarity integration,
+the restricted single-file deployment, and the evidence discipline distinguish
+the system from proof-producing superposition alone.  Public regressions show
+integration coverage; the 200/200 temporal holdout tests the byte-identical
+artifact after freeze, while the research-tier failure marks a concrete
+frontier.
+The broader lesson is that aggressive untrusted search remains auditable when
+each stage preserves enough structure to emit a small positive proof or an
+explicit negative model, and when empirical claims are bound to the exact
+bytes that produced them.
 
 \ifplainarticle
   \bibliographystyle{plainnat}
