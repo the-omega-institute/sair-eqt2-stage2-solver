@@ -1,0 +1,1762 @@
+[
+ {
+  "cert": "false_1876_1895",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1876_1895",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1876_1895",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1876_1895",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_2917_28",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_2917_28",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_2917_28",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_2917_28",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_619_1322",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_619_1322",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_619_1322",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_619_1322",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_825_167",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_825_167",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_825_167",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_825_167",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_731_2663",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_731_2663",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_731_2663",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_731_2663",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1232_73",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1232_73",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1232_73",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1232_73",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_4608_3050",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_4608_3050",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_4608_3050",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_4608_3050",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_825_2663",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_825_2663",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_825_2663",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_825_2663",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 2,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_919_872",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_919_872",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_919_872",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_919_872",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_907_2534",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_907_2534",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_907_2534",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_907_2534",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1507_1526",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1507_1526",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1507_1526",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1507_1526",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_2370_1248",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_2370_1248",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_2370_1248",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_2370_1248",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1790_1722",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1790_1722",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_1790_1722",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_1790_1722",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_58_1860",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_58_1860",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "false_58_1860",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "false_58_1860",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0002",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0002",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0002",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0002",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0010",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0010",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0010",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0010",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0011",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0011",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0011",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0011",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0013",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0013",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0013",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0013",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0014",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0014",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0014",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0014",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 5,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0041",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0041",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0041",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0041",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0043",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0043",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0043",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0043",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0096",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0096",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0096",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0096",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0100",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0100",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0100",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0100",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0112",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0112",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0112",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0112",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0156",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0156",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0156",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0156",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0167",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0167",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0167",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0167",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0169",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0169",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 8,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0169",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0169",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0187",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0187",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0187",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0187",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0188",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0188",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 8,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard2_0188",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard2_0188",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 8,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0026",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0026",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0026",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0026",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0204",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0204",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0204",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0204",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0251",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0251",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0251",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0251",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0305",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0305",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0305",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0305",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0307",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0307",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0307",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0307",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0335",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0335",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "normal_0335",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "normal_0335",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 3,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0035",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0035",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0035",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0035",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0161",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0161",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0161",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0161",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 4,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0309",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0309",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard3_0309",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard3_0309",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0001",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0001",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0001",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0001",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0017",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0017",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0017",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0017",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0021",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0021",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0021",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0021",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0024",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0024",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0024",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0024",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0030",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0030",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0030",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0030",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 7,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0057",
+  "enc": "finOpTable",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0057",
+  "enc": "finOpTable",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "incomplete_proof",
+  "axioms": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ {
+  "cert": "hard1_0057",
+  "enc": "arithmetic",
+  "policy": "official",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ },
+ {
+  "cert": "hard1_0057",
+  "enc": "arithmetic",
+  "policy": "zero-axiom",
+  "carrier": 9,
+  "status": "accepted",
+  "axioms": []
+ }
+]

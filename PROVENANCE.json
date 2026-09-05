@@ -500,5 +500,17 @@
     "artifact_verification": "the platform's own re-download of the Marathon/gpt-oss-120b participation was compared locally against submission/solver.py: byte-identical, SHA-256 f2392533c9f4c03b292be80bc6d12e98e5254cc4861d1cc4b227957ad5ed89b4",
     "submission_note": "disclosed the order-9 central-groupoid table (own A^2=J backtracking search) and the N-carrier Austin countermodels adapted from the Equational Theories Project; no compressed data or binary blobs; no Contributor Network solver code; repository public after the deadline",
     "evidence_status": "external operator attestation (platform account state; no repository-committable ledger)"
+  },
+  "axiom_encoding_experiment": {
+    "date": "2026-09-05",
+    "question": "Does the axiom closure of a finite countermodel certificate depend on the mathematics or on the emitted encoding?",
+    "method": "For 44 accepted false certificates whose finOpTable model is affine over Fin n, the same model was re-emitted as an arithmetic operation in the submission namespace. Both encodings were elaborated through the official judge (revision 1364868, Lean 4.33.1) under two policies: the runner's default allowlist {propext, Quot.sound, Classical.choice} and a zero-axiom variant of it.",
+    "result": "44/44, without exception and across carriers 2,3,4,5,7,8,9: the finOpTable encoding closes over the three standard axioms and is rejected by the zero-axiom policy; the arithmetic encoding of the same model closes over nothing and is accepted under both. Both encodings discharge the goal with decideFin!, so the axioms enter through the table encoding rather than through decide.",
+    "scope": "Affine-expressible models only. It does not establish that every finite countermodel the solver emits can be certified axiom-free.",
+    "script": "scripts/axiom_encoding_experiment.py",
+    "ledger": "results/axiom_encoding_experiment.json",
+    "ledger_sha256": "65a9e024111d3cfc9db2ab1e00f0d817a748fd894e0d473e92ca2ce553be05ca",
+    "script_sha256": "17549ea24c8a833a61c1b29660d770af08f3fb91154e797f6c96aaa2f5881e64",
+    "evidence_status": "repository-verifiable; reproducible against a local judge checkout"
   }
 }
